@@ -42,6 +42,36 @@ namespace PIM.Controllers
             return Ok(result);
         }
 
+        // NOVO ENDPOINT: Pega tickets atribuídos ao usuário logado
+        [HttpGet("MyTickets")]
+        public async Task<IActionResult> GetMyTickets()
+        {
+            var userId = GetCurrentUserId();
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            var tickets = await _context.Chamados
+                .Include(c => c.AtribuidoA)
+                .Where(c => c.AtribuidoA_AdminId == userId)
+                .OrderByDescending(c => c.ChamadoId)
+                .ToListAsync();
+
+            var result = tickets.Select(c => new
+            {
+                id = c.ChamadoId,
+                title = c.Titulo,
+                category = c.Categoria,
+                priority = c.Prioridade,
+                status = c.Status,
+                assignedTo = c.AtribuidoA != null ? c.AtribuidoA.Username : null,
+                dataAbertura = c.DataAbertura
+            });
+
+            return Ok(result);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTicket(int id)
         {
@@ -74,13 +104,15 @@ namespace PIM.Controllers
         public async Task<IActionResult> Approve(int id)
         {
             var ticket = await _context.Chamados.FindAsync(id);
-            if (ticket != null)
+            if (ticket == null)
             {
-                ticket.Status = "Concluído";
-                ticket.DataFechamento = DateTime.Now;
-                ticket.AtribuidoA_AdminId = GetCurrentUserId();
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
+
+            ticket.Status = "Em Andamento";
+            ticket.AtribuidoA_AdminId = GetCurrentUserId();
+            await _context.SaveChangesAsync();
+            
             return Ok();
         }
 
@@ -88,13 +120,14 @@ namespace PIM.Controllers
         public async Task<IActionResult> Reject(int id)
         {
             var ticket = await _context.Chamados.FindAsync(id);
-            if (ticket != null)
+            if (ticket == null)
             {
-                ticket.Status = "Rejeitado";
-                ticket.DataFechamento = DateTime.Now;
-                ticket.AtribuidoA_AdminId = GetCurrentUserId();
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
+            
+            ticket.Status = "Rejeitado";
+            await _context.SaveChangesAsync();
+            
             return Ok();
         }
 

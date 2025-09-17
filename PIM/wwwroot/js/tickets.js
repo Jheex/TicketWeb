@@ -1,35 +1,73 @@
+// Variável de estado para controlar a visualização
+let isMyTicketsView = false;
+
 // ===== Função principal para carregar tickets do backend =====
 async function loadTickets() {
-    // Chama a API real
-    const response = await fetch('/api/ticketsapi');
-    const tickets = await response.json();
+    let tickets;
+    let response;
 
-    // Captura filtros e pesquisa
+    // Decide qual endpoint da API chamar com base na variável de estado
+    if (isMyTicketsView) {
+        response = await fetch('/api/ticketsapi/MyTickets');
+    } else {
+        response = await fetch('/api/ticketsapi');
+    }
+
+    if (!response.ok) {
+        if (response.status === 401) {
+            alert("Você precisa estar logado para ver seus tickets.");
+        } else {
+            alert("Erro ao carregar os tickets.");
+        }
+        return;
+    }
+
+    tickets = await response.json();
+
+    // A lógica de filtragem continua a mesma, mas é aplicada após a busca correta
     const searchTerm = document.getElementById("searchInput").value.toLowerCase();
     const statusFilter = document.getElementById("statusFilter").value;
     const priorityFilter = document.getElementById("priorityFilter").value;
     const dateFilter = document.getElementById("dateFilter").value;
 
-    // Filtra tickets
     const filteredTickets = tickets.filter(ticket => {
         const matchesSearch = ticket.title.toLowerCase().includes(searchTerm) 
             || (ticket.assignedTo ? ticket.assignedTo.toLowerCase().includes(searchTerm) : false);
 
         const matchesStatus = statusFilter === "" || ticket.status === statusFilter;
         const matchesPriority = priorityFilter === "" || ticket.priority === priorityFilter;
-
-        // Lógica do Filtro de Data
         const matchesDate = dateFilter === "all" || new Date(ticket.dataAbertura) >= new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 
         return matchesSearch && matchesStatus && matchesPriority && matchesDate;
     });
 
-    // Container onde os cards serão renderizados
+    renderTickets(filteredTickets);
+    
+    // Mostra a mensagem de feedback se algum filtro estiver ativo
+    const feedbackDiv = document.getElementById('filterFeedback');
+    
+    // Adicionei uma verificação para a data, já que "Todo Período" é o padrão
+    if (searchTerm || statusFilter || priorityFilter || dateFilter !== 'all' || isMyTicketsView) {
+        feedbackDiv.style.display = 'flex';
+        setTimeout(() => {
+            feedbackDiv.style.display = 'none';
+        }, 3000); // Esconde a mensagem depois de 3 segundos
+    } else {
+        feedbackDiv.style.display = 'none';
+    }
+}
+
+// ===== Renderiza tickets na tela =====
+function renderTickets(tickets) {
     const container = document.getElementById("ticketContainer");
     container.innerHTML = "";
 
-    // Ordena do mais recente para o mais antigo
-    filteredTickets.sort((a, b) => b.id - a.id).forEach(ticket => {
+    if (tickets.length === 0) {
+        container.innerHTML = `<div class="no-tickets-message">Nenhum ticket encontrado.</div>`;
+        return;
+    }
+
+    tickets.sort((a, b) => b.id - a.id).forEach(ticket => {
         const priorityClass = {
             "Alta": "badge-priority-alta",
             "Média": "badge-priority-media",
@@ -54,33 +92,27 @@ async function loadTickets() {
         }[ticket.status] || "";
 
         card.classList.add(statusBorderClass);
-        
+
         let actionButtonsHtml = '';
-        if (ticket.status === 'Aberto' || ticket.status === 'Em Andamento') {
+        if (ticket.status === 'Aberto') {
             actionButtonsHtml = `
                 <button class="ticket-btn ticket-btn-approve" onclick="approveTicket(${ticket.id})">Aprovar</button>
                 <button class="ticket-btn ticket-btn-reject" onclick="rejectTicket(${ticket.id})">Rejeitar</button>
             `;
+        } else if (ticket.status === 'Em Andamento') {
+             actionButtonsHtml = `
+                <button class="ticket-btn ticket-btn-approve" onclick="approveTicket(${ticket.id})">Concluir</button>
+                <button class="ticket-btn ticket-btn-reject" onclick="rejectTicket(${ticket.id})">Rejeitar</button>
+            `;
         }
-        
-        // Formata a data de abertura para "dd/MM/yyyy HH:mm"
-        const dataAbertura = new Date(ticket.dataAbertura).toLocaleString('pt-BR', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit'
-        });
+
+        const dataAbertura = new Date(ticket.dataAbertura).toLocaleString('pt-BR', {year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'});
 
         card.innerHTML = `
             <div class="card-content">
                 <div class="card-header">
                     <div class="card-title">#${ticket.id} - ${ticket.title}</div>
-                    <button class="delete-btn" onclick="deleteTicket(${ticket.id})">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M3 6l2-2h4V2h6v2h4l2 2v2H3V6zM5 8h14v12a2 2 0 01-2 2H7a2 2 0 01-2-2V8zm6 4v6h2v-6h-2zm-4 0v6h2v-6H7zm8 0v6h2v-6h-2z" />
-                        </svg>
-                    </button>
+                    <button class="delete-btn" onclick="deleteTicket(${ticket.id})">🗑️</button>
                 </div>
                 <div><strong>Usuário:</strong> ${ticket.assignedTo || "Não atribuído"}</div>
                 <div class="ticket-category"><strong>Categoria:</strong> ${ticket.category}</div>
@@ -95,20 +127,51 @@ async function loadTickets() {
                 <button class="ticket-btn ticket-btn-details" onclick="viewDetails(${ticket.id})">Detalhes</button>
             </div>
         `;
-
         container.appendChild(card);
     });
 }
 
-// ===== Funções de ação =====
+// ===== Ações =====
 async function approveTicket(id) {
-    await fetch(`/api/ticketsapi/approve/${id}`, { method: 'POST' });
-    loadTickets();
+    try {
+        const response = await fetch(`/api/ticketsapi/approve/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            alert("Ticket aprovado com sucesso!");
+            loadTickets();
+        } else {
+            alert("Erro ao aprovar o ticket.");
+        }
+    } catch (error) {
+        console.error("Erro na requisição de aprovação:", error);
+        alert("Erro ao tentar aprovar o ticket.");
+    }
 }
 
 async function rejectTicket(id) {
-    await fetch(`/api/ticketsapi/reject/${id}`, { method: 'POST' });
-    loadTickets();
+    try {
+        const response = await fetch(`/api/ticketsapi/reject/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            alert("Ticket rejeitado com sucesso!");
+            loadTickets();
+        } else {
+            alert("Erro ao rejeitar o ticket.");
+        }
+    } catch (error) {
+        console.error("Erro na requisição de rejeição:", error);
+        alert("Erro ao tentar rejeitar o ticket.");
+    }
 }
 
 async function deleteTicket(id) {
@@ -133,17 +196,13 @@ async function deleteTicket(id) {
 async function viewDetails(id) {
     try {
         const response = await fetch(`/api/ticketsapi/${id}`);
-        if (!response.ok) {
-            throw new Error('Ticket não encontrado');
-        }
+        if (!response.ok) throw new Error('Ticket não encontrado');
         const ticket = await response.json();
 
-        // Formata as datas para o modal
         const dataAberturaFormatada = new Date(ticket.dataAbertura).toLocaleString('pt-BR', {
-            year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'
+            year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'
         });
 
-        // Preenche o modal com os dados
         document.getElementById("modalTitle").textContent = `#${ticket.id} - ${ticket.title}`;
         document.getElementById("modalId").textContent = ticket.id;
         document.getElementById("modalUser").textContent = ticket.assignedTo;
@@ -156,22 +215,22 @@ async function viewDetails(id) {
         const finalizationInfo = document.getElementById("finalizationInfo");
         if (ticket.dataFechamento) {
             const dataFechamentoFormatada = new Date(ticket.dataFechamento).toLocaleString('pt-BR', {
-                year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'
+                year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'
             });
             document.getElementById("modalFinalizedDate").textContent = dataFechamentoFormatada;
             finalizationInfo.style.display = 'block';
         } else {
             finalizationInfo.style.display = 'none';
         }
-        
-        document.getElementById("ticketModal").style.display = "flex";
 
+        document.getElementById("ticketModal").style.display = "flex";
     } catch (error) {
         console.error("Erro ao carregar detalhes do ticket:", error);
         alert("Não foi possível carregar os detalhes do ticket.");
     }
 }
 
+// Fechar modal
 document.querySelector(".close-btn").addEventListener("click", () => {
     document.getElementById("ticketModal").style.display = "none";
 });
@@ -183,9 +242,30 @@ window.addEventListener("click", (event) => {
     }
 });
 
-document.getElementById("searchInput").addEventListener("input", loadTickets);
-document.getElementById("statusFilter").addEventListener("change", loadTickets);
-document.getElementById("priorityFilter").addEventListener("change", loadTickets);
-document.getElementById("dateFilter").addEventListener("change", loadTickets);
+// Garante que o script só roda quando a página estiver totalmente carregada
+document.addEventListener("DOMContentLoaded", () => {
+    // Carrega os tickets ao iniciar a página
+    loadTickets();
 
-document.addEventListener("DOMContentLoaded", loadTickets);
+    // Adiciona o listener para o botão "Meus Tickets" de forma segura
+    const myTicketsButton = document.getElementById("myTicketsButton");
+    if (myTicketsButton) {
+        myTicketsButton.addEventListener("click", () => {
+            isMyTicketsView = !isMyTicketsView;
+            loadTickets();
+        });
+    }
+
+    // Adiciona listeners para os outros filtros
+    const searchInput = document.getElementById("searchInput");
+    if (searchInput) searchInput.addEventListener("input", loadTickets);
+
+    const statusFilter = document.getElementById("statusFilter");
+    if (statusFilter) statusFilter.addEventListener("change", loadTickets);
+
+    const priorityFilter = document.getElementById("priorityFilter");
+    if (priorityFilter) priorityFilter.addEventListener("change", loadTickets);
+
+    const dateFilter = document.getElementById("dateFilter");
+    if (dateFilter) dateFilter.addEventListener("change", loadTickets);
+});

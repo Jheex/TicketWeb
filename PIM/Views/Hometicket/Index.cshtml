@@ -7,9 +7,8 @@
 }
 
 <div class="dashboard-container">
-
     <h2 class="dashboard-header">Histórico de Tickets</h2>
-
+    
     <div class="filters-wrapper">
         <div class="filter-group search-wrapper">
             <label for="searchInput">Pesquisar</label>
@@ -18,7 +17,6 @@
                 <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM3 10a7 7 0 1114 0 7 7 0 01-14 0zM19.7 18.3a1 1 0 01-1.4 1.4L14 15.4l-1.3 1.3a1 1 0 01-1.4-1.4l1.3-1.3-4.3-4.3a1 1 0 011.4-1.4l4.3 4.3 1.3-1.3a1 1 0 011.4 1.4L15.4 14l4.3 4.3z" />
             </svg>
         </div>
-        
         <div class="filter-group">
             <label for="statusFilter">Status</label>
             <select id="statusFilter" class="filter-select">
@@ -29,7 +27,6 @@
                 <option value="Rejeitado">Rejeitado</option>
             </select>
         </div>
-
         <div class="filter-group">
             <label for="priorityFilter">Prioridade</label>
             <select id="priorityFilter" class="filter-select">
@@ -39,7 +36,6 @@
                 <option value="Baixa">Baixa</option>
             </select>
         </div>
-
         <div class="filter-group">
             <label for="dateFilter">Período</label>
             <select id="dateFilter" class="filter-select">
@@ -47,6 +43,15 @@
                 <option value="last7days">Últimos 7 Dias</option>
             </select>
         </div>
+        <div class="filter-group my-tickets-wrapper">
+            <label class="hidden-label">&nbsp;</label>
+            <button id="myTicketsButton" class="my-tickets-button">Meus Tickets</button>
+        </div>
+    </div>
+    
+    <div id="filterFeedback" class="feedback-notification success" style="display: none;">
+        <i class="fa-solid fa-filter"></i>
+        <span>Tickets filtrados com sucesso!</span>
     </div>
 
     <div id="ticketContainer" class="ticket-container"></div>
