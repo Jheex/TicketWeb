@@ -5,11 +5,15 @@ using PIM.Data;
 using PIM.Models;
 using PIM.ViewModels;
 using System.Linq;
-using PIM.ViewModels;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace PIM.Controllers
 {
-    public class TicketsCardController : Controller
+    // NOVO: Define a rota base e o comportamento de API
+    [Route("api/[controller]")]
+    [ApiController]
+    public class TicketsCardController : ControllerBase
     {
         private readonly AppDbContext _context;
 
@@ -17,15 +21,15 @@ namespace PIM.Controllers
         {
             _context = context;
         }
-
-        public IActionResult Index(TicketFilterViewModel filters, int pageNumber = 1, int pageSize = 6)
+        
+        // NOVO: Método para buscar os tickets como API
+        [HttpGet("GetTickets")]
+        public async Task<IActionResult> GetTickets(TicketFilterViewModel filters)
         {
-            // 1. Query base
             var query = _context.Chamados
-                                .Include(c => c.AtribuidoA)
-                                .AsQueryable();
+                                 .Include(c => c.AtribuidoA)
+                                 .AsQueryable();
 
-            // 2. Aplicar filtros
             if (filters.StartDate.HasValue)
                 query = query.Where(t => t.DataAbertura >= filters.StartDate.Value);
 
@@ -38,63 +42,70 @@ namespace PIM.Controllers
             if (filters.AssignedToId.HasValue)
                 query = query.Where(t => t.AtribuidoA_AdminId.HasValue && t.AtribuidoA_AdminId == filters.AssignedToId.Value);
 
-            // 3. Total de itens filtrados
-            int totalItems = query.Count();
+            var tickets = await query.ToListAsync();
 
-            // 4. Paginado
-            var chamadosPaginados = query
-                                    .OrderByDescending(t => t.DataAbertura)
-                                    .Skip((pageNumber - 1) * pageSize)
-                                    .Take(pageSize)
-                                    .ToList();
-
-            // 5. Montar ViewModel
-            var viewModel = new TicketsCardViewModel
-            {
-                Tickets = chamadosPaginados,  // Aqui usamos Chamados
-                PageNumber = pageNumber,
-                PageSize = pageSize,
-                TotalItems = totalItems,
-                FilterOptions = new TicketFilterOptions
-                {
-                    Statuses = _context.Chamados
-                                       .Select(t => t.Status ?? string.Empty)
-                                       .Distinct()
-                                       .Select(s => new SelectListItem { Text = s, Value = s })
-                                       .ToList(),
-                    Analysts = _context.Admins
-                                       .Select(a => new SelectListItem { Text = a.Username, Value = a.Id.ToString() })
-                                       .ToList()
-                },
-                SelectedStatus = filters.Status,
-                SelectedAnalystId = filters.AssignedToId
-            };
-
-            return View(viewModel);
+            // Retorna a lista como JSON
+            return Ok(tickets);
         }
 
-        // Aprovar chamado
-        public IActionResult Aprovar(int id)
+        [HttpPost("Aprovar/{id}")]
+        public async Task<IActionResult> Aprovar(int id)
         {
-            var chamado = _context.Chamados.Find(id);
-            if (chamado != null)
+            // Substitua esta lógica para obter o ID do usuário logado do seu sistema
+            // Exemplo: var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            // int adminId = int.Parse(userId); 
+            int adminId = 1; // ID fixo para teste
+
+            var chamado = await _context.Chamados.FindAsync(id);
+            if (chamado == null)
             {
-                chamado.Status = "Aprovado";
-                _context.SaveChanges();
+                return NotFound();
             }
-            return RedirectToAction("Index");
+
+            chamado.Status = "Em Andamento";
+            chamado.AtribuidoA_AdminId = adminId;
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
 
-        // Rejeitar chamado
-        public IActionResult Rejeitar(int id)
+        [HttpPost("Rejeitar/{id}")]
+        public async Task<IActionResult> Rejeitar(int id)
         {
-            var chamado = _context.Chamados.Find(id);
-            if (chamado != null)
+            var chamado = await _context.Chamados.FindAsync(id);
+            if (chamado == null)
             {
-                chamado.Status = "Rejeitado";
-                _context.SaveChanges();
+                return NotFound();
             }
-            return RedirectToAction("Index");
+
+            chamado.Status = "Rejeitado";
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var chamado = await _context.Chamados.FindAsync(id);
+            if (chamado == null)
+            {
+                return NotFound();
+            }
+
+            _context.Chamados.Remove(chamado);
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetTicket(int id)
+        {
+            var ticket = await _context.Chamados.FindAsync(id);
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+            return Ok(ticket);
         }
     }
 }

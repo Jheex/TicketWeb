@@ -152,6 +152,13 @@ body {
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
 }
 
+/* NOVO: Estilo para os rótulos */
+.ticket-card strong {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ccc;
+}
+
 /* Novo estilo para o cabeçalho do card que contém o título e o botão de exclusão */
 .card-header {
     display: flex;
@@ -324,4 +331,20 @@ body {
 
 .modal-description {
     margin-top: 15px;
+}
+
+/* Estilo para a mensagem de "nenhum ticket" */
+.no-tickets-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 50px;
+}
+
+/* Estilo para a mensagem de erro */
+.error-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #e74c3c;
+    margin-top: 50px;
 }

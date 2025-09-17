@@ -8,7 +8,6 @@
     <div class="profile-card">
         <h2>Editar Perfil</h2>
 
-        <!-- Feedback de mensagens -->
         @if (TempData["SuccessMessage"] != null)
         {
             <div class="alert alert-success">
@@ -22,10 +21,8 @@
             </div>
         }
 
-        <!-- Resumo de validação -->
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-        <!-- Formulário -->
         <form asp-controller="Perfil" asp-action="Editar" method="post">
             <input type="hidden" asp-for="Id" />
 

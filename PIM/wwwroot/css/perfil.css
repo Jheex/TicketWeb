@@ -1,78 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+/* ==================================
+    Variáveis do Tema (Dark Mode)
+================================== */
 :root {
-    --primary-color: #7F56D9; /* Roxo principal */
-    --secondary-color: #6941C6; /* Roxo escuro */
-    --text-color: #E8E8E8; /* Cinza claro para texto */
-    --card-bg: rgba(70, 56, 128, 0.4); /* Fundo do card com transparência */
-    --border-color: rgba(255, 255, 255, 0.15); /* Borda do card transparente */
-    --icon-color-aberto: #f1c40f; /* Amarelo */
-    --icon-color-fechado: #2ecc71; /* Verde */
+    --color-primary: #7F56D9; /* Roxo principal */
+    --color-secondary: #6941C6; /* Roxo escuro */
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #C0B8E1;
+    --color-bg-page: #100E21;
+    --color-bg-card: rgba(30, 26, 52, 0.6);
+    --color-bg-input: rgba(30, 26, 52, 0.9);
+    --color-border-card: rgba(255, 255, 255, 0.1);
+    --color-border-input: rgba(255, 255, 255, 0.15);
+    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.4);
+    --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.5);
+    --icon-color-open: #f1c40f;
+    --icon-color-closed: #2ecc71;
 }
 
 /* ==================================
-   Corpo e Container Principal
+    Reset e Base do Corpo
 ================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    background: linear-gradient(135deg, #1A0D3A, #2C1B52, #1A0D3A);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-    color: var(--text-color);
-}
-
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.profile-container {
+    font-family: 'Inter', sans-serif;
+    background: var(--color-bg-page);
+    color: var(--color-text-primary);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+    padding: 2rem;
+    overflow-x: hidden;
 }
 
 /* ==================================
-   Card do Perfil (Glassmorphism)
+    Contêiner e Card do Perfil
 ================================== */
-.profile-card {
-    background: var(--card-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 40px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+.profile-container {
     width: 100%;
-    max-width: 480px;
-    transition: transform 0.3s ease-in-out;
+    max-width: 500px;
+    margin: auto;
+}
+
+.profile-card {
+    background: var(--color-bg-card);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--color-border-card);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    text-align: center;
 }
 
 .profile-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
 }
 
 .profile-card h2 {
-    font-size: 2.2rem;
-    font-weight: bold;
-    margin-bottom: 30px;
-    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--color-text-primary);
 }
 
 /* ==================================
-   Header (Avatar e Info)
+    Seções do Perfil
 ================================== */
 .profile-header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 25px;
-    margin-bottom: 30px;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .profile-avatar i {
-    font-size: 4.5rem;
-    color: var(--primary-color);
+    font-size: 5rem;
+    color: var(--color-primary);
 }
 
 .profile-info {
@@ -81,67 +95,107 @@ body {
 
 .profile-info h3 {
     font-size: 1.6rem;
-    margin: 0;
     font-weight: 600;
+    margin: 0;
 }
 
 .profile-info p {
     font-size: 1rem;
     margin: 0;
-    color: #b0b0b0;
+    color: var(--color-text-secondary);
 }
 
-/* ==================================
-   Dashboard de Resumo
-================================== */
 .profile-dashboard {
     display: flex;
     justify-content: space-around;
-    padding: 20px 0;
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: 30px;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--color-border-card);
+    border-bottom: 1px solid var(--color-border-card);
+    margin-bottom: 2rem;
 }
 
 .dashboard-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 0.5rem;
 }
 
 .dashboard-item i {
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 .dashboard-item:first-child i {
-    color: var(--icon-color-aberto);
+    color: var(--icon-color-open);
 }
 
 .dashboard-item:last-child i {
-    color: var(--icon-color-fechado);
+    color: var(--icon-color-closed);
 }
 
-.dashboard-item .item-content h4 {
-    font-size: 1.8rem;
+.dashboard-item h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
     margin: 0;
-    font-weight: bold;
 }
 
-.dashboard-item .item-content p {
+.dashboard-item p {
     font-size: 0.9rem;
     margin: 0;
-    color: #ccc;
-    font-weight: 500;
+    color: var(--color-text-secondary);
 }
 
 /* ==================================
-   Botões de Ação
+    Formulários e Botões
 ================================== */
-.profile-actions {
+.form-group {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--color-text-secondary);
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--color-border-input);
+    border-radius: 8px;
+    background-color: var(--color-bg-input);
+    color: var(--color-text-primary);
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(127, 86, 217, 0.3);
+}
+
+/* Adicionando estados de validação visual */
+.form-control:valid {
+    border-color: #2ecc71; /* Verde */
+}
+
+.form-control:invalid {
+    border-color: #e74c3c; /* Vermelho */
+}
+
+.text-danger {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+.profile-actions, .form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .btn {
@@ -149,34 +203,73 @@ body {
     border-radius: 10px;
     text-decoration: none;
     font-weight: 600;
-    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    color: white;
     border: none;
 }
 
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+}
+
 .btn-primary:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--color-secondary);
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .btn-secondary {
     background-color: transparent;
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
 }
 
 .btn-secondary:hover {
-    background-color: var(--primary-color);
+    background-color: var(--color-primary);
     color: white;
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.alert-success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border: 1px solid #badbcc;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid #f5c2c7;
+}
+
+/* ==================================
+    Responsividade
+================================== */
+@media (max-width: 576px) {
+    .profile-card {
+        padding: 1.5rem;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .profile-info {
+        text-align: center;
+    }
 }
