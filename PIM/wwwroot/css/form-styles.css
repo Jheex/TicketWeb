@@ -1,0 +1,243 @@
+/* wwwroot/css/form-styles.css */
+
+/* --- Variáveis de Cor e Estilos Globais --- */
+:root {
+    /* Paleta de Cores baseada no Design */
+    --primary-color: #7F56D9; /* Roxo principal para botões e links */
+    --primary-hover: #6941C6;
+    --background-start: #1E1A34; /* Gradiente de fundo (início) */
+    --background-end: #100E21; /* Gradiente de fundo (fim) */
+    --card-bg-color: transparent; /* O card não tem fundo próprio */
+    --text-color: #FFFFFF;
+    --text-light-color: #C0B8E1; /* Cor para textos secundários e placeholders */
+    --border-color: #383252;
+    --input-bg-color: #2C2744; /* Fundo dos campos de input e botões secundários */
+    --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+body {
+    background: #463880;
+    background: linear-gradient(90deg, rgba(70, 56, 128, 1) 0%, rgba(13, 7, 26, 1));
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-color);
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Container Principal do Formulário --- */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* --- Card do Formulário (Wrapper de Conteúdo) --- */
+.form-card {
+    background-color: var(--card-bg-color);
+    width: 100%;
+    /* Max-width aumentado para acomodar as duas colunas */
+    max-width: 900px; 
+    box-sizing: border-box;
+    background-color: rgba(13, 7, 26, 0.5);
+    padding: 2.5rem 3rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px var(--shadow-color);
+}
+
+/* --- Cabeçalho do Formulário --- */
+.form-header {
+    text-align: left;
+    margin-bottom: 2.5rem;
+}
+
+.form-header .logo {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form-header h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.875rem; /* 30px */
+    font-weight: 600;
+}
+
+.form-header p {
+    margin: 0;
+    color: var(--text-light-color);
+    font-size: 1rem; /* 16px */
+    line-height: 1.5;
+}
+
+/* --- Grupos de Campos (Label + Input) --- */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-size: 0.875rem; /* 14px */
+}
+
+/* --- Estilo Padrão para Inputs, Selects e Textareas --- */
+.form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 1rem;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+    color: white;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(127, 86, 217, 0.25);
+    background-color: var(--input-bg-color);
+    color: white;
+}
+
+.form-control::placeholder {
+    color: var(--text-light-color);
+    color: white;
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* --- Estilização customizada para Input de Arquivo --- */
+.file-upload-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background-color: var(--input-bg-color);
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.file-upload-wrapper:hover {
+    border-color: #999;
+}
+
+.file-upload-input {
+    display: none; /* Esconde o input original */
+}
+
+.file-upload-text {
+    flex-grow: 1;
+    padding: 0.75rem 1rem;
+    color: var(--text-light-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-upload-button {
+    padding: 0.75rem 1.5rem;
+    background-color: #383252;
+    border-left: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-weight: 500;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* --- Área de Ações (Botões) --- */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2.5rem;
+}
+
+.btn {
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--input-bg-color);
+    color: var(--text-light-color);
+    border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: #383252;
+}
+
+/* ================================================================ */
+/* 👇 NOVAS CLASSES PARA O LAYOUT DE COLUNAS 👇         */
+/* ================================================================ */
+
+/* --- Layout de Colunas para Formulários --- */
+.form-row {
+    display: flex;
+    gap: 2rem; /* Espaço entre as colunas */
+    flex-wrap: wrap; /* Permite que as colunas quebrem para a linha de baixo em telas menores */
+}
+
+.form-column {
+    flex: 1; /* Faz com que cada coluna ocupe um espaço igual */
+    min-width: 300px; /* Largura mínima antes de quebrar a linha */
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .form-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .form-header h1 {
+        font-size: 1.8rem;
+    }
+
+    /* Em telas pequenas, as colunas ficam uma sobre a outra */
+    .form-row {
+        flex-direction: column;
+        gap: 0; /* Remove o espaçamento lateral no modo coluna */
+    }
+}
+
+/* --- Estilos para Ícones nos Formulários --- */
+.form-group label {
+    display: flex; /* Habilita o Flexbox para alinhar itens */
+    align-items: center; /* Alinha o ícone e o texto verticalmente */
+    gap: 0.6rem; /* Cria um espaço entre o ícone e o texto */
+}
+
+.form-group label .fa-solid {
+    color: var(--primary-color); /* Usa a cor primária para dar destaque ao ícone */
+    font-size: 0.9rem;
+    width: 20px; /* Garante que os ícones tenham uma largura consistente */
+    text-align: center;
+}

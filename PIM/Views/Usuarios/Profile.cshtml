@@ -1,0 +1,20 @@
+@model PIM.Models.Admin   // nas views de detalhe, editar, criar
+
+
+@{
+    ViewData["Title"] = "Perfil do Usuário";
+    Layout = "_Layout";
+}
+
+<h2>Perfil do Usuário</h2>
+
+<div class="card" style="width: 40rem;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Username</h5>
+        <p class="card-text"><strong>ID:</strong> @Model.Id</p>
+        <p class="card-text"><strong>Email:</strong> @Model.Email ?? "-" </p>
+        <p class="card-text"><strong>Data de criação:</strong> @(Model.CreatedAt.ToString("dd/MM/yyyy") ?? "-")</p>
+        <p class="card-text"><strong>Senha:</strong> @Model.Password</p>
+        <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+@model PIM.Models.Admin
+
+@{
+    ViewData["Title"] = "Meu Perfil";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<div class="profile-container">
+    <div class="profile-card">
+        <h2>Meu Perfil</h2>
+        
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <i class="fa-solid fa-user-circle"></i>
+            </div>
+            <div class="profile-info">
+                <h3>@Model.Username</h3>
+                <p>@Model.Email</p>
+            </div>
+        </div>
+
+        <div class="profile-dashboard">
+            <div class="dashboard-item">
+                <i class="fa-solid fa-ticket fa-2x"></i>
+                <div class="item-content">
+                    <h4>@ViewBag.TotalTicketsAbertos</h4>
+                    <p>Tickets em Andamento</p>
+                </div>
+            </div>
+            <div class="dashboard-item">
+                <i class="fa-solid fa-check-circle fa-2x"></i>
+                <div class="item-content">
+                    <h4>@ViewBag.TotalTicketsFechados</h4>
+                    <p>Tickets Concluídos</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-actions">
+            <a asp-controller="Perfil" asp-action="Editar" class="btn btn-secondary">
+                <i class="fa-solid fa-pen-to-square"></i> Editar Perfil
+            </a>
+            <a asp-controller="Perfil" asp-action="MudarSenha" class="btn btn-secondary">
+                <i class="fa-solid fa-lock"></i> Mudar Senha
+            </a>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+                <i class="fa-solid fa-arrow-left"></i> Voltar
+            </a>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Perfil.css" />
+}

@@ -1,0 +1,108 @@
+﻿@model PIM.ViewModels.DashboardBIViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "BI Dashboard de Chamados";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+    <link rel="stylesheet" href="~/css/dashboard-styles.css" asp-append-version="true" />
+}
+
+<div class="dashboard-container">
+    <header class="dashboard-header">
+        <h1>Análise de Chamados</h1>
+
+        <form asp-action="Index" method="get" class="filters-wrapper">
+            <div class="filter-group">
+                <label><i class="fa-solid fa-flag"></i> Status</label>
+                <select name="Status" id="status-filter" asp-items="Model.FilterOptions.Statuses" placeholder="Selecione status"></select>
+            </div>
+
+            <div class="filter-group">
+                <label><i class="fa-solid fa-arrow-up-short-wide"></i> Prioridade</label>
+                <select name="Priority" id="priority-filter" asp-items="Model.FilterOptions.Priorities" placeholder="Selecione prioridade"></select>
+            </div>
+
+            <div class="filter-group">
+                <label><i class="fa-solid fa-user"></i> Analista</label>
+                <select name="AssignedToId" id="analyst-filter" asp-items="Model.FilterOptions.Analysts" placeholder="Selecione analista"></select>
+            </div>
+
+            <div class="filters-actions">
+                <button type="submit" class="btn-primary" title="Aplicar Filtros">
+                    <i class="fa-solid fa-magnifying-glass"></i> Aplicar
+                </button>
+
+                <a href="@Url.Action("Index", "Dashboard")" class="btn-secondary" title="Remover Filtros">
+                    <i class="fa-solid fa-xmark"></i> Remover
+                </a>
+            </div>
+        </form>
+    </header>
+
+    <main class="dashboard-grid">
+        <div class="dashboard-card kpi-card">
+            <div class="card-title"><i class="fa-solid fa-folder-open"></i> Abertos</div>
+            <div class="kpi-card-value">@Model.TotalChamadosAbertos</div>
+        </div>
+        <div class="dashboard-card kpi-card">
+            <div class="card-title"><i class="fa-solid fa-circle-check"></i> Fechados</div>
+            <div class="kpi-card-value">@Model.TotalChamadosFechados</div>
+        </div>
+        <div class="dashboard-card kpi-card">
+            <div class="card-title"><i class="fa-solid fa-clock"></i> TTR (Horas)</div>
+            <div class="kpi-card-value">@Model.TempoMedioResolucaoHoras.ToString("F1")</div>
+        </div>
+        <div class="dashboard-card kpi-card">
+            <div class="card-title"><i class="fa-solid fa-bullseye"></i> SLA (%)</div>
+            <div class="kpi-card-value">@Model.SlaPercentual.ToString("F1")%</div>
+        </div>
+
+        <div class="dashboard-card table-card" style="grid-column: 1 / -1;">
+            <div class="card-title">Atividades</div>
+            <div class="table-wrapper">
+                <table class="styled-table" id="chamados-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Status</th>
+                            <th>Prioridade</th>
+                            <th>Analista</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var chamado in Model.TabelaDetalhada)
+                        {
+                            <tr>
+                                <td>#@chamado.ChamadoId</td>
+                                <td>@chamado.Titulo</td>
+                                <td>@chamado.Status</td>
+                                <td>@chamado.Prioridade</td>
+                                <td>@(chamado.AtribuidoA?.Username ?? "N/A")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination">
+                @{
+                    var currentQuery = Context.Request.Query.ToDictionary(q => q.Key, q => q.Value.ToString());
+                }
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    currentQuery["pageNumber"] = i.ToString();
+                    <a href="@Url.Action("Index", "Dashboard", currentQuery)" class="@(i == Model.PageNumber ? "active" : "")">@i</a>
+                }
+            </div>
+        </div>
+    </main>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    <script src="~/js/dashboard.js" asp-append-version="true"></script>
+}

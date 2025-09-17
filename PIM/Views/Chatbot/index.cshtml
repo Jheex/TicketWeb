@@ -1,0 +1,104 @@
+@{
+    ViewData["Title"] = "Chatbot";
+}
+
+<link rel="stylesheet" href="~/css/Chatbot.css" />
+
+<div class="chatbot-page">
+    <div class="chat-container">
+        <h2>💬 Chatbot InovaTech</h2>
+        <div class="chatbox">
+            <div id="chat-messages" class="chat-messages"></div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Digite sua mensagem..." />
+                <button id="send-btn">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Referências aos elementos do DOM
+    const sendBtn = document.getElementById("send-btn");
+    const userInput = document.getElementById("user-input");
+    const chatMessages = document.getElementById("chat-messages");
+
+    // Array de respostas do chatbot, com palavras-chave e a resposta correspondente
+    const responses = [
+        // Respostas de alta prioridade (frases exatas ou palavras-chave muito específicas)
+        { keywords: ["oi", "olá", "ola", "oi tudo bem", "ola tudo bem"], reply: "Olá! Como posso te ajudar hoje?" },
+        { keywords: ["como criar usuário", "como adicionar usuario"], reply: "Você pode criar um novo usuário clicando no botão ➕ Novo Usuário no topo da lista de usuários." },
+        { keywords: ["como editar usuario", "como alterar dados"], reply: "Para editar um usuário, clique no botão 'Editar' na tabela correspondente." },
+        { keywords: ["como excluir usuario", "como remover usuario"], reply: "Para remover um usuário, clique no botão 'Remover' na tabela." },
+        { keywords: ["como ver os relatórios", "onde ver relatórios"], reply: "Para ver os relatórios, navegue até a tela de Dashboard. Lá, você pode filtrar e visualizar dados de chamados e KPIs." },
+        { keywords: ["como alterar senha"], reply: "Se precisar alterar a senha, vá na tela de edição do usuário e preencha o campo de senha." },
+
+        // Respostas de média prioridade (palavras-chave gerais)
+        { keywords: ["usuário", "usuarios", "criar", "novo", "adicionar", "cadastro"], reply: "O sistema permite criar, editar e remover usuários. Se precisar de ajuda com uma ação específica, me diga 'como criar usuário' ou 'como editar usuário'." },
+        { keywords: ["editar", "alterar", "modificar"], reply: "As opções de edição estão disponíveis na tabela. Qual item você gostaria de editar?" },
+        { keywords: ["remover", "excluir", "deletar", "apagar"], reply: "Você pode remover itens diretamente na tabela de listagem." },
+        { keywords: ["senha", "password", "login"], reply: "A senha pode ser alterada na tela de edição do usuário." },
+        { keywords: ["email"], reply: "O email do usuário pode ser preenchido ao criar ou editar usuários." },
+        { keywords: ["lista", "tabela", "visualizar"], reply: "A tabela de dados mostra informações detalhadas. Você pode usar a paginação para navegar entre as páginas." },
+        { keywords: ["paginação", "páginas", "navegar"], reply: "Use os números na parte inferior da tabela para navegar entre as páginas." },
+        { keywords: ["relatórios", "dashboard", "report", "estatísticas"], reply: "Os relatórios e estatísticas estão na tela de Dashboard. Lá você encontra KPIs de chamados e outras informações importantes." },
+        { keywords: ["chamado", "chamados"], reply: "A tela de Dashboard mostra os chamados e permite filtrar por status, prioridade ou analista. Qual informação você precisa?" },
+        { keywords: ["ajuda", "suporte", "problema", "erro", "dúvida"], reply: "Claro! Pergunte qualquer coisa sobre o sistema que eu tentarei te ajudar." },
+        { keywords: ["obrigado", "valeu", "show"], reply: "De nada! Fico feliz em ajudar." }
+    ];
+
+    // Função para encontrar a resposta do bot com base na mensagem do usuário
+    function getBotResponse(message) {
+        // Normaliza a mensagem para busca (lowercase, sem acentos)
+        const normalizedMessage = message.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+        // Tenta encontrar uma resposta correspondente
+        for (const item of responses) {
+            for (const keyword of item.keywords) {
+                if (normalizedMessage.includes(keyword)) {
+                    return item.reply;
+                }
+            }
+        }
+
+        // Resposta padrão caso nenhuma palavra-chave seja encontrada
+        return "Desculpe, não entendi sua pergunta. Tente reformular ou ser mais específico.";
+    }
+
+    // Função para adicionar uma nova mensagem na tela
+    function addMessage(sender, text) {
+        const msg = document.createElement("div");
+        msg.className = "chat-message " + sender;
+        msg.innerText = text;
+        chatMessages.appendChild(msg);
+        chatMessages.scrollTop = chatMessages.scrollHeight; // Rola a tela para a última mensagem
+    }
+
+    // Ação ao clicar no botão "Enviar"
+    sendBtn.addEventListener("click", () => {
+        const message = userInput.value.trim();
+        if (!message) return; // Não envia se a mensagem estiver vazia
+
+        // Adiciona a mensagem do usuário
+        addMessage("user", message);
+        userInput.value = ""; // Limpa a caixa de texto
+
+        // Adiciona o indicador de 'digitando...'
+        const typingIndicator = document.createElement("div");
+        typingIndicator.className = "chat-message bot typing-indicator";
+        chatMessages.appendChild(typingIndicator);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        // Simula um pequeno delay (0.8 segundos) para a resposta do bot
+        setTimeout(() => {
+            typingIndicator.remove(); // Remove o indicador de 'digitando...'
+            const botReply = getBotResponse(message);
+            addMessage("bot", botReply); // Adiciona a resposta do bot
+        }, 800);
+    });
+
+    // Ação ao pressionar a tecla "Enter"
+    userInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") sendBtn.click();
+    });
+</script>

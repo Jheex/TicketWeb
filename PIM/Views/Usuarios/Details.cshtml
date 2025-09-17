@@ -1,0 +1,31 @@
+@model PIM.Models.Admin   // nas views de detalhe, editar, criar
+
+@{
+    ViewData["Title"] = "Perfil do Usuário";
+}
+
+<h2>Perfil do Usuário</h2>
+
+<div class="card" style="width: 30rem;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Username</h5>
+        <p class="card-text"><strong>ID:</strong> @Model.Id</p>
+        <p class="card-text"><strong>Password:</strong> @Model.Password</p>
+
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Excluir</a>
+
+        <form asp-action="ResetPassword" asp-route-id="@Model.Id" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-secondary">Resetar Senha</button>
+        </form>
+
+        <a asp-action="Index" class="btn btn-primary">Voltar</a>
+    </div>
+</div>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success mt-3">
+        @TempData["Message"]
+    </div>
+}

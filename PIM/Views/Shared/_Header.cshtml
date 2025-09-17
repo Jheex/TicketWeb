@@ -1,0 +1,55 @@
+@* Views/Shared/_Header.cshtml *@
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3 position-relative">
+    <div class="container-fluid position-relative">
+        <!-- Marca -->
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">INOVATECH</a>
+
+        <!-- Links navbar -->
+        <div class="navbar-collapse collapse d-sm-flex justify-content-between align-items-center">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Usuarios" asp-action="Index">Cadastros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Hometicket" asp-action="Index">Tickets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="FormsTicket" asp-action="Create">Novo Ticket</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Chatbot" asp-action="Index">Chatbot</a>
+                </li>
+            </ul>
+
+            <!-- Botões à direita -->
+            <div class="d-flex align-items-center header-icons">
+
+                <!-- Ícone Configurações -->
+                <a href="/Configuracoes/Index" title="Configurações">
+                    <i class="fa-solid fa-gear"></i>
+                </a>
+
+                <!-- Ícone Perfil -->
+                <a href="/Perfil/Index" title="Perfil">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+
+                <!-- Toggle tema -->
+                <button type="button" class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Alternar tema">
+                    <i id="theme-icon" class="bi bi-sun-fill"></i>
+                </button>
+
+                <!-- Botão Log Out -->
+                <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-logout" title="Sair">
+                        <i class="fa-solid fa-right-from-bracket"></i> Log Out
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,79 @@
+@{
+    ViewData["Title"] = "Histórico de Tickets";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Tickets.css" />
+}
+
+<div class="dashboard-container">
+
+    <h2 class="dashboard-header">Histórico de Tickets</h2>
+
+    <div class="filters-wrapper">
+        <div class="filter-group search-wrapper">
+            <label for="searchInput">Pesquisar</label>
+            <input type="text" id="searchInput" placeholder="Título ou usuário..." class="search-input" />
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM3 10a7 7 0 1114 0 7 7 0 01-14 0zM19.7 18.3a1 1 0 01-1.4 1.4L14 15.4l-1.3 1.3a1 1 0 01-1.4-1.4l1.3-1.3-4.3-4.3a1 1 0 011.4-1.4l4.3 4.3 1.3-1.3a1 1 0 011.4 1.4L15.4 14l4.3 4.3z" />
+            </svg>
+        </div>
+        
+        <div class="filter-group">
+            <label for="statusFilter">Status</label>
+            <select id="statusFilter" class="filter-select">
+                <option value="">Todos os Status</option>
+                <option value="Aberto">Aberto</option>
+                <option value="Em Andamento">Em Andamento</option>
+                <option value="Concluído">Concluído</option>
+                <option value="Rejeitado">Rejeitado</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="priorityFilter">Prioridade</label>
+            <select id="priorityFilter" class="filter-select">
+                <option value="">Todas as Prioridades</option>
+                <option value="Alta">Alta</option>
+                <option value="Média">Média</option>
+                <option value="Baixa">Baixa</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="dateFilter">Período</label>
+            <select id="dateFilter" class="filter-select">
+                <option value="all">Todo Período</option>
+                <option value="last7days">Últimos 7 Dias</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="ticketContainer" class="ticket-container"></div>
+</div>
+
+<div id="ticketModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modalTitle"></h3>
+            <span class="close-btn">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p><strong>ID:</strong> <span id="modalId"></span></p>
+            <p><strong>Usuário:</strong> <span id="modalUser"></span></p>
+            <p><strong>Categoria:</strong> <span id="modalCategory"></span></p>
+            <p><strong>Prioridade:</strong> <span id="modalPriority"></span></p>
+            <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+            <p><strong>Data de Abertura:</strong> <span id="modalDate"></span></p>
+            <p id="finalizationInfo"><strong>Finalizado em:</strong> <span id="modalFinalizedDate"></span></p>
+            <div class="modal-description">
+                <strong>Descrição:</strong>
+                <p id="modalDescription"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Tickets.js"></script>
+}

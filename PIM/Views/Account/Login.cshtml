@@ -1,0 +1,143 @@
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Sistema de Chamados</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-form-wrapper">
+            <main>
+                <form asp-action="Login" method="post" id="loginForm">
+                    
+                    <button type="button" class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Alternar tema">
+                        <i id="theme-icon" class="bi bi-sun-fill"></i>
+                    </button>
+                   
+
+                    <div class="form-logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm3.42 13.23a.999.999 0 0 1-1.41 0L12 13.414l-2.01 2.01a.999.999 0 1 1-1.41-1.41L10.586 12 8.58 9.99a.999.999 0 1 1 1.41-1.41L12 10.586l2.01-2.01a.999.999 0 1 1 1.41 1.41L13.414 12l2.01 2.01c.39.38.39 1.03-.01 1.22z"/></svg>
+                    </div>
+
+                    <div class="form-header">
+                        <h2>Acesse sua Conta</h2>
+                        <p class="subtitle">Bem-vindo! Insira suas credenciais para continuar.</p>
+                    </div>
+
+                    <div asp-validation-summary="ModelOnly" class="validation-summary-errors"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Username">Usuário</label>
+                        <input asp-for="Username" class="form-control" autocomplete="username" placeholder="username" required autofocus />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group password-wrapper">
+                        <label asp-for="Password">Senha</label>
+                        <div class="password-field">
+                            <input asp-for="Password" class="form-control" type="password" id="passwordInput" autocomplete="current-password" placeholder="••••••••" required />
+                            <button type="button" class="toggle-password" onclick="togglePassword()" aria-label="Mostrar ou ocultar senha">
+                                <svg id="icon-eye" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                </svg>
+                                <svg id="icon-eye-off" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:none;">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a9.956 9.956 0 012.642-4.362M9.88 9.88a3 3 0 104.24 4.24"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6.1 6.1L17.9 17.9"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" asp-for="RememberMe" />
+                            Lembrar de mim
+                        </label>
+                        <a href="#" class="forgot-password">Esqueceu a senha?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" id="loginButton">
+                        Entrar
+                    </button>
+                </form>
+            </main>
+        </div>
+
+        <div class="login-image-wrapper">
+             <img src="~/image/bot-amico.svg" alt="Imagem abstrata de tecnologia ilustrando o sistema de chamados." />
+        </div>
+    </div>
+    
+    
+    <script>
+        // --- LÓGICA DO TEMA ---
+        const htmlEl = document.documentElement;
+        const themeIcon = document.getElementById("theme-icon");
+
+        function setTheme(theme) {
+            htmlEl.setAttribute("data-theme", theme);
+            if (theme === "dark") {
+                themeIcon.className = "bi bi-moon-fill";
+            } else {
+                themeIcon.className = "bi bi-sun-fill";
+            }
+            localStorage.setItem("theme", theme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = htmlEl.getAttribute("data-theme") || "dark";
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+            setTheme(newTheme);
+        }
+
+        // --- MOSTRAR/OCULTAR SENHA ---
+        function togglePassword() {
+            const input = document.getElementById("passwordInput");
+            const eye = document.getElementById("icon-eye");
+            const eyeOff = document.getElementById("icon-eye-off");
+
+            if (input.type === "password") {
+                input.type = "text";
+                eye.style.display = "none";
+                eyeOff.style.display = "inline";
+            } else {
+                input.type = "password";
+                eye.style.display = "inline";
+                eyeOff.style.display = "none";
+            }
+        }
+
+        // --- EVENT LISTENERS ---
+        document.addEventListener("DOMContentLoaded", () => {
+            // Aplica o tema salvo ao carregar a página
+            const savedTheme = localStorage.getItem("theme") || "dark";
+            setTheme(savedTheme);
+        });
+
+        // Feedback de carregamento no botão
+        document.getElementById("loginForm").addEventListener("submit", function () {
+            const btn = document.getElementById("loginButton");
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span>Entrando...';
+        });
+    </script>
+    <partial name="_ValidationScriptsPartial" />
+    <partial name="_ValidationScriptsPartial" />
+
+</body>
+</html>

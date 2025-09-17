@@ -1,0 +1,54 @@
+/* =========================
+   Footer
+========================= */
+.footer {
+    background-color: var(--navbar-bg); /* mesmo que o header */
+    color: var(--navbar-text);
+    width: 100%;
+    font-size: 0.9rem;
+    transition: background 0.3s, color 0.3s;
+    border-top: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+}
+
+.footer .footer-brand {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.footer .footer-links {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.footer .footer-link {
+    color: var(--navbar-text);
+    margin-left: 1rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer .footer-link:hover {
+    color: var(--link-color);
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .footer .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer .footer-links {
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
+
+    .footer .footer-link {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    
+}

@@ -1,0 +1,307 @@
+/* =================================================================
+   STYLE GUIDE :root
+   ================================================================= */
+:root {
+  --font-family-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-2xl: 1.75rem;   /* 28px -> Título principal */
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Espaçamentos ajustados para um layout mais arejado */
+  --spacing-xs: 0.5rem;      /* 8px */
+  --spacing-sm: 0.75rem;     /* 12px */
+  --spacing-md: 1rem;        /* 16px */
+  --spacing-lg: 1.5rem;      /* 24px */
+  --spacing-xl: 2.5rem;      /* 40px */
+  
+  --border-width: 1px;
+  --radius-md: 12px;       /* Bordas mais arredondadas para inputs */
+  --radius-lg: 24px;       /* Raio do container principal */
+  --radius-pill: 50px;     /* Para botões em formato pílula */
+
+  --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.2);
+  --shadow-focus-ring: 0 0 0 3px rgba(127, 86, 217, 0.25);
+  
+  --transition-normal: all 0.2s ease-in-out;
+}
+
+/* =================================================================
+   TEMAS (Dark e Light)
+   ================================================================= */
+html[data-theme='dark'] {
+  --color-primary: #7F56D9;
+  --color-primary-light: #9B78F0;
+  --color-primary-dark: #6941C6;
+  --color-bg-page: #100E21;
+  --color-bg-container: #1E1A34;
+  --color-ui-input: #2C2744;
+  --color-ui-border: #383252;
+  --color-ui-border-focus: var(--color-primary);
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #C0B8E1;
+  --color-text-link: var(--color-primary-light);
+  --color-error: #F04438;
+}
+
+html[data-theme='light'] {
+  --color-primary: #7F56D9;
+  --color-primary-light: #9B78F0;
+  --color-primary-dark: #6941C6;
+  --color-bg-page: #F9FAFB;
+  --color-bg-container: #FFFFFF;
+  --color-ui-input: #F3F4F6;
+  --color-ui-border: #D1D5DB;
+  --color-ui-border-focus: var(--color-primary);
+  --color-text-primary: #111827;
+  --color-text-secondary: #6B7280;
+  --color-text-link: var(--color-primary);
+  --color-error: #DC2626;
+}
+
+/* =================================================================
+   ESTRUTURA E LAYOUT
+   ================================================================= */
+body {
+  font-family: var(--font-family-sans);
+  background: #463880;
+  background: linear-gradient(90deg, rgba(70, 56, 128, 1) 0%, rgba(13, 7, 26, 1));
+  color: var(--color-text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: var(--spacing-md);
+  box-sizing: border-box;
+}
+
+.login-container {
+  display: flex;
+  width: 100%;
+  max-width: 1024px;
+  min-height: 720px;
+  background-color: var(--color-bg-container);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.login-form-wrapper {
+  flex: 1 1 50%;
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+main {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Container da imagem */
+.login-image-wrapper {
+  flex: 1 1 50%;
+  display: flex; /* Centraliza o conteúdo (a imagem) */
+  align-items: center;
+  justify-content: center;
+  padding: 2rem; /* Adiciona um espaçamento interno (respiro) */
+  box-sizing: border-box; /* Garante que o padding não quebre o layout */
+}
+
+/* A imagem dentro do container */
+.login-image-wrapper img {
+  max-width: 100%;   /* A imagem nunca será maior que o container */
+  max-height: 100%;  /* A imagem nunca será maior que o container */
+  object-fit: contain; /* Garante que a imagem inteira apareça */
+}
+
+/* =================================================================
+   ESTILOS DO FORMULÁRIO (Inspirado no DeepSeek)
+   ================================================================= */
+.form-logo {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-primary);
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 var(--spacing-xs) 0;
+  color: var(--color-text-primary);
+}
+
+.subtitle {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.form-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-text-secondary);
+}
+
+.form-control {
+  width: 100%;
+  /* Aumento da altura/padding para um visual mais robusto */
+  padding: var(--spacing-md); 
+  font-size: var(--font-size-base);
+  background-color: var(--color-ui-input);
+  border: var(--border-width) solid var(--color-ui-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  transition: var(--transition-normal);
+  box-sizing: border-box; /* Garante que padding não afete a largura total */
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-ui-border-focus);
+  box-shadow: var(--shadow-focus-ring);
+}
+
+.password-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-password {
+  position: absolute;
+  right: var(--spacing-md);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+a.forgot-password, .form-footer a {
+  color: var(--color-text-link);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+}
+
+a.forgot-password:hover, .form-footer a:hover {
+  text-decoration: underline;
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+
+.btn-primary {
+  width: 100%;
+  padding: var(--spacing-md);
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  /* LINHA ALTERADA: */
+  border-radius: var(--radius-md); /* Bordas arredondadas (12px) */
+  
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: var(--transition-normal);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  margin: var(--spacing-lg) 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--color-ui-border);
+}
+
+.divider:not(:empty)::before {
+  margin-right: .5em;
+}
+
+.divider:not(:empty)::after {
+  margin-left: .5em;
+}
+
+.form-footer {
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+
+/* =================================================================
+   RESPONSIVIDADE
+   ================================================================= */
+@media (max-width: 900px) {
+  body {
+      padding: 0;
+      align-items: start; /* Alinha o container ao topo em telas pequenas */
+  }
+  .login-container {
+    flex-direction: column;
+    min-height: 100vh;
+    border-radius: 0;
+  }
+  .login-image-wrapper {
+    display: none;
+  }
+  .login-form-wrapper {
+      padding: var(--spacing-xl) var(--spacing-md);
+      justify-content: flex-start;
+      padding-top: 80px; /* Mais espaço no topo */
+  }
+}

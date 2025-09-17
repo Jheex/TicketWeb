@@ -1,0 +1,60 @@
+@model PIM.ViewModels.ChamadoViewModel
+@{
+    ViewData["Title"] = "Confirmar Abertura de Chamado";
+}
+<link rel="stylesheet" href="~/css/form-styles.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/feedback-styles.css" asp-append-version="true" /> <div class="form-container">
+    <div class="form-card">
+        <div class="form-header">
+            <h1><i class="fa-solid fa-clipboard-check"></i> Revise as Informações</h1>
+            <p>Por favor, confirme se todos os dados abaixo estão corretos antes de enviar.</p>
+        </div>
+
+        <div class="confirmation-details">
+            <div class="detail-item">
+                <span class="detail-label">Solicitante</span>
+                <span class="detail-value">@ViewBag.NomeSolicitante</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Título / Assunto</span>
+                <span class="detail-value">@Model.Title</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Categoria</span>
+                <span class="detail-value">@Model.Category</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Prioridade</span>
+                <span class="detail-value">@Model.Priority</span>
+            </div>
+             @if (!string.IsNullOrEmpty(Model.Description))
+            {
+                <div class="detail-item-full">
+                    <span class="detail-label">Descrição Detalhada</span>
+                    <div class="detail-description">
+                        @Html.Raw(Model.Description.Replace("\n", "<br />"))
+                    </div>
+                </div>
+            }
+            @if (TempData["AttachmentFileName"] != null)
+            {
+                 <div class="detail-item">
+                    <span class="detail-label">Anexo</span>
+                    <span class="detail-value"><i class="fa-solid fa-paperclip"></i> @TempData["AttachmentFileName"]</span>
+                </div>
+            }
+        </div>
+
+        <div class="form-actions-confirm">
+             <a asp-action="Create" class="btn btn-secondary">
+                <i class="fa-solid fa-arrow-left"></i> Voltar e Editar
+            </a>
+
+            <form asp-action="ConfirmacaoPost" method="post">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-check"></i> Confirmar e Enviar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,333 @@
+/* ==================================
+    Variáveis e Base
+================================== */
+:root {
+    --primary-color: #7F56D9; /* Roxo principal (botões, destaques) */
+    --primary-light: #9B78F0; /* Roxo claro (hover) */
+    --primary-dark: #6941C6; /* Roxo escuro (tabela, background) */
+    
+    --background-dark: #1A0D3A; /* Fundo mais escuro */
+    --background-gradient-start: #1A0D3A; /* Início do gradiente */
+    --background-gradient-end: #2C1B52; /* Fim do gradiente */
+    
+    --card-bg: rgba(70, 56, 128, 0.6); /* Fundo do card com transparência */
+    --filter-bg: rgba(70, 56, 128, 0.8); /* Fundo do filtro */
+    --text-color: #E8E8E8; /* Cinza claro para texto */
+    --placeholder-color: #aaaaaa; /* Cinza para placeholders */
+    
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    
+    --box-shadow-1: 0 4px 15px rgba(0,0,0,0.3);
+    --box-shadow-2: 0 5px 15px rgba(0,0,0,0.4);
+
+    --transition-speed: 0.3s;
+}
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    color: var(--text-color);
+    /* Novo estilo de fundo: gradiente estático */
+    background: linear-gradient(135deg, var(--background-gradient-start), var(--background-gradient-end));
+}
+
+/* Removido o @keyframes gradientShift */
+
+/* ==================================
+    Layout e Seções
+================================== */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 30px;
+}
+
+.dashboard-header {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.dashboard-header h1 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+}
+
+/* ==================================
+    Filtros (Card de Opções)
+================================== */
+.filters-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-end;
+    background-color: var(--filter-bg);
+    padding: 20px;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--box-shadow-1);
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 180px;
+    flex: 1 1 200px;
+}
+
+.filter-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Correção para os campos de input e select */
+.filter-group input, .filter-group select {
+    background-color: rgba(30, 26, 52, 0.8) !important;
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+}
+
+/* ==================================
+    Estilo de Botões
+================================= */
+.filters-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary {
+    border: none;
+    padding: 12px 20px;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    box-shadow: var(--box-shadow-1);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+}
+
+.btn-secondary {
+    background-color: #333;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #444;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+}
+
+/* ==================================
+    Choices.js (Selects estilizados)
+================================== */
+.choices__inner {
+    background-color: rgba(30, 26, 52, 0.9) !important;
+    border: none !important;
+    border-radius: var(--border-radius-sm) !important;
+    color: var(--text-color) !important;
+    font-size: 0.9rem !important;
+    padding: 10px 15px !important;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.choices__inner .choices__placeholder {
+    color: var(--placeholder-color) !important;
+}
+
+.choices__list--dropdown {
+    background-color: var(--background-dark) !important;
+    border: none !important;
+    border-radius: var(--border-radius-sm) !important;
+    box-shadow: var(--box-shadow-2) !important;
+    margin-top: 5px !important;
+    padding: 5px !important;
+}
+
+.choices__list--dropdown .choices__item {
+    color: var(--text-color) !important;
+    font-size: 0.9rem;
+    padding: 8px 12px !important;
+    border-radius: 6px;
+}
+
+.choices__list--dropdown .choices__item.is-highlighted {
+    background-color: var(--primary-color) !important;
+    color: #ffffff !important;
+}
+
+.choices[data-type*="select-one"]::after, 
+.choices[data-type*="select-multiple"]::after {
+    border-color: var(--text-color) transparent transparent !important;
+}
+
+/* ==================================
+    Cards de KPIs
+================================== */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.dashboard-card {
+    background-color: var(--card-bg);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 25px;
+    border-radius: var(--border-radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: var(--box-shadow-2);
+    transition: transform var(--transition-speed);
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+}
+
+.kpi-card-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+/* ==================================
+    Tabela de Dados
+================================== */
+.table-wrapper {
+    overflow-x: auto;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--box-shadow-2);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.styled-table th, .styled-table td {
+    padding: 15px;
+    text-align: center;
+}
+
+.styled-table thead {
+    background-color: var(--primary-dark);
+}
+
+.styled-table th {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.styled-table tbody tr:nth-child(odd) {
+    background-color: rgba(30,26,52,0.4);
+}
+
+.styled-table tbody tr:hover {
+    background-color: rgba(70, 56, 128, 0.6);
+    cursor: pointer;
+}
+
+/* ==================================
+    Paginação
+================================== */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.pagination a {
+    padding: 8px 16px;
+    border-radius: var(--border-radius-sm);
+    background-color: var(--card-bg);
+    color: white;
+    text-decoration: none;
+    transition: all var(--transition-speed);
+    font-weight: 600;
+}
+
+.pagination a:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+.pagination a.active {
+    background-color: var(--primary-color);
+    font-weight: bold;
+    transform: none;
+}
+
+/* ==================================
+    Responsividade
+================================== */
+@media(max-width: 768px) {
+    .dashboard-container {
+        padding: 10px;
+    }
+
+    .filters-wrapper {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+
+    .filters-actions {
+        flex-direction: column;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+    }
+}
+
+@media(max-width: 576px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}

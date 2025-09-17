@@ -1,0 +1,58 @@
+@model PIM.Models.Admin
+
+@{
+    ViewData["Title"] = "Editar Perfil";
+}
+
+<div class="profile-container">
+    <div class="profile-card">
+        <h2>Editar Perfil</h2>
+
+        <!-- Feedback de mensagens -->
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+
+        <!-- Resumo de validação -->
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <!-- Formulário -->
+        <form asp-controller="Perfil" asp-action="Editar" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="Username"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="profile-actions mt-4">
+                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                <a asp-action="Index" asp-controller="Perfil" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Perfil.css" />
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,108 @@
+@{
+    ViewData["Title"] = "Abrir Novo Chamado";
+}
+<link rel="stylesheet" href="~/css/form-styles.css" asp-append-version="true" />
+
+
+<div class="form-container">
+    <div class="form-card">
+        <div class="form-header">
+            <h1>Abrir Novo Chamado</h1>
+            <p>Por favor, descreva seu problema com o máximo de detalhes.</p>
+        </div>
+
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+
+            <div class="form-row">
+
+                <div class="form-column">
+                    <div class="form-group">
+                        <label for="UserId">
+                            <i class="fa-solid fa-user"></i>
+                            Solicitante / Usuário
+                        </label>
+                        <select id="UserId" name="UserId" class="form-control" asp-items="@ViewBag.Usuarios" required>
+                            <option value="" disabled selected>-- Selecione quem está abrindo o chamado --</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">
+                            <i class="fa-solid fa-bookmark"></i>
+                            Categoria
+                        </label>
+                        <select id="category" name="Category" class="form-control">
+                            <option value="" disabled selected>-- Selecione uma categoria --</option>
+                            <option value="hardware">Problema de Hardware</option>
+                            <option value="software">Erro de Software</option>
+                            <option value="network">Problema de Rede / Internet</option>
+                            <option value="access">Solicitação de Acesso / Senha</option>
+                            <option value="other">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="priority">
+                            <i class="fa-solid fa-flag"></i>
+                            Prioridade
+                        </label>
+                        <select id="priority" name="Priority" class="form-control">
+                            <option value="low">Baixa</option>
+                            <option value="medium" selected>Média</option>
+                            <option value="high">Alta</option>
+                            <option value="urgent">Urgente</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-column">
+                    <div class="form-group">
+                        <label for="title">
+                            <i class="fa-solid fa-heading"></i>
+                            Título / Assunto
+                        </label>
+                        <input id="title" name="Title" class="form-control" placeholder="Ex: Computador não liga" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">
+                            <i class="fa-solid fa-paragraph"></i>
+                            Descrição Detalhada
+                        </label>
+                        <textarea id="description" name="Description" class="form-control" rows="5" placeholder="Inclua mensagens de erro, o que você estava fazendo..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="attachment">
+                            <i class="fa-solid fa-paperclip"></i>
+                            Anexar Arquivo (Opcional)
+                        </label>
+                        <label class="file-upload-wrapper" for="file-upload">
+                            <input type="file" id="file-upload" name="Attachment" class="file-upload-input" onchange="updateFileName(this)" />
+                            <span id="file-name" class="file-upload-text">Clique para escolher um arquivo...</span>
+                            <span class="file-upload-button">Procurar</span>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-actions">
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Enviar Chamado</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function updateFileName(input) {
+            const fileNameSpan = document.getElementById('file-name');
+            if (input.files && input.files.length > 0) {
+                fileNameSpan.textContent = input.files[0].name;
+            } else {
+                fileNameSpan.textContent = 'Clique para escolher um arquivo...';
+            }
+        }
+    </script>
+}

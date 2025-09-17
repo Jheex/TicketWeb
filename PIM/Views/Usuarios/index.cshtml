@@ -1,0 +1,63 @@
+@model IEnumerable<PIM.Models.Admin>
+@{
+    ViewData["Title"] = "Usuários";
+    var currentFilter = ViewData["CurrentFilter"] as string;
+    var totalPages = ViewData["TotalPages"] as int? ?? 0;
+    var currentPage = ViewData["CurrentPage"] as int? ?? 1;
+}
+
+<link rel="stylesheet" href="~/css/Cadastros.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+
+<div class="cadastro-container">
+    <div class="header-content">
+        <h2 class="page-title">Lista de Usuários</h2>
+        <a asp-action="Create" class="btn-base btn-primary">➕ Novo Usuário</a>
+    </div>
+
+    <form method="get" asp-action="Index" class="search-form">
+        <input type="text" name="searchString" value="@currentFilter" placeholder="Pesquisar por username ou email" />
+        <button class='botao-buscar' type="submit">Buscar</button>
+        <a asp-action="Index" class="btn-remover-filtros">Remover filtros</a>
+    </form>
+
+    <div class="table-wrapper">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Data de Criação</th>
+                    <th style="text-align: center;">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@(user.Username ?? "—")</td>
+                    <td>@(user.Email ?? "—")</td>
+                    <td>@(user.CreatedAt.ToString("dd/MM/yyyy"))</td>
+                    <td class="td-actions">
+                        <a asp-action="Edit" asp-route-id="@user.Id" class="btn-action edit">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@user.Id" class="btn-action delete">Remover</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+
+    <nav class="pagination-nav">
+        <ul class="pagination">
+            @for (int i = 1; i <= totalPages; i++)
+            {
+                <li class="page-item @(i == currentPage ? "active" : "")">
+                    <a class="page-link" asp-action="Index" asp-route-pageNumber="@i" asp-route-searchString="@currentFilter">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>

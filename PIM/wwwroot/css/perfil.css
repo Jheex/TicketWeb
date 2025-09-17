@@ -1,0 +1,182 @@
+:root {
+    --primary-color: #7F56D9; /* Roxo principal */
+    --secondary-color: #6941C6; /* Roxo escuro */
+    --text-color: #E8E8E8; /* Cinza claro para texto */
+    --card-bg: rgba(70, 56, 128, 0.4); /* Fundo do card com transparência */
+    --border-color: rgba(255, 255, 255, 0.15); /* Borda do card transparente */
+    --icon-color-aberto: #f1c40f; /* Amarelo */
+    --icon-color-fechado: #2ecc71; /* Verde */
+}
+
+/* ==================================
+   Corpo e Container Principal
+================================== */
+body {
+    background: linear-gradient(135deg, #1A0D3A, #2C1B52, #1A0D3A);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    color: var(--text-color);
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* ==================================
+   Card do Perfil (Glassmorphism)
+================================== */
+.profile-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    max-width: 480px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+}
+
+.profile-card h2 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: white;
+}
+
+/* ==================================
+   Header (Avatar e Info)
+================================== */
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.profile-avatar i {
+    font-size: 4.5rem;
+    color: var(--primary-color);
+}
+
+.profile-info {
+    text-align: left;
+}
+
+.profile-info h3 {
+    font-size: 1.6rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+.profile-info p {
+    font-size: 1rem;
+    margin: 0;
+    color: #b0b0b0;
+}
+
+/* ==================================
+   Dashboard de Resumo
+================================== */
+.profile-dashboard {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 30px;
+}
+
+.dashboard-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.dashboard-item i {
+    font-size: 2.5rem;
+}
+
+.dashboard-item:first-child i {
+    color: var(--icon-color-aberto);
+}
+
+.dashboard-item:last-child i {
+    color: var(--icon-color-fechado);
+}
+
+.dashboard-item .item-content h4 {
+    font-size: 1.8rem;
+    margin: 0;
+    font-weight: bold;
+}
+
+.dashboard-item .item-content p {
+    font-size: 0.9rem;
+    margin: 0;
+    color: #ccc;
+    font-weight: 500;
+}
+
+/* ==================================
+   Botões de Ação
+================================== */
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn {
+    padding: 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
