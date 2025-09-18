@@ -96,6 +96,7 @@ namespace PIM.Controllers
                 status = ticket.Status,
                 dataAbertura = ticket.DataAbertura,
                 dataFechamento = ticket.DataFechamento,
+                dataAtribuicao = ticket.DataAtribuicao,
                 assignedTo = ticket.AtribuidoA != null ? ticket.AtribuidoA.Username : "Não atribuído",
             };
 

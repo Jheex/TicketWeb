@@ -57,87 +57,105 @@ async function loadTickets() {
     }
 }
 
-    // ===== Renderiza tickets na tela =====
-    function renderTickets(tickets) {
-        const container = document.getElementById("ticketContainer");
-        container.innerHTML = "";
+// ===== Renderiza tickets na tela =====
+function renderTickets(tickets) {
+    const container = document.getElementById("ticketContainer");
+    container.innerHTML = "";
 
-        if (tickets.length === 0) {
-            container.innerHTML = `<div class="no-tickets-message">Nenhum ticket encontrado.</div>`;
-            return;
-        }
+    if (tickets.length === 0) {
+        container.innerHTML = `<div class="no-tickets-message">Nenhum ticket encontrado.</div>`;
+        return;
+    }
 
-        tickets.sort((a, b) => b.id - a.id).forEach(ticket => {
-        const priorityClass = {
-            "Alta": "badge-priority-alta",
-            "Média": "badge-priority-media",
-            "Baixa": "badge-priority-baixa"
-        }[ticket.priority] || "badge-priority-baixa";
+    tickets.sort((a, b) => b.id - a.id).forEach(ticket => {
+    const priorityClass = {
+        "Alta": "badge-priority-alta",
+        "Média": "badge-priority-media",
+        "Baixa": "badge-priority-baixa"
+    }[ticket.priority] || "badge-priority-baixa";
 
-        const statusClass = {
-            "Aberto": "badge-status-aberto",
-            "Em Andamento": "badge-status-emandamento",
-            "Concluído": "badge-status-concluido",
-            "Rejeitado": "badge-status-rejeitado"
-        }[ticket.status] || "badge-status-aberto";
+    const statusClass = {
+        "Aberto": "badge-status-aberto",
+        "Em Andamento": "badge-status-emandamento",
+        "Concluído": "badge-status-concluido",
+        "Rejeitado": "badge-status-rejeitado"
+    }[ticket.status] || "badge-status-aberto";
 
-        const card = document.createElement("div");
-        card.className = "ticket-card";
+    const card = document.createElement("div");
+    card.className = "ticket-card";
 
-        const statusBorderClass = {
-            "Aberto": "status-border-aberto",
-            "Em Andamento": "status-border-emandamento",
-            "Concluído": "status-border-concluido",
-            "Rejeitado": "status-border-rejeitado"
-        }[ticket.status] || "";
+    const statusBorderClass = {
+        "Aberto": "status-border-aberto",
+        "Em Andamento": "status-border-emandamento",
+        "Concluído": "status-border-concluido",
+        "Rejeitado": "status-border-rejeitado"
+    }[ticket.status] || "";
 
-        card.classList.add(statusBorderClass);
+    card.classList.add(statusBorderClass);
 
-        // Botões de ação
-        let actionButtonsHtml = '';
-        if (ticket.status === 'Aberto') {
-            actionButtonsHtml = `
-                <button class="ticket-btn ticket-btn-approve" onclick="approveTicket(${ticket.id})">Aprovar</button>
-                <button class="ticket-btn ticket-btn-reject" onclick="rejectTicket(${ticket.id})">Rejeitar</button>
-            `;
-        } else if (ticket.status === 'Em Andamento') {
-            actionButtonsHtml = `
-                <button class="ticket-btn ticket-btn-approve" onclick="concludeTicket(${ticket.id})">Concluir</button>
-                <button class="ticket-btn ticket-btn-reject" onclick="rejectTicket(${ticket.id})">Rejeitar</button>
-            `;
-        }
-
-        const dataAbertura = new Date(ticket.dataAbertura).toLocaleString('pt-BR', {year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'});
-
-        console.log("Ticket:", ticket.id, ticket.dataAtribuicao);
-        // **Todo o HTML do card dentro de card.innerHTML**
-        card.innerHTML = `
-            <div class="card-content">
-                <div class="card-header">
-                    <div class="card-title">#${ticket.id} - ${ticket.title}</div>
-                    <button class="delete-btn" onclick="deleteTicket(${ticket.id})">🗑️</button>
-                </div>
-                <div><strong>Analista:</strong> ${ticket.assignedTo || "Não atribuído"}</div>
-                <div class="ticket-category"><strong>Categoria:</strong> ${ticket.category}</div>
-                <div class="ticket-date"><strong>Solicitado em:</strong> ${dataAbertura}</div>
-                <div><strong>Atribuído em:</strong> ${ticket.dataAtribuicao 
-                    ? new Date(ticket.dataAtribuicao).toLocaleString('pt-BR', {year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'}) 
-                    : "Não atribuído"}</div>
-                <div>
-                    <span class="ticket-badge ${priorityClass}">Prioridade: ${ticket.priority}</span>
-                    <span class="ticket-badge ${statusClass}">Status: ${ticket.status}</span>
-                </div>
-            </div>
-            <div class="ticket-actions">
-                ${actionButtonsHtml}
-                <button class="ticket-btn ticket-btn-details" onclick="viewDetails(${ticket.id})">Detalhes</button>
-            </div>
+    // Botões de ação
+    let actionButtonsHtml = '';
+    if (ticket.status === 'Aberto') {
+        actionButtonsHtml = `
+            <button class="ticket-btn ticket-btn-approve" onclick="approveTicket(${ticket.id})">Aprovar</button>
+            <button class="ticket-btn ticket-btn-reject" onclick="rejectTicket(${ticket.id})">Rejeitar</button>
         `;
+    } else if (ticket.status === 'Em Andamento') {
+        actionButtonsHtml = `
+            <button class="ticket-btn ticket-btn-approve" onclick="concludeTicket(${ticket.id})">Concluir</button>
+            <button class="ticket-btn ticket-btn-reject" onclick="rejectTicket(${ticket.id})">Rejeitar</button>
+        `;
+    }
+
+    const dataAbertura = new Date(ticket.dataAbertura).toLocaleString('pt-BR', {year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'});
+
+    console.log("Ticket:", ticket.id, ticket.dataAtribuicao);
+    // **Todo o HTML do card dentro de card.innerHTML**
+    card.innerHTML = `
+        <div class="card-content">
+            <div class="card-header">
+                <div class="card-title">#${ticket.id} - ${ticket.title}</div>
+                <button class="delete-btn" onclick="deleteTicket(${ticket.id})">🗑️</button>
+            </div>
+            <div><strong>Analista:</strong> ${ticket.assignedTo || "Não atribuído"}</div>
+            <div class="ticket-category"><strong>Categoria:</strong> ${ticket.category}</div>
+            <div class="ticket-date"><strong>Solicitado em:</strong> ${dataAbertura}</div>
+            <div><strong>Atribuído em:</strong> ${ticket.dataAtribuicao 
+                ? new Date(ticket.dataAtribuicao).toLocaleString('pt-BR', {year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'}) 
+                : "Não atribuído"}</div>
+            <div>
+                <span class="ticket-badge ${priorityClass}">Prioridade: ${ticket.priority}</span>
+                <span class="ticket-badge ${statusClass}">Status: ${ticket.status}</span>
+            </div>
+        </div>
+        <div class="ticket-actions">
+            ${actionButtonsHtml}
+            <button class="ticket-btn ticket-btn-details" onclick="viewDetails(${ticket.id})">Detalhes</button>
+        </div>
+    `;
 
 
-        document.getElementById("ticketContainer").appendChild(card);
-    });
+    document.getElementById("ticketContainer").appendChild(card);
+});
 
+}
+
+// ===== Função de Toast =====
+function showToast(message, type = "success") {
+    const toast = document.getElementById("toast");
+    toast.innerText = message;
+
+    if (type === "success") {
+        toast.style.backgroundColor = "#2ecc71"; // verde
+    } else if (type === "error") {
+        toast.style.backgroundColor = "#e74c3c"; // vermelho
+    }
+
+    toast.className = "toast show";
+
+    setTimeout(() => {
+        toast.className = toast.className.replace("show", "");
+    }, 3000);
 }
 
 // ===== Ações =====
@@ -145,20 +163,20 @@ async function approveTicket(id) {
     try {
         const response = await fetch(`/api/ticketsapi/approve/${id}`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            headers: { 'Content-Type': 'application/json' }
         });
 
         if (response.ok) {
-            alert("Ticket aprovado com sucesso!");
-            loadTickets();
+            showToast("Ticket aprovado com sucesso!", "success");
+            await loadTickets();
+            const modal = document.getElementById("ticketModal");
+            if (modal.style.display === "flex") viewDetails(id);
         } else {
-            alert("Erro ao aprovar o ticket.");
+            showToast("Erro ao aprovar o ticket.", "error");
         }
     } catch (error) {
-        console.error("Erro na requisição de aprovação:", error);
-        alert("Erro ao tentar aprovar o ticket.");
+        console.error(error);
+        showToast("Erro ao tentar aprovar o ticket.", "error");
     }
 }
 
@@ -166,37 +184,39 @@ async function rejectTicket(id) {
     try {
         const response = await fetch(`/api/ticketsapi/reject/${id}`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            headers: { 'Content-Type': 'application/json' }
         });
 
         if (response.ok) {
-            alert("Ticket rejeitado com sucesso!");
-            loadTickets();
+            showToast("Ticket rejeitado com sucesso!", "success");
+            await loadTickets();
+            const modal = document.getElementById("ticketModal");
+            if (modal.style.display === "flex") viewDetails(id);
         } else {
-            alert("Erro ao rejeitar o ticket.");
+            showToast("Erro ao rejeitar o ticket.", "error");
         }
     } catch (error) {
-        console.error("Erro na requisição de rejeição:", error);
-        alert("Erro ao tentar rejeitar o ticket.");
+        console.error(error);
+        showToast("Erro ao tentar rejeitar o ticket.", "error");
     }
 }
 
-    async function concludeTicket(id) {
+async function concludeTicket(id) {
     try {
         const response = await fetch(`/api/ticketsapi/conclude/${id}`, { method: 'POST' });
 
         if (response.ok) {
-            alert("Ticket concluído com sucesso!");
-            loadTickets(); // recarrega os tickets para atualizar status e botões
+            showToast("Ticket concluído com sucesso!", "success");
+            await loadTickets();
+            const modal = document.getElementById("ticketModal");
+            if (modal.style.display === "flex") viewDetails(id);
         } else {
             const data = await response.json().catch(() => null);
-            alert(data?.message || "Erro ao concluir o ticket.");
+            showToast(data?.message || "Erro ao concluir o ticket.", "error");
         }
     } catch (error) {
-        console.error("Erro na requisição de conclusão:", error);
-        alert("Erro ao tentar concluir o ticket.");
+        console.error(error);
+        showToast("Erro ao tentar concluir o ticket.", "error");
     }
 }
 
@@ -207,17 +227,18 @@ async function deleteTicket(id) {
         try {
             const response = await fetch(`/api/ticketsapi/${id}`, { method: 'DELETE' });
             if (response.ok) {
-                alert("Ticket excluído com sucesso!");
-                loadTickets();
+                showToast("Ticket excluído com sucesso!", "success");
+                await loadTickets();
             } else {
-                alert("Erro ao excluir o ticket.");
+                showToast("Erro ao excluir o ticket.", "error");
             }
         } catch (error) {
-            console.error("Erro na requisição de exclusão:", error);
-            alert("Erro ao tentar excluir o ticket.");
+            console.error(error);
+            showToast("Erro ao tentar excluir o ticket.", "error");
         }
     }
 }
+
 
 async function viewDetails(id) {
     try {
@@ -229,25 +250,70 @@ async function viewDetails(id) {
             year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'
         });
 
+        const dataAtribuicaoFormatada = ticket.dataAtribuicao 
+            ? new Date(ticket.dataAtribuicao).toLocaleString('pt-BR', {
+                  year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'
+              })
+            : "Não atribuído";
+
         document.getElementById("modalTitle").textContent = `#${ticket.id} - ${ticket.title}`;
         document.getElementById("modalId").textContent = ticket.id;
-        document.getElementById("modalUser").textContent = ticket.assignedTo;
+        document.getElementById("modalUser").textContent = ticket.assignedTo || "Não atribuído";
         document.getElementById("modalCategory").textContent = ticket.category;
         document.getElementById("modalPriority").textContent = ticket.priority;
         document.getElementById("modalStatus").textContent = ticket.status;
         document.getElementById("modalDate").textContent = dataAberturaFormatada;
+        document.getElementById("modalAssignedDate").textContent = dataAtribuicaoFormatada;
         document.getElementById("modalDescription").textContent = ticket.description;
 
         const finalizationInfo = document.getElementById("finalizationInfo");
+        const modalFinalizedDate = document.getElementById("modalFinalizedDate");
+
         if (ticket.dataFechamento) {
             const dataFechamentoFormatada = new Date(ticket.dataFechamento).toLocaleString('pt-BR', {
                 year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'
             });
-            document.getElementById("modalFinalizedDate").textContent = dataFechamentoFormatada;
+            modalFinalizedDate.textContent = dataFechamentoFormatada;
             finalizationInfo.style.display = 'block';
         } else {
-            finalizationInfo.style.display = 'none';
+            modalFinalizedDate.textContent = '';
+            finalizationInfo.style.display = 'block';
         }
+
+        // ===== Lógica para mostrar/esconder botões e adicionar event listeners =====
+        const approveBtn = document.getElementById("approveBtn");
+        const rejectBtn = document.getElementById("rejectBtn");
+        const concludeBtn = document.getElementById("concludeBtn");
+
+        // Reseta a visibilidade dos botões para garantir que comecem escondidos
+        approveBtn.style.display = 'none';
+        rejectBtn.style.display = 'none';
+        concludeBtn.style.display = 'none';
+
+        // Remove os event listeners antigos, se existirem
+        approveBtn.replaceWith(approveBtn.cloneNode(true));
+        rejectBtn.replaceWith(rejectBtn.cloneNode(true));
+        concludeBtn.replaceWith(concludeBtn.cloneNode(true));
+
+        // Reatribui as referências aos botões limpos
+        const cleanApproveBtn = document.getElementById("approveBtn");
+        const cleanRejectBtn = document.getElementById("rejectBtn");
+        const cleanConcludeBtn = document.getElementById("concludeBtn");
+
+        // Mostra os botões corretos e adiciona os novos listeners com base no status
+        if (ticket.status === 'Aberto') {
+            cleanApproveBtn.style.display = 'block';
+            cleanRejectBtn.style.display = 'block';
+            cleanApproveBtn.addEventListener('click', () => approveTicket(id));
+            cleanRejectBtn.addEventListener('click', () => rejectTicket(id));
+        } else if (ticket.status === 'Em Andamento') {
+            cleanConcludeBtn.style.display = 'block';
+            cleanRejectBtn.style.display = 'block';
+            cleanConcludeBtn.addEventListener('click', () => concludeTicket(id));
+            cleanRejectBtn.addEventListener('click', () => rejectTicket(id));
+        }
+        
+        // ===== Fim da lógica dos botões =====
 
         document.getElementById("ticketModal").style.display = "flex";
     } catch (error) {
@@ -255,6 +321,8 @@ async function viewDetails(id) {
         alert("Não foi possível carregar os detalhes do ticket.");
     }
 }
+
+
 
 // Fechar modal
 document.querySelector(".close-btn").addEventListener("click", () => {
@@ -295,3 +363,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const dateFilter = document.getElementById("dateFilter");
     if (dateFilter) dateFilter.addEventListener("change", loadTickets);
 });
+
+// Função JS para mostrar a notificação
+function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3000); // dura 3 segundos
+}

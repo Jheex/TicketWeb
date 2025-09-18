@@ -8,7 +8,7 @@
   --transition-speed: 0.4s;
 }
 
-/* Reset básico */
+/* ===== Reset básico ===== */
 * {
   margin: 0;
   padding: 0;
@@ -69,7 +69,6 @@ body {
   opacity: 0.8;
 }
 
-/* Classe para a label invisível que garante o alinhamento */
 .hidden-label {
   visibility: hidden;
   height: 0;
@@ -136,7 +135,6 @@ body {
   box-shadow: 0 0 0 3px var(--primary-light);
 }
 
-/* Estilo do botão "Meus Tickets" */
 .my-tickets-button {
   height: 41px;
   padding: 10px 15px;
@@ -181,14 +179,6 @@ body {
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
 }
 
-/* Estilo para os rótulos */
-.ticket-card strong {
-  font-size: 15px;
-  font-weight: 600;
-  color: #ccc;
-}
-
-/* Novo estilo para o cabeçalho do card que contém o título e o botão de exclusão */
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -201,7 +191,6 @@ body {
   font-weight: bold;
 }
 
-/* Container para o conteúdo do card, que vai crescer e empurrar os botões para baixo */
 .card-content {
   flex-grow: 1;
   display: flex;
@@ -215,11 +204,11 @@ body {
 }
 
 .ticket-category {
-  font-size: 14px;
   color: #ddd;
+  /* Removido: font-size: 14px; */
 }
 
-/* ===== Botão de Exclusão ===== */
+/* ===== Botão DELETE ===== */
 .delete-btn {
   background: none;
   border: none;
@@ -249,24 +238,21 @@ body {
   margin-top: 6px;
 }
 
-/* Prioridade */
 .badge-priority-alta { background-color: #e74c3c; color: white; }
 .badge-priority-media { background-color: #f39c12; color: white; }
 .badge-priority-baixa { background-color: #2ecc71; color: white; }
 
-/* Status */
 .badge-status-aberto { background-color: #e74c3c; color: white; }
 .badge-status-emandamento { background-color: #f1c40f; color: white; }
 .badge-status-concluido { background-color: #2ecc71; color: white; }
 .badge-status-rejeitado { background-color: #7f8c8d; color: white; }
 
-/* ===== Borda colorida por status ===== */
 .ticket-card.status-border-aberto { border-color: #e74c3c; }
 .ticket-card.status-border-emandamento { border-color: #f1c40f; }
 .ticket-card.status-border-concluido { border-color: #2ecc71; }
 .ticket-card.status-border-rejeitado { border-color: #7f8c8d; }
 
-/* ===== Botões de Ação ===== */
+/* ===== Botões de ação ===== */
 .ticket-actions {
   display: flex;
   flex-wrap: wrap;
@@ -297,7 +283,7 @@ body {
 .ticket-btn-details { background-color: var(--primary-color); color: white; }
 .ticket-btn-details:hover { background-color: var(--primary-light); transform: translateY(-3px) scale(1.03); }
 
-/* ===== Modal de Detalhes ===== */
+/* ===== Modal ===== */
 .modal-overlay {
   position: fixed;
   z-index: 1000;
@@ -311,12 +297,22 @@ body {
   align-items: center;
 }
 
+.modal-overlay.show {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .modal-content {
   background-color: #1A0D3A;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   width: 90%;
-  max-width: 600px;
+  max-width: 700px;
   padding: 25px;
   color: var(--text-color);
 }
@@ -347,86 +343,151 @@ body {
   color: white;
 }
 
+/* Corpo do Modal - Layout de Duas Colunas */
 .modal-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 30px;
+}
+
+/* Coluna esquerda: Dados */
+.modal-body .left-column {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  font-size: 16px;
+  /* Adiciona espaçamento vertical entre cada campo de dados */
+  gap: 12px;
 }
 
-.modal-body p strong {
+.modal-body .left-column .data-field {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.modal-body .left-column .data-field strong {
   color: #ccc;
+  font-weight: bold;
+  font-size: 16px;
+  /* Removido o margin-bottom para evitar espaço extra */
 }
 
-.modal-description {
-  margin-top: 15px;
+.modal-body .left-column .data-field span {
+  color: #eee;
+  font-size: 16px;
+  word-wrap: break-word;
 }
 
-/* Estilo para a mensagem de "nenhum ticket" */
-.no-tickets-message {
-  text-align: center;
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.6);
-  margin-top: 50px;
+/* Alterado para exibir na mesma linha */
+.modal-body .left-column .info-row {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 8px;
+  /* Adiciona um espaçamento na parte inferior para separar do próximo item */
+  margin-bottom: 8px;
 }
 
-/* Estilo para a mensagem de erro */
+
+/* Coluna direita: Descrição e Botões */
+.modal-body .right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-body .right-column .modal-description {
+  background-color: rgba(255,255,255,0.05);
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  flex-grow: 1;
+}
+
+/* Container dos botões */
+.modal-body .right-column .modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+}
+
+/* ===== Botões do Modal ===== */
+.ticket-btn {
+  flex-grow: 1;
+  flex-basis: auto;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  max-width: 100%;
+}
+
+.ticket-btn-approve { background-color: #2ecc71; color: white; }
+.ticket-btn-approve:hover { transform: translateY(-3px) scale(1.03); box-shadow: 4px 4px 12px rgba(0,0,0,0.3); }
+
+.ticket-btn-reject { background-color: #e74c3c; color: white; }
+.ticket-btn-reject:hover { transform: translateY(-3px) scale(1.03); box-shadow: 4px 4px 12px rgba(0,0,0,0.3); }
+
+.ticket-btn-details { background-color: var(--primary-color); color: white; }
+.ticket-btn-details:hover { background-color: var(--primary-light); transform: translateY(-3px) scale(1.03); }
+
+/* ===== Toast ===== */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--primary-dark);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s, transform 0.4s;
+  z-index: 2000;
+}
+
+.toast.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-10px);
+}
+
+/* ===== Mensagens ===== */
+.no-tickets-message,
 .error-message {
   text-align: center;
-  font-size: 1.2rem;
-  color: #e74c3c;
-  margin-top: 50px;
+  font-size: 15px;
+  margin-top: 20px;
+  padding: 10px 15px;
+  border-radius: 8px;
 }
 
-.my-tickets-button {
-  height: 41px;
+.no-tickets-message { color: #f39c12; }
+.error-message { color: #e74c3c; }
+
+#filterFeedback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   padding: 10px 15px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  min-width: 200px;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  background-color: #2ecc71;
   color: white;
   font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  margin-bottom: 20px;
 }
 
-.my-tickets-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(45deg, var(--primary-light), var(--primary-color));
-}
-
-.feedback-notification {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 15px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    z-index: 999;
-    min-width: 200px;
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-}
-
-.feedback-notification.success {
-    background-color: #2ecc71;
-    color: white;
-}
-
-.feedback-notification.error {
-    background-color: #e74c3c;
-    color: white;
-}
-
-.feedback-notification i {
-    font-size: 18px;
-}
-
-.feedback-notification span {
-    font-weight: 500;
+#filterFeedback i {
+  font-size: 18px;
 }

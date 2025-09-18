@@ -48,13 +48,16 @@
             <button id="myTicketsButton" class="my-tickets-button">Meus Tickets</button>
         </div>
     </div>
-    
+
     <div id="filterFeedback" class="feedback-notification success" style="display: none;">
         <i class="fa-solid fa-filter"></i>
         <span>Tickets filtrados com sucesso!</span>
     </div>
 
     <div id="ticketContainer" class="ticket-container"></div>
+
+    <p class="no-tickets-message" id="noTicketsMessage" style="display:none;">Nenhum ticket encontrado.</p>
+    <p class="error-message" id="errorMessage" style="display:none;">Erro ao carregar tickets.</p>
 </div>
 
 <div id="ticketModal" class="modal-overlay">
@@ -63,21 +66,61 @@
             <h3 id="modalTitle"></h3>
             <span class="close-btn">&times;</span>
         </div>
+
         <div class="modal-body">
-            <p><strong>ID:</strong> <span id="modalId"></span></p>
-            <p><strong>Analista:</strong> <span id="modalUser"></span></p>
-            <p><strong>Categoria:</strong> <span id="modalCategory"></span></p>
-            <p><strong>Prioridade:</strong> <span id="modalPriority"></span></p>
-            <p><strong>Status:</strong> <span id="modalStatus"></span></p>
-            <p><strong>Data de Abertura:</strong> <span id="modalDate"></span></p>
-            <p id="finalizationInfo"><strong>Finalizado em:</strong> <span id="modalFinalizedDate"></span></p>
-            <div class="modal-description">
-                <strong>Descrição:</strong>
-                <p id="modalDescription"></p>
+            <div class="left-column">
+                <div class="data-field">
+                    <strong>ID:</strong>
+                    <span id="modalId"></span>
+                </div>
+                <div class="data-field">
+                    <strong>Analista:</strong>
+                    <span id="modalUser"></span>
+                </div>
+                <div class="data-field">
+                    <strong>Categoria:</strong>
+                    <span id="modalCategory"></span>
+                </div>
+                <div class="data-field">
+                    <strong>Prioridade:</strong>
+                    <span id="modalPriority"></span>
+                </div>
+                <div class="data-field">
+                    <strong>Status:</strong>
+                    <span id="modalStatus"></span>
+                </div>
+                <div class="data-field">
+                    <strong>Data de Abertura:</strong>
+                    <span id="modalDate"></span>
+                </div>
+                 <div class="data-field" id="finalizationInfo">
+                    <div class="info-row">
+                        <strong>Data de Atribuição:</strong>
+                        <span id="modalAssignedDate">Não atribuído</span>
+                    </div>
+                    <div class="info-row">
+                        <strong>Data de Conclusão:</strong>
+                        <span id="modalFinalizedDate"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-column">
+                <div class="modal-description">
+                    <strong>Descrição:</strong>
+                    <p id="modalDescription"></p>
+                </div>
+                <div class="modal-actions">
+                    <button id="approveBtn" class="ticket-btn ticket-btn-approve">Aprovar</button>
+                    <button id="rejectBtn" class="ticket-btn ticket-btn-reject">Rejeitar</button>
+                    <button id="concludeBtn" class="ticket-btn ticket-btn-details">Concluir</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<div id="toast" class="toast"></div>
 
 @section Scripts {
     <script src="~/js/Tickets.js"></script>
