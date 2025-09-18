@@ -57,17 +57,17 @@ async function loadTickets() {
     }
 }
 
-// ===== Renderiza tickets na tela =====
-function renderTickets(tickets) {
-    const container = document.getElementById("ticketContainer");
-    container.innerHTML = "";
+    // ===== Renderiza tickets na tela =====
+    function renderTickets(tickets) {
+        const container = document.getElementById("ticketContainer");
+        container.innerHTML = "";
 
-    if (tickets.length === 0) {
-        container.innerHTML = `<div class="no-tickets-message">Nenhum ticket encontrado.</div>`;
-        return;
-    }
+        if (tickets.length === 0) {
+            container.innerHTML = `<div class="no-tickets-message">Nenhum ticket encontrado.</div>`;
+            return;
+        }
 
-    tickets.sort((a, b) => b.id - a.id).forEach(ticket => {
+        tickets.sort((a, b) => b.id - a.id).forEach(ticket => {
         const priorityClass = {
             "Alta": "badge-priority-alta",
             "Média": "badge-priority-media",
@@ -93,6 +93,7 @@ function renderTickets(tickets) {
 
         card.classList.add(statusBorderClass);
 
+        // Botões de ação
         let actionButtonsHtml = '';
         if (ticket.status === 'Aberto') {
             actionButtonsHtml = `
@@ -100,23 +101,28 @@ function renderTickets(tickets) {
                 <button class="ticket-btn ticket-btn-reject" onclick="rejectTicket(${ticket.id})">Rejeitar</button>
             `;
         } else if (ticket.status === 'Em Andamento') {
-             actionButtonsHtml = `
-                <button class="ticket-btn ticket-btn-approve" onclick="approveTicket(${ticket.id})">Concluir</button>
+            actionButtonsHtml = `
+                <button class="ticket-btn ticket-btn-approve" onclick="concludeTicket(${ticket.id})">Concluir</button>
                 <button class="ticket-btn ticket-btn-reject" onclick="rejectTicket(${ticket.id})">Rejeitar</button>
             `;
         }
 
         const dataAbertura = new Date(ticket.dataAbertura).toLocaleString('pt-BR', {year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'});
 
+        console.log("Ticket:", ticket.id, ticket.dataAtribuicao);
+        // **Todo o HTML do card dentro de card.innerHTML**
         card.innerHTML = `
             <div class="card-content">
                 <div class="card-header">
                     <div class="card-title">#${ticket.id} - ${ticket.title}</div>
                     <button class="delete-btn" onclick="deleteTicket(${ticket.id})">🗑️</button>
                 </div>
-                <div><strong>Usuário:</strong> ${ticket.assignedTo || "Não atribuído"}</div>
+                <div><strong>Analista:</strong> ${ticket.assignedTo || "Não atribuído"}</div>
                 <div class="ticket-category"><strong>Categoria:</strong> ${ticket.category}</div>
                 <div class="ticket-date"><strong>Solicitado em:</strong> ${dataAbertura}</div>
+                <div><strong>Atribuído em:</strong> ${ticket.dataAtribuicao 
+                    ? new Date(ticket.dataAtribuicao).toLocaleString('pt-BR', {year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'}) 
+                    : "Não atribuído"}</div>
                 <div>
                     <span class="ticket-badge ${priorityClass}">Prioridade: ${ticket.priority}</span>
                     <span class="ticket-badge ${statusClass}">Status: ${ticket.status}</span>
@@ -127,8 +133,11 @@ function renderTickets(tickets) {
                 <button class="ticket-btn ticket-btn-details" onclick="viewDetails(${ticket.id})">Detalhes</button>
             </div>
         `;
-        container.appendChild(card);
+
+
+        document.getElementById("ticketContainer").appendChild(card);
     });
+
 }
 
 // ===== Ações =====
@@ -171,6 +180,23 @@ async function rejectTicket(id) {
     } catch (error) {
         console.error("Erro na requisição de rejeição:", error);
         alert("Erro ao tentar rejeitar o ticket.");
+    }
+}
+
+    async function concludeTicket(id) {
+    try {
+        const response = await fetch(`/api/ticketsapi/conclude/${id}`, { method: 'POST' });
+
+        if (response.ok) {
+            alert("Ticket concluído com sucesso!");
+            loadTickets(); // recarrega os tickets para atualizar status e botões
+        } else {
+            const data = await response.json().catch(() => null);
+            alert(data?.message || "Erro ao concluir o ticket.");
+        }
+    } catch (error) {
+        console.error("Erro na requisição de conclusão:", error);
+        alert("Erro ao tentar concluir o ticket.");
     }
 }
 

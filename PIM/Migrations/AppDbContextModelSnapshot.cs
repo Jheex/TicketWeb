@@ -70,6 +70,9 @@ namespace PIM.Migrations
                     b.Property<DateTime>("DataAbertura")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("DataAtribuicao")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime?>("DataFechamento")
                         .HasColumnType("datetime2");
 

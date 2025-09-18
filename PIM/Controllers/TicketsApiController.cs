@@ -36,7 +36,8 @@ namespace PIM.Controllers
                 priority = c.Prioridade,
                 status = c.Status,
                 assignedTo = c.AtribuidoA != null ? c.AtribuidoA.Username : null,
-                dataAbertura = c.DataAbertura
+                dataAbertura = c.DataAbertura,
+                dataAtribuicao = c.DataAtribuicao
             });
 
             return Ok(result);
@@ -66,7 +67,8 @@ namespace PIM.Controllers
                 priority = c.Prioridade,
                 status = c.Status,
                 assignedTo = c.AtribuidoA != null ? c.AtribuidoA.Username : null,
-                dataAbertura = c.DataAbertura
+                dataAbertura = c.DataAbertura,
+                dataAtribuicao = c.DataAtribuicao
             });
 
             return Ok(result);
@@ -104,17 +106,37 @@ namespace PIM.Controllers
         public async Task<IActionResult> Approve(int id)
         {
             var ticket = await _context.Chamados.FindAsync(id);
-            if (ticket == null)
-            {
-                return NotFound();
-            }
+            if (ticket == null) return NotFound();
+
+            if (ticket.Status != "Aberto")
+                return BadRequest("Ticket já está em andamento ou concluído.");
 
             ticket.Status = "Em Andamento";
             ticket.AtribuidoA_AdminId = GetCurrentUserId();
+
+            ticket.DataAtribuicao = DateTime.Now;
+
             await _context.SaveChangesAsync();
-            
+
             return Ok();
         }
+
+        [HttpPost("conclude/{id}")]
+        public async Task<IActionResult> Conclude(int id)
+        {
+            var ticket = await _context.Chamados.FindAsync(id);
+            if (ticket == null) return NotFound();
+
+            if (ticket.Status != "Em Andamento")
+                return BadRequest("Só é possível concluir tickets em andamento.");
+
+            ticket.Status = "Concluído";
+            ticket.DataFechamento = DateTime.Now;
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
 
         [HttpPost("reject/{id}")]
         public async Task<IActionResult> Reject(int id)

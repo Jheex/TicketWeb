@@ -30,11 +30,12 @@ namespace PIM.Models
 
         public DateTime? DataFechamento { get; set; }
 
-        // Apenas a chave estrangeira e a propriedade de navegação são necessárias
         public int? AtribuidoA_AdminId { get; set; }
-        
+
         [ForeignKey("AtribuidoA_AdminId")]
         public Admin? AtribuidoA { get; set; }
+
+        public DateTime? DataAtribuicao { get; set; } // <- Adicionado
 
         public string? NomeArquivoAnexo { get; set; }
 
