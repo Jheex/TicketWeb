@@ -33,19 +33,20 @@ namespace PIM.Controllers
                 return View();
             }
 
-            var user = _db.Admins.FirstOrDefault(u => u.Username == username && u.Password == password);
+            // Busca o usuário na tabela Usuarios
+            var user = _db.Usuarios.FirstOrDefault(u => u.Username == username && u.SenhaHash == password);
             if (user == null)
             {
                 ViewBag.Error = "Usuário ou senha inválidos!";
                 return View();
             }
 
-            // Criar claims
+            // Criar claims com base no usuário
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.Username ?? ""),           // Nome do usuário
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),  // ID do usuário
-                new Claim(ClaimTypes.Role, "Admin")                        // Role Admin
+                new Claim(ClaimTypes.Name, user.Username ?? ""),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Role, user.Role ?? "Usuario") // role do próprio usuário
             };
 
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

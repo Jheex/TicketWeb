@@ -16,14 +16,15 @@ namespace PIM.Controllers
         // GET: Admin
         public IActionResult Index()
         {
-            var admins = _db.Admins.ToList();
+            // Apenas usuários com Role "Admin"
+            var admins = _db.Usuarios.Where(u => u.Role == "Admin").ToList();
             return View(admins);
         }
 
         // GET: Admin/Details/5
         public IActionResult Details(int id)
         {
-            var admin = _db.Admins.Find(id);
+            var admin = _db.Usuarios.Find(id);
             if (admin == null) return NotFound();
             return View(admin);
         }
@@ -36,11 +37,14 @@ namespace PIM.Controllers
 
         // POST: Admin/Create
         [HttpPost]
-        public IActionResult Create(Admin admin)
+        public IActionResult Create(Usuario usuario)
         {
-            if (!ModelState.IsValid) return View(admin);
+            if (!ModelState.IsValid) return View(usuario);
 
-            _db.Admins.Add(admin);
+            // Define o Role como Admin
+            usuario.Role = "Admin";
+
+            _db.Usuarios.Add(usuario);
             _db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
@@ -48,18 +52,18 @@ namespace PIM.Controllers
         // GET: Admin/Edit/5
         public IActionResult Edit(int id)
         {
-            var admin = _db.Admins.Find(id);
+            var admin = _db.Usuarios.Find(id);
             if (admin == null) return NotFound();
             return View(admin);
         }
 
         // POST: Admin/Edit/5
         [HttpPost]
-        public IActionResult Edit(Admin admin)
+        public IActionResult Edit(Usuario usuario)
         {
-            if (!ModelState.IsValid) return View(admin);
+            if (!ModelState.IsValid) return View(usuario);
 
-            _db.Update(admin);
+            _db.Update(usuario);
             _db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
@@ -67,7 +71,7 @@ namespace PIM.Controllers
         // GET: Admin/Delete/5
         public IActionResult Delete(int id)
         {
-            var admin = _db.Admins.Find(id);
+            var admin = _db.Usuarios.Find(id);
             if (admin == null) return NotFound();
             return View(admin);
         }
@@ -76,10 +80,10 @@ namespace PIM.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
-            var admin = _db.Admins.Find(id);
+            var admin = _db.Usuarios.Find(id);
             if (admin == null) return NotFound();
 
-            _db.Admins.Remove(admin);
+            _db.Usuarios.Remove(admin);
             _db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }

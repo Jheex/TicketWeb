@@ -1,34 +1,88 @@
-@model PIM.Models.Admin
+@model PIM.Models.Usuario
 @{
     ViewData["Title"] = "Editar Usuário";
 }
 
-<link rel="stylesheet" href="~/css/Cadastros.css" />
+<link rel="stylesheet" href="~/css/Cadastros/CreateEdit.css" asp-append-version="true" />
 
-<div class="cadastro-container">
-    <h2 class="page-title">✏️ Editar Usuário</h2>
+<div class="panel-container">
 
-    <form asp-action="Edit" method="post" class="form-edit">
+    <h2 class="panel-title">✏️ Editar Usuário</h2>
+
+    <form asp-action="Edit" method="post" class="panel-form">
+        
         <input type="hidden" asp-for="Id" />
+        
+        <div class="form-column">
+            <div class="form-group">
+                <label asp-for="Username">Nome</label>
+                <input asp-for="Username" type="text" class="input-text" />
+            </div>
 
-        <div class="form-group">
-            <label asp-for="Username">Username</label>
-            <input asp-for="Username" class="input-text" />
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email" type="email" class="input-text" maxlength="100" id="Email" />
+                <span id="emailError" class="text-error" style="display:none;">Formato de email inválido</span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SenhaHash">Senha </label>
+                <input asp-for="SenhaHash" type="password" class="input-text" id="Senha" />
+                <span class="text-error" id="SenhaError" style="display:none;">Senha inválida</span>
+            </div>
+
+            <div class="form-group">
+                <label for="ConfirmarSenha">Confirmar Senha</label>
+                <input type="password" class="input-text" id="ConfirmarSenha" />
+                <span class="text-error" id="ConfirmarSenhaError" style="display:none;">As senhas não coincidem</span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Role">Acesso</label>
+                <select asp-for="Role" class="input-text">
+                    <option value="">Selecione</option>
+                    <option value="Administrador">Administrador</option>
+                    <option value="Usuario">Usuário</option>
+                    <option value="Tecnico">Técnico</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Status">Status</label>
+                <select asp-for="Status" class="input-text">
+                    <option value="Ativo">Ativo</option>
+                    <option value="Inativo">Inativo</option>
+                </select>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label asp-for="Email">Email</label>
-            <input asp-for="Email" type="email" class="input-text" />
-        </div>
+        <div class="form-column">
+            <div class="form-group">
+                <label asp-for="Telefone">Telefone</label>
+                <input asp-for="Telefone" type="tel" class="input-text" maxlength="15" id="Telefone" />
+            </div>
 
-        <div class="form-group">
-            <label asp-for="Password">Senha</label>
-            <input asp-for="Password" type="password" class="input-text" />
+            <div class="form-group">
+                <label asp-for="Endereco">Endereço</label>
+                <input asp-for="Endereco" type="text" class="input-text" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DataNascimento">Data de Nascimento</label>
+                <input asp-for="DataNascimento" type="text" placeholder="DD/MM/AAAA" class="input-text" id="DataNascimento" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Observacoes">Observações</label>
+                <textarea asp-for="Observacoes" class="input-text"></textarea>
+            </div>
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn-primary">Salvar</button>
+            <button type="submit" class="btn-primary">Editar Usuário</button>
             <a asp-action="Index" class="btn-secondary">Cancelar</a>
         </div>
+
     </form>
+    <script src="~/js/cadastro.js" asp-append-version="true"></script>
 </div>

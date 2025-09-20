@@ -1,0 +1,105 @@
+:root {
+    /* Cores */
+    --color-primary: #7F56D9;
+    --color-primary-light: #9B78F0;
+    --color-primary-dark: #6941C6;
+    --color-success: #12B76A;
+    --color-success-hover: #0E9A56;
+    --color-error: #F04438;
+    --color-error-hover: #D92D20;
+
+    /* Fundo */
+    --color-bg-page: #100E21; /* Fundo sólido e escuro */
+    --color-bg-card: #1E1A34; /* Cartões mais escuros */
+
+    /* UI - Interface */
+    --color-ui-input: #2C2744;
+    --color-ui-border: #383252;
+    --color-ui-border-focus: var(--color-primary);
+
+    /* Texto */
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #C0B8E1;
+    --color-text-link: var(--color-primary);
+
+    /* Sombras */
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.2);
+    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* --------------------------- DELETE ------------------------------ */
+.cadastro-containerd {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centraliza vertical */
+    align-items: center;     /* centraliza horizontal */
+    min-height: 70vh;       /* ocupa a altura total da tela */
+    padding: 2rem;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 45px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--color-text-primary);
+}
+
+.form-delete {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    background-color: var(--color-bg-card);
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    
+    /* NOVO */
+    box-sizing: border-box;      /* garante que padding não aumente largura */
+    word-wrap: break-word;       /* quebra palavras longas */
+    overflow-wrap: break-word;   /* compatibilidade extra */
+}
+
+
+.form-delete:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.delete-info p {
+    color: var(--color-text-primary);
+    font-size: 16px;
+    margin: 0;
+}
+
+.delete-info strong {
+    color: var(--color-error);
+}
+
+.form-actions-delete {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.btn-delete {
+    background-color: var(--color-error);
+    color: #fff; /* sempre branco para contraste */
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-delete:hover {
+    background-color: var(--color-error-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}

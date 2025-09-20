@@ -23,7 +23,7 @@ namespace PIM.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            ViewBag.Usuarios = new SelectList(await _db.Admins.OrderBy(u => u.Username).ToListAsync(), "Id", "Username");
+            ViewBag.Usuarios = new SelectList(await _db.Usuarios.OrderBy(u => u.Username).ToListAsync(), "Id", "Username");
             return View();
         }
 
@@ -34,7 +34,7 @@ namespace PIM.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Usuarios = new SelectList(await _db.Admins.OrderBy(u => u.Username).ToListAsync(), "Id", "Username", model.UserId);
+                ViewBag.Usuarios = new SelectList(await _db.Usuarios.OrderBy(u => u.Username).ToListAsync(), "Id", "Username", model.UserId);
                 return View(model);
             }
 
@@ -53,7 +53,6 @@ namespace PIM.Controllers
             return RedirectToAction(nameof(Confirmacao));
         }
 
-
         // ETAPA 3: Exibe a página de confirmação com os dados preenchidos
         [HttpGet]
         public IActionResult Confirmacao()
@@ -64,7 +63,6 @@ namespace PIM.Controllers
                 return RedirectToAction(nameof(Create));
             }
 
-            // CORREÇÃO: Adicionamos uma verificação para garantir que 'model' não seja nulo após a desserialização.
             var model = JsonSerializer.Deserialize<ChamadoViewModel>(modelJson);
             if (model == null)
             {
@@ -76,12 +74,11 @@ namespace PIM.Controllers
             TempData.Keep("AttachmentBytes");
             TempData.Keep("AttachmentFileName");
 
-            var usuario = _db.Admins.Find(model.UserId);
+            var usuario = _db.Usuarios.Find(model.UserId);
             ViewBag.NomeSolicitante = usuario?.Username ?? "Não encontrado";
 
             return View(model);
         }
-
 
         // ETAPA 4: Efetiva a criação do chamado no banco de dados
         [HttpPost]
@@ -95,7 +92,6 @@ namespace PIM.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            // CORREÇÃO: Adicionamos uma verificação para garantir que 'model' não seja nulo.
             var model = JsonSerializer.Deserialize<ChamadoViewModel>(modelJson);
             if (model == null)
             {
@@ -103,10 +99,9 @@ namespace PIM.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            string? nomeArquivoUnico = null; // CORREÇÃO: Declarado como string anulável
+            string? nomeArquivoUnico = null;
             if (TempData["AttachmentBytes"] is byte[] fileBytes)
             {
-                // CORREÇÃO: Adicionamos uma verificação para garantir que 'AttachmentFileName' não seja nulo.
                 string? nomeOriginal = TempData["AttachmentFileName"]?.ToString();
                 if (!string.IsNullOrEmpty(nomeOriginal))
                 {
@@ -123,7 +118,7 @@ namespace PIM.Controllers
             {
                 SolicitanteId = model.UserId,
                 Titulo = model.Title,
-                Descricao = model.Description, // Já é anulável no ViewModel
+                Descricao = model.Description,
                 Categoria = model.Category,
                 Prioridade = model.Priority,
                 NomeArquivoAnexo = TempData["AttachmentFileName"]?.ToString(),

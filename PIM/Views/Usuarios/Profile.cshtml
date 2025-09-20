@@ -1,4 +1,4 @@
-@model PIM.Models.Admin   // nas views de detalhe, editar, criar
+@model PIM.Models.Usuario   // nas views de detalhe, editar, criar
 
 
 @{
@@ -14,7 +14,7 @@
         <p class="card-text"><strong>ID:</strong> @Model.Id</p>
         <p class="card-text"><strong>Email:</strong> @Model.Email ?? "-" </p>
         <p class="card-text"><strong>Data de criação:</strong> @(Model.CreatedAt.ToString("dd/MM/yyyy") ?? "-")</p>
-        <p class="card-text"><strong>Senha:</strong> @Model.Password</p>
+        <p class="card-text"><strong>Senha:</strong> @Model.SenhaHash</p>
         <a asp-action="Index" class="btn btn-secondary">Voltar</a>
     </div>
 </div>

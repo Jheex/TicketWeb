@@ -19,7 +19,7 @@ namespace PIM.Controllers
         public IActionResult Index(DashboardFilterViewModel filters, int pageNumber = 1, int pageSize = 5)
         {
             var query = _context.Chamados
-                .Include(c => c.AtribuidoA)
+                .Include(c => c.AtribuidoA) // Navegação para Usuario
                 .AsQueryable();
 
             // Aplicando filtros
@@ -36,7 +36,7 @@ namespace PIM.Controllers
                 query = query.Where(c => filters.Priority.Contains(c.Prioridade ?? string.Empty));
 
             if (filters.AssignedToId != null && filters.AssignedToId.Any())
-                query = query.Where(c => c.AtribuidoA_AdminId.HasValue && filters.AssignedToId.Contains(c.AtribuidoA_AdminId.Value));
+                query = query.Where(c => c.AtribuidoAId.HasValue && filters.AssignedToId.Contains(c.AtribuidoAId.Value));
 
             var totalItems = query.Count();
 
@@ -72,7 +72,7 @@ namespace PIM.Controllers
                     Priorities = _context.Chamados.Select(c => c.Prioridade ?? string.Empty).Distinct()
                                                  .Select(p => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem { Text = p, Value = p })
                                                  .ToList(),
-                    Analysts = _context.Admins
+                    Analysts = _context.Usuarios
                                                  .Select(a => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem { Text = a.Username, Value = a.Id.ToString() })
                                                  .ToList()
                 },

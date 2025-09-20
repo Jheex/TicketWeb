@@ -39,7 +39,7 @@ namespace PIM.Controllers
                 query = query.Where(t => t.Status == filters.Status);
 
             if (filters.AssignedToId.HasValue)
-                query = query.Where(t => t.AtribuidoA_AdminId.HasValue && t.AtribuidoA_AdminId == filters.AssignedToId.Value);
+                query = query.Where(t => t.AtribuidoAId.HasValue && t.AtribuidoAId == filters.AssignedToId.Value);
 
             var tickets = await query
                 .Select(t => new
@@ -62,7 +62,6 @@ namespace PIM.Controllers
         [HttpPost("Aprovar/{id}")]
         public async Task<IActionResult> Aprovar(int id)
         {
-            // Pega o ID do usuário logado
             var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (!int.TryParse(userIdStr, out int usuarioId))
                 return Unauthorized();
@@ -72,7 +71,9 @@ namespace PIM.Controllers
                 return NotFound();
 
             chamado.Status = "Em Andamento";
-            chamado.AtribuidoA_AdminId = usuarioId; // Atribui a você
+            chamado.AtribuidoAId = usuarioId; // Atribui ao usuário logado
+            chamado.DataAtribuicao = System.DateTime.Now;
+
             await _context.SaveChangesAsync();
 
             return Ok();
@@ -123,6 +124,7 @@ namespace PIM.Controllers
                 ticket.Prioridade,
                 ticket.Status,
                 ticket.DataAbertura,
+                ticket.DataFechamento,
                 AssignedTo = ticket.AtribuidoA != null ? ticket.AtribuidoA.Username : null
             });
         }

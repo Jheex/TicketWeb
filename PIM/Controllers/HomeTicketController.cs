@@ -16,7 +16,7 @@ namespace PIM.Controllers
         public IActionResult Index(int pageNumber = 1, int pageSize = 6)
         {
             var chamados = _context.Chamados
-                                   .Include(c => c.AtribuidoA)
+                                   .Include(c => c.AtribuidoA) // navegação para Usuario
                                    .OrderByDescending(c => c.DataAbertura)
                                    .Skip((pageNumber - 1) * pageSize)
                                    .Take(pageSize)
@@ -38,7 +38,7 @@ namespace PIM.Controllers
                         .Select(s => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem { Text = s, Value = s })
                         .ToList(),
 
-                    Analysts = _context.Admins
+                    Analysts = _context.Usuarios // ALTERADO: de Admins para Usuarios
                         .Select(a => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem { Text = a.Username, Value = a.Id.ToString() })
                         .ToList()
                 }

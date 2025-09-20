@@ -37,7 +37,7 @@ namespace PIM.Controllers
 
             if (assignedToId.HasValue)
             {
-                query = query.Where(c => c.AtribuidoA_AdminId == assignedToId.Value);
+                query = query.Where(c => c.AtribuidoAId == assignedToId.Value);
             }
 
             // 3. Total de itens filtrados
@@ -71,7 +71,7 @@ namespace PIM.Controllers
                                                 .Select(s => new SelectListItem { Text = s, Value = s }).ToList(),
                     Priorities = _context.Chamados.Select(c => c.Prioridade ?? string.Empty).Distinct()
                                                 .Select(p => new SelectListItem { Text = p, Value = p }).ToList(),
-                    Analysts = _context.Admins
+                    Analysts = _context.Usuarios
                                                 .Select(a => new SelectListItem { Text = a.Username, Value = a.Id.ToString() })
                                                 .ToList()
                 },

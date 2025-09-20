@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bfyx1gaXaH8=",
+  "dgSpecHash": "iNTV7g8QHs4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Jhonatan Lima\\OneDrive\\Área de Trabalho\\TicketsWeb\\TicketWeb\\PIM\\PIM.csproj",
+  "projectFilePath": "C:\\Users\\Jhonatan Lima\\OneDrive\\Área de Trabalho\\New folder\\TicketWeb\\PIM\\PIM.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jhonatan Lima\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Jhonatan Lima\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

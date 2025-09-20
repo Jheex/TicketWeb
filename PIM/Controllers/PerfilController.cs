@@ -5,9 +5,6 @@ using PIM.Models;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-// IMPORTANTE: O código de senha DEVE usar hashing.
-// O exemplo abaixo usa um método de comparação seguro (ex: BCrypt).
-
 namespace PIM.Controllers
 {
     public class PerfilController : Controller
@@ -20,59 +17,59 @@ namespace PIM.Controllers
         }
 
         // Método utilitário para obter o usuário logado
-        private async Task<Admin?> GetCurrentUserAsync()
+        private async Task<Usuario?> GetCurrentUserAsync()
         {
             var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out int userId))
             {
                 return null;
             }
-            return await _context.Admins.FirstOrDefaultAsync(a => a.Id == userId);
+            return await _context.Usuarios.FirstOrDefaultAsync(u => u.Id == userId);
         }
 
-        // Action para a visualização do perfil
+        // Action para visualização do perfil
         public async Task<IActionResult> Index()
         {
-            var admin = await GetCurrentUserAsync();
-            if (admin == null)
+            var usuario = await GetCurrentUserAsync();
+            if (usuario == null)
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            var totalTicketsAbertos = await _context.Chamados.CountAsync(c => c.Status == "Aberto" && c.AtribuidoA_AdminId == admin.Id);
-            var totalTicketsFechados = await _context.Chamados.CountAsync(c => (c.Status == "Concluído" || c.Status == "Rejeitado") && c.AtribuidoA_AdminId == admin.Id);
+            // Contagem de tickets do usuário
+            var totalTicketsAbertos = await _context.Chamados.CountAsync(c => c.Status == "Aberto" && c.AtribuidoAId == usuario.Id);
+            var totalTicketsFechados = await _context.Chamados.CountAsync(c => (c.Status == "Concluído" || c.Status == "Rejeitado") && c.AtribuidoAId == usuario.Id);
 
             ViewBag.TotalTicketsAbertos = totalTicketsAbertos;
             ViewBag.TotalTicketsFechados = totalTicketsFechados;
 
-            return View(admin);
+            return View(usuario);
         }
 
-        // Action para a visualização da edição
+        // Action para a visualização de edição do perfil
         public async Task<IActionResult> Editar()
         {
-            var admin = await GetCurrentUserAsync();
-            if (admin == null)
+            var usuario = await GetCurrentUserAsync();
+            if (usuario == null)
             {
                 return RedirectToAction("Login", "Account");
             }
-            return View(admin);
+            return View(usuario);
         }
 
-        // POST para a edição
+        // POST para edição do perfil
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Editar([Bind("Id,Username,Email")] Admin admin)
+        public async Task<IActionResult> Editar([Bind("Id,Username,Email")] Usuario usuario)
         {
             var currentUser = await GetCurrentUserAsync();
-            if (currentUser == null || currentUser.Id != admin.Id)
+            if (currentUser == null || currentUser.Id != usuario.Id)
             {
                 return Unauthorized();
             }
 
-            // O EF Core já rastreia o objeto, basta atualizar as propriedades
-            currentUser.Username = admin.Username;
-            currentUser.Email = admin.Email;
+            currentUser.Username = usuario.Username;
+            currentUser.Email = usuario.Email;
 
             try
             {
@@ -83,15 +80,15 @@ namespace PIM.Controllers
             {
                 TempData["ErrorMessage"] = "Não foi possível salvar as alterações. O registro pode ter sido alterado por outro usuário.";
             }
-            
+
             return RedirectToAction("Index");
         }
 
         // Action para a visualização de mudar senha
         public async Task<IActionResult> MudarSenha()
         {
-            var admin = await GetCurrentUserAsync();
-            if (admin == null)
+            var usuario = await GetCurrentUserAsync();
+            if (usuario == null)
             {
                 return RedirectToAction("Login", "Account");
             }
@@ -103,25 +100,15 @@ namespace PIM.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> MudarSenha(string senhaAtual, string novaSenha, string confirmarNovaSenha)
         {
-            var admin = await GetCurrentUserAsync();
-            if (admin == null)
+            var usuario = await GetCurrentUserAsync();
+            if (usuario == null)
             {
                 TempData["ErrorMessage"] = "Sessão expirada. Faça login novamente.";
                 return RedirectToAction("Login", "Account");
             }
 
-            // AQUI ESTÁ A MUDANÇA CRUCIAL
-            // NUNCA compare senhas em texto simples. Use hashing.
-            // Exemplo de uso de BCrypt para validação segura:
-            // if (!BCrypt.Net.BCrypt.Verify(senhaAtual, admin.Password))
-            // {
-            //     TempData["ErrorMessage"] = "A senha atual está incorreta.";
-            //     return View();
-            // }
-
-            // Se você não tiver um hasher, mantenha a lógica original por enquanto
-            // e adicione um TODO para implementar a segurança.
-            if (senhaAtual != admin.Password)
+            // TODO: Implementar hashing seguro da senha
+            if (senhaAtual != usuario.SenhaHash)
             {
                 TempData["ErrorMessage"] = "A senha atual está incorreta.";
                 return View();
@@ -133,9 +120,7 @@ namespace PIM.Controllers
                 return View();
             }
 
-            // Também, a nova senha DEVE ser hasheada antes de salvar no banco
-            // admin.Password = BCrypt.Net.BCrypt.HashPassword(novaSenha);
-            admin.Password = novaSenha; // Mantenha a lógica original até implementar o hash
+            usuario.SenhaHash = novaSenha; // TODO: aplicar hash seguro
 
             try
             {

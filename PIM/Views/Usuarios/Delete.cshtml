@@ -1,22 +1,26 @@
-@model PIM.Models.Admin
+@model PIM.Models.Usuario
 @{
     ViewData["Title"] = "Remover Usuário";
 }
 
-<link rel="stylesheet" href="~/css/Cadastros.css" />
+<!-- Link para o CSS de Cadastros -->
+<link rel="stylesheet" href="~/css/Cadastros/Delete.css" asp-append-version="true" />
 
-<div class="cadastro-container">
-    <h2 class="page-title">❌ Remover Usuário</h2>
+<div class="cadastro-containerd">
+    <h1 class="page-title">❌ Remover Usuário</h1>
 
-    <div class="delete-info">
-        <p>Você tem certeza que deseja remover o usuário <strong>@Model.Username</strong>?</p>
-        <p>Essa ação não pode ser desfeita.</p>
-    </div>
-
+    <!-- Modal de delete -->
     <form asp-action="Delete" method="post" class="form-delete">
         <input type="hidden" asp-for="Id" />
 
-        <div class="form-actions">
+        <!-- Texto de confirmação -->
+        <div class="delete-info">
+            <p>Você tem certeza que deseja remover o usuário <br> <strong>@Model.Username</strong>?</p>
+            <p>Essa ação não pode ser desfeita.</p>
+        </div>
+
+        <!-- Botões de ação -->
+        <div class="form-actions-delete">
             <button type="submit" class="btn-delete">Confirmar Exclusão</button>
             <a asp-action="Index" class="btn-secondary">Cancelar</a>
         </div>

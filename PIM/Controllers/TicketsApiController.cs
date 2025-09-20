@@ -20,6 +20,7 @@ namespace PIM.Controllers
             _context = context;
         }
 
+        // GET: api/TicketsApi
         [HttpGet]
         public async Task<IActionResult> GetTickets()
         {
@@ -43,7 +44,7 @@ namespace PIM.Controllers
             return Ok(result);
         }
 
-        // NOVO ENDPOINT: Pega tickets atribuídos ao usuário logado
+        // GET: api/TicketsApi/MyTickets
         [HttpGet("MyTickets")]
         public async Task<IActionResult> GetMyTickets()
         {
@@ -55,7 +56,7 @@ namespace PIM.Controllers
 
             var tickets = await _context.Chamados
                 .Include(c => c.AtribuidoA)
-                .Where(c => c.AtribuidoA_AdminId == userId)
+                .Where(c => c.AtribuidoAId == userId)
                 .OrderByDescending(c => c.ChamadoId)
                 .ToListAsync();
 
@@ -74,6 +75,7 @@ namespace PIM.Controllers
             return Ok(result);
         }
 
+        // GET: api/TicketsApi/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTicket(int id)
         {
@@ -103,6 +105,7 @@ namespace PIM.Controllers
             return Ok(result);
         }
 
+        // POST: api/TicketsApi/approve/5
         [HttpPost("approve/{id}")]
         public async Task<IActionResult> Approve(int id)
         {
@@ -113,15 +116,14 @@ namespace PIM.Controllers
                 return BadRequest("Ticket já está em andamento ou concluído.");
 
             ticket.Status = "Em Andamento";
-            ticket.AtribuidoA_AdminId = GetCurrentUserId();
-
+            ticket.AtribuidoAId = GetCurrentUserId();
             ticket.DataAtribuicao = DateTime.Now;
 
             await _context.SaveChangesAsync();
-
             return Ok();
         }
 
+        // POST: api/TicketsApi/conclude/5
         [HttpPost("conclude/{id}")]
         public async Task<IActionResult> Conclude(int id)
         {
@@ -133,36 +135,30 @@ namespace PIM.Controllers
 
             ticket.Status = "Concluído";
             ticket.DataFechamento = DateTime.Now;
-            await _context.SaveChangesAsync();
 
+            await _context.SaveChangesAsync();
             return Ok();
         }
 
-
+        // POST: api/TicketsApi/reject/5
         [HttpPost("reject/{id}")]
         public async Task<IActionResult> Reject(int id)
         {
             var ticket = await _context.Chamados.FindAsync(id);
-            if (ticket == null)
-            {
-                return NotFound();
-            }
-            
+            if (ticket == null) return NotFound();
+
             ticket.Status = "Rejeitado";
             await _context.SaveChangesAsync();
-            
+
             return Ok();
         }
 
+        // DELETE: api/TicketsApi/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTicket(int id)
         {
             var ticket = await _context.Chamados.FindAsync(id);
-            
-            if (ticket == null)
-            {
-                return NotFound();
-            }
+            if (ticket == null) return NotFound();
 
             _context.Chamados.Remove(ticket);
             await _context.SaveChangesAsync();
@@ -170,6 +166,7 @@ namespace PIM.Controllers
             return NoContent();
         }
 
+        // Método utilitário para pegar o ID do usuário logado
         private int? GetCurrentUserId()
         {
             var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);

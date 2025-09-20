@@ -6,39 +6,38 @@ namespace PIM.Models
 {
     public class Chamado
     {
+        [Key]
         public int ChamadoId { get; set; }
 
-        [Required]
-        public int SolicitanteId { get; set; }
-
-        public string? Solicitante { get; set; }
-
-        [Required]
+        [Required, MaxLength(200)]
         public string? Titulo { get; set; }
 
         public string? Descricao { get; set; }
 
         public string? Categoria { get; set; }
 
-        [Required]
         public string? Prioridade { get; set; }
 
-        [Required]
-        public string Status { get; set; } = "Aberto";
+        public string? Status { get; set; } = "Aberto";
 
         public DateTime DataAbertura { get; set; } = DateTime.Now;
 
+        public DateTime? DataAtribuicao { get; set; }
+
         public DateTime? DataFechamento { get; set; }
-
-        public int? AtribuidoA_AdminId { get; set; }
-
-        [ForeignKey("AtribuidoA_AdminId")]
-        public Admin? AtribuidoA { get; set; }
-
-        public DateTime? DataAtribuicao { get; set; } // <- Adicionado
 
         public string? NomeArquivoAnexo { get; set; }
 
         public string? CaminhoArquivoAnexo { get; set; }
+
+        // RELACIONAMENTO COM USUÁRIO (quem foi atribuído)
+        public int? AtribuidoAId { get; set; }
+        [ForeignKey("AtribuidoAId")]
+        public Usuario? AtribuidoA { get; set; }
+
+        // RELACIONAMENTO COM USUÁRIO SOLICITANTE (quem criou o chamado)
+        public int SolicitanteId { get; set; }   // precisa existir
+        [ForeignKey("SolicitanteId")]
+        public Usuario? Solicitante { get; set; }
     }
 }
