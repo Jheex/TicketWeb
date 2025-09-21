@@ -113,28 +113,29 @@ function renderTickets(tickets) {
     console.log("Ticket:", ticket.id, ticket.dataAtribuicao);
     // **Todo o HTML do card dentro de card.innerHTML**
     card.innerHTML = `
-        <div class="card-content">
-            <div class="card-header">
-                <div class="card-title">#${ticket.id} - ${ticket.title}</div>
-                <button class="delete-btn" onclick="deleteTicket(${ticket.id})">🗑️</button>
-            </div>
-            <div><strong>Solicitante:</strong> ${ticket.solicitante || "Não informado"}</div>
-            <div><strong>Analista:</strong> ${ticket.assignedTo || "Não atribuído"}</div>
-            <div class="ticket-category"><strong>Categoria:</strong> ${ticket.category}</div>
-            <div class="ticket-date"><strong>Solicitado em:</strong> ${dataAbertura}</div>
-            <div><strong>Atribuído em:</strong> ${ticket.dataAtribuicao 
-                ? new Date(ticket.dataAtribuicao).toLocaleString('pt-BR', {year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'}) 
-                : "Não atribuído"}</div>
-            <div>
-                <span class="ticket-badge ${priorityClass}">Prioridade: ${ticket.priority}</span>
-                <span class="ticket-badge ${statusClass}">Status: ${ticket.status}</span>
-            </div>
+    <div class="card-content">
+        <div class="card-header">
+            <div class="card-title">#${ticket.id} - ${ticket.title}</div>
+            <button class="delete-btn" onclick="deleteTicket(${ticket.id})">🗑️</button>
         </div>
-        <div class="ticket-actions">
-            ${actionButtonsHtml}
-            <button class="ticket-btn ticket-btn-details" onclick="viewDetails(${ticket.id})">Detalhes</button>
+        <div><strong>Solicitante:</strong> ${ticket.solicitante || "Não informado"}</div>
+        <div><strong>Analista:</strong> ${ticket.assignedTo || "Não atribuído"}</div>
+        <div class="ticket-category"><strong>Categoria:</strong> ${ticket.category}</div>
+        <div class="ticket-date"><strong>Solicitado em:</strong> ${dataAbertura}</div>
+        <div><strong>Atribuído em:</strong> ${ticket.dataAtribuicao 
+            ? new Date(ticket.dataAtribuicao).toLocaleString('pt-BR', {year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'}) 
+            : "Não atribuído"}</div>
+        <div class="ticket-badges-container">
+            <span class="ticket-badge ${priorityClass}">Prioridade: ${ticket.priority}</span>
+            <span class="ticket-badge ${statusClass}">Status: ${ticket.status}</span>
         </div>
-    `;
+    </div>
+    <div class="ticket-actions">
+        ${actionButtonsHtml}
+        <button class="ticket-btn ticket-btn-details" onclick="viewDetails(${ticket.id})">Detalhes</button>
+    </div>
+`;
+
 
 
     document.getElementById("ticketContainer").appendChild(card);

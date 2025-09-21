@@ -230,13 +230,16 @@ body {
 
 /* ===== Badges ===== */
 .ticket-badge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 12px;
-  margin-right: 6px;
-  margin-top: 6px;
+    display: inline-block; /* para ajustar ao tamanho do conteúdo */
+    padding: 4px 8px;      /* espaçamento interno */
+    border-radius: 4px;    /* cantos arredondados */
+    color: #fff;            /* cor do texto */
+    font-weight: bold;
+    font-size: 0.9rem;
+    min-width: 0;           /* evita ocupar espaço extra */
+    text-align: center;
 }
+
 
 .badge-priority-alta { background-color: #e74c3c; color: white; }
 .badge-priority-media { background-color: #f39c12; color: white; }
@@ -547,3 +550,10 @@ body {
 .badge-priority-media   { background-color: #3498db; } /* azul */
 .badge-priority-baixa   { background-color: #2ecc71; } /* verde */
 
+
+.ticket-badges-container {
+    display: flex;
+    flex-direction: column; /* Prioridade em cima, Status embaixo */
+    gap: 4px;               /* espaçamento entre os badges */
+    align-items: flex-start; /* badges à esquerda */
+}
