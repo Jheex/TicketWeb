@@ -3,8 +3,6 @@
 }
 <link rel="stylesheet" href="~/css/form-styles.css" asp-append-version="true" />
 
-<h1 class="titulo">➕ Novo Ticket</h1>
-
 <div class="form-container">
     <div class="form-card">
         <div class="form-header">
@@ -22,13 +20,13 @@
                             <i class="fa-solid fa-user"></i>
                             Solicitante / Usuário
                         </label>
-                            <select id="UserId" name="UserId" class="form-control" required>
-                                <option value="" disabled selected>-- Selecione quem está abrindo o chamado --</option>
-                                @foreach (var user in ViewBag.Usuarios as IEnumerable<SelectListItem>)
-                                {
-                                    <option value="@user.Value">@user.Text</option>
-                                }
-                            </select>
+                        <select id="UserId" name="UserId" class="form-control" required>
+                            <option value="" disabled selected>-- Selecione quem está abrindo o chamado --</option>
+                            @foreach (var user in ViewBag.Usuarios as IEnumerable<SelectListItem>)
+                            {
+                                <option value="@user.Value">@user.Text</option>
+                            }
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="category">
@@ -51,7 +49,7 @@
                             Prioridade
                         </label>
                         <select id="priority" name="Priority" class="form-control">
-                        <option value="" disabled selected>-- Selecione a priodade do chamado --</option>
+                            <option value="" disabled selected>-- Selecione a priodade do chamado --</option>
                             <option value="Baixa">Baixa</option>
                             <option value="Média">Média</option>
                             <option value="Alta">Alta</option>
@@ -66,7 +64,7 @@
                             <i class="fa-solid fa-heading"></i>
                             Título / Assunto
                         </label>
-                        <input id="title" name="Title" class="form-control" placeholder="Ex: Computador não liga" required />
+                        <input id="title" name="Title" class="form-control" placeholder="Ex: Computador não liga" required maxlength="20" />
                     </div>
 
                     <div class="form-group">
@@ -74,8 +72,21 @@
                             <i class="fa-solid fa-paragraph"></i>
                             Descrição Detalhada
                         </label>
-                        <textarea id="description" name="Description" class="form-control" rows="5" placeholder="Inclua mensagens de erro, o que você estava fazendo..."></textarea>
+                        <textarea id="description" name="Description" class="form-control" rows="5" placeholder="Inclua mensagens de erro, o que você estava fazendo..." maxlength="41"></textarea>
                     </div>
+
+                    <div class="form-group">
+                        <label for="file">
+                            <i class="fa-solid fa-paperclip"></i>
+                            Anexo (Opcional)
+                        </label>
+                        <div class="file-upload-wrapper">
+                            <span id="file-name" class="file-upload-text">Clique para escolher um arquivo...</span>
+                            <label for="file" class="file-upload-button">Escolher</label>
+                            <input id="file" name="file" type="file" class="file-upload-input" onchange="updateFileName(this)" />
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="form-actions">

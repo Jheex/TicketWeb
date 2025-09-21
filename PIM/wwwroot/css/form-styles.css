@@ -30,7 +30,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem 1rem;
+    padding: 2rem;
+    margin-top: 35px;
     box-sizing: border-box;
 }
 

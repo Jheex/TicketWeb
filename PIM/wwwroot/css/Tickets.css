@@ -136,8 +136,7 @@ body {
 }
 
 .my-tickets-button {
-  height: 41px;
-  padding: 10px 15px;
+  padding: 10px 15px; 
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
@@ -146,6 +145,10 @@ body {
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
+  width: 180px;
+  
+  /* Linha adicionada para alinhamento perfeito */
+  margin-top: auto;
 }
 
 .my-tickets-button:hover {
@@ -205,7 +208,6 @@ body {
 
 .ticket-category {
   color: #ddd;
-  /* Removido: font-size: 14px; */
 }
 
 /* ===== Botão DELETE ===== */
@@ -230,29 +232,28 @@ body {
 
 /* ===== Badges ===== */
 .ticket-badge {
-    display: inline-block; /* para ajustar ao tamanho do conteúdo */
-    padding: 4px 8px;      /* espaçamento interno */
-    border-radius: 4px;    /* cantos arredondados */
-    color: #fff;            /* cor do texto */
-    font-weight: bold;
-    font-size: 0.9rem;
-    min-width: 0;           /* evita ocupar espaço extra */
-    text-align: center;
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.9rem;
+  min-width: 0;
+  text-align: center;
 }
-
 
 .badge-priority-alta { background-color: #e74c3c; color: white; }
 .badge-priority-media { background-color: #f39c12; color: white; }
-.badge-priority-baixa { background-color: #2ecc71; color: white; }
+.badge-priority-baixa { background-color: #319d5e; color: white; }
 
 .badge-status-aberto { background-color: #e74c3c; color: white; }
-.badge-status-emandamento { background-color: #f1c40f; color: white; }
-.badge-status-concluido { background-color: #2ecc71; color: white; }
+.badge-status-emandamento { background-color: #f39c12; color: white; }
+.badge-status-concluido { background-color: #319d5e; color: white; }
 .badge-status-rejeitado { background-color: #7f8c8d; color: white; }
 
 .ticket-card.status-border-aberto { border-color: #e74c3c; }
 .ticket-card.status-border-emandamento { border-color: #f1c40f; }
-.ticket-card.status-border-concluido { border-color: #2ecc71; }
+.ticket-card.status-border-concluido { border-color: #319d5e; }
 .ticket-card.status-border-rejeitado { border-color: #7f8c8d; }
 
 /* ===== Botões de ação ===== */
@@ -357,7 +358,6 @@ body {
 .modal-body .left-column {
   display: flex;
   flex-direction: column;
-  /* Adiciona espaçamento vertical entre cada campo de dados */
   gap: 12px;
 }
 
@@ -372,7 +372,6 @@ body {
   color: #ccc;
   font-weight: bold;
   font-size: 16px;
-  /* Removido o margin-bottom para evitar espaço extra */
 }
 
 .modal-body .left-column .data-field span {
@@ -381,16 +380,13 @@ body {
   word-wrap: break-word;
 }
 
-/* Alterado para exibir na mesma linha */
 .modal-body .left-column .info-row {
   display: flex;
   flex-direction: row;
   align-items: baseline;
   gap: 8px;
-  /* Adiciona um espaçamento na parte inferior para separar do próximo item */
   margin-bottom: 8px;
 }
-
 
 /* Coluna direita: Descrição e Botões */
 .modal-body .right-column {
@@ -497,63 +493,68 @@ body {
 
 /* Remove o estilo padrão do select */
 .filter-select {
-    -webkit-appearance: none; /* Safari/Chrome */
-    -moz-appearance: none;    /* Firefox */
-    appearance: none;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--text-color);
-    border: none;
-    border-radius: 8px;
-    padding: 10px 40px 10px 15px; /* espaço para a seta à direita */
-    font-size: 15px;
-    outline: none;
-    width: 100%;
-    cursor: pointer;
-    transition: all 0.3s;
-    position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-color);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 40px 10px 15px;
+  font-size: 15px;
+  outline: none;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
 }
 
 /* Adiciona a seta personalizada */
 .filter-select::after {
-    content: "▼"; /* você pode usar um SVG também */
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: rgba(255,255,255,0.7);
-    font-size: 12px;
+  content: "▼";
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: rgba(255,255,255,0.7);
+  font-size: 12px;
 }
 
 /* Contêiner relativo para o select */
 .filter-group {
-    position: relative;
+  position: relative;
 }
 
 /* Hover mais bonito */
 .filter-select:hover {
-    background-color: rgba(255,255,255,0.2);
-    box-shadow: 0 0 0 3px var(--primary-light);
+  background-color: rgba(255,255,255,0.2);
+  box-shadow: 0 0 0 3px var(--primary-light);
 }
 
 .ticket-badge {
-    padding: 4px 8px;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 0.85rem;
-    color: #fff;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: #fff;
 }
 
 /* Prioridades */
-.badge-priority-urgente { background-color: #e74c3c; } /* vermelho */
-.badge-priority-alta    { background-color: #f39c12; } /* laranja */
-.badge-priority-media   { background-color: #3498db; } /* azul */
-.badge-priority-baixa   { background-color: #2ecc71; } /* verde */
-
+.badge-priority-urgente { background-color: #e74c3c; }
+.badge-priority-alta { background-color: #f39c12; }
+.badge-priority-media { background-color: #3498db; }
+.badge-priority-baixa { background-color: #319d5e; }
 
 .ticket-badges-container {
-    display: flex;
-    flex-direction: column; /* Prioridade em cima, Status embaixo */
-    gap: 4px;               /* espaçamento entre os badges */
-    align-items: flex-start; /* badges à esquerda */
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+/* CORREÇÃO PARA REMOVER A SETA */
+.search-wrapper::after,
+.my-tickets-wrapper::after {
+  content: none;
 }
