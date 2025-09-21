@@ -31,7 +31,6 @@ body {
     justify-content: center;
     align-items: center;
     padding: 2rem 1rem;
-    min-height: 100vh;
     box-sizing: border-box;
 }
 
@@ -96,7 +95,7 @@ body {
     color: var(--text-color);
     transition: border-color 0.2s, box-shadow 0.2s;
     box-sizing: border-box;
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 .form-control:focus {
@@ -109,12 +108,12 @@ body {
 
 .form-control::placeholder {
     color: var(--text-light-color);
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 textarea.form-control {
-    resize: vertical;
-    min-height: 120px;
+    resize: none;
+    height: 155px;
 }
 
 /* --- Estilização customizada para Input de Arquivo --- */
@@ -240,4 +239,11 @@ textarea.form-control {
     font-size: 0.9rem;
     width: 20px; /* Garante que os ícones tenham uma largura consistente */
     text-align: center;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-top: 15px;
 }

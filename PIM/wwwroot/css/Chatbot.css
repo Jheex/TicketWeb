@@ -19,8 +19,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #1A0D3A, #2C1B52, #1A0D3A);
+    margin: 20px;
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -34,8 +33,8 @@
 
 .chat-container {
     width: 90%;
-    max-width: 600px;
-    height: 80vh;
+    max-width: 900px;
+    height: 76vh;
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -203,7 +202,7 @@ h2 {
     transform: translateY(0);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 100px) {
     .chat-container {
         padding: 20px;
     }
@@ -211,4 +210,94 @@ h2 {
     .chat-message {
         font-size: 0.9rem;
     }
+}
+
+/* ============================
+    Aprimorando as Mensagens com Ícones de Perfil
+   ============================ */
+.chat-message.user {
+    background: linear-gradient(135deg, #5a5a73, #4a4a5e);
+    color: var(--text-light);
+    margin-left: auto;
+    border-bottom-right-radius: 5px;
+    padding-left: 50px; /* Aumenta o espaçamento para o ícone */
+    position: relative; /* Essencial para o posicionamento do ícone */
+}
+
+.chat-message.bot {
+    background: linear-gradient(135deg, var(--primary-color), var(--bot-message-bg));
+    color: var(--text-dark);
+    margin-right: auto;
+    border-bottom-left-radius: 5px;
+    padding-left: 50px; /* Aumenta o espaçamento para o ícone */
+    position: relative; /* Essencial para o posicionamento do ícone */
+}
+
+/* Pseudo-elemento para o ícone do usuário */
+.chat-message.user::before {
+    content: "🧑"; /* Ícone de usuário (use um emoji) */
+    font-size: 1.5rem;
+    position: absolute;
+    left: 15px; /* Posição à esquerda */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Pseudo-elemento para o ícone do bot */
+.chat-message.bot::before {
+    content: "🤖"; /* Ícone de robô (use um emoji) */
+    font-size: 1.5rem;
+    position: absolute;
+    left: 15px; /* Posição à esquerda, alinhando com o do usuário */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ... seu CSS existente ... */
+
+/* Estilo para o contêiner dos botões de sugestão */
+.suggestion-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+    padding-left: 10px; /* Alinha com as mensagens do bot */
+    transition: opacity 0.5s ease-in-out;
+}
+
+.suggestion-buttons.hidden {
+    opacity: 0;
+    pointer-events: none; /* Impede cliques */
+}
+
+/* Estilo para os botões individuais */
+.suggestion-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.suggestion-btn:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* ============================
+    Data e Hora da Mensagem
+   ============================ */
+.chat-message-info {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 5px;
+    display: block;
+    text-align: right;
+}
+
+.chat-message.bot .chat-message-info {
+    text-align: left;
 }

@@ -491,3 +491,59 @@ body {
 #filterFeedback i {
   font-size: 18px;
 }
+
+/* Remove o estilo padrão do select */
+.filter-select {
+    -webkit-appearance: none; /* Safari/Chrome */
+    -moz-appearance: none;    /* Firefox */
+    appearance: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 40px 10px 15px; /* espaço para a seta à direita */
+    font-size: 15px;
+    outline: none;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+}
+
+/* Adiciona a seta personalizada */
+.filter-select::after {
+    content: "▼"; /* você pode usar um SVG também */
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+}
+
+/* Contêiner relativo para o select */
+.filter-group {
+    position: relative;
+}
+
+/* Hover mais bonito */
+.filter-select:hover {
+    background-color: rgba(255,255,255,0.2);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.ticket-badge {
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #fff;
+}
+
+/* Prioridades */
+.badge-priority-urgente { background-color: #e74c3c; } /* vermelho */
+.badge-priority-alta    { background-color: #f39c12; } /* laranja */
+.badge-priority-media   { background-color: #3498db; } /* azul */
+.badge-priority-baixa   { background-color: #2ecc71; } /* verde */
+

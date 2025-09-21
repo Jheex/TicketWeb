@@ -3,7 +3,7 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="~/css/Tickets.css" />
+    <link rel="stylesheet" href="~/css/Tickets.css" asp-append-version="true" />
 }
 
 <div class="dashboard-container">
@@ -31,6 +31,7 @@
             <label for="priorityFilter">Prioridade</label>
             <select id="priorityFilter" class="filter-select">
                 <option value="">Todas as Prioridades</option>
+                <option value="Urgente">Urgente</option>
                 <option value="Alta">Alta</option>
                 <option value="Média">Média</option>
                 <option value="Baixa">Baixa</option>
@@ -72,6 +73,10 @@
                 <div class="data-field">
                     <strong>ID:</strong>
                     <span id="modalId"></span>
+                </div>
+                <div class="data-field">
+                    <strong>Solicitante:</strong>
+                    <span id="modalSolicitante"></span>
                 </div>
                 <div class="data-field">
                     <strong>Analista:</strong>

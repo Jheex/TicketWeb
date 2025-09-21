@@ -20,6 +20,7 @@ namespace PIM.Controllers
         {
             var query = _context.Chamados
                 .Include(c => c.AtribuidoA) // Navegação para Usuario
+                .Include(c => c.Solicitante)
                 .AsQueryable();
 
             // Aplicando filtros

@@ -9,7 +9,7 @@
     --color-secondary: #6941C6; /* Roxo escuro */
     --color-text-primary: #FFFFFF;
     --color-text-secondary: #C0B8E1;
-    --color-bg-page: #100E21;
+    --color-bg-page: #1f0a3b;
     --color-bg-card: rgba(30, 26, 52, 0.6);
     --color-bg-input: rgba(30, 26, 52, 0.9);
     --color-border-card: rgba(255, 255, 255, 0.1);
@@ -34,10 +34,6 @@ body {
     background: var(--color-bg-page);
     color: var(--color-text-primary);
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
     overflow-x: hidden;
 }
 
@@ -48,6 +44,7 @@ body {
     width: 100%;
     max-width: 500px;
     margin: auto;
+    margin-top: 50px;
 }
 
 .profile-card {

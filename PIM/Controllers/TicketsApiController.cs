@@ -26,6 +26,7 @@ namespace PIM.Controllers
         {
             var tickets = await _context.Chamados
                 .Include(c => c.AtribuidoA)
+                .Include(c => c.Solicitante)
                 .OrderByDescending(c => c.ChamadoId)
                 .ToListAsync();
 
@@ -37,6 +38,7 @@ namespace PIM.Controllers
                 priority = c.Prioridade,
                 status = c.Status,
                 assignedTo = c.AtribuidoA != null ? c.AtribuidoA.Username : null,
+                solicitante = c.Solicitante != null ? c.Solicitante.Username : "Desconhecido",
                 dataAbertura = c.DataAbertura,
                 dataAtribuicao = c.DataAtribuicao
             });
@@ -81,6 +83,7 @@ namespace PIM.Controllers
         {
             var ticket = await _context.Chamados
                 .Include(c => c.AtribuidoA)
+                .Include(c => c.Solicitante)
                 .FirstOrDefaultAsync(c => c.ChamadoId == id);
 
             if (ticket == null)
@@ -100,6 +103,7 @@ namespace PIM.Controllers
                 dataFechamento = ticket.DataFechamento,
                 dataAtribuicao = ticket.DataAtribuicao,
                 assignedTo = ticket.AtribuidoA != null ? ticket.AtribuidoA.Username : "Não atribuído",
+                solicitante = ticket.Solicitante != null ? ticket.Solicitante.Username : "Desconhecido"
             };
 
             return Ok(result);

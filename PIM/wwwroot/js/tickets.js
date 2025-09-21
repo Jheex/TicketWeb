@@ -69,6 +69,7 @@ function renderTickets(tickets) {
 
     tickets.sort((a, b) => b.id - a.id).forEach(ticket => {
     const priorityClass = {
+        "Urgente": "badge-priority-urgente",
         "Alta": "badge-priority-alta",
         "Média": "badge-priority-media",
         "Baixa": "badge-priority-baixa"
@@ -117,6 +118,7 @@ function renderTickets(tickets) {
                 <div class="card-title">#${ticket.id} - ${ticket.title}</div>
                 <button class="delete-btn" onclick="deleteTicket(${ticket.id})">🗑️</button>
             </div>
+            <div><strong>Solicitante:</strong> ${ticket.solicitante || "Não informado"}</div>
             <div><strong>Analista:</strong> ${ticket.assignedTo || "Não atribuído"}</div>
             <div class="ticket-category"><strong>Categoria:</strong> ${ticket.category}</div>
             <div class="ticket-date"><strong>Solicitado em:</strong> ${dataAbertura}</div>
@@ -259,6 +261,7 @@ async function viewDetails(id) {
         document.getElementById("modalTitle").textContent = `#${ticket.id} - ${ticket.title}`;
         document.getElementById("modalId").textContent = ticket.id;
         document.getElementById("modalUser").textContent = ticket.assignedTo || "Não atribuído";
+        document.getElementById("modalSolicitante").textContent = ticket.solicitante || "Não informado";
         document.getElementById("modalCategory").textContent = ticket.category;
         document.getElementById("modalPriority").textContent = ticket.priority;
         document.getElementById("modalStatus").textContent = ticket.status;
