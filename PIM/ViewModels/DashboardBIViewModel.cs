@@ -48,5 +48,6 @@ namespace PIM.ViewModels
         public List<int> SelectedAnalystId { get; set; } = new List<int>();
         public List<string> SelectedCategory { get; set; } = new List<string>();
         public List<int> SelectedRequesterId { get; set; } = new List<int>();
+        
     }
 }

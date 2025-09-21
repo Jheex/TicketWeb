@@ -133,11 +133,8 @@ function renderTickets(tickets) {
     <div class="ticket-actions">
         ${actionButtonsHtml}
         <button class="ticket-btn ticket-btn-details" onclick="viewDetails(${ticket.id})">Detalhes</button>
-    </div>
-`;
-
-
-
+    </div>`;
+    
     document.getElementById("ticketContainer").appendChild(card);
 });
 

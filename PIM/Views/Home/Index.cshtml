@@ -17,17 +17,30 @@
         <form asp-action="Index" method="get" class="filters-wrapper">
             <div class="filter-group">
                 <label><i class="fa-solid fa-flag"></i> Status</label>
-                <select name="Status" id="status-filter" asp-items="Model.FilterOptions.Statuses" placeholder="Selecione status"></select>
+                <select name="status" asp-items="Model.FilterOptions.Statuses">
+                    <option value="" selected disabled>-- Selecione status --</option>
+                </select>
             </div>
 
             <div class="filter-group">
                 <label><i class="fa-solid fa-arrow-up-short-wide"></i> Prioridade</label>
-                <select name="Priority" id="priority-filter" asp-items="Model.FilterOptions.Priorities" placeholder="Selecione prioridade"></select>
+                <select name="priority" asp-items="Model.FilterOptions.Priorities">
+                    <option value="" selected disabled>-- Selecione prioridade --</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label><i class="fa-solid fa-user"></i> Solicitante</label>
+                <select name="requesterId" asp-items="Model.FilterOptions.Requesters">
+                    <option value="" selected disabled>-- Selecione solicitante --</option>
+                </select>
             </div>
 
             <div class="filter-group">
                 <label><i class="fa-solid fa-user"></i> Analista</label>
-                <select name="AssignedToId" id="analyst-filter" asp-items="Model.FilterOptions.Analysts" placeholder="Selecione analista"></select>
+                <select name="assignedToId" asp-items="Model.FilterOptions.Analysts">
+                    <option value="" selected disabled>-- Selecione analista --</option>
+                </select>
             </div>
 
             <div class="filters-actions">
@@ -70,6 +83,7 @@
                             <th>Título</th>
                             <th>Status</th>
                             <th>Prioridade</th>
+                            <th>Solicitante</th>
                             <th>Analista</th>
                         </tr>
                     </thead>
@@ -81,6 +95,7 @@
                                 <td>@chamado.Titulo</td>
                                 <td>@chamado.Status</td>
                                 <td>@chamado.Prioridade</td>
+                                <td>@(chamado.Solicitante?.Username ?? "N/A")</td>
                                 <td>@(chamado.AtribuidoA?.Username ?? "N/A")</td>
                             </tr>
                         }
@@ -103,6 +118,5 @@
 </div>
 
 @section Scripts {
-    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
     <script src="~/js/dashboard.js" asp-append-version="true"></script>
 }
