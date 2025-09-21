@@ -19,6 +19,7 @@ namespace PIM.Controllers
 
         public IActionResult Index(string status, string priority, int? assignedToId, int? requesterId, int pageNumber = 1, int pageSize = 5)
         {
+            // --- Lógica para a Tabela Detalhada (que recebe os filtros) ---
             var query = _context.Chamados
                                 .Include(c => c.AtribuidoA)
                                 .Include(c => c.Solicitante)
@@ -44,17 +45,30 @@ namespace PIM.Controllers
                                         .Take(pageSize)
                                         .ToList();
 
-            var viewModel = new DashboardBIViewModel
-            {
-                TotalChamadosAbertos = query.Count(c => c.Status == "Aberto"),
-                TotalChamadosFechados = query.Count(c => c.Status == "Fechado"),
-                TempoMedioResolucaoHoras = query
+            // --- Lógica para os KPIs (sempre baseada em TODOS os chamados) ---
+            var allChamadosForKpis = _context.Chamados.AsQueryable();
+
+            var totalChamadosFechados = allChamadosForKpis.Count(c => c.Status == "Fechado" || c.Status == "Concluído");
+            var totalChamadosAbertos = allChamadosForKpis.Count(c => c.Status == "Aberto");
+
+            var tempoMedioResolucaoHoras = allChamadosForKpis
                                             .Where(c => c.DataFechamento.HasValue)
                                             .AsEnumerable()
                                             .Select(c => (c.DataFechamento.Value - c.DataAbertura).TotalHours)
                                             .DefaultIfEmpty(0)
-                                            .Average(),
-                SlaPercentual = totalItems > 0 ? (double)query.Count(c => c.Status == "Fechado") / totalItems * 100 : 0,
+                                            .Average();
+
+            var slaPercentual = allChamadosForKpis.Any()
+                                ? (double)totalChamadosFechados / allChamadosForKpis.Count() * 100
+                                : 0;
+
+            // --- Monta o ViewModel com todos os dados ---
+            var viewModel = new DashboardBIViewModel
+            {
+                TotalChamadosAbertos = totalChamadosAbertos,
+                TotalChamadosFechados = totalChamadosFechados,
+                TempoMedioResolucaoHoras = tempoMedioResolucaoHoras,
+                SlaPercentual = slaPercentual,
                 TabelaDetalhada = chamadosPaginados,
                 PageNumber = pageNumber,
                 PageSize = pageSize,
@@ -62,7 +76,9 @@ namespace PIM.Controllers
                 FilterOptions = new DashboardFilterOptions()
             };
 
-            // --- Status ---
+            // --- Preenche as opções dos filtros ---
+
+            // Status
             viewModel.FilterOptions.Statuses = _context.Chamados
                 .Select(c => c.Status ?? string.Empty)
                 .Distinct()
@@ -75,7 +91,7 @@ namespace PIM.Controllers
                 .ToList();
             viewModel.FilterOptions.Statuses.Insert(0, new SelectListItem { Text = "Selecione status", Value = "", Selected = string.IsNullOrEmpty(status) });
 
-            // --- Priorities ---
+            // Priorities
             viewModel.FilterOptions.Priorities = _context.Chamados
                 .Select(c => c.Prioridade ?? string.Empty)
                 .Distinct()
@@ -88,7 +104,7 @@ namespace PIM.Controllers
                 .ToList();
             viewModel.FilterOptions.Priorities.Insert(0, new SelectListItem { Text = "Selecione prioridade", Value = "", Selected = string.IsNullOrEmpty(priority) });
 
-            // --- Analysts ---
+            // Analysts
             viewModel.FilterOptions.Analysts = _context.Usuarios
                 .Select(a => new SelectListItem
                 {
@@ -99,7 +115,7 @@ namespace PIM.Controllers
                 .ToList();
             viewModel.FilterOptions.Analysts.Insert(0, new SelectListItem { Text = "Selecione analista", Value = "", Selected = !assignedToId.HasValue });
 
-            // --- Requesters ---
+            // Requesters
             viewModel.FilterOptions.Requesters = _context.Usuarios
                 .Select(u => new SelectListItem
                 {
@@ -110,7 +126,7 @@ namespace PIM.Controllers
                 .ToList();
             viewModel.FilterOptions.Requesters.Insert(0, new SelectListItem { Text = "Selecione solicitante", Value = "", Selected = !requesterId.HasValue });
 
-            // --- Selected lists ---
+            // Selected lists
             viewModel.SelectedStatus = string.IsNullOrEmpty(status) ? new List<string>() : new List<string> { status };
             viewModel.SelectedPriority = string.IsNullOrEmpty(priority) ? new List<string>() : new List<string> { priority };
             viewModel.SelectedAnalystId = assignedToId.HasValue ? new List<int> { assignedToId.Value } : new List<int>();
