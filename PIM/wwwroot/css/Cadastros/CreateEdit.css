@@ -28,6 +28,7 @@ body {
     font-size: 24px;
     margin-bottom: 25px;
     color: var(--color-primary);
+    margin-top: 25px;
 }
 
 /* Formulário como painel */
@@ -40,6 +41,8 @@ body {
     box-shadow: var(--shadow-medium);
     flex-wrap: wrap; /* Para responsividade em telas pequenas */
     align-items: flex-start; /* Alinha colunas pelo topo */
+    margin-bottom: 50px;
+    margin-top: 30px;
 }
 
 /* Colunas do formulário */
@@ -88,7 +91,7 @@ textarea:focus {
 
 /* Textarea */
 textarea.input-text {
-    height: 240px;
+    height: 265px;
     resize: none;
 }
 
@@ -97,7 +100,7 @@ textarea.input-text {
     display: flex;
     justify-content: flex-end;
     gap: 15px;
-    margin-top: 25px;
+    margin-top: 5px;
     width: 100%;
 }
 
@@ -138,10 +141,24 @@ select.error {
     border-color: #F04438;
 }
 
+
+/* Estilo para avisos de erro */
+.text-error {
+    color: #F04438;
+    font-size: 0.85em;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Estilo para caixas de texto inválidas */
+.input-validation-error {
+    border: 1px solid #F04438 !important;
+}
+
+
 /* Responsividade */
 @media (max-width: 768px) {
     .panel-form {
         flex-direction: column;
     }
 }
-

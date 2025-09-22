@@ -156,7 +156,6 @@ C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\scopedcss\bundle\PIM.styles.css
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\scopedcss\projectbundle\PIM.bundle.scp.css
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\wokulkqzpy-vmkc8v0wnj.gz
-C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\31i1n8s2ie-32izyv1tvi.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\mlctd9e4fx-h4bgf8j6i2.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\ksta9h3erz-sy07m4z74z.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\hg52fy7lgy-n1jy38foyn.gz
@@ -165,7 +164,6 @@ C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\0raazwhrmg-z69xhzb77f.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\b1rxdbkgul-61n19gt1b8.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\4l616wkex0-ntgixojpxl.gz
-C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\ba91qe1z0o-rfuobbnwwx.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\t6esn6lkrj-cirjry1kik.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\1i1qyeztde-uhpn4htg5j.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\bbg8qv0a64-pqwhqntwtc.gz
@@ -247,7 +245,9 @@ C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\bphw3mbgyl-asuii5dc75.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\y735djgfzw-c58dpo4hd4.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\bcubdw7hft-mq07z4kfy9.gz
-C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\atzpz8pic1-5tmy8gjt4e.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\ibqrcrv7h1-djiny7p9sm.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\c6cvn6b1rn-kjupkxv7v7.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\p9u8dflo2m-p0uz4vbq2j.gz
+C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\atzpz8pic1-y4pkzufls0.gz
+C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\ba91qe1z0o-gqdqipt2o4.gz
+C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\qq deu aqui\TicketWeb\PIM\obj\Debug\net9.0\compressed\31i1n8s2ie-ds7qxpxex0.gz

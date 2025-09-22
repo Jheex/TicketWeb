@@ -31,8 +31,8 @@ async function loadTickets() {
     const dateFilter = document.getElementById("dateFilter").value;
 
     const filteredTickets = tickets.filter(ticket => {
-        const matchesSearch = ticket.title.toLowerCase().includes(searchTerm) 
-            || (ticket.assignedTo ? ticket.assignedTo.toLowerCase().includes(searchTerm) : false);
+        const matchesSearch = ticket.title.toLowerCase().includes(searchTerm)
+            || (ticket.assignedTo ? ticket.assignedTo.toLowerCase().includes(searchTerm) : false) || (ticket.solicitante ? ticket.solicitante.toLowerCase().includes(searchTerm) : false);
 
         const matchesStatus = statusFilter === "" || ticket.status === statusFilter;
         const matchesPriority = priorityFilter === "" || ticket.priority === priorityFilter;
