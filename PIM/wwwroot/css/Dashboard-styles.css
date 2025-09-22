@@ -324,3 +324,63 @@ body {
     pointer-events: none;
     transition: transform var(--transition-speed) ease;
 }
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* sempre 5 cards por linha */
+    gap: 20px;
+}
+
+/* Responsivo para tablets e celulares */
+@media(max-width: 1200px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 cards por linha */
+    }
+}
+
+@media(max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 cards por linha */
+    }
+}
+
+@media(max-width: 576px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr; /* 1 card por linha */
+    }
+}
+
+/* ==================================
+   Cards de KPIs
+================================== */
+.dashboard-card.kpi-card {
+    background-color: var(--card-bg);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 25px;
+    border-radius: var(--border-radius-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* centraliza horizontalmente */
+    justify-content: center; /* centraliza verticalmente se o card for alto */
+    gap: 10px;
+    box-shadow: var(--box-shadow-2);
+    transition: transform var(--transition-speed);
+    text-align: center; /* centraliza o texto */
+}
+
+.dashboard-card.kpi-card .card-title {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* centraliza ícone + texto */
+    gap: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #fff;
+}
+
+.dashboard-card.kpi-card .kpi-card-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+}

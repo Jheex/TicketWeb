@@ -16,6 +16,7 @@ namespace PIM.ViewModels
     {
         // KPIs
         public int TotalChamadosAbertos { get; set; }
+        public int TotalChamadosEmAndamento { get; set; }
         public int TotalChamadosFechados { get; set; }
         public int TotalChamadosNovos { get; set; }
         public double TempoMedioResolucaoHoras { get; set; }
