@@ -89,14 +89,14 @@ namespace PIM.Controllers
             if (string.IsNullOrEmpty(modelJson))
             {
                 TempData["ErrorMessage"] = "Sua sessão expirou. Por favor, abra o chamado novamente.";
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Dashboard");
             }
 
             var model = JsonSerializer.Deserialize<ChamadoViewModel>(modelJson);
             if (model == null)
             {
                 TempData["ErrorMessage"] = "Ocorreu um erro ao processar os dados do chamado.";
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Dashboard");
             }
 
             string? nomeArquivoUnico = null;
@@ -131,7 +131,7 @@ namespace PIM.Controllers
             await _db.SaveChangesAsync();
 
             TempData["SuccessMessage"] = $"Chamado Nº {novoChamado.ChamadoId} aberto com sucesso!";
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Dashboard");
         }
     }
 }
