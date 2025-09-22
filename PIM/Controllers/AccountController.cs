@@ -25,16 +25,16 @@ namespace PIM.Controllers
 
         // POST: /Account/Login
         [HttpPost]
-        public async Task<IActionResult> Login(string username, string password)
+        public async Task<IActionResult> Login(string Email, string password)
         {
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(password))
             {
                 ViewBag.Error = "Preencha todos os campos!";
                 return View();
             }
 
             // Busca o usuário na tabela Usuarios
-            var user = _db.Usuarios.FirstOrDefault(u => u.Username == username && u.SenhaHash == password);
+            var user = _db.Usuarios.FirstOrDefault(u => u.Email == Email && u.SenhaHash == password);
             if (user == null)
             {
                 ViewBag.Error = "Usuário ou senha inválidos!";
@@ -44,7 +44,7 @@ namespace PIM.Controllers
             // Criar claims com base no usuário
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.Username ?? ""),
+                new Claim(ClaimTypes.Name, user.Email ?? ""),
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Role, user.Role ?? "Usuario") // role do próprio usuário
             };
