@@ -1,0 +1,106 @@
+
+-- ==========================================
+
+-- CRIAR BANCO DE DADOS
+
+-- ==========================================
+
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'PIM')
+
+BEGIN
+
+    CREATE DATABASE PIM;
+
+END
+
+GO
+
+ 
+
+USE PIM;
+
+GO
+
+ 
+
+-- ==========================================
+
+-- TABELA USUARIOS
+
+-- ==========================================
+
+IF OBJECT_ID('Usuarios', 'U') IS NOT NULL
+
+    DROP TABLE Usuarios;
+
+GO
+
+ 
+
+CREATE TABLE Usuarios (
+
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+
+    Username NVARCHAR(100) NOT NULL,
+
+    Email NVARCHAR(150) NOT NULL,
+
+    SenhaHash NVARCHAR(256) NOT NULL,
+
+    Role NVARCHAR(50) NOT NULL,
+
+    CreatedAt DATETIME NOT NULL,
+
+    UpdatedAt DATETIME NULL,
+
+    LastLogin DATETIME NULL,
+
+    Status NVARCHAR(50) NOT NULL,
+
+    Telefone NVARCHAR(20) NULL,
+
+    Endereco NVARCHAR(250) NULL,
+
+    DataNascimento DATE NULL,
+
+    Observacoes NVARCHAR(MAX) NULL,
+
+    Nome NVARCHAR(150) NULL
+
+);
+
+GO
+
+ 
+
+-- ==========================================
+
+-- INSERIR DADOS DE USUARIOS
+
+-- ==========================================
+
+INSERT INTO Usuarios (Username, Email, SenhaHash, Role, CreatedAt, LastLogin, Status, Telefone, Endereco, DataNascimento, Observacoes, Nome)
+
+VALUES
+
+('Jhonatan', 'jhonatan@inovatech.com', '123', 'Administrador', '2025-01-10T00:00:00', '2025-09-19T00:00:00', 'Ativo', '(11) 91234-5678', 'Rua das Flores, 123, São Paulo, SP', '1995-04-12', 'Administrador principal do sistema', 'Administrador principal'),
+
+('Maria Oliveira', 'maria.oliveira@email.com', '123', 'Usuario', '2025-02-15T00:00:00', '2025-09-18T00:00:00', 'Inativo', '(21) 99876-5432', 'Av. Brasil, 456, Rio de Janeiro, RJ', '1992-07-05', 'Responsável por manutenção de tickets, demitida por justa causa', 'Maria Oliveira'),
+
+('Pedro Santos', 'pedro.santos@email.com', 'HASH11223', 'Usuario', '2025-03-01T00:00:00', '2025-09-17T00:00:00', 'Ativo', '(31) 98765-4321', 'Rua Afonso Pena, 789, Belo Horizonte, MG', '1998-11-20', 'Usuário comum', 'Pedro Santos'),
+
+('Ana Costa', 'ana.costa@email.com', 'HASH44556', 'Usuario', '2025-03-12T00:00:00', '2025-09-16T00:00:00', 'Ativo', '(41) 91234-8765', 'Rua XV de Novembro, 101, Curitiba, PR', '2000-01-15', NULL, 'Ana Costa'),
+
+('Carlos Moraes', 'carlos.moraes@email.com', 'HASH77889', 'Tecnico', '2025-04-05T00:00:00', '2025-09-15T00:00:00', 'Ativo', '(51) 99887-6655', 'Av. Getúlio Vargas, 202, Porto Alegre, RS', '1989-05-22', 'Especialista em suporte remoto', 'Carlos Moraes'),
+
+('Leticia Ramos', 'leticia.ramos@email.com', 'HASH99001', 'Administrador', '2025-05-20T00:00:00', '2025-09-14T00:00:00', 'Ativo', '(61) 91345-6789', 'SGAN 605, Asa Norte, Brasília, DF', '1993-09-30', NULL, 'Leticia Ramos'),
+
+('Rafael Medeiros', 'rafael.medeiros@email.com', 'HASH22334', 'Usuario', '2025-06-10T00:00:00', '2025-09-13T00:00:00', 'Ativo', '(71) 91234-5678', 'Rua das Laranjeiras, 303, Salvador, BA', '1996-12-08', 'Usuário com acesso restrito', 'Rafael Medeiros'),
+
+('Juliana Pereira', 'juliana.pereira@email.com', 'HASH55667', 'Tecnico', '2025-07-01T00:00:00', '2025-09-12T00:00:00', 'Ativo', '(81) 99876-4321', 'Rua do Sol, 404, Recife, PE', '1991-08-19', NULL, 'Juliana Pereira'),
+
+('Bruno Farias', 'bruno.farias@email.com', 'HASH88990', 'Usuario', '2025-08-15T00:00:00', '2025-09-11T00:00:00', 'Ativo', '(91) 91234-1234', 'Av. Nazaré, 505, Belém, PA', '1999-03-25', 'Usuário frequente do sistema', 'Bruno Farias'),
+
+('Isabela Machado', 'isabela.machado@email.com', '123123123', 'Administrador', '2025-09-01T00:00:00', '2025-09-10T00:00:00', 'Ativo', '(31) 99876-2345', 'Rua dos Andradas, 606, Belo Horizonte, MG', '1988-06-12', 'Supervisora geral', 'Isabela Machado');
+
+Show quoted text
