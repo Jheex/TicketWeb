@@ -1,0 +1,58 @@
+/* _content/PIM/Views/Shared/_Layout.cshtml.rz.scp.css */
+/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand[b-nksb3gqskx] {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a[b-nksb3gqskx] {
+  color: #0077cc;
+}
+
+
+
+.nav-pills .nav-link.active[b-nksb3gqskx], .nav-pills .show > .nav-link[b-nksb3gqskx] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+
+
+.border-top[b-nksb3gqskx] {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom[b-nksb3gqskx] {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow[b-nksb3gqskx] {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.btn-primary[b-nksb3gqskx] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+button.accept-policy[b-nksb3gqskx] {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Estrutura da página para footer fixo no final */
+body[b-nksb3gqskx] {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* altura total da tela */
+
+}
+
+/* Main deve crescer e empurrar o footer para baixo */
+main[b-nksb3gqskx] {
+    flex: 1;
+}
