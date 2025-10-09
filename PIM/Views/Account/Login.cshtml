@@ -68,8 +68,12 @@
                             <input type="checkbox" asp-for="RememberMe" />
                             Lembrar de mim
                         </label>
-                        <a href="#" class="forgot-password">Esqueceu a senha?</a>
+                        <a asp-controller="Account" asp-action="ForgotPassword" class="forgot-password">
+                            Esqueceu a senha?
+                        </a>
                     </div>
+
+                    <div id="login-feedback" class="login-feedback"></div>
                     
                     <button type="submit" class="btn btn-primary" id="loginButton">
                         Entrar

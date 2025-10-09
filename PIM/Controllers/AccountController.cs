@@ -59,6 +59,27 @@ namespace PIM.Controllers
             return RedirectToAction("Index", "Dashboard");
         }
 
+            [HttpGet]
+            public IActionResult ForgotPassword()
+            {
+                return View();
+            }
+
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+            public IActionResult ForgotPassword(ForgotPasswordViewModel model)
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+
+                // Aqui você colocaria a lógica de envio de email, etc.
+                TempData["Message"] = "Se o email existir, enviaremos um link para redefinir a senha.";
+
+                return RedirectToAction("Login");
+            }
+
         // GET: /Account/Logout
         public async Task<IActionResult> Logout()
         {

@@ -217,6 +217,7 @@ a.forgot-password, .form-footer a {
   color: var(--color-text-link);
   text-decoration: none;
   font-weight: var(--font-weight-medium);
+  min-height: 25px;
 }
 
 a.forgot-password:hover, .form-footer a:hover {
@@ -308,8 +309,34 @@ button.accept-policy {
     box-shadow: 0 8px 20px rgba(0,0,0,0.35);
 }
 
-/* Mudança de ícone já é feita pelo JS */
+/* Botões do formulário Forgot Password */
+.buttons-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
 
+/* Botão Enviar - já existente, mantém o estilo primário */
+.buttons-group .btn-primary {
+    flex: 1;
+}
+
+/* Botão Cancelar */
+.buttons-group .btn-cancel {
+    flex: 1;
+    background-color: var(--color-error);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.buttons-group .btn-cancel:hover {
+    background-color: #d32f2f; /* vermelho ligeiramente mais escuro */
+    cursor: pointer; /* Muda o cursor para a mãozinha */
+    box-shadow: 0 4px 12px rgba(208, 44, 56, 0.3); /* sombra suave no hover */
+}
 
 /* =================================================================
    RESPONSIVIDADE
