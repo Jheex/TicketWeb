@@ -1,0 +1,67 @@
+@model PIM.Models.Faq
+
+@{
+    ViewData["Title"] = "Criar FAQ";
+}
+<link rel="stylesheet" href="~/css/faq.css" />
+
+<div class="page-wrapper">
+    
+    <div class="title-row">
+        <h2 class="faq-title">Criar Novo FAQ</h2>
+    </div>
+
+    <div class="form-card-container">
+        
+        <form asp-action="Create" method="post" class="faq-form">
+            
+            <div class="form-group mb-4">
+                <label asp-for="Pergunta" class="form-label">Pergunta</label>
+                <textarea asp-for="Pergunta" class="form-control large-textarea" rows="2" placeholder="Digite a pergunta"></textarea>
+                <span asp-validation-for="Pergunta" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-4">
+                <label asp-for="Resposta" class="form-label">Resposta</label>
+                <textarea asp-for="Resposta" class="form-control large-textarea" rows="6" placeholder="Digite a resposta detalhada"></textarea>
+                <span asp-validation-for="Resposta" class="text-danger"></span>
+            </div>
+
+            <div class="row">
+            
+                <div class="col-md-6 form-group mb-4">
+                    <label asp-for="Categoria" class="form-label">Categoria</label>
+                    
+                    <select asp-for="Categoria" 
+                            class="form-control" 
+                            asp-items="@(ViewData["CategoriasExistentes"] as SelectList)">
+                        
+                        <option value="" disabled selected>-- Selecione uma categoria --</option>                    
+                    </select>
+                    
+                    <span asp-validation-for="Categoria" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6 form-group mb-4">
+                    <label asp-for="Ordem" class="form-label">Ordem</label>
+                    <input asp-for="Ordem" type="number" class="form-control" placeholder="1, 2, 3..." />
+                    <span asp-validation-for="Ordem" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-actions mt-4">
+                <button type="submit" class="btn btn-create">
+                    <i class="fas fa-save"></i> Salvar FAQ
+                </button>
+                
+                <a asp-action="Index" class="btn btn-secondary-action ms-3">
+                    <i class="fas fa-arrow-left"></i> Voltar para Lista
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

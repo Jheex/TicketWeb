@@ -4,6 +4,11 @@ namespace PIM.Controllers
 {
     public class StaticPagesController : Controller
     {
+        public IActionResult FAQ()
+        {
+            return View(); // procura Views/StaticPages/FAQ.cshtml
+        }
+        
         public IActionResult Privacy()
         {
             return View();

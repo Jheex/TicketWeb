@@ -1,0 +1,538 @@
+/* ==================================
+   Variáveis Específicas para FAQ (ATUALIZADAS)
+================================== */
+:root {
+    /* Cores Primárias (Roxo) */
+    --primary-color: #7F56D9; /* Roxo principal para destaque, AGORA USADO EM BUSCAR E CRIAR */
+    --primary-light: #9B78F0; /* Roxo claro para hover */
+    --primary-dark: #6941C6; /* Roxo escuro para cabeçalhos */
+    --primary-ultra-light: #C0A8F8; /* Usado para texto de destaque */
+
+    /* Cores de Fundo (Escuro/Gradiente) */
+    --background-dark: #1A0D3A;
+    --background-gradient-start: #1A0D3A;
+    --background-gradient-end: #2C1B52;
+
+    /* Cores de Componentes (Transparência/Blur) */
+    --component-bg: rgba(70, 56, 128, 0.6); 
+    --row-alternate-bg: rgba(70, 56, 128, 0.35); 
+    --input-bg: rgba(30, 26, 52, 0.8);
+
+    /* Cores de Texto e Interação */
+    --text-color: #E0E0E0;
+    --text-contrast: #FFFFFF;
+    --placeholder-color: #aaaaaa;
+    --border-color: rgba(255, 255, 255, 0.15);
+
+    /* Cores Funcionais (Alto Contraste no Dark Mode) */
+    --action-create: #4CAF50; /* Verde Sucesso, AGORA USADO PARA EDITAR */
+    --action-create-hover: #388E3C;
+    --action-edit: #FFC107; /* Amarelo/Laranja (REMOVEMOS O USO) */
+    --action-edit-hover: #FFA000;
+    --action-edit-text: #1A0D3A;
+    --action-delete: #E53935; /* Vermelho Risco, AGORA USADO PARA DELETAR E REMOVER FILTROS */
+    --action-delete-hover: #C62828;
+    
+    /* Outros */
+    --border-radius-sm: 6px;
+    --border-radius-md: 12px;
+    --box-shadow-2: 0 8px 20px rgba(0, 0, 0, 0.6);
+    --transition-speed: 0.2s;
+}
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    color: var(--text-color);
+    background: linear-gradient(135deg, var(--background-gradient-start), var(--background-gradient-end));
+    transition: background var(--transition-speed);
+}
+
+/* NOVO WRAPPER GLOBAL PARA LARGURA MÁXIMA E CENTRALIZAÇÃO */
+.page-wrapper {
+    max-width: 1300px;
+    margin: 40px auto;
+    padding: 0 30px; 
+}
+
+/* ==================================
+   1. TÍTULO (Bloco de topo centralizado)
+================================== */
+
+.title-row {
+    padding-bottom: 10px;
+    margin-bottom: 15px; 
+    border-bottom: 1px solid var(--border-color);
+}
+
+.faq-title {
+    color: var(--text-contrast);
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-align: center; /* Centraliza o texto */
+}
+
+/* ==================================
+   2. AÇÕES (Busca e Controles à Esquerda, Botão de Criação à Direita)
+================================== */
+
+.actions-row {
+    display: flex;
+    justify-content: space-between; /* Coloca os extremos nas laterais */
+    align-items: center; 
+    margin-bottom: 25px; 
+}
+
+/* NOVO CONTAINER FLEX: Agrupa Pesquisa, Buscar e Remover */
+.search-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço pequeno entre os elementos de busca */
+}
+
+/* BARRA DE PESQUISA */
+.search-input {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    padding: 10px 15px;
+    font-size: 0.95rem;
+    width: 650px; 
+    transition: all var(--transition-speed);
+    flex-shrink: 0; 
+}
+.search-input::placeholder {
+    color: var(--placeholder-color);
+}
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(155, 120, 240, 0.4);
+}
+
+/* ==================================
+   BOTÕES GERAIS E DE AÇÃO
+================================== */
+
+.btn {
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center;
+    gap: 5px; 
+    padding: 8px 14px;
+    margin: 3px;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+}
+.btn:hover {
+    transform: translateY(-2px); 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* 2.1. Botão de Busca (NOVO: Roxo) */
+.btn-search {
+    background-color: var(--primary-color); 
+    color: var(--text-contrast);
+    padding: 10px 15px;
+    font-size: 0.95rem;
+}
+.btn-search:hover {
+    background-color: var(--primary-light);
+}
+
+/* 2.2. Botão de Remover Filtros (NOVO: Vermelho) */
+.btn-clear-filters {
+    background-color: var(--action-delete); 
+    color: var(--text-contrast);
+    padding: 10px 15px;
+    font-size: 0.95rem;
+}
+.btn-clear-filters:hover {
+    background-color: var(--action-delete-hover);
+}
+
+/* 2.3. Botão Criar (NOVO: Roxo) - Direita */
+.btn-create {
+    padding: 12px 25px;
+    background-color: var(--primary-color); 
+    color: var(--text-contrast);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(127, 86, 217, 0.4); /* Sombra ajustada para Roxo */
+    flex-shrink: 0;
+}
+.btn-create:hover {
+    background-color: var(--primary-light);
+}
+
+/* Botões de Ação na Tabela */
+
+/* Botão Editar (NOVO: Verde) */
+.btn-edit {
+    background-color: var(--action-create); 
+    color: var(--text-contrast);
+}
+.btn-edit:hover {
+    background-color: var(--action-create-hover);
+}
+
+/* Botão Deletar (Mantido: Vermelho) */
+.btn-delete {
+    background-color: var(--action-delete); 
+    color: var(--text-contrast);
+}
+.btn-delete:hover {
+    background-color: var(--action-delete-hover);
+}
+
+/* ==================================
+   3. TABELA (faq-container e Conteúdo)
+================================== */
+
+.faq-container {
+    margin: 0; 
+    padding: 0;
+}
+
+.faq-table-wrapper {
+    overflow-x: auto;
+    background-color: var(--component-bg); 
+    backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--box-shadow-2);
+    border: 1px solid var(--border-color);
+}
+
+.faq-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.faq-table th,
+.faq-table td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.95rem;
+}
+
+.faq-table thead th {
+    background-color: var(--primary-dark); 
+    color: var(--text-contrast);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.faq-table tbody tr:nth-child(even) {
+    background-color: var(--row-alternate-bg); 
+}
+
+.faq-table tbody tr:hover {
+    background-color: rgba(127, 86, 217, 0.2);
+    cursor: pointer;
+}
+
+/* ATUALIZAÇÃO: Coluna Categoria */
+.faq-table th:nth-child(4),
+.faq-table td:nth-child(4) {
+    color: #FFFFFF;
+    font-weight: 500;
+    text-align: center; /* CENTRALIZAÇÃO SOLICITADA */
+}
+
+.faq-table td:nth-child(2),
+.faq-table td:nth-child(3) { 
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    line-height: 1.5;
+}
+
+.faq-table th:nth-child(1), .faq-table td:nth-child(1) { 
+    width: 5%;
+    text-align: center;
+}
+.faq-table th:nth-child(5), .faq-table td:nth-child(5) { 
+    width: 15%;
+    text-align: center;
+    white-space: nowrap;
+}
+
+
+/* ==================================
+   RESPONSIVIDADE 
+================================== */
+
+@media (max-width: 992px) {
+    .page-wrapper {
+        padding: 0 20px;
+    }
+    
+    .faq-title {
+        font-size: 2.2rem;
+    }
+    
+    .search-input {
+        width: 100%; 
+    }
+
+    .search-controls {
+        flex-wrap: wrap; 
+        gap: 10px;
+    }
+    
+    .btn-search, .btn-clear-filters {
+        flex-grow: 1; 
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-wrapper {
+        padding: 0 15px;
+        margin-top: 20px;
+    }
+
+    .faq-title {
+        font-size: 2rem;
+    }
+    
+    .actions-row {
+        flex-direction: column; 
+        align-items: stretch;
+        gap: 15px; 
+    }
+
+    .search-controls {
+        flex-direction: column; 
+        gap: 10px;
+        width: 100%;
+        order: 1;
+    }
+
+    .search-input, .btn-create, .btn-search, .btn-clear-filters {
+        width: 100%; 
+        margin: 0;
+    }
+    
+    .btn-create {
+        order: 2; 
+    }
+    
+    .faq-table-wrapper {
+        overflow-x: scroll;
+    }
+
+    .faq-table {
+        min-width: 700px; 
+    }
+    
+    .faq-table th, .faq-table td {
+        padding: 10px 8px;
+        font-size: 0.9rem;
+    }
+}
+
+
+
+
+
+
+/* ==================================
+   4. ESTILOS ESPECÍFICOS PARA FORMULÁRIOS (Criar/Editar)
+================================== */
+
+.form-card-container {
+    max-width: 900px; /* Aumentado levemente para melhor usabilidade de textos longos */
+    margin: 30px auto; 
+    padding: 40px; /* Mais padding para sensação premium */
+    
+    background-color: var(--component-bg); 
+    backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--box-shadow-2);
+    border: 1px solid var(--border-color);
+}
+
+.faq-form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 25px; /* Mais espaço entre os grupos */
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--primary-ultra-light); /* Cor do label em destaque (Roxo claro) */
+    font-size: 1rem;
+}
+
+/* Estilo para todos os inputs e textareas do formulário */
+.form-control {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    padding: 12px 15px; /* Padding maior */
+    font-size: 1rem; /* Fonte um pouco maior */
+    width: 100%;
+    transition: all var(--transition-speed);
+}
+.form-control::placeholder {
+     color: var(--placeholder-color);
+}
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 4px rgba(155, 120, 240, 0.5); /* Sombra mais destacada */
+}
+
+/* Estilo específico para a área de texto */
+.large-textarea {
+    resize: vertical; 
+}
+
+/* Container para os botões de Salvar/Cancelar */
+.form-actions {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    gap: 15px;
+    padding-top: 20px; /* Mais espaço superior */
+    margin-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Botão Secundário (Cancelar/Voltar) - Novo estilo neutro */
+.btn-secondary-action {
+    background-color: var(--action-secondary); 
+    color: var(--text-contrast);
+    padding: 12px 25px;
+    font-size: 0.95rem;
+    box-shadow: none; /* Sem sombra de cor para ser discreto */
+}
+.btn-secondary-action:hover {
+    background-color: var(--action-secondary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para mensagens de validação */
+.text-danger {
+    font-size: 0.85rem;
+    color: var(--action-delete); 
+    margin-top: 4px;
+    display: block;
+}
+
+/* -------------------------------------------------------------------------- */
+/* ESTILOS DE PAGINAÇÃO (FINAL) */
+/* -------------------------------------------------------------------------- */
+
+.pagination-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    margin-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.pagination-info {
+    font-size: 0.9rem;
+    color: var(--primary-ultra-light); 
+}
+
+.pagination-controls {
+    display: flex;
+    gap: 5px;
+}
+
+/* ESTILO NORMAL DOS BOTÕES DE PAGINAÇÃO */
+.pagination-controls .btn-pagination {
+    background-color: var(--primary-dark); /* Roxo escuro para o fundo normal */
+    color: var(--text-contrast);
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    box-shadow: none;
+    text-transform: none;
+    margin: 0; 
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+/* ESTILO HOVER DOS BOTÕES */
+.pagination-controls .btn-pagination:hover:not(.disabled):not(.active-page) {
+    background-color: var(--primary-color); /* Roxo principal no hover */
+    color: var(--text-contrast);
+    transform: translateY(-1px);
+}
+
+/* ESTILO DA PÁGINA SELECIONADA/ATIVA (ROXO CLARO) */
+.pagination-controls .btn-pagination.active-page {
+    background-color: var(--primary-light); /* Roxo mais claro (destaque) */
+    color: var(--text-contrast);
+    border-color: var(--primary-light);
+    font-weight: 700;
+    cursor: default;
+    transform: none;
+}
+
+/* ESTILO DO BOTÃO DESABILITADO */
+.pagination-controls .btn-pagination.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    background-color: var(--primary-dark);
+    color: var(--text-color);
+    transform: none;
+}
+
+/* RESPONSIVIDADE DO FORMULÁRIO */
+@media (max-width: 768px) {
+    .form-card-container {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+    }
+    
+    .form-actions .btn, .form-actions .btn-secondary-action {
+        width: 100%;
+        margin: 0 !important; 
+    }
+    
+    .row {
+        flex-direction: column;
+    }
+    
+    .row > div {
+        width: 100%;
+    }
+}

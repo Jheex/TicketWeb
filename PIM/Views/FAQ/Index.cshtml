@@ -1,0 +1,106 @@
+@using PIM.ViewModels
+@model FaqListViewModel 
+
+@{
+    ViewData["Title"] = "FAQ";
+    
+    // Calcula o total de páginas usando a propriedade do ViewModel (ou a lógica abaixo, se a propriedade não existir)
+    int totalPages = Model.TotalPages;
+    
+    // Variáveis auxiliares para desabilitar botões
+    var prevDisabled = Model.PageNumber <= 1 ? "disabled" : "";
+    var nextDisabled = Model.PageNumber >= totalPages ? "disabled" : "";
+}
+
+<link rel="stylesheet" href="~/css/faq.css" />
+
+<div class="page-wrapper">
+
+    <div class="title-row">
+        <h2 class="faq-title">FAQ - Perguntas Frequentes</h2>
+    </div>
+
+    <form asp-action="Index" method="get" class="actions-row">
+        
+        <div class="search-controls">
+            <input type="text" name="searchString" value="@Model.CurrentFilter" class="search-input" placeholder="Pesquisar..." />
+            
+            <button class="btn btn-search" type="submit">
+                <i class="fas fa-search"></i> Buscar
+            </button>
+
+            <a asp-action="Index" class="btn btn-clear-filters">
+                Remover Filtros
+            </a>
+        </div>
+        
+        <a class="btn btn-create" asp-action="Create">Adicionar Novo FAQ</a>
+    </form>
+    
+    <div class="faq-container"> 
+        <div class="faq-table-wrapper">
+            <table class="faq-table">
+                <thead>
+                    <tr>
+                        <th>Ordem</th>
+                        <th>Pergunta</th>
+                        <th>Resposta</th>
+                        <th>Categoria</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Faqs)
+                    {
+                        <tr>
+                            <td>@item.Ordem</td>
+                            <td>@(item.Pergunta.Length > 80 ? item.Pergunta.Substring(0, 80) + "..." : item.Pergunta)</td>
+                            <td>@(item.Resposta.Length > 120 ? item.Resposta.Substring(0, 120) + "..." : item.Resposta)</td>
+                            <td>@item.Categoria</td>
+                            <td>
+                                <a class="btn btn-edit" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                                <a class="btn btn-delete" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Tem certeza que deseja deletar?');">Deletar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="pagination-footer mt-4">
+            
+            <div class="pagination-info">
+                Página @(Model.PageNumber) de @(totalPages) | Total de @(Model.TotalItems) FAQs
+            </div>
+
+            <div class="pagination-controls">
+                
+                <a asp-action="Index"
+                   asp-route-pageNumber="@(Model.PageNumber - 1)"
+                   asp-route-searchString="@Model.CurrentFilter"
+                   class="btn btn-pagination @prevDisabled">
+                    Anterior
+                </a>
+
+                @for (int i = 1; i <= totalPages; i++)
+                {
+                    <a asp-action="Index"
+                       asp-route-pageNumber="@i"
+                       asp-route-searchString="@Model.CurrentFilter"
+                       class="btn btn-pagination @(i == Model.PageNumber ? "active-page" : "")">
+                        @i
+                    </a>
+                }
+                
+                <a asp-action="Index"
+                   asp-route-pageNumber="@(Model.PageNumber + 1)"
+                   asp-route-searchString="@Model.CurrentFilter"
+                   class="btn btn-pagination @nextDisabled">
+                    Próxima
+                </a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
