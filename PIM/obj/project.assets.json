@@ -5802,11 +5802,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jhonatan Lima\\OneDrive\\Área de Trabalho\\PIM\\TicketWeb\\PIM\\PIM.csproj",
+      "projectUniqueName": "C:\\Users\\Jhonatan Lima\\OneDrive\\Área de Trabalho\\novo\\TicketWeb\\PIM\\PIM.csproj",
       "projectName": "PIM",
-      "projectPath": "C:\\Users\\Jhonatan Lima\\OneDrive\\Área de Trabalho\\PIM\\TicketWeb\\PIM\\PIM.csproj",
+      "projectPath": "C:\\Users\\Jhonatan Lima\\OneDrive\\Área de Trabalho\\novo\\TicketWeb\\PIM\\PIM.csproj",
       "packagesPath": "C:\\Users\\Jhonatan Lima\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jhonatan Lima\\OneDrive\\Área de Trabalho\\PIM\\TicketWeb\\PIM\\obj\\",
+      "outputPath": "C:\\Users\\Jhonatan Lima\\OneDrive\\Área de Trabalho\\novo\\TicketWeb\\PIM\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

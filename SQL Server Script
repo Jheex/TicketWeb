@@ -119,8 +119,91 @@ VALUES
 (20, 9, 'Wi-Fi caindo', 'A conexão Wi-Fi do 2º andar está caindo e voltando a todo momento.', 'Network', 'Alta', 'Aberto', '2025-09-01 09:00:20.000', NULL, NULL, NULL, NULL, NULL),
 (21, 10, 'Computador sem áudio', 'O som do meu computador parou de funcionar, o ícone de áudio está com um X.', 'Hardware', 'Baixa', 'Aberto', '2025-09-01 09:00:21.000', NULL, NULL, NULL, NULL, NULL);
 
+-- ========================================
+-- Script para criar tabela Faqs
+-- ========================================
+
+IF OBJECT_ID('dbo.Faqs', 'U') IS NOT NULL
+    DROP TABLE dbo.Faqs;
+GO
+
+CREATE TABLE dbo.Faqs
+(
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Pergunta NVARCHAR(255) NOT NULL,
+    Resposta NVARCHAR(MAX) NOT NULL,
+    Categoria NVARCHAR(50) NOT NULL,
+    Ordem INT NOT NULL,
+    DataCriacao DATETIME NOT NULL DEFAULT GETDATE(),
+    DataAtualizacao DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+-- ========================================
+-- Inserindo 50 FAQs completas
+-- ========================================
+
+INSERT INTO dbo.Faqs (Pergunta, Resposta, Categoria, Ordem) VALUES
+('Como eu crio um novo ticket?', 'Abra o Dashboard, clique em "Novo Ticket", preencha título, descrição e anexe arquivos se necessário.', 'Tickets', 1),
+('Posso anexar arquivos no ticket? Quais formatos e tamanho máximo?', 'Você pode anexar imagens (jpg, png), PDFs e logs (.txt). Máximo 10 MB por arquivo.', 'Tickets', 2),
+('Esqueci minha senha — como recuperar?', 'Na tela de login clique em "Esqueci minha senha". Informe seu e-mail cadastrado e siga o link enviado.', 'Conta', 3),
+('Como gerar um relatório de tickets fechados no mês?', 'Acesse Relatórios, clique em Novo Relatório, selecione período e status "Fechado". Exporte para PDF ou CSV.', 'Relatórios', 4),
+('Qual o SLA de resposta do suporte?', 'O SLA padrão é 24h úteis para resposta inicial. Incidentes críticos têm prioridade.', 'Suporte', 5),
+('Como funciona a autenticação? Há MFA?', 'O sistema usa e-mail/senha. Se ativado, também há MFA via app de autenticação.', 'Segurança', 6),
+('Posso exportar tickets filtrados em CSV?', 'Use a tela de histórico/relatórios, aplique filtros e clique em "Exportar -> CSV".', 'Relatórios', 7),
+('Como reporto um bug no sistema?', 'Crie um ticket na categoria "Bug" com passos para reproduzir, resultado esperado e atual, e anexe prints ou logs.', 'Suporte', 8),
+('Como altero meu perfil e minhas notificações?', 'Acesse Perfil -> Configurações. Altere dados pessoais, foto e preferências de notificação.', 'Conta', 9),
+('Quais navegadores são suportados?', 'Recomendamos versões recentes do Chrome, Edge ou Firefox.', 'Segurança', 10),
+('Como redefinir minha senha de administrador?', 'Acesse a tela de login de admin e clique em "Esqueci a senha". Siga os passos para redefinição.', 'Conta', 11),
+('Como filtrar tickets por prioridade?', 'Na tela de tickets, use o filtro de prioridade e selecione Baixa, Média, Alta ou Urgente.', 'Tickets', 12),
+('Como adicionar um novo usuário ao sistema?', 'Acesse Configurações -> Usuários -> Adicionar Novo. Preencha os dados obrigatórios e defina permissões.', 'Conta', 13),
+('O sistema envia notificações por e-mail?', 'Sim, todas as ações importantes, como abertura e atualização de tickets, geram notificações por e-mail.', 'Tickets', 14),
+('Como duplicar um relatório existente?', 'Abra o relatório desejado, clique em "Duplicar" e ajuste os filtros conforme necessário.', 'Relatórios', 15),
+('Posso alterar a categoria de um ticket após criado?', 'Sim, edite o ticket e selecione a nova categoria.', 'Tickets', 16),
+('Como desativar minha conta temporariamente?', 'Acesse Perfil -> Configurações -> Desativar Conta. Siga os passos para desativação temporária.', 'Conta', 17),
+('Quais tipos de gráficos estão disponíveis nos relatórios?', 'Gráficos de barra, pizza, linha e tabela dinâmica estão disponíveis para análise de dados.', 'Relatórios', 18),
+('Como alterar a prioridade de um ticket em andamento?', 'Abra o ticket e selecione a nova prioridade no campo "Prioridade".', 'Tickets', 19),
+('O que fazer se não recebi o e-mail de recuperação?', 'Verifique spam ou quarentena de e-mail. Caso não esteja lá, contate o suporte.', 'Conta', 20),
+('Como configurar alertas de SLA?', 'Em Configurações -> SLA, defina alertas por e-mail ou notificação push para cada categoria.', 'Suporte', 21),
+('Como anexar múltiplos arquivos a um ticket?', 'Clique em "Anexar arquivos" e selecione múltiplos arquivos de uma vez.', 'Tickets', 22),
+('Como excluir um ticket?', 'Abra o ticket e clique em "Excluir". Apenas usuários com permissão podem excluir.', 'Tickets', 23),
+('Como acompanhar tickets atribuídos a mim?', 'Na tela de tickets, use o filtro "Atribuído a mim".', 'Tickets', 24),
+('Como restaurar um ticket deletado?', 'Tickets deletados não podem ser restaurados. Contate o suporte para casos críticos.', 'Suporte', 25),
+('Como alterar minha foto de perfil?', 'Acesse Perfil -> Configurações -> Alterar Foto e faça upload de uma nova imagem.', 'Conta', 26),
+('Como mudar a senha do meu usuário?', 'Acesse Perfil -> Configurações -> Alterar Senha.', 'Conta', 27),
+('Como criar um modelo de ticket padrão?', 'Em Configurações -> Modelos, clique em "Novo Modelo" e defina campos obrigatórios.', 'Tickets', 28),
+('Como exportar relatórios em PDF?', 'Na tela de relatórios, clique em Exportar -> PDF.', 'Relatórios', 29),
+('Como ver histórico de alterações de um ticket?', 'Abra o ticket e clique em "Histórico" para ver todas as alterações.', 'Tickets', 30),
+('Como limitar acesso a relatórios confidenciais?', 'Ajuste permissões de usuário em Configurações -> Usuários -> Permissões.', 'Segurança', 31),
+('Como criar categorias personalizadas para tickets?', 'Acesse Configurações -> Categorias -> Nova Categoria.', 'Tickets', 32),
+('Como configurar MFA para minha conta?', 'Acesse Perfil -> Segurança -> MFA e siga os passos do app autenticador.', 'Segurança', 33),
+('Como anexar prints de tela a tickets?', 'Clique em Anexar Arquivo e selecione o print.', 'Tickets', 34),
+('Como filtrar relatórios por usuário?', 'Na tela de relatórios, selecione o filtro "Usuário".', 'Relatórios', 35),
+('Como solicitar suporte urgente?', 'Abra um ticket com prioridade "Urgente". O suporte será notificado imediatamente.', 'Suporte', 36),
+('Como alterar notificações de e-mail?', 'Acesse Perfil -> Configurações -> Notificações e ajuste conforme preferências.', 'Conta', 37),
+('Como consultar tickets fechados por período?', 'Na tela de relatórios, filtre por status "Fechado" e selecione o período desejado.', 'Relatórios', 38),
+('Como verificar logs de acesso?', 'Acesse Configurações -> Segurança -> Logs de Acesso.', 'Segurança', 39),
+('Como adicionar observações internas em tickets?', 'Abra o ticket e adicione comentários internos visíveis apenas para técnicos.', 'Tickets', 40),
+('Como redefinir a senha de outro usuário (admin)?', 'Acesse Configurações -> Usuários -> Redefinir Senha.', 'Conta', 41),
+('Como configurar limites de upload?', 'Acesse Configurações -> Sistema -> Limites de Arquivo.', 'Suporte', 42),
+('Como ativar notificações push?', 'Acesse Perfil -> Configurações -> Notificações -> Push.', 'Conta', 43),
+('Como exportar logs de acesso?', 'Em Configurações -> Segurança -> Logs, clique em Exportar.', 'Segurança', 44),
+('Como criar tickets recorrentes?', 'Na tela de Novo Ticket, selecione "Recorrente" e configure frequência.', 'Tickets', 45),
+('Como atribuir tickets a grupos específicos?', 'Ao criar ou editar um ticket, selecione o grupo responsável.', 'Tickets', 46),
+('Como acompanhar métricas de desempenho do suporte?', 'Na tela de relatórios, veja gráficos de SLA, tempo médio de atendimento e número de tickets.', 'Relatórios', 47),
+('Como proteger dados sensíveis nos tickets?', 'Use campos restritos e defina permissões de visualização.', 'Segurança', 48),
+('Como criar alertas personalizados para tickets?', 'Em Configurações -> Alertas, configure condições e notificações.', 'Suporte', 49),
+('Como ativar modo de auditoria?', 'Acesse Configurações -> Sistema -> Auditoria e ative o modo para registro de ações.', 'Segurança', 50);
+GO
+
 SET IDENTITY_INSERT Chamados OFF;
 GO
 
+SELECT * FROM Usuarios
+GO
+
 SELECT * FROM Chamados
+GO
+
+SELECT * FROM Faqs
 GO
