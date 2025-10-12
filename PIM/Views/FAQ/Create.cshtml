@@ -15,40 +15,55 @@
         
         <form asp-action="Create" method="post" class="faq-form">
             
+            <!-- Campo: Pergunta -->
             <div class="form-group mb-4">
                 <label asp-for="Pergunta" class="form-label">Pergunta</label>
-                <textarea asp-for="Pergunta" class="form-control large-textarea" rows="2" placeholder="Digite a pergunta"></textarea>
+                <textarea asp-for="Pergunta" 
+                          class="form-control large-textarea" 
+                          rows="2" 
+                          placeholder="Digite a pergunta" 
+                          required></textarea>
                 <span asp-validation-for="Pergunta" class="text-danger"></span>
             </div>
 
+            <!-- Campo: Resposta -->
             <div class="form-group mb-4">
                 <label asp-for="Resposta" class="form-label">Resposta</label>
-                <textarea asp-for="Resposta" class="form-control large-textarea" rows="6" placeholder="Digite a resposta detalhada"></textarea>
+                <textarea asp-for="Resposta" 
+                          class="form-control large-textarea" 
+                          rows="6" 
+                          placeholder="Digite a resposta detalhada" 
+                          required></textarea>
                 <span asp-validation-for="Resposta" class="text-danger"></span>
             </div>
 
             <div class="row">
             
+                <!-- Campo: Categoria -->
                 <div class="col-md-6 form-group mb-4">
                     <label asp-for="Categoria" class="form-label">Categoria</label>
-                    
                     <select asp-for="Categoria" 
                             class="form-control" 
-                            asp-items="@(ViewData["CategoriasExistentes"] as SelectList)">
-                        
+                            asp-items="@(ViewData["CategoriasExistentes"] as SelectList)" 
+                            required>
                         <option value="" disabled selected>-- Selecione uma categoria --</option>                    
                     </select>
-                    
                     <span asp-validation-for="Categoria" class="text-danger"></span>
                 </div>
 
+                <!-- Campo: Ordem -->
                 <div class="col-md-6 form-group mb-4">
                     <label asp-for="Ordem" class="form-label">Ordem</label>
-                    <input asp-for="Ordem" type="number" class="form-control" placeholder="1, 2, 3..." />
+                    <input asp-for="Ordem" 
+                           type="number" 
+                           class="form-control" 
+                           placeholder="1, 2, 3..." 
+                           required />
                     <span asp-validation-for="Ordem" class="text-danger"></span>
                 </div>
             </div>
 
+            <!-- Botões -->
             <div class="form-actions mt-4">
                 <button type="submit" class="btn btn-create">
                     <i class="fas fa-save"></i> Salvar FAQ

@@ -1,32 +1,60 @@
-// Arquivo: wwwroot/js/relatorio.js - VERSÃO FINAL COMPLETA
-
-// URL do seu endpoint no Controller C#
-// OBS: Você precisará implementar o endpoint /RelatorioGerencial/ObterDados no seu Controller
-const API_URL = '/RelatorioGerencial/ObterDados';
+// Arquivo: wwwroot/js/relatorio.js - VERSÃO FINAL COMPLETA COM CORREÇÃO DE IMPRESSÃO DE FUNDO E EXPORTAÇÃO COMPLETA PARA EXCEL
 
 // =======================================================
-// CORES E CONFIGURAÇÕES DE GRÁFICOS
+// ENDPOINTS DA API
+// =======================================================
+
+// URL do seu endpoint para obter dados AGREGADOS (gráficos) no Controller C#
+const API_URL = '/RelatorioGerencial/ObterDados';
+
+// NOVO ENDPOINT: URL para obter TODOS os dados BRUTOS de chamados para exportação
+const EXPORT_API_URL = '/RelatorioGerencial/ExportarChamados'; 
+
+
+// =======================================================
+// CORES E CONFIGURAÇÕES DE GRÁFICOS (Baseado nas suas variáveis CSS)
 // =======================================================
 
 const CHART_COLORS = {
-    // Paleta Principal (Tema Roxo)
-    primary: '#8C6AFF', // Roxo Principal (Mais Vibrante)
-    secondary: '#5C3CFF', // Roxo Secundário (Original, usado como fallback)
+    // Cores Principais
+    primary: '#7F56D9', // Baseado em --primary-color
+    secondary: '#9B78F0',
 
-    // Cores de Status e Fatias do Gráfico
+    // Cores de Status e Fatias do Gráfico (Baseado nas suas variáveis CSS)
     danger: '#FF6B6B',
     warning: '#FFD93D',
     success: '#6BCB77',
     info: '#4D96FF',
-    accent: '#FF7F50',
-
-    text: '#E0E0E0', // Branco/Cinza claro para texto (garante contraste)
-    grid: 'rgba(224, 224, 255, 0.15)',
-    background: '#2b3e50' // Fundo do container do gráfico
+    
+    text: '#E8E8E8', // Baseado em --text-color-light
+    grid: 'rgba(232, 232, 232, 0.15)',
+    background: '#1A0D3A' // Baseado em --background-dark (Fundo do Card/Gráfico)
 };
 
 let graficoTecnicosInstance = null;
 let graficoCategoriasInstance = null;
+
+
+// =======================================================
+// PLUGIN PARA PINTAR O FUNDO DO CANVAS (CORREÇÃO DE IMPRESSÃO)
+// =======================================================
+
+/**
+ * Plugin customizado para forçar o Chart.js a desenhar o background do canvas.
+ * Essencial para impressão, pois navegadores ignoram fundos CSS em modo de impressão.
+ */
+const ChartBackgroundPlugin = {
+    id: 'chartBackground',
+    beforeDraw: (chart, args, options) => {
+        const {ctx} = chart;
+        ctx.save();
+        // Usa a cor de fundo definida no options.plugins.chartBackground.backgroundColor
+        ctx.fillStyle = options.backgroundColor || CHART_COLORS.background; 
+        ctx.fillRect(0, 0, chart.width, chart.height);
+        ctx.restore();
+    }
+};
+
 
 // Configurações de Gráficos (Tema Dark Mode Base)
 const darkChartConfig = {
@@ -71,8 +99,7 @@ const darkChartConfig = {
 // =======================================================
 
 /**
- * Exporta o gráfico como um arquivo PDF, garantindo fundo escuro.
- * Requer as bibliotecas jspdf e html2canvas.
+ * Exporta o gráfico como um arquivo PDF.
  */
 function exportChartToPDF(canvasId, filename) {
     const canvas = document.getElementById(canvasId);
@@ -90,8 +117,8 @@ function exportChartToPDF(canvasId, filename) {
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
     
-    // Fundo Escuro (Cor do tema principal: #1A0D3A)
-    const backgroundColor = '#1A0D3A';
+    // Fundo Escuro para PDF (Baseado em --background-dark: #1A0D3A)
+    const backgroundColor = CHART_COLORS.background; 
     pdf.setFillColor(backgroundColor);
     pdf.rect(0, 0, pdfWidth, pdfHeight, 'F');
 
@@ -108,66 +135,89 @@ function exportChartToPDF(canvasId, filename) {
 
 
 /**
- * Exporta os dados do gráfico para um arquivo CSV (Excel).
+ * Exporta TODOS os dados de chamados do período/filtro para um arquivo CSV.
+ * Chama o novo endpoint que retorna a lista completa de registros.
+ * @param {string} filename - Nome base do arquivo de exportação.
+ */
+async function exportFullDataToCSV(filename) {
+    // 1. Obter filtros (deve ser ajustado para capturar filtros reais da UI)
+    const periodoFiltro = '30d'; // Exemplo: Pegue o valor real do filtro de período
+    const tecnicoFiltro = 'todos'; // Exemplo: Pegue o valor real do filtro de técnico
+
+    try {
+        // Constrói a URL para o novo endpoint de exportação de dados brutos
+        const url = `${EXPORT_API_URL}?periodo=${periodoFiltro}&tecnico=${tecnicoFiltro}`;
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+            throw new Error(`Erro ao buscar dados do servidor: ${response.status}`);
+        }
+
+        // 2. Recebe a lista de objetos (chamados brutos)
+        const data = await response.json(); 
+
+        if (!data || data.length === 0) {
+            alert("Nenhum dado encontrado para exportação no período/filtro atual.");
+            return;
+        }
+
+        // 3. Processa a lista para CSV
+        const headers = Object.keys(data[0]); // Pega os cabeçalhos do primeiro objeto
+        const csvRows = [];
+        
+        // Adiciona cabeçalhos (com aspas e delimitador ;)
+        csvRows.push(headers.map(h => `"${h}"`).join(';')); 
+
+        // Adiciona linhas de dados
+        for (const row of data) {
+            const values = headers.map(header => {
+                const value = row[header] === null || row[header] === undefined ? '' : row[header];
+                // Sanitiza o valor para evitar problemas com ponto e vírgula e aspas
+                const escaped = value.toString().replace(/"/g, '""');
+                return `"${escaped}"`;
+            });
+            csvRows.push(values.join(';'));
+        }
+
+        // 4. Cria e baixa o arquivo CSV
+        const csvString = csvRows.join('\n');
+        // Adiciona BOM (\uFEFF) para garantir que caracteres especiais (UTF-8) funcionem no Excel
+        const blob = new Blob(["\uFEFF" + csvString], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement("a");
+        
+        link.href = URL.createObjectURL(blob);
+        link.download = `${filename}.csv`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+    } catch (error) {
+        console.error('Erro ao carregar ou exportar dados completos:', error);
+        alert("Erro ao exportar dados. Verifique o console para detalhes.");
+    }
+}
+
+
+/**
+ * Função de exportação de dados CSV (Original) - Agora atua como wrapper para a exportação completa.
+ * A exportação completa do relatório deve ser usada preferencialmente.
  */
 function exportDataToCSV(chartId, filename) {
-    let chartInstance = null;
-
-    if (chartId === 'graficoTecnicos') {
-        chartInstance = graficoTecnicosInstance;
-    } else if (chartId === 'graficoCategorias') {
-        chartInstance = graficoCategoriasInstance;
-    }
-
-    if (!chartInstance) {
-        console.error(`Instância do gráfico ${chartId} não encontrada.`);
-        alert("Erro: Dados do gráfico não estão disponíveis para exportação CSV.");
-        return;
-    }
-
-    const { labels } = chartInstance.data;
-    const { datasets } = chartInstance.data;
-    
-    if (!labels || !datasets || datasets.length === 0) {
-        console.error("Dados do gráfico estão vazios.");
-        return;
-    }
-
-    // Cria o cabeçalho usando ; como separador (padrão Excel PT-BR)
-    const headers = ["Item", ...datasets.map(d => d.label)];
-    const csvRows = [headers.join(';')];
-
-    // Preenche as linhas de dados
-    labels.forEach((label, index) => {
-        const row = [
-            `"${label}"`,
-            ...datasets.map(d => d.data[index] || 0)
-        ];
-        csvRows.push(row.join(';'));
-    });
-
-    // Converte para Blob e dispara o download (com BOM para acentuação)
-    const csvString = csvRows.join('\n');
-    const blob = new Blob(["\uFEFF" + csvString], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement("a");
-    
-    link.href = URL.createObjectURL(blob);
-    link.download = `${filename}.csv`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Para simplificar a lógica de botões, direcionamos a chamada para a nova função
+    // que exporta o relatório COMPLETO.
+    exportFullDataToCSV(filename);
 }
+
 
 /**
  * Dispara a impressão da aba ativa.
- * A visibilidade será controlada pelo @media print no CSS.
  */
 function printActiveGraph() {
     window.print();
 }
 
 // =======================================================
-// FUNÇÕES DE UTILIDADE E PROCESSAMENTO DE DADOS
+// FUNÇÕES DE UTILIDADE E PROCESSAMENTO DE DADOS (Não alteradas)
 // =======================================================
 
 function animateCount(element, duration = 1000) {
@@ -248,10 +298,6 @@ function sortCategorias(data) {
     return dataCopy;
 }
 
-// =======================================================
-// ATUALIZAÇÃO DO DASHBOARD E KPIS
-// =======================================================
-
 function updateSection(sectionId, data) {
     const section = document.getElementById(sectionId);
     if (!section) return;
@@ -315,7 +361,7 @@ function updateDashboard(data) {
 }
 
 // =======================================================
-// RENDERIZAÇÃO DOS GRÁFICOS
+// RENDERIZAÇÃO DOS GRÁFICOS (Com Plugin de Fundo)
 // =======================================================
 
 function renderGraficoTecnicos(tecnicosData) {
@@ -339,14 +385,14 @@ function renderGraficoTecnicos(tecnicosData) {
 
     graficoTecnicosInstance = new Chart(ctxTec.getContext('2d'), {
         type: 'bar',
-        plugins: [ChartDataLabels],
+        plugins: [ChartDataLabels, ChartBackgroundPlugin], 
         data: {
             labels: labels,
             datasets: [
                 {
                     label: 'Concluídos',
                     data: finalizados,
-                    backgroundColor: '#4A2B99',
+                    backgroundColor: CHART_COLORS.primary, // Usando primary
                     stack: 'Stack 0',
                     order: 2,
                     datalabels: {
@@ -364,7 +410,7 @@ function renderGraficoTecnicos(tecnicosData) {
                 {
                     label: 'Em Andamento',
                     data: andamento,
-                    backgroundColor: CHART_COLORS.primary,
+                    backgroundColor: CHART_COLORS.secondary, // Usando secondary
                     stack: 'Stack 0',
                     order: 1,
                     datalabels: {
@@ -389,6 +435,10 @@ function renderGraficoTecnicos(tecnicosData) {
             },
             plugins: {
                 ...darkChartConfig.plugins,
+                // CONFIGURAÇÃO DO PLUGIN DE FUNDO (usa a cor #1A0D3A)
+                chartBackground: {
+                    backgroundColor: CHART_COLORS.background 
+                },
                 title: {
                     ...darkChartConfig.plugins.title,
                     text: 'Produtividade por Técnico'
@@ -443,14 +493,13 @@ function renderGraficoCategorias(categoriasData) {
         CHART_COLORS.info,
         CHART_COLORS.primary,
         CHART_COLORS.secondary,
-        CHART_COLORS.accent,
-        '#A06CD5'
+        '#A06CD5' // Nova cor
     ];
 
 
     graficoCategoriasInstance = new Chart(ctxCat.getContext('2d'), {
         type: 'doughnut',
-        plugins: [ChartDataLabels],
+        plugins: [ChartDataLabels, ChartBackgroundPlugin], 
         data: {
             labels: labels,
             datasets: [{
@@ -468,6 +517,10 @@ function renderGraficoCategorias(categoriasData) {
 
             plugins: {
                 ...darkChartConfig.plugins,
+                 // CONFIGURAÇÃO DO PLUGIN DE FUNDO (usa a cor #1A0D3A)
+                chartBackground: {
+                    backgroundColor: CHART_COLORS.background 
+                },
                 legend: {
                     ...darkChartConfig.plugins.legend,
                     position: 'bottom',
@@ -505,7 +558,6 @@ function renderGraficoCategorias(categoriasData) {
 // =======================================================
 
 async function carregarDadosRelatorio(periodo = '30d', tecnico = 'todos') {
-    // Simulando chamada à API. Implemente a lógica real aqui.
     try {
         const url = `${API_URL}?periodo=${periodo}&tecnico=${tecnico}`;
         const response = await fetch(url);
@@ -516,13 +568,12 @@ async function carregarDadosRelatorio(periodo = '30d', tecnico = 'todos') {
 
     } catch (error) {
         console.error('Erro ao carregar dados do relatório:', error);
-        // Pode-se adicionar uma função para mostrar dados mockados em caso de erro da API
     }
 }
 
 function applyFilters() {
-    // Por enquanto, filtros fixos, mas aqui é onde você leria o estado da UI (seletors)
-    const dataFiltro = '30d';
+    // Estas variáveis devem ser substituídas pelos valores reais dos filtros da UI
+    const dataFiltro = '30d'; 
     const tecnicoFiltro = 'todos';
 
     carregarDadosRelatorio(dataFiltro, tecnicoFiltro);
@@ -539,7 +590,6 @@ function setupEventListeners() {
         });
     });
 
-    // Event listeners para Exportar PDF
     document.querySelectorAll('.export-pdf').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const target = e.currentTarget.getAttribute('data-export-target');
@@ -550,23 +600,26 @@ function setupEventListeners() {
         });
     });
 
-    // Event listeners para Exportar CSV/Excel
+    // AQUI ESTÁ A MUDANÇA: Agora chama a função de exportação COMPLETA
     document.querySelectorAll('.export-excel').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const target = e.currentTarget.getAttribute('data-export-target');
-            const [chartId] = target.split('-');
-            const filename = chartId === 'graficoTecnicos' ? 'Dados_Tecnicos' : 'Dados_Categorias';
+        btn.addEventListener('click', async (e) => {
+            // O target original era 'graficoTecnicos' ou 'graficoCategorias'.
+            // Agora, todos os botões de exportar Excel chamam a exportação completa.
+            // Usamos um nome de arquivo genérico/descritivo.
+            const filename = 'Relatorio_Completo_Chamados';
             
-            exportDataToCSV(chartId, filename);
+            await exportFullDataToCSV(filename);
         });
     });
 
-    // Event listeners para Imprimir Gráfico (Ctrl+P)
     document.querySelectorAll('.export-print').forEach(btn => {
         btn.addEventListener('click', () => {
-             printActiveGraph();
+            printActiveGraph();
         });
     });
+
+    window.addEventListener('beforeprint', handleBeforePrint);
+    window.addEventListener('afterprint', handleAfterPrint);
 }
 
 
@@ -581,13 +634,58 @@ function switchTab(btn, targetId, shouldLoadData = false) {
     const activeSection = document.getElementById(targetId);
     activeSection?.classList.add('active');
 
-    // Força o recarregamento dos dados apenas se a aba for trocada
     if (shouldLoadData) { 
         applyFilters(); 
     }
 }
 
-// Inicialização: Configura os listeners e carrega os dados iniciais
+
+// =======================================================
+// CORREÇÃO DE IMPRESSÃO (REDIMENSIONAMENTO + FUNDO)
+// =======================================================
+
+function handleBeforePrint() {
+    const activeChartInstance = graficoTecnicosInstance?.canvas.closest('.tab-content.active') 
+        ? graficoTecnicosInstance 
+        : graficoCategoriasInstance?.canvas.closest('.tab-content.active')
+            ? graficoCategoriasInstance 
+            : null;
+
+    if (activeChartInstance) {
+        // 1. Salva as opções originais
+        activeChartInstance._originalOptions = { 
+            responsive: activeChartInstance.options.responsive,
+            maintainAspectRatio: activeChartInstance.options.maintainAspectRatio
+        };
+
+        // 2. Desativa a responsividade
+        activeChartInstance.options.responsive = false;
+        activeChartInstance.options.maintainAspectRatio = false;
+        
+        // 3. Força o redimensionamento do Chart.js para o tamanho atual do contêiner
+        //    (definido pelo CSS de impressão, se houver).
+        activeChartInstance.resize(); 
+    }
+}
+
+function handleAfterPrint() {
+    [graficoTecnicosInstance, graficoCategoriasInstance].forEach(chartInstance => {
+        if (chartInstance && chartInstance._originalOptions) {
+            // 1. Restaura as opções originais (responsive e maintainAspectRatio)
+            chartInstance.options.responsive = chartInstance._originalOptions.responsive;
+            chartInstance.options.maintainAspectRatio = chartInstance._originalOptions.maintainAspectRatio;
+
+            // 2. Remove estilos manuais do canvas
+            chartInstance.canvas.style.width = '';
+            chartInstance.canvas.style.height = '';
+
+            // 3. Força o redimensionamento de volta ao estado normal
+            chartInstance.resize(); 
+            delete chartInstance._originalOptions;
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
 
@@ -595,10 +693,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (initialButton) {
         const target = initialButton.getAttribute('data-target');
-        // A primeira carga de dados ocorre aqui ou via applyFilters
         switchTab(initialButton, target, false); 
     }
     
-    // Força a primeira carga de dados e renderização do dashboard
     applyFilters(); 
 });

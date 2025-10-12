@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using PIM.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
 
 namespace PIM.Controllers
 {
@@ -15,17 +17,20 @@ namespace PIM.Controllers
             _context = context;
         }
 
-        // Página principal do relatório
         [HttpGet]
         public IActionResult Relatorio()
         {
             return View();
         }
 
-        // Retorna os dados do relatório em JSON
+        // ------------------------------------------------------------------
+        // ENDPOINT PARA DADOS AGREGADOS (GRÁFICOS)
+        // ------------------------------------------------------------------
+
         [HttpGet]
-        public async Task<IActionResult> ObterDados()
+        public async Task<IActionResult> ObterDados(string periodo = "30d", string tecnico = "todos")
         {
+            // Nota: Adicionar lógica de filtragem de 'periodo' e 'tecnico' aqui, se necessário.
             var chamados = await _context.Chamados.Include(c => c.AtribuidoA).ToListAsync();
 
             var totalChamados = chamados.Count;
@@ -47,7 +52,8 @@ namespace PIM.Controllers
             // Agrupa por técnico
             var tecnicos = chamados
                 .Where(c => c.AtribuidoA != null)
-                .GroupBy(c => c.AtribuidoA.Username)
+                // CORREÇÃO CS8602: Usando o operador ?? para garantir que a chave de agrupamento não seja nula
+                .GroupBy(c => c.AtribuidoA.Username ?? "Não Atribuído") 
                 .Select(g => new
                 {
                     Tecnico = g.Key,
@@ -83,6 +89,42 @@ namespace PIM.Controllers
                 tecnicos,
                 categorias
             });
+        }
+
+        // ------------------------------------------------------------------
+        // NOVO ENDPOINT PARA EXPORTAÇÃO COMPLETA DE DADOS BRUTOS (CSV)
+        // ------------------------------------------------------------------
+        
+        [HttpGet]
+        public async Task<IActionResult> ExportarChamados(string periodo = "30d", string tecnico = "todos")
+        {
+            // PASSO 1: Inclui o Solicitante (o 'Cliente' ou usuário que abriu o chamado)
+            var chamadosBrutos = await _context.Chamados
+                .Include(c => c.AtribuidoA) 
+                .Include(c => c.Solicitante) // CORRIGIDO: Usa 'Solicitante' em vez de 'Cliente'
+                .ToListAsync();
+
+            if (chamadosBrutos == null || !chamadosBrutos.Any())
+            {
+                return Ok(new List<object>()); 
+            }
+
+            // PASSO 2: Selecionar os dados exatos que você quer no CSV.
+            var dadosExportacao = chamadosBrutos.Select(c => new
+            {
+                c.ChamadoId, // Alterado para ChamadoId conforme modelo
+                c.Titulo,    // Adicionado Título
+                DataAbertura = c.DataAbertura.ToString("dd/MM/yyyy HH:mm"), 
+                c.Categoria,
+                c.Status,
+                // CORREÇÃO CS1061: Usa 'Solicitante' em vez de 'Cliente'
+                ClienteSolicitante = c.Solicitante?.Username, 
+                AtribuidoA = c.AtribuidoA?.Username,
+                c.Prioridade, 
+                c.Descricao // Adicionado Descrição para o relatório completo
+            }).ToList();
+
+            return Ok(dadosExportacao);
         }
     }
 }

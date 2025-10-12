@@ -49,19 +49,13 @@ body {
 }
 
 /* Header */
-.dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Linha divisória clara */
-    padding-bottom: 15px;
-}
+
 .dashboard-header h1 {
     font-size: 1.8em;
     font-weight: 700;
     color: white; /* Título principal sempre branco */
-    margin: 0;
+    margin: 20px;
+    
 }
 
 /* ======================================================= */
@@ -313,61 +307,111 @@ body {
         flex: 1 1 100%;
     }
 }
+
 /* ======================================================= */
-/* 7. ESTILOS DE IMPRESSÃO (@media print) */
+/* 7. ESTILOS DE IMPRESSÃO (@media print) - SOLUÇÃO FINAL CSS */
 /* ======================================================= */
 
 @media print {
-    /* Oculta tudo na página por padrão */
-    body * {
-        visibility: hidden;
-        overflow: hidden !important; /* Ajuda a evitar páginas em branco */
-    }
-
-    /* Torna o body visível (para que o conteúdo ativo possa ser posicionado) */
+    /* 1. CONFIGURAÇÃO GERAL E FUNDO */
     body {
-        background: white !important;
-        color: black !important;
-        visibility: visible !important;
+        /* PROPRIEDADES CHAVE: FORÇA IMPRESSÃO DE FUNDOS E CORES */
+        -webkit-print-color-adjust: exact !important; 
+        color-adjust: exact !important; 
+        
+        background-color: var(--background-dark) !important; 
+        color: var(--text-color-light) !important;
+
+        /* ZERA TUDO: Essencial para evitar o estouro de página */
+        padding: 0 !important; 
+        margin: 0 !important;
+        /* Força a ocupação total da área visível */
+        min-height: 100vh !important;
+        height: 100% !important;
+    }
+    
+    /* 2. FORÇAR MODO PAISAGEM (Landscape) e ZERAR MARGENS DO PAPEL */
+    @page {
+        size: A4 landscape; /* Sugere tamanho A4 e orientação paisagem */
+        margin: 0; /* REMOVE AS MARGENS DO PAPEL (Crucial) */
+        padding: 0;
     }
 
-    /* Oculta o header, navegação, botões e cards (KPIS) */
-    .dashboard-header,
-    .menu-topico,
-    .export-buttons,
-    .cards {
+    /* 3. ESCONDE ELEMENTOS NÃO ESSENCIAIS (MANTIDO) */
+    .dashboard-header, 
+    nav.navbar, 
+    header, 
+    .menu-topico, 
+    .filter-controls, 
+    .export-buttons, 
+    footer, 
+    .dashboard-sections > div:not(.tab-content.active)
+    {
         display: none !important;
     }
 
-    /* * 1. Torna a SECTION principal do gráfico ativo visível.
-     * 2. Posiciona ela no topo para ser o único conteúdo.
-     */
-    .tab-content.active {
-        visibility: visible !important;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: auto;
-        margin: 0;
-        padding: 0;
-        /* Garante que o container do gráfico e o próprio canvas sejam visíveis */
-    }
+    /* 4. AJUSTA O LAYOUT DO CONTEÚDO IMPRESSO (ABA ATIVA) */
     
-    /* Garante que o container interno do gráfico seja visível */
-    .tab-content.active .grafico-container {
-        visibility: visible !important;
-        width: 100%;
-        height: auto;
-        background: none !important;
-        box-shadow: none !important;
+    .relatorio-gerencial-container {
+        display: block !important;
+        max-width: none !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important; /* REMOVE PADDING AQUI */
+        height: 100% !important; 
+        box-sizing: border-box !important;
+        page-break-after: avoid !important; 
     }
 
-    /* Garante que o canvas do Chart.js seja visível */
-    .tab-content.active canvas {
-         visibility: visible !important;
-         width: 100% !important;
-         height: auto !important;
-         max-height: 95vh; /* Limita a altura para tentar caber em uma página */
+    .tab-content.active {
+        /* CENTRALIZAÇÃO: Zera tudo e usa flexbox */
+        display: flex !important; 
+        flex-direction: column;
+        justify-content: center; /* Centraliza verticalmente */
+        align-items: center; /* Centraliza horizontalmente */
+        
+        width: 100% !important;
+        height: 100% !important; 
+        
+        margin: 0 !important;
+        /* 🛑 ALTERADO: Reduzindo o padding para maximizar a área */
+        padding: 5px !important; 
+        box-sizing: border-box !important;
+        overflow: hidden;
+    }
+
+    /* 5. AJUSTA O CONTÊINER DO GRÁFICO (PARA DAR ZOOM) */
+    .grafico-wrapper {
+        display: block !important;
+        /* 🛑 ALTERADO: Aumentando a largura para preencher mais */
+        width: 100% !important; 
+        max-width: 100% !important; 
+        margin: 0 !important; 
+        padding: 0 !important;
+        page-break-inside: avoid !important; 
+        /* 🛑 ADICIONADO: Garante que o wrapper use a altura máxima disponível */
+        height: 100% !important;
+    }
+
+    .grafico-container {
+        display: block !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        /* Altura auto (definida pelo canvas dentro) mas a flexbox forçará a altura */
+        height: auto !important; 
+        width: 100% !important;
+        /* 🛑 ADICIONADO: Tenta forçar o canvas a ter mais espaço */
+        max-height: 98vh !important;
+    }
+
+    /* 6. CANVAS (O próprio Gráfico) */
+    canvas#graficoTecnicos,
+    canvas#graficoCategorias {
+        display: block !important;
+        max-width: 100% !important;
+        width: 100% !important; 
+        height: auto !important; 
+        margin: 0 !important;
     }
 }
