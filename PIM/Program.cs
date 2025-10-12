@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using PIM.Data;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Conexão com o SQL Server

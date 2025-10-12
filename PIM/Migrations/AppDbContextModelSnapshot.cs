@@ -22,7 +22,70 @@ namespace PIM.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Faq", b =>
+            modelBuilder.Entity("PIM.Models.Chamado", b =>
+                {
+                    b.Property<int>("ChamadoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ChamadoId"));
+
+                    b.Property<int?>("AtribuidoAId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CaminhoArquivoAnexo")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Categoria")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DataAbertura")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DataAtribuicao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DataFechamento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DataLimiteSLA")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomeArquivoAnexo")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Prioridade")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("ResolvidoPrimeiroNivel")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("SolicitanteId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Titulo")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("ChamadoId");
+
+                    b.HasIndex("AtribuidoAId");
+
+                    b.HasIndex("SolicitanteId");
+
+                    b.ToTable("Chamados");
+                });
+
+            modelBuilder.Entity("PIM.Models.Faq", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -51,63 +114,6 @@ namespace PIM.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Faqs");
-                });
-
-            modelBuilder.Entity("PIM.Models.Chamado", b =>
-                {
-                    b.Property<int>("ChamadoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ChamadoId"));
-
-                    b.Property<int?>("AtribuidoAId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CaminhoArquivoAnexo")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Categoria")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DataAbertura")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DataAtribuicao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DataFechamento")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Descricao")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NomeArquivoAnexo")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Prioridade")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SolicitanteId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Titulo")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.HasKey("ChamadoId");
-
-                    b.HasIndex("AtribuidoAId");
-
-                    b.HasIndex("SolicitanteId");
-
-                    b.ToTable("Chamados");
                 });
 
             modelBuilder.Entity("PIM.Models.Usuario", b =>

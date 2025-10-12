@@ -1,0 +1,314 @@
+/* ======================================================= */
+/* 0. VARIÁVEIS CSS (TEMA ROXO/DARK MODE)                  */
+/* ======================================================= */
+:root {
+    /* Cores Roxo */
+    --primary-color: #7F56D9; /* Roxo principal (Botões, Abas Ativas) */
+    --primary-light: #9B78F0;
+    --primary-dark: #6941C6;
+    
+    /* Fundos */
+    --background-dark: #1A0D3A;
+    --background-gradient-start: #1A0D3A;
+    --background-gradient-end: #2C1B52;
+    
+    /* Componentes Transparentes/Blur */
+    --card-bg: rgba(70, 56, 128, 0.6);   /* Fundo do Card (Blur) */
+    --filter-bg: rgba(70, 56, 128, 0.8); /* Fundo da área de Filtros */
+    
+    /* Tipografia e Efeitos */
+    --text-color-light: #E8E8E8;
+    --text-color-muted: #aaaaaa;
+    --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.5);
+    --transition-speed: 0.3s;
+    --border-radius-md: 12px;
+
+    /* Cores de Status/Resumo (Mantendo o contraste) */
+    --color-status-open: #FF6B6B;      /* Vermelho: Abertos */
+    --color-status-pending: #FFD93D;   /* Amarelo: Em Andamento */
+    --color-status-closed: #6BCB77;    /* Verde: Finalizados */
+    --color-status-info: #4D96FF;      /* Azul: Conclusão / Eficiência */
+}
+
+/* ======================================================= */
+/* 1. LAYOUT GERAL E TIPOGRAFIA                            */
+/* ======================================================= */
+body {
+    min-height: 100vh;
+    color: var(--text-color-light); /* Texto principal claro */
+    /* Aplica o gradiente no fundo */
+    background: linear-gradient(135deg, var(--background-gradient-start), var(--background-gradient-end));
+    font-family: 'Segoe UI', Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.relatorio-gerencial-container {
+    padding: 30px 20px;
+    max-width: 1400px;
+    margin: auto;
+}
+
+/* Header */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Linha divisória clara */
+    padding-bottom: 15px;
+}
+.dashboard-header h1 {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: white; /* Título principal sempre branco */
+    margin: 0;
+}
+
+/* ======================================================= */
+/* 2. FILTROS E BOTÕES                                     */
+/* ======================================================= */
+.filter-controls {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end; /* Alinha o botão com os selects */
+    background-color: var(--filter-bg); /* Fundo roxo semitransparente */
+    padding: 20px;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-soft);
+}
+
+.filter-controls label {
+    font-weight: 600;
+    color: var(--text-color-light);
+    display: block; /* Garante que a label ocupe toda a largura */
+    margin-bottom: 5px;
+}
+
+.filter-select {
+    padding: 10px 15px; 
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+    
+    /* Estilo Dark Mode para Select */
+    background-color: rgba(30, 26, 52, 0.8);
+    color: var(--text-color-light);
+    appearance: none; 
+    -webkit-appearance: none;
+    transition: border-color var(--transition-speed);
+}
+
+/* Botão principal (Aplicar) */
+.btn-primary {
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    transition: all var(--transition-speed);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+.btn-primary:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+}
+
+
+/* ======================================================= */
+/* 3. MENU DE NAVEGAÇÃO (ABAS)                             */
+/* ======================================================= */
+.menu-topico {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 15px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--text-color-muted); /* Cinza claro */
+    transition: all var(--transition-speed);
+    border-bottom: 3px solid transparent;
+    margin-right: 10px;
+    font-weight: 500;
+}
+
+.tab-btn:hover:not(.active) {
+    color: var(--text-color-light);
+}
+
+.tab-btn.active {
+    color: white; 
+    font-weight: 700;
+    border-bottom: 3px solid var(--primary-color); /* Indicador Roxo */
+}
+
+/* ======================================================= */
+/* 4. CARDS (RESUMO E KPIs)                                */
+/* ======================================================= */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.card {
+    flex: 1 1 220px; 
+    background: var(--card-bg); /* Fundo roxo transparente e blur */
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    border-left: 5px solid transparent; 
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+}
+
+.card h3 {
+    font-size: 1em;
+    color: var(--text-color-muted);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card .count {
+    font-size: 3.5em;
+    font-weight: 900;
+    line-height: 1.1;
+    display: block;
+    color: white; /* O valor é sempre branco e destacado */
+}
+
+/* Cores de Destaque (Border Left) */
+
+/* Resumo Cards */
+.card-abertos { border-left-color: var(--color-status-open); }
+.card-abertos .count { color: var(--color-status-open); }
+
+.card-andamento { border-left-color: var(--color-status-pending); }
+.card-andamento .count { color: var(--color-status-pending); }
+
+.card-finalizados { border-left-color: var(--color-status-closed); }
+.card-finalizados .count { color: var(--color-status-closed); }
+
+.card-conclusao { border-left-color: var(--color-status-info); }
+.card-conclusao .count { color: var(--color-status-info); }
+
+/* KPI Cards */
+.kpis-cards .card-sla { border-left-color: var(--primary-color); }
+.kpis-cards .card-sla .count { color: var(--primary-light); } /* Roxo claro */
+
+.kpis-cards .card-mttr { border-left-color: var(--color-accent); } /* Não definida, usando accent do tema anterior */
+.kpis-cards .card-mttr .count { color: #FF7F50; } 
+
+.kpis-cards .card-eficiencia { border-left-color: var(--color-secondary); } /* Não definida, usando secondary do tema anterior */
+.kpis-cards .card-eficiencia .count { color: #5C3CFF; }
+
+
+/* ======================================================= */
+/* 5. GRÁFICOS E EXPORTAÇÃO                                */
+/* ======================================================= */
+
+.dashboard-sections {
+    padding-top: 15px;
+}
+
+.tab-content {
+    display: none;
+    min-height: 500px;
+    padding-top: 20px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.grafico-wrapper {
+    margin-bottom: 40px;
+}
+
+.grafico-container {
+    width: 100%;
+    height: 550px;
+    /* Fundo escuro sólido para garantir que o gráfico se destaque */
+    background: var(--background-dark); 
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
+}
+
+.export-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 20px 0;
+}
+
+.export-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: opacity var(--transition-speed), transform 0.2s;
+    font-size: 14px;
+    color: white;
+}
+.export-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* Cores dos botões de exportação em destaque */
+.export-pdf { background-color: #dc3545; }
+.export-excel { background-color: #28a745; }
+.export-print { background-color: #6c757d; }
+
+/* ======================================================= */
+/* 6. RESPONSIVIDADE BÁSICA                                */
+/* ======================================================= */
+
+@media (max-width: 992px) {
+    .card {
+        flex-basis: calc(50% - 12.5px); /* Dois cards por linha */
+    }
+    .filter-controls {
+        flex-wrap: wrap;
+    }
+    .filter-controls > * {
+        flex: 1 1 45%;
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+        flex-basis: 100%; /* Um card por linha */
+    }
+    .relatorio-gerencial-container {
+        padding: 15px;
+    }
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .filter-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .filter-controls > * {
+        flex: 1 1 100%;
+    }
+}

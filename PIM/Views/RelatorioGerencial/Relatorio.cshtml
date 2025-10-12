@@ -1,0 +1,89 @@
+@{
+    ViewData["Title"] = "Relatório Gerencial de TI - Dashboard";
+}
+
+<link rel="stylesheet" href="~/css/relatorio.css" asp-append-version="true" />
+
+<div class="relatorio-gerencial-container">
+
+    <header class="dashboard-header">
+        <h1>Relatório Gerencial de TI</h1>
+        
+        </header>
+
+    <nav class="menu-topico">
+        <button class="tab-btn active" data-target="resumo"><span>📊</span> Resumo Executivo</button>
+        <button class="tab-btn" data-target="tecnicos"><span>👨‍🔧</span> Performance do Time</button>
+        <button class="tab-btn" data-target="categorias"><span>🗂️</span> Análise de Categoria</button>
+        <button class="tab-btn" data-target="kpis"><span>⚙️</span> Métricas Críticas (KPIs)</button>
+        <button class="tab-btn" data-target="exportar"><span>📑</span> Relatórios & Exportação</button>
+    </nav>
+
+    <div class="dashboard-sections">
+
+        <section class="tab-content active" id="resumo">
+            <div class="cards">
+                <div class="card card-abertos">
+                    <h3>Chamados Abertos</h3>
+                    <span class="count" data-valor="0">0</span>
+                </div>
+                <div class="card card-andamento">
+                    <h3>Em Andamento</h3>
+                    <span class="count" data-valor="0">0</span>
+                </div>
+                <div class="card card-finalizados">
+                    <h3>Concluídos</h3>
+                    <span class="count" data-valor="0">0</span>
+                </div>
+                <div class="card card-conclusao">
+                    <h3>Taxa de Conclusão</h3>
+                    <span class="count" data-valor="0">0%</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="tab-content" id="tecnicos">
+            <div class="grafico-container">
+                <canvas id="graficoTecnicos"></canvas>
+            </div>
+        </section>
+
+        <section class="tab-content" id="categorias">
+            <div class="grafico-container">
+                <canvas id="graficoCategorias"></canvas>
+            </div>
+        </section>
+
+        <section class="tab-content" id="kpis">
+            <div class="cards kpis-cards">
+                <div class="card card-sla">
+                    <h3>SLA Cumprido</h3>
+                    <span class="count" data-valor="0">0%</span>
+                </div>
+                <div class="card card-mttr">
+                    <h3>MTTR</h3>
+                    <span class="count" data-valor="0">0h</span>
+                </div>
+                <div class="card card-eficiencia">
+                    <h3>1º Nível Resolução</h3>
+                    <span class="count" data-valor="0">0%</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="tab-content" id="exportar">
+            <div class="export-buttons">
+                <button class="export-btn export-pdf">📤 Exportar PDF</button>
+                <button class="export-btn export-excel">📊 Exportar CSV/Excel</button>
+                <button class="export-btn export-print">🖨️ Imprimir Dashboard</button>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script src="~/js/relatorio.js" asp-append-version="true"></script>
+}
