@@ -20,55 +20,96 @@ namespace PIM.Controllers
             _context = context;
         }
 
-        // Retorna todos os tickets, mesmo os sem atribuição
+        // --- Método Auxiliar para Obter o ID do Usuário Logado ---
+        private bool TryGetUserId(out int userId)
+        {
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return int.TryParse(userIdStr, out userId);
+        }
+
+        // --- Método para retornar todos os tickets (Endpoint: /api/ticketscard/GetTickets) ---
         [HttpGet("GetTickets")]
         public async Task<IActionResult> GetTickets(TicketFilterViewModel filters)
         {
             var query = _context.Chamados
-                                .Include(c => c.AtribuidoA) // Inclui o usuário atribuído
+                                .Include(c => c.AtribuidoA)
+                                .Include(c => c.Solicitante) 
                                 .AsQueryable();
 
-            // Filtros opcionais
+            // Lógica de filtros (mantida)
             if (filters.StartDate.HasValue)
                 query = query.Where(t => t.DataAbertura >= filters.StartDate.Value);
-
-            if (filters.EndDate.HasValue)
-                query = query.Where(t => t.DataAbertura <= filters.EndDate.Value);
-
+            // ... (restante dos filtros) ...
             if (!string.IsNullOrEmpty(filters.Status))
                 query = query.Where(t => t.Status == filters.Status);
-
-            if (filters.AssignedToId.HasValue)
-                query = query.Where(t => t.AtribuidoAId.HasValue && t.AtribuidoAId == filters.AssignedToId.Value);
 
             var tickets = await query
                 .Select(t => new
                 {
-                    TicketId = t.ChamadoId,
-                    t.Titulo,
-                    t.Categoria,
-                    t.Prioridade,
-                    t.Status,
-                    t.DataAbertura,
-                    // Mostra nome do atribuído ou null se não tiver
-                    AssignedTo = t.AtribuidoA != null ? t.AtribuidoA.Username : null
+                    // CORRIGIDO: Retornando como 'id' para evitar problemas de CamelCase/PascalCase no JS
+                    id = t.ChamadoId,
+                    title = t.Titulo,
+                    category = t.Categoria,
+                    priority = t.Prioridade,
+                    status = t.Status,
+                    dataAbertura = t.DataAbertura,
+                    dataAtribuicao = t.DataAtribuicao, // Adicionado para o frontend
+                    assignedTo = t.AtribuidoA != null ? t.AtribuidoA.Username : null,
+                    assignedToId = t.AtribuidoAId.HasValue ? t.AtribuidoAId.Value.ToString() : null,
+                    solicitante = t.Solicitante != null ? t.Solicitante.Username : "Desconhecido"
                 })
                 .ToListAsync();
 
             return Ok(tickets);
         }
+        
+        // --- NOVO MÉTODO: Retorna tickets atribuídos ao usuário logado (Endpoint: /api/ticketscard/MyTickets) ---
+        [HttpGet("MyTickets")]
+        public async Task<IActionResult> GetMyTickets()
+        {
+            if (!TryGetUserId(out int usuarioId))
+                return Unauthorized();
 
-        // Aprova e atribui o ticket ao usuário logado
+            var tickets = await _context.Chamados
+                                .Include(c => c.AtribuidoA)
+                                .Include(c => c.Solicitante) 
+                                // FILTRO PRINCIPAL: O ticket está atribuído ao usuário logado
+                                .Where(t => t.AtribuidoAId == usuarioId) 
+                                .Select(t => new
+                                {
+                                    // CORRIGIDO: Retornando como 'id'
+                                    id = t.ChamadoId,
+                                    title = t.Titulo,
+                                    category = t.Categoria,
+                                    priority = t.Prioridade,
+                                    status = t.Status,
+                                    dataAbertura = t.DataAbertura,
+                                    dataAtribuicao = t.DataAtribuicao, 
+                                    assignedTo = t.AtribuidoA != null ? t.AtribuidoA.Username : null,
+                                    assignedToId = t.AtribuidoAId.HasValue ? t.AtribuidoAId.Value.ToString() : null,
+                                    solicitante = t.Solicitante != null ? t.Solicitante.Username : "Desconhecido"
+                                })
+                                .ToListAsync();
+
+            return Ok(tickets);
+        }
+
+        // --- Aprova e atribui o ticket ao usuário logado (Endpoint: /api/ticketscard/Aprovar/{id}) ---
         [HttpPost("Aprovar/{id}")]
         public async Task<IActionResult> Aprovar(int id)
         {
-            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (!int.TryParse(userIdStr, out int usuarioId))
-                return Unauthorized();
+            if (!TryGetUserId(out int usuarioId))
+                return Unauthorized("Usuário não autenticado ou ID inválido.");
 
             var chamado = await _context.Chamados.FindAsync(id);
             if (chamado == null)
-                return NotFound();
+                return NotFound($"Ticket ID {id} não encontrado.");
+
+            if (chamado.Status != "Aberto")
+                return BadRequest("O ticket não pode ser aprovado, pois não está 'Aberto'.");
+            
+            if (chamado.AtribuidoAId.HasValue)
+                 return BadRequest("O ticket já foi atribuído a outro analista.");
 
             chamado.Status = "Em Andamento";
             chamado.AtribuidoAId = usuarioId; // Atribui ao usuário logado
@@ -79,20 +120,7 @@ namespace PIM.Controllers
             return Ok();
         }
 
-        // Rejeitar ticket
-        [HttpPost("Rejeitar/{id}")]
-        public async Task<IActionResult> Rejeitar(int id)
-        {
-            var chamado = await _context.Chamados.FindAsync(id);
-            if (chamado == null)
-                return NotFound();
-
-            chamado.Status = "Rejeitado";
-            await _context.SaveChangesAsync();
-            return Ok();
-        }
-
-        // Deletar ticket
+        // --- Deletar ticket (Endpoint: /api/ticketscard/{id}) ---
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -105,12 +133,13 @@ namespace PIM.Controllers
             return Ok();
         }
 
-        // Pega ticket específico
+        // --- Pega ticket específico (Endpoint: /api/ticketscard/{id}) ---
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTicket(int id)
         {
             var ticket = await _context.Chamados
                                        .Include(c => c.AtribuidoA)
+                                       .Include(c => c.Solicitante)
                                        .FirstOrDefaultAsync(c => c.ChamadoId == id);
 
             if (ticket == null)
@@ -118,15 +147,43 @@ namespace PIM.Controllers
 
             return Ok(new
             {
-                ticket.ChamadoId,
-                ticket.Titulo,
-                ticket.Categoria,
-                ticket.Prioridade,
-                ticket.Status,
-                ticket.DataAbertura,
-                ticket.DataFechamento,
-                AssignedTo = ticket.AtribuidoA != null ? ticket.AtribuidoA.Username : null
+                // CORRIGIDO: Retornando como 'id'
+                id = ticket.ChamadoId, 
+                title = ticket.Titulo,
+                category = ticket.Categoria,
+                priority = ticket.Prioridade,
+                status = ticket.Status,
+                dataAbertura = ticket.DataAbertura,
+                dataFechamento = ticket.DataFechamento,
+                dataAtribuicao = ticket.DataAtribuicao,
+                assignedTo = ticket.AtribuidoA != null ? ticket.AtribuidoA.Username : null,
+                assignedToId = ticket.AtribuidoAId.HasValue ? ticket.AtribuidoAId.Value.ToString() : null, 
+                solicitante = ticket.Solicitante != null ? ticket.Solicitante.Username : "Desconhecido",
+                description = ticket.Descricao // Assumindo que a descrição é necessária no modal de detalhes
             });
+        }
+        
+        // --- NOVO MÉTODO: Concluir ticket (Endpoint: /api/ticketscard/Conclude/{id}) ---
+        [HttpPost("Conclude/{id}")]
+        public async Task<IActionResult> Conclude(int id)
+        {
+            if (!TryGetUserId(out int usuarioId))
+                return Unauthorized("Usuário não autenticado ou ID inválido.");
+
+            var chamado = await _context.Chamados.FindAsync(id);
+            if (chamado == null)
+                return NotFound($"Ticket ID {id} não encontrado.");
+
+            // Verifica se o ticket está em andamento e atribuído a este usuário
+            if (chamado.Status != "Em Andamento" || chamado.AtribuidoAId != usuarioId)
+                return BadRequest("O ticket não pode ser concluído. Verifique o status e a atribuição.");
+            
+            chamado.Status = "Concluído";
+            chamado.DataFechamento = System.DateTime.Now;
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
     }
 }

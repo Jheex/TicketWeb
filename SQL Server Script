@@ -157,9 +157,9 @@ VALUES
 (58, 7, 'Problema de autenticação LDAP', 'Usuários não conseguem logar via Active Directory.', 'Network', 'Alta', 'Aberto', '2025-09-11 08:10:00.000', NULL, NULL, NULL, NULL, NULL),
 (59, 8, 'Erro na impressora multifuncional', 'Scanner não funciona, apenas impressora está operacional.', 'Hardware', 'Média', 'Em Andamento', '2025-09-11 08:30:00.000', NULL, NULL, NULL, 3, '2025-09-30 08:45:00.000'),
 (60, 9, 'Falha no login do portal de RH', 'Senha não é reconhecida e não consigo resetar.', 'Software', 'Alta', 'Aberto', '2025-09-11 08:50:00.000', NULL, NULL, NULL, NULL, NULL),
-(61, 1, 'Não consigo acessar o portal interno', 'Ao tentar entrar no portal da empresa, recebo a mensagem "Acesso negado".', 'Acesso', 'Alta', 'Aberto', '2025-09-12 08:10:00.000', NULL, NULL, NULL, 2, '2025-09-29 09:00:00.000'),
+(61, 1, 'Não consigo acessar o portal interno', 'Ao tentar entrar no portal da empresa, recebo a mensagem "Acesso negado".', 'Acesso', 'Alta', 'Em Andamento', '2025-09-12 08:10:00.000', NULL, NULL, NULL, 2, '2025-09-29 09:00:00.000'),
 (62, 2, 'Falha ao autenticar no sistema de vendas', 'Sistema não reconhece minhas credenciais e não permite login.', 'Acesso', 'Urgente', 'Em Andamento', '2025-09-12 08:25:00.000', NULL, NULL, NULL, 3, '2025-09-29 09:15:00.000'),
-(63, 3, 'Sem acesso à VPN da empresa', 'VPN não conecta, mesmo digitando usuário e senha corretos.', 'Acesso', 'Alta', 'Aberto', '2025-09-12 08:40:00.000', NULL, NULL, NULL, 1, '2025-09-29 09:30:00.000');
+(63, 3, 'Sem acesso à VPN da empresa', 'VPN não conecta, mesmo digitando usuário e senha corretos.', 'Acesso', 'Alta', 'Aberto', '2025-09-12 08:40:00.000', NULL, NULL, NULL, NULL, '2025-09-29 09:30:00.000');
 
 
 -- ========================================

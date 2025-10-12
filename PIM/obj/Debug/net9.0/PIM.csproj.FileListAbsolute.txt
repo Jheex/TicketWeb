@@ -172,6 +172,7 @@ C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\ne
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\compressed\p9u8dflo2m-p0uz4vbq2j.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\compressed\8cpvx0sowa-icw6q7ayqu.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\compressed\p6r44bly32-kzumm6279t.gz
+C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\compressed\c5ff8ro7rq-y1qv00hhdg.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\compressed\bcubdw7hft-ydefc5lhya.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\compressed\drb35xfi12-rag2wyjtej.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\compressed\0raazwhrmg-z69xhzb77f.gz
@@ -186,7 +187,6 @@ C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\ne
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\compressed\5s5gvtmgna-lh6ww2brhd.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\compressed\imq2npy10p-vo2336grvj.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\compressed\bbg8qv0a64-pqwhqntwtc.gz
-C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\compressed\atzpz8pic1-y4pkzufls0.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\compressed\x146og1k2s-t1cqhe9u97.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\compressed\xonihe7rhy-c2jlpeoesf.gz
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\compressed\1iuqnl626k-sejl45xvog.gz
@@ -258,5 +258,5 @@ C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\ne
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\PIM.pdb
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\PIM.genruntimeconfig.cache
 C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\ref\PIM.dll
-C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\compressed\c5ff8ro7rq-y1qv00hhdg.gz
-C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\compressed\c6cvn6b1rn-yus4uvl930.gz
+C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\compressed\atzpz8pic1-jlsv1f1pao.gz
+C:\Users\Jhonatan Lima\OneDrive\Área de Trabalho\PIM\TicketWeb\PIM\obj\Debug\net9.0\compressed\c6cvn6b1rn-qal1zuwg1d.gz

@@ -1,3 +1,4 @@
+@using System.Security.Claims
 @{
     ViewData["Title"] = "Histórico de Tickets";
 }
@@ -24,7 +25,6 @@
                 <option value="Aberto">Aberto</option>
                 <option value="Em Andamento">Em Andamento</option>
                 <option value="Concluído">Concluído</option>
-                <option value="Rejeitado">Rejeitado</option>
             </select>
         </div>
         <div class="filter-group">
@@ -119,8 +119,7 @@
                 </div>
                 <div class="modal-actions">
                     <button id="approveBtn" class="ticket-btn ticket-btn-approve">Aprovar</button>
-                    <button id="rejectBtn" class="ticket-btn ticket-btn-reject">Rejeitar</button>
-                    <button id="concludeBtn" class="ticket-btn ticket-btn-details">Concluir</button>
+                    <button id="btnConcluir" class="btn">Concluir</button>
                 </div>
             </div>
         </div>
@@ -129,6 +128,18 @@
 
 <div id="toast" class="toast"></div>
 
+@* ============================================================================== *@
+@* CORREÇÃO CRÍTICA: DEFINIÇÃO DA VARIÁVEL CURRENT_USER_ID ANTES DE CARREGAR O JS *@
+@* ============================================================================== *@
 @section Scripts {
-    <script src="~/js/Tickets.js"></script>
+    @{
+        // Obtém o ID do usuário logado. Se não houver, define como "null" para evitar o erro de ReferenceError.
+        var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "null"; 
+    }
+
+    <script>
+        const CURRENT_USER_ID = "@currentUserId";
+    </script>
+    
+    <script src="~/js/Tickets.js" asp-append-version="true"></script>
 }

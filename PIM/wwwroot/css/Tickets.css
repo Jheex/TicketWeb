@@ -287,6 +287,7 @@ body {
 .ticket-btn-details { background-color: var(--primary-color); color: white; }
 .ticket-btn-details:hover { background-color: var(--primary-light); transform: translateY(-3px) scale(1.03); }
 
+
 /* ===== Modal ===== */
 .modal-overlay {
   position: fixed;
@@ -557,4 +558,26 @@ body {
 .search-wrapper::after,
 .my-tickets-wrapper::after {
   content: none;
+}
+/* Botão "Concluir" verde */
+.ticket-btn-details:contains("Concluir"),
+button.ticket-btn-details.concluir-btn {
+  background-color: #28a745 !important; /* Verde padrão sucesso */
+  color: #fff !important;
+  border: none !important;
+}
+
+.ticket-btn-details:contains("Concluir"):hover,
+button.ticket-btn-details.concluir-btn:hover {
+  background-color: #218838 !important; /* Verde mais escuro no hover */
+}
+
+.ticket-btn-concluir {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+}
+
+.ticket-btn-concluir:hover {
+  background-color: #218838;
 }

@@ -38,6 +38,7 @@ namespace PIM.Controllers
                 priority = c.Prioridade,
                 status = c.Status,
                 assignedTo = c.AtribuidoA != null ? c.AtribuidoA.Username : null,
+                assignedToId = c.AtribuidoAId.HasValue ? c.AtribuidoAId.Value.ToString() : null, // <-- ADICIONADO/CORRIGIDO
                 solicitante = c.Solicitante != null ? c.Solicitante.Username : "Desconhecido",
                 dataAbertura = c.DataAbertura,
                 dataAtribuicao = c.DataAtribuicao
@@ -58,6 +59,7 @@ namespace PIM.Controllers
 
             var tickets = await _context.Chamados
                 .Include(c => c.AtribuidoA)
+                .Include(c => c.Solicitante)
                 .Where(c => c.AtribuidoAId == userId)
                 .OrderByDescending(c => c.ChamadoId)
                 .ToListAsync();
@@ -70,6 +72,8 @@ namespace PIM.Controllers
                 priority = c.Prioridade,
                 status = c.Status,
                 assignedTo = c.AtribuidoA != null ? c.AtribuidoA.Username : null,
+                assignedToId = c.AtribuidoAId.HasValue ? c.AtribuidoAId.Value.ToString() : null, // <-- ADICIONADO/CORRIGIDO
+                solicitante = c.Solicitante != null ? c.Solicitante.Username : "Desconhecido",
                 dataAbertura = c.DataAbertura,
                 dataAtribuicao = c.DataAtribuicao
             });
@@ -103,6 +107,7 @@ namespace PIM.Controllers
                 dataFechamento = ticket.DataFechamento,
                 dataAtribuicao = ticket.DataAtribuicao,
                 assignedTo = ticket.AtribuidoA != null ? ticket.AtribuidoA.Username : "Não atribuído",
+                assignedToId = ticket.AtribuidoAId.HasValue ? ticket.AtribuidoAId.Value.ToString() : null, // <-- ADICIONADO/CORRIGIDO
                 solicitante = ticket.Solicitante != null ? ticket.Solicitante.Username : "Desconhecido"
             };
 
@@ -119,6 +124,7 @@ namespace PIM.Controllers
             if (ticket.Status != "Aberto")
                 return BadRequest("Ticket já está em andamento ou concluído.");
 
+            // Lógica CORRETA: Atribui o ID do usuário logado (Analista) e muda o status.
             ticket.Status = "Em Andamento";
             ticket.AtribuidoAId = GetCurrentUserId();
             ticket.DataAtribuicao = DateTime.Now;
@@ -141,19 +147,6 @@ namespace PIM.Controllers
             ticket.DataFechamento = DateTime.Now;
 
             await _context.SaveChangesAsync();
-            return Ok();
-        }
-
-        // POST: api/TicketsApi/reject/5
-        [HttpPost("reject/{id}")]
-        public async Task<IActionResult> Reject(int id)
-        {
-            var ticket = await _context.Chamados.FindAsync(id);
-            if (ticket == null) return NotFound();
-
-            ticket.Status = "Rejeitado";
-            await _context.SaveChangesAsync();
-
             return Ok();
         }
 

@@ -10,7 +10,7 @@ namespace PIM.ViewModels
         // Filtro por data de abertura máxima
         public DateTime? EndDate { get; set; }
 
-        // Filtro por status do chamado (Pendente, Aprovado, Rejeitado, etc)
+        // Filtro por status do chamado (Pendente, Aprovado, etc)
         public string? Status { get; set; }
 
         // Filtro por administrador responsável

@@ -13,11 +13,11 @@ namespace PIM.Models
         public string Descricao { get; set; } = string.Empty;
 
         [Required]
-        public string Status { get; set; } = "Pendente"; // Pendente, Aprovado, Rejeitado
+        public string Status { get; set; } = "Pendente"; // Pendente, Aprovado,
 
         [Required]
         public DateTime DataCriacao { get; set; } = DateTime.Now;
 
-        public string? ComentarioAdmin { get; set; } // Comentário do admin ao aprovar/rejeitar
+        public string? ComentarioAdmin { get; set; } // Comentário do admin ao aprovar
     }
 }
