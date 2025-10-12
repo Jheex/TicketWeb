@@ -311,7 +311,7 @@ body {
   to { opacity: 1; }
 }
 
-.modal-content {
+.modal-contents {
   background-color: #1A0D3A;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
@@ -348,39 +348,39 @@ body {
 }
 
 /* Corpo do Modal - Layout de Duas Colunas */
-.modal-body {
+.modal-bodya {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px 30px;
 }
 
 /* Coluna esquerda: Dados */
-.modal-body .left-column {
+.modal-bodya .left-column {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.modal-body .left-column .data-field {
+.modal-bodya .left-column .data-field {
   display: flex;
   flex-direction: row;
   align-items: baseline;
   gap: 8px;
 }
 
-.modal-body .left-column .data-field strong {
+.modal-bodya .left-column .data-field strong {
   color: #ccc;
   font-weight: bold;
   font-size: 16px;
 }
 
-.modal-body .left-column .data-field span {
+.modal-bodya .left-column .data-field span {
   color: #eee;
   font-size: 16px;
   word-wrap: break-word;
 }
 
-.modal-body .left-column .info-row {
+.modal-bodya .left-column .info-row {
   display: flex;
   flex-direction: row;
   align-items: baseline;
@@ -389,13 +389,13 @@ body {
 }
 
 /* Coluna direita: Descrição e Botões */
-.modal-body .right-column {
+.modal-bodya .right-column {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.modal-body .right-column .modal-description {
+.modal-bodya .right-column .modal-description {
   background-color: rgba(255,255,255,0.05);
   padding: 15px;
   border-radius: 8px;
@@ -404,7 +404,7 @@ body {
 }
 
 /* Container dos botões */
-.modal-body .right-column .modal-actions {
+.modal-bodya .right-column .modal-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;

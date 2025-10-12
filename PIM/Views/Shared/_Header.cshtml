@@ -37,15 +37,14 @@
                     <i id="theme-icon" class="bi bi-sun-fill"></i>
                 </button>
 
-                <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline" id="logoutForm">
-                    <button type="button" 
-                            class="btn btn-logout" 
-                            title="Sair"
-                            data-bs-toggle="modal" 
-                            data-bs-target="#confirmLogoutModal">
-                        <i class="fa-solid fa-right-from-bracket"></i> Log Out
-                    </button>
-                </form>
+                @* AÇÃO CRÍTICA: Removido o formulário desnecessário. O botão agora APENAS abre o modal *@
+                <button type="button" 
+                        class="btn btn-logout" 
+                        title="Sair"
+                        data-bs-toggle="modal" 
+                        data-bs-target="#confirmLogoutModal">
+                    <i class="fa-solid fa-right-from-bracket"></i> Log Out
+                </button>
             </div>
         </div>
     </div>

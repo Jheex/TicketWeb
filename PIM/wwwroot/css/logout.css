@@ -1,0 +1,123 @@
+/* =================================================================
+   ESTILOS PERSONALIZADOS PARA O MODAL DE LOGOUT
+   Botões Grandes (Full-width) com Brilho e Animação
+   ================================================================= */
+
+/* --- Variáveis de Tema (Cores para o novo visual) --- */
+:root {
+  /* Cores Roxo/Brilhante (Botão Ficar) */
+  --color-purple-primary: #8E2DE2; 
+  --color-purple-hover: #4A00E0; 
+  --color-purple-shadow: rgba(142, 45, 226, 0.7); 
+
+  /* Cores Botão Sair (Vermelho com Brilho) */
+  --color-danger-primary: #E53E3E; 
+  --color-danger-hover: #C53030;
+  --color-danger-shadow: rgba(229, 62, 62, 0.7); /* Sombra para o brilho vermelho */
+
+  /* Cores de Fundo do Modal */
+  --modal-bg: #FFFFFF; 
+  --modal-header-footer-bg: #F8F8F8; 
+  --modal-text: #222222; 
+  --modal-border: #E0E0E0; 
+}
+
+/* Ajustes para o Tema Dark */
+html[data-theme='dark'] {
+    --modal-bg: #1A1A1A; 
+    --modal-header-footer-bg: #2C2C2C;
+    --modal-text: #F3F4F6;
+    --modal-border: #444444;
+}
+
+
+/* ----------------------------------- */
+/* 1. Estilo do Container Principal e Header/Body */
+/* ----------------------------------- */
+.modal-logout-custom {
+    background-color: var(--modal-bg); 
+    color: var(--modal-text);
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border: none;
+}
+
+.modal-logout-custom .modal-header {
+    background-color: var(--modal-header-footer-bg); 
+    border-bottom: 1px solid var(--modal-border);
+    padding: 1rem 1.5rem;
+}
+
+.modal-logout-custom .modal-title {
+    font-weight: 700; 
+    font-size: 1.35rem;
+}
+
+.modal-logout-custom .modal-body {
+    padding: 2rem 1.5rem; 
+    font-size: 1.1rem;
+    color: var(--modal-text); 
+    text-align: center;
+}
+
+
+/* ----------------------------------- */
+/* 2. Estilo do Footer e Botões Grandes (CRÍTICO) */
+/* ----------------------------------- */
+.modal-logout-custom form .modal-footer {
+    background-color: var(--modal-header-footer-bg); 
+    border-top: 1px solid var(--modal-border);
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column; 
+    gap: 10px; 
+}
+
+/* Estilo Base para Todos os Botões */
+.modal-logout-custom .modal-footer button {
+    width: 100%; 
+    padding: 0.8rem 1.5rem; 
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out; /* Aplica a transição para ambos */
+}
+
+/* Botão Ficar (ROXO BRILHANTE) */
+.modal-logout-custom .btn-cancel-logout {
+    background-color: var(--color-purple-primary);
+    border: 2px solid var(--color-purple-primary);
+    color: white !important;
+    justify-content: center;
+    
+    /* Brilho Inicial */
+    box-shadow: 0 0 10px var(--color-purple-shadow); 
+}
+
+.modal-logout-custom .btn-cancel-logout:hover {
+    background-color: var(--color-purple-hover);
+    border-color: var(--color-purple-hover);
+    
+    /* Efeito de Brilho Mais Intenso + Animação */
+    box-shadow: 0 0 20px var(--color-purple-shadow), 0 0 5px rgba(255, 255, 255, 0.8);
+    transform: scale(1.01); 
+}
+
+/* Botão Sair (VERMELHO COM BRILHO) */
+.modal-logout-custom .btn-confirm-logout {
+    background-color: var(--color-danger-primary);
+    border: 1px solid var(--color-danger-primary);
+    color: white !important;
+    
+    /* Brilho Inicial aplicado ao Sair */
+    box-shadow: 0 0 10px var(--color-danger-shadow); 
+}
+
+.modal-logout-custom .btn-confirm-logout:hover {
+    background-color: var(--color-danger-hover);
+    border-color: var(--color-danger-hover);
+    
+    /* Efeito de Brilho Mais Intenso + Animação */
+    box-shadow: 0 0 20px var(--color-danger-shadow), 0 0 5px rgba(255, 255, 255, 0.8);
+    transform: scale(1.01); 
+}
