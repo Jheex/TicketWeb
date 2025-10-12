@@ -337,6 +337,7 @@ INSERT INTO dbo.Faqs (Pergunta, Resposta, Categoria, Ordem) VALUES
 ('Como exportar tickets internos por usuário?', 'Na Tela de Relatórios, filtre por Tipo "Interno" e Usuário e clique em "Exportar".', 'Relatórios', 148),
 ('Como consultar tickets com múltiplos anexos?', 'Na Tela de Tickets, filtre "Com Anexos" e verifique a quantidade de arquivos em cada ticket.', 'Tickets', 149),
 ('Como consultar tickets pendentes de aprovação?', 'Na Tela de Tickets, filtre Status "Aberto" ou "Pendente de Aprovação".', 'Tickets', 150);
+
 SET IDENTITY_INSERT Chamados OFF;
 GO
 

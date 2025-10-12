@@ -1,6 +1,7 @@
-// Arquivo: wwwroot/js/relatorio.js - VERSÃO FINAL (ROXO TEMA DARK MODE COM ORDENAÇÃO)
+// Arquivo: wwwroot/js/relatorio.js - VERSÃO FINAL COMPLETA
 
 // URL do seu endpoint no Controller C#
+// OBS: Você precisará implementar o endpoint /RelatorioGerencial/ObterDados no seu Controller
 const API_URL = '/RelatorioGerencial/ObterDados';
 
 // =======================================================
@@ -12,7 +13,7 @@ const CHART_COLORS = {
     primary: '#8C6AFF', // Roxo Principal (Mais Vibrante)
     secondary: '#5C3CFF', // Roxo Secundário (Original, usado como fallback)
 
-    // Cores de Status e Fatias do Gráfico (mantidas para o gráfico de rosca/categorias)
+    // Cores de Status e Fatias do Gráfico
     danger: '#FF6B6B',
     warning: '#FFD93D',
     success: '#6BCB77',
@@ -20,7 +21,7 @@ const CHART_COLORS = {
     accent: '#FF7F50',
 
     text: '#E0E0E0', // Branco/Cinza claro para texto (garante contraste)
-    grid: 'rgba(224, 224, 224, 0.15)',
+    grid: 'rgba(224, 224, 255, 0.15)',
     background: '#2b3e50' // Fundo do container do gráfico
 };
 
@@ -41,7 +42,6 @@ const darkChartConfig = {
             display: true,
             color: 'white',
             padding: { top: 0, bottom: 20 },
-            // 🛑 NOVO: Aumentando o tamanho da fonte do título para 24
             font: { size: 24, weight: 'bold' }
         },
         tooltip: {
@@ -54,7 +54,6 @@ const darkChartConfig = {
     },
     scales: {
         y: {
-            // Garante que o eixo Y comece em 0
             beginAtZero: true,
             grid: { color: CHART_COLORS.grid, drawBorder: false, borderDash: [2, 2] },
             ticks: { color: CHART_COLORS.text },
@@ -68,7 +67,107 @@ const darkChartConfig = {
 };
 
 // =======================================================
-// FUNÇÕES DE UTILIDADE
+// FUNÇÕES DE EXPORTAÇÃO E IMPRESSÃO
+// =======================================================
+
+/**
+ * Exporta o gráfico como um arquivo PDF, garantindo fundo escuro.
+ * Requer as bibliotecas jspdf e html2canvas.
+ */
+function exportChartToPDF(canvasId, filename) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas || !window.jspdf || !window.jspdf.jsPDF) {
+        console.error(`Canvas com ID ${canvasId} ou biblioteca jspdf não encontrado.`);
+        alert("Erro: Bibliotecas de exportação (jsPDF) não carregadas. Verifique a seção 'Scripts' no seu HTML.");
+        return;
+    }
+
+    const imgData = canvas.toDataURL('image/png', 1.0);
+    const pdf = new window.jspdf.jsPDF({
+        orientation: 'landscape', 
+    });
+
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+    
+    // Fundo Escuro (Cor do tema principal: #1A0D3A)
+    const backgroundColor = '#1A0D3A';
+    pdf.setFillColor(backgroundColor);
+    pdf.rect(0, 0, pdfWidth, pdfHeight, 'F');
+
+    const imgProps = pdf.getImageProperties(imgData);
+    const imgWidth = pdfWidth - 20;
+    const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
+    
+    const x = 10;
+    const y = (pdfHeight - imgHeight) / 2;
+
+    pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
+    pdf.save(`${filename}.pdf`);
+}
+
+
+/**
+ * Exporta os dados do gráfico para um arquivo CSV (Excel).
+ */
+function exportDataToCSV(chartId, filename) {
+    let chartInstance = null;
+
+    if (chartId === 'graficoTecnicos') {
+        chartInstance = graficoTecnicosInstance;
+    } else if (chartId === 'graficoCategorias') {
+        chartInstance = graficoCategoriasInstance;
+    }
+
+    if (!chartInstance) {
+        console.error(`Instância do gráfico ${chartId} não encontrada.`);
+        alert("Erro: Dados do gráfico não estão disponíveis para exportação CSV.");
+        return;
+    }
+
+    const { labels } = chartInstance.data;
+    const { datasets } = chartInstance.data;
+    
+    if (!labels || !datasets || datasets.length === 0) {
+        console.error("Dados do gráfico estão vazios.");
+        return;
+    }
+
+    // Cria o cabeçalho usando ; como separador (padrão Excel PT-BR)
+    const headers = ["Item", ...datasets.map(d => d.label)];
+    const csvRows = [headers.join(';')];
+
+    // Preenche as linhas de dados
+    labels.forEach((label, index) => {
+        const row = [
+            `"${label}"`,
+            ...datasets.map(d => d.data[index] || 0)
+        ];
+        csvRows.push(row.join(';'));
+    });
+
+    // Converte para Blob e dispara o download (com BOM para acentuação)
+    const csvString = csvRows.join('\n');
+    const blob = new Blob(["\uFEFF" + csvString], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement("a");
+    
+    link.href = URL.createObjectURL(blob);
+    link.download = `${filename}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+/**
+ * Dispara a impressão da aba ativa.
+ * A visibilidade será controlada pelo @media print no CSS.
+ */
+function printActiveGraph() {
+    window.print();
+}
+
+// =======================================================
+// FUNÇÕES DE UTILIDADE E PROCESSAMENTO DE DADOS
 // =======================================================
 
 function animateCount(element, duration = 1000) {
@@ -78,9 +177,7 @@ function animateCount(element, duration = 1000) {
 
     if (isNaN(end)) return;
 
-    // Usa toFixed(1) para percentuais e 0 para inteiros (horas)
     const decimalPlaces = element.textContent.includes('%') ? 1 : 0;
-
     const textContent = element.textContent || "";
     const suffix = textContent.includes('%') ? '%' :
         textContent.includes('h') ? 'h' : '';
@@ -107,21 +204,11 @@ function animateCount(element, duration = 1000) {
     requestAnimationFrame(update);
 }
 
-// =======================================================
-// PRÉ-PROCESSAMENTO E ORDENAÇÃO
-// =======================================================
 
-/**
- * Unifica categorias com nomes semelhantes (ex: Network e Rede/Segurança).
- * @param {Array<Object>} categoriasData - Dados originais da API.
- * @returns {Array<Object>} Dados com categorias unificadas.
- */
 function preprocessCategorias(categoriasData) {
     const unifiedMap = new Map();
-
-    // Lista de categorias que devem ser unificadas sob o mesmo nome
     const unificationTargets = ['Network', 'Rede/Segurança'];
-    const unifiedName = 'Rede e Segurança'; // O nome final desejado
+    const unifiedName = 'Rede e Segurança';
 
     categoriasData.forEach(item => {
         let categoryName = item.categoria;
@@ -134,7 +221,6 @@ function preprocessCategorias(categoriasData) {
         unifiedMap.set(categoryName, currentTotal + item.total);
     });
 
-    // Converte o Map de volta para o formato de array esperado pelo Chart.js
     const unifiedData = [];
     unifiedMap.forEach((total, categoria) => {
         unifiedData.push({ categoria, total });
@@ -144,29 +230,17 @@ function preprocessCategorias(categoriasData) {
 }
 
 
-/**
- * Ordena os dados de categoria alfabeticamente, movendo 'Outros' para o final.
- * 🛑 MELHORIA 1: Cria uma cópia para garantir a imutabilidade do array original.
- * @param {Array<Object>} data - Dados de categoria pré-processados.
- * @returns {Array<Object>} Dados de categoria ordenados.
- */
 function sortCategorias(data) {
-    // Cria uma cópia do array para ordenar sem modificar o original (Imutabilidade)
     const dataCopy = [...data];
-
-    // 1. Encontra e remove "Outros" (case insensitive) da cópia
     const outrosIndex = dataCopy.findIndex(item => item.categoria.toLowerCase() === 'outros');
     let outrosItem = null;
 
     if (outrosIndex !== -1) {
-        // .splice retorna um array, pegamos o primeiro elemento [0]
         outrosItem = dataCopy.splice(outrosIndex, 1)[0];
     }
 
-    // 2. Ordena o restante alfabeticamente
     dataCopy.sort((a, b) => a.categoria.localeCompare(b.categoria));
 
-    // 3. Adiciona "Outros" de volta ao final, se existir
     if (outrosItem) {
         dataCopy.push(outrosItem);
     }
@@ -182,18 +256,12 @@ function updateSection(sectionId, data) {
     const section = document.getElementById(sectionId);
     if (!section) return;
 
-    // 🛑 MELHORIA 3: Usando const para o mapeamento
     const MAP_FIELDS = {
         'resumo': {
             abertos: '.card-abertos .count',
             andamento: '.card-andamento .count',
             finalizados: '.card-finalizados .count',
             taxaConclusao: '.card-conclusao .count'
-        },
-        'kpis': {
-            sla: '.card-sla .count',
-            mttr: '.card-mttr .count',
-            eficiencia: '.card-eficiencia .count'
         }
     };
 
@@ -201,10 +269,8 @@ function updateSection(sectionId, data) {
     const isActive = section.classList.contains('active');
 
     for (const apiField in targetMap) {
-        // 🛑 MELHORIA 3: Usando desestruturação para obter seletor
         const selector = targetMap[apiField];
         const element = section.querySelector(selector);
-        // 🛑 MELHORIA 3: Usando const para valor e destructuring
         const value = data[apiField];
 
         if (element) {
@@ -212,27 +278,19 @@ function updateSection(sectionId, data) {
 
             element.setAttribute('data-valor', numericValue);
 
-             // Apenas exibe N/A se o valor for indefinido ou nulo
-             if (sectionId === 'kpis' && (value === undefined || value === null)) {
-                 element.textContent = 'N/A';
-                 continue;
-             }
-
             if (isActive) {
-                 if (typeof numericValue !== 'number' || isNaN(numericValue)) {
-                     element.textContent = value;
-                 } else {
-                     animateCount(element);
-                 }
+                if (typeof numericValue !== 'number' || isNaN(numericValue)) {
+                    element.textContent = value;
+                } else {
+                    animateCount(element);
+                }
             } else {
-                 // Formatação para exibição rápida quando a aba está inativa
-                 let decimalPlaces = (apiField === 'taxaConclusao' || apiField === 'sla') ? 1 : 0;
-                 let displayValue = typeof numericValue === 'number' && !isNaN(numericValue) ? numericValue.toFixed(decimalPlaces) : value;
+                let decimalPlaces = (apiField === 'taxaConclusao') ? 1 : 0;
+                let displayValue = typeof numericValue === 'number' && !isNaN(numericValue) ? numericValue.toFixed(decimalPlaces) : value;
 
-                 if (apiField === 'taxaConclusao' || apiField === 'sla') displayValue += '%';
-                 else if (apiField === 'mttr') displayValue += 'h';
+                if (apiField === 'taxaConclusao') displayValue += '%';
 
-                 element.textContent = displayValue;
+                element.textContent = displayValue;
             }
         }
     }
@@ -241,24 +299,18 @@ function updateSection(sectionId, data) {
 
 function updateDashboard(data) {
     updateSection('resumo', data);
-    updateSection('kpis', data);
 
     const tecnicosSection = document.getElementById('tecnicos');
     const categoriasSection = document.getElementById('categorias');
 
-    // Sempre tenta desenhar os gráficos se a aba estiver ativa para garantir a visualização correta
     if (tecnicosSection && tecnicosSection.classList.contains('active')) {
         renderGraficoTecnicos(data.tecnicos);
     } 
 
     if (categoriasSection && categoriasSection.classList.contains('active')) {
-         // 1. Aplica o pré-processamento de categorias para unificação
-         const categoriasUnificadas = preprocessCategorias(data.categorias);
-
-         // 2. Ordena as categorias (alfabética, com "Outros" por último)
-         const categoriasOrdenadas = sortCategorias(categoriasUnificadas);
-
-         renderGraficoCategorias(categoriasOrdenadas);
+          const categoriasUnificadas = preprocessCategorias(data.categorias);
+          const categoriasOrdenadas = sortCategorias(categoriasUnificadas);
+          renderGraficoCategorias(categoriasOrdenadas);
     }
 }
 
@@ -276,7 +328,6 @@ function renderGraficoTecnicos(tecnicosData) {
     const finalizados = tecnicosData.map(t => t.finalizados || 0);
     const andamento = tecnicosData.map(t => t.andamento || 0);
 
-    // CÁLCULO DE TOTAIS: Apenas Andamento + Finalizados (Produtividade)
     const totaisProdutividade = labels.map((_, index) =>
         finalizados[index] + andamento[index]
     );
@@ -292,14 +343,12 @@ function renderGraficoTecnicos(tecnicosData) {
         data: {
             labels: labels,
             datasets: [
-                // DATASET 1: Concluídos (Base da pilha)
                 {
                     label: 'Concluídos',
                     data: finalizados,
-                    backgroundColor: '#4A2B99', // 🟣 Roxo mais escuro
+                    backgroundColor: '#4A2B99',
                     stack: 'Stack 0',
                     order: 2,
-                    // Rótulo interno da barra de Concluídos
                     datalabels: {
                         display: (context) => context.dataset.data[context.dataIndex] > 0,
                         color: CHART_COLORS.text,
@@ -312,15 +361,12 @@ function renderGraficoTecnicos(tecnicosData) {
                     },
                     ...barAesthetics
                 },
-
-                // DATASET 2: Em Andamento (Topo da pilha)
                 {
                     label: 'Em Andamento',
                     data: andamento,
-                    backgroundColor: CHART_COLORS.primary, // 🟣 Roxo Principal (vibrante)
+                    backgroundColor: CHART_COLORS.primary,
                     stack: 'Stack 0',
                     order: 1,
-                    // Rótulo interno da barra de Em Andamento
                     datalabels: {
                         display: (context) => context.dataset.data[context.dataIndex] > 0,
                         color: CHART_COLORS.text,
@@ -337,21 +383,16 @@ function renderGraficoTecnicos(tecnicosData) {
         },
         options: {
             ...darkChartConfig,
-
             scales: {
                 y: { ...darkChartConfig.scales.y, stacked: true, beginAtZero: true },
                 x: { ...darkChartConfig.scales.x, stacked: true }
             },
-
             plugins: {
                 ...darkChartConfig.plugins,
                 title: {
                     ...darkChartConfig.plugins.title,
-                    // 🛑 NOVO TÍTULO E FONTE MAIOR
                     text: 'Produtividade por Técnico'
                 },
-
-                // Configuração de DataLabels para o Rótulo de TOTAL no topo
                 datalabels: {
                     display: function(context) {
                         const isLastInStack = context.datasetIndex === 1;
@@ -363,11 +404,10 @@ function renderGraficoTecnicos(tecnicosData) {
                     },
 
                     formatter: (value, context) => {
-                         const total = totaisProdutividade[context.dataIndex];
-                         return total > 0 ? total : '';
+                          const total = totaisProdutividade[context.dataIndex];
+                          return total > 0 ? total : '';
                     },
 
-                    // === APARÊNCIA DO TOTAL NO TOPO ===
                     color: '#FFF',
                     backgroundColor: 'rgba(0, 0, 0, 0.6)',
                     borderRadius: 10,
@@ -392,12 +432,10 @@ function renderGraficoCategorias(categoriasData) {
 
     if (graficoCategoriasInstance) graficoCategoriasInstance.destroy();
 
-    // Os dados já vêm ordenados (graças à função sortCategorias em updateDashboard)
     const labels = categoriasData.map(c => c.categoria);
     const values = categoriasData.map(c => c.total);
     const total = values.reduce((a, b) => a + b, 0);
 
-    // Cores pré-definidas (serão aplicadas na ordem dos dados)
     const backgroundColors = [
         CHART_COLORS.danger,
         CHART_COLORS.warning,
@@ -406,7 +444,7 @@ function renderGraficoCategorias(categoriasData) {
         CHART_COLORS.primary,
         CHART_COLORS.secondary,
         CHART_COLORS.accent,
-        '#A06CD5' // Roxo Adicional
+        '#A06CD5'
     ];
 
 
@@ -432,16 +470,15 @@ function renderGraficoCategorias(categoriasData) {
                 ...darkChartConfig.plugins,
                 legend: {
                     ...darkChartConfig.plugins.legend,
-                    position: 'bottom', // Mantido a legenda abaixo
+                    position: 'bottom',
                     labels: {
                         ...darkChartConfig.plugins.legend.labels,
-                        padding: 25, // Maior espaço entre os itens da legenda
+                        padding: 25,
                         boxWidth: 20
                     }
                 },
                 title: {
                     ...darkChartConfig.plugins.title,
-                    // 🛑 FONTE MAIOR
                     text: 'Distribuição de Chamados por Categoria',
                 },
 
@@ -468,6 +505,7 @@ function renderGraficoCategorias(categoriasData) {
 // =======================================================
 
 async function carregarDadosRelatorio(periodo = '30d', tecnico = 'todos') {
+    // Simulando chamada à API. Implemente a lógica real aqui.
     try {
         const url = `${API_URL}?periodo=${periodo}&tecnico=${tecnico}`;
         const response = await fetch(url);
@@ -478,11 +516,12 @@ async function carregarDadosRelatorio(periodo = '30d', tecnico = 'todos') {
 
     } catch (error) {
         console.error('Erro ao carregar dados do relatório:', error);
+        // Pode-se adicionar uma função para mostrar dados mockados em caso de erro da API
     }
 }
 
 function applyFilters() {
-    // Padrão fixo: últimos 30 dias e todos os técnicos.
+    // Por enquanto, filtros fixos, mas aqui é onde você leria o estado da UI (seletors)
     const dataFiltro = '30d';
     const tecnicoFiltro = 'todos';
 
@@ -496,22 +535,41 @@ function setupEventListeners() {
     tabButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             const target = btn.getAttribute('data-target');
-            // O switchTab agora garante que os dados sejam carregados e a aba atualizada
             switchTab(btn, target, true); 
         });
     });
 
-    document.querySelector('.export-pdf')?.addEventListener('click', () => alert('Funcionalidade de Exportação de PDF em desenvolvimento!'));
-    document.querySelector('.export-excel')?.addEventListener('click', () => alert('Funcionalidade de Exportação de CSV/Excel em desenvolvimento!'));
-    document.querySelector('.export-print')?.addEventListener('click', () => window.print());
+    // Event listeners para Exportar PDF
+    document.querySelectorAll('.export-pdf').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const target = e.currentTarget.getAttribute('data-export-target');
+            const [canvasId] = target.split('-');
+            const filename = canvasId === 'graficoTecnicos' ? 'Relatorio_Tecnicos' : 'Relatorio_Categorias';
+            
+            exportChartToPDF(canvasId, filename);
+        });
+    });
+
+    // Event listeners para Exportar CSV/Excel
+    document.querySelectorAll('.export-excel').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const target = e.currentTarget.getAttribute('data-export-target');
+            const [chartId] = target.split('-');
+            const filename = chartId === 'graficoTecnicos' ? 'Dados_Tecnicos' : 'Dados_Categorias';
+            
+            exportDataToCSV(chartId, filename);
+        });
+    });
+
+    // Event listeners para Imprimir Gráfico (Ctrl+P)
+    document.querySelectorAll('.export-print').forEach(btn => {
+        btn.addEventListener('click', () => {
+             printActiveGraph();
+        });
+    });
 }
 
-/**
- * Ativa uma nova aba e, opcionalmente, recarrega os dados.
- * @param {HTMLElement} btn - O botão da aba clicado.
- * @param {string} targetId - O ID da seção de conteúdo a ser ativada.
- * @param {boolean} shouldLoadData - Se deve recarregar os dados (true para clique manual).
- */
+
 function switchTab(btn, targetId, shouldLoadData = false) {
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -523,26 +581,24 @@ function switchTab(btn, targetId, shouldLoadData = false) {
     const activeSection = document.getElementById(targetId);
     activeSection?.classList.add('active');
 
-    // Recarrega os dados APENAS se o switch foi disparado por um clique.
+    // Força o recarregamento dos dados apenas se a aba for trocada
     if (shouldLoadData) { 
         applyFilters(); 
     }
 }
 
-// 🛑 MELHORIA 2: Simplificação da Lógica de Inicialização
+// Inicialização: Configura os listeners e carrega os dados iniciais
 document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
 
     const initialButton = document.querySelector('.tab-btn.active');
     
-    // 1. Tenta ativar a aba inicial, mas sem recarregar os dados, apenas a classe 'active'
     if (initialButton) {
         const target = initialButton.getAttribute('data-target');
-        // Usamos switchTab com shouldLoadData = false apenas para definir as classes ativas
+        // A primeira carga de dados ocorre aqui ou via applyFilters
         switchTab(initialButton, target, false); 
     }
     
-    // 2. Sempre carrega os dados uma única vez na inicialização, 
-    // e o updateDashboard cuida de renderizar os KPIS e o gráfico da aba ATIVA.
+    // Força a primeira carga de dados e renderização do dashboard
     applyFilters(); 
 });

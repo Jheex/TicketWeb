@@ -9,14 +9,12 @@
     <header class="dashboard-header">
         <h1>Relatório Gerencial de TI</h1>
         
-        </header>
+    </header>
 
     <nav class="menu-topico">
         <button class="tab-btn active" data-target="resumo"><span>📊</span> Resumo Executivo</button>
         <button class="tab-btn" data-target="tecnicos"><span>👨‍🔧</span> Performance do Time</button>
         <button class="tab-btn" data-target="categorias"><span>🗂️</span> Análise de Categoria</button>
-        <button class="tab-btn" data-target="kpis"><span>⚙️</span> Métricas Críticas (KPIs)</button>
-        <button class="tab-btn" data-target="exportar"><span>📑</span> Relatórios & Exportação</button>
     </nav>
 
     <div class="dashboard-sections">
@@ -46,36 +44,21 @@
             <div class="grafico-container">
                 <canvas id="graficoTecnicos"></canvas>
             </div>
+            <div class="export-buttons">
+                <button class="export-btn export-pdf" data-export-target="graficoTecnicos-pdf">📤 Exportar PDF</button>
+                <button class="export-btn export-excel" data-export-target="graficoTecnicos-csv">📊 Exportar CSV/Excel</button>
+                <button class="export-btn export-print" data-export-target="graficoTecnicos-print">🖨️ Imprimir Gráfico</button>
+            </div>
         </section>
 
         <section class="tab-content" id="categorias">
             <div class="grafico-container">
                 <canvas id="graficoCategorias"></canvas>
             </div>
-        </section>
-
-        <section class="tab-content" id="kpis">
-            <div class="cards kpis-cards">
-                <div class="card card-sla">
-                    <h3>SLA Cumprido</h3>
-                    <span class="count" data-valor="0">0%</span>
-                </div>
-                <div class="card card-mttr">
-                    <h3>MTTR</h3>
-                    <span class="count" data-valor="0">0h</span>
-                </div>
-                <div class="card card-eficiencia">
-                    <h3>1º Nível Resolução</h3>
-                    <span class="count" data-valor="0">0%</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="tab-content" id="exportar">
             <div class="export-buttons">
-                <button class="export-btn export-pdf">📤 Exportar PDF</button>
-                <button class="export-btn export-excel">📊 Exportar CSV/Excel</button>
-                <button class="export-btn export-print">🖨️ Imprimir Dashboard</button>
+                <button class="export-btn export-pdf" data-export-target="graficoCategorias-pdf">📤 Exportar PDF</button>
+                <button class="export-btn export-excel" data-export-target="graficoCategorias-csv">📊 Exportar CSV/Excel</button>
+                <button class="export-btn export-print" data-export-target="graficoCategorias-print">🖨️ Imprimir Gráfico</button>
             </div>
         </section>
 
@@ -85,5 +68,9 @@
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
     <script src="~/js/relatorio.js" asp-append-version="true"></script>
 }

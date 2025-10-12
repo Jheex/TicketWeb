@@ -1,5 +1,5 @@
 /* ======================================================= */
-/* 0. VARIÁVEIS CSS (TEMA ROXO/DARK MODE)                  */
+/* 0. VARIÁVEIS CSS (TEMA ROXO/DARK MODE)                  */
 /* ======================================================= */
 :root {
     /* Cores Roxo */
@@ -13,7 +13,7 @@
     --background-gradient-end: #2C1B52;
     
     /* Componentes Transparentes/Blur */
-    --card-bg: rgba(70, 56, 128, 0.6);   /* Fundo do Card (Blur) */
+    --card-bg: rgba(70, 56, 128, 0.6); /* Fundo do Card (Blur) */
     --filter-bg: rgba(70, 56, 128, 0.8); /* Fundo da área de Filtros */
     
     /* Tipografia e Efeitos */
@@ -25,14 +25,14 @@
     --border-radius-md: 12px;
 
     /* Cores de Status/Resumo (Mantendo o contraste) */
-    --color-status-open: #FF6B6B;      /* Vermelho: Abertos */
-    --color-status-pending: #FFD93D;   /* Amarelo: Em Andamento */
-    --color-status-closed: #6BCB77;    /* Verde: Finalizados */
-    --color-status-info: #4D96FF;      /* Azul: Conclusão / Eficiência */
+    --color-status-open: #FF6B6B; /* Vermelho: Abertos */
+    --color-status-pending: #FFD93D;  /* Amarelo: Em Andamento */
+    --color-status-closed: #6BCB77; /* Verde: Finalizados */
+    --color-status-info: #4D96FF; /* Azul: Conclusão / Eficiência */
 }
 
 /* ======================================================= */
-/* 1. LAYOUT GERAL E TIPOGRAFIA                            */
+/* 1. LAYOUT GERAL E TIPOGRAFIA                            */
 /* ======================================================= */
 body {
     min-height: 100vh;
@@ -65,7 +65,7 @@ body {
 }
 
 /* ======================================================= */
-/* 2. FILTROS E BOTÕES                                     */
+/* 2. FILTROS E BOTÕES                                     */
 /* ======================================================= */
 .filter-controls {
     display: flex;
@@ -118,11 +118,12 @@ body {
 
 
 /* ======================================================= */
-/* 3. MENU DE NAVEGAÇÃO (ABAS)                             */
+/* 3. MENU DE NAVEGAÇÃO (ABAS)                             */
 /* ======================================================= */
 .menu-topico {
     display: flex;
-    justify-content: flex-start;
+    /* 🛑 AJUSTE: Centralizando os botões de tópicos */
+    justify-content: center;
     margin-bottom: 25px;
     border-bottom: 2px solid rgba(255, 255, 255, 0.1);
 }
@@ -151,12 +152,14 @@ body {
 }
 
 /* ======================================================= */
-/* 4. CARDS (RESUMO E KPIs)                                */
+/* 4. CARDS (RESUMO)                                        */
 /* ======================================================= */
 .cards {
     display: flex;
     flex-wrap: wrap;
     gap: 25px;
+    /* 🛑 MELHORIA: Centralizar os cards dentro da seção */
+    justify-content: center;
 }
 
 .card {
@@ -207,19 +210,9 @@ body {
 .card-conclusao { border-left-color: var(--color-status-info); }
 .card-conclusao .count { color: var(--color-status-info); }
 
-/* KPI Cards */
-.kpis-cards .card-sla { border-left-color: var(--primary-color); }
-.kpis-cards .card-sla .count { color: var(--primary-light); } /* Roxo claro */
-
-.kpis-cards .card-mttr { border-left-color: var(--color-accent); } /* Não definida, usando accent do tema anterior */
-.kpis-cards .card-mttr .count { color: #FF7F50; } 
-
-.kpis-cards .card-eficiencia { border-left-color: var(--color-secondary); } /* Não definida, usando secondary do tema anterior */
-.kpis-cards .card-eficiencia .count { color: #5C3CFF; }
-
 
 /* ======================================================= */
-/* 5. GRÁFICOS E EXPORTAÇÃO                                */
+/* 5. GRÁFICOS E EXPORTAÇÃO                                */
 /* ======================================================= */
 
 .dashboard-sections {
@@ -242,6 +235,10 @@ body {
 
 .grafico-container {
     width: 100%;
+    /* 🛑 MELHORIA: Centralizar o gráfico horizontalmente na seção */
+    margin-left: auto;
+    margin-right: auto;
+    
     height: 550px;
     background: var(--background-dark); 
     padding: 30px;
@@ -251,7 +248,8 @@ body {
 
 .export-buttons {
     display: flex;
-    justify-content: flex-end;
+    /* 🛑 AJUSTE: Centralizando os botões de exportação */
+    justify-content: center;
     gap: 10px;
     padding: 20px 0;
 }
@@ -277,7 +275,7 @@ body {
 .export-print { background-color: #6c757d; }
 
 /* ======================================================= */
-/* 6. RESPONSIVIDADE BÁSICA                                */
+/* 6. RESPONSIVIDADE BÁSICA                                */
 /* ======================================================= */
 
 @media (max-width: 992px) {
@@ -289,6 +287,10 @@ body {
     }
     .filter-controls > * {
         flex: 1 1 45%;
+    }
+    .export-buttons {
+        /* Garante que os botões quebrem em telas menores */
+        flex-wrap: wrap;
     }
 }
 
@@ -309,5 +311,63 @@ body {
     }
     .filter-controls > * {
         flex: 1 1 100%;
+    }
+}
+/* ======================================================= */
+/* 7. ESTILOS DE IMPRESSÃO (@media print) */
+/* ======================================================= */
+
+@media print {
+    /* Oculta tudo na página por padrão */
+    body * {
+        visibility: hidden;
+        overflow: hidden !important; /* Ajuda a evitar páginas em branco */
+    }
+
+    /* Torna o body visível (para que o conteúdo ativo possa ser posicionado) */
+    body {
+        background: white !important;
+        color: black !important;
+        visibility: visible !important;
+    }
+
+    /* Oculta o header, navegação, botões e cards (KPIS) */
+    .dashboard-header,
+    .menu-topico,
+    .export-buttons,
+    .cards {
+        display: none !important;
+    }
+
+    /* * 1. Torna a SECTION principal do gráfico ativo visível.
+     * 2. Posiciona ela no topo para ser o único conteúdo.
+     */
+    .tab-content.active {
+        visibility: visible !important;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        /* Garante que o container do gráfico e o próprio canvas sejam visíveis */
+    }
+    
+    /* Garante que o container interno do gráfico seja visível */
+    .tab-content.active .grafico-container {
+        visibility: visible !important;
+        width: 100%;
+        height: auto;
+        background: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Garante que o canvas do Chart.js seja visível */
+    .tab-content.active canvas {
+         visibility: visible !important;
+         width: 100% !important;
+         height: auto !important;
+         max-height: 95vh; /* Limita a altura para tentar caber em uma página */
     }
 }
