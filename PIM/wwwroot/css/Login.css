@@ -4,9 +4,9 @@
 :root {
   --font-family-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   
-  --font-size-sm: 0.875rem;   /* 14px */
-  --font-size-base: 1rem;     /* 16px */
-  --font-size-2xl: 1.75rem;   /* 28px -> Título principal */
+  --font-size-sm: 0.875rem;     /* 14px */
+  --font-size-base: 1rem;       /* 16px */
+  --font-size-2xl: 1.75rem;     /* 28px -> Título principal */
 
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -14,16 +14,16 @@
   --font-weight-bold: 700;
 
   /* Espaçamentos ajustados para um layout mais arejado */
-  --spacing-xs: 0.5rem;      /* 8px */
-  --spacing-sm: 0.75rem;     /* 12px */
-  --spacing-md: 1rem;        /* 16px */
-  --spacing-lg: 1.5rem;      /* 24px */
-  --spacing-xl: 2.5rem;      /* 40px */
+  --spacing-xs: 0.5rem;         /* 8px */
+  --spacing-sm: 0.75rem;        /* 12px */
+  --spacing-md: 1rem;           /* 16px */
+  --spacing-lg: 1.5rem;         /* 24px */
+  --spacing-xl: 2.5rem;         /* 40px */
   
   --border-width: 1px;
-  --radius-md: 12px;       /* Bordas mais arredondadas para inputs */
-  --radius-lg: 24px;       /* Raio do container principal */
-  --radius-pill: 50px;     /* Para botões em formato pílula */
+  --radius-md: 12px;            /* Bordas mais arredondadas para inputs */
+  --radius-lg: 24px;            /* Raio do container principal */
+  --radius-pill: 50px;          /* Para botões em formato pílula */
 
   --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.2);
   --shadow-focus-ring: 0 0 0 3px rgba(127, 86, 217, 0.25);
@@ -84,8 +84,8 @@ body {
 .login-container {
   display: flex;
   width: 100%;
-  max-width: 900px;      
-  min-height: 600px;      
+  max-width: 900px; 
+  min-height: 600px; 
   background-color: var(--color-bg-container);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
@@ -119,13 +119,13 @@ main {
 
 /* A imagem dentro do container */
 .login-image-wrapper img {
-  max-width: 100%;   /* A imagem nunca será maior que o container */
-  max-height: 100%;  /* A imagem nunca será maior que o container */
-  object-fit: contain; /* Garante que a imagem inteira apareça */
+  max-width: 100%; 
+  max-height: 100%; 
+  object-fit: contain; 
 }
 
 /* =================================================================
-   ESTILOS DO FORMULÁRIO (Inspirado no DeepSeek)
+   ESTILOS DO FORMULÁRIO
    ================================================================= */
 .form-logo {
     text-align: center;
@@ -188,6 +188,7 @@ label {
     align-items: center;
 }
 
+/* --- CORREÇÃO DO ÍCONE DE MOSTRAR SENHA --- */
 .toggle-password {
   position: absolute;
   right: var(--spacing-md);
@@ -195,6 +196,21 @@ label {
   border: none;
   cursor: pointer;
   color: var(--color-text-secondary);
+  /* Otimizações para centralizar verticalmente: */
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px; /* Aumenta a área clicável */
+}
+
+/* Garante que os SVGs tenham um tamanho visível */
+.toggle-password svg {
+    width: 20px; 
+    height: 20px; 
+    stroke: currentColor; /* Usa a cor definida pelo botão pai */
+    fill: none; /* Garante que o interior não seja preenchido */
 }
 
 .form-options {
@@ -236,7 +252,6 @@ button.accept-policy {
   background-color: var(--color-primary);
   color: #fff;
   border: none;
-  /* LINHA ALTERADA: */
   border-radius: var(--radius-md); /* Bordas arredondadas (12px) */
   
   font-size: var(--font-size-base);
@@ -336,6 +351,51 @@ button.accept-policy {
     background-color: #d32f2f; /* vermelho ligeiramente mais escuro */
     cursor: pointer; /* Muda o cursor para a mãozinha */
     box-shadow: 0 4px 12px rgba(208, 44, 56, 0.3); /* sombra suave no hover */
+}
+/* --- CONTAINER DE FEEDBACK --- */
+.login-feedback {
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+/* ALERTAS */
+.login-feedback .alert {
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-base);
+    display: inline-block;
+    width: 100%;
+    max-width: 360px;
+    animation: fadeIn 0.5s ease-in-out;
+    color: var(--color-text-primary);
+    background-color: #7F56D9; /* roxo principal */
+    border: 1px solid var(--color-primary-dark);
+    box-shadow: var(--shadow-md);
+}
+
+/* ALERTA DE ERRO */
+.login-feedback .alert-error {
+    background-color: #F04438;  /* vermelho forte */
+    color: #fff;                /* texto claro */
+    border: 1px solid #B42318;
+}
+
+/* SPINNER DENTRO DO BOTÃO */
+#loginButton .spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
 /* =================================================================

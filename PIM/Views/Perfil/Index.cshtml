@@ -1,64 +1,77 @@
 @model PIM.Models.Usuario
 
 @{
-    ViewData["Title"] = "Meu Perfil";
-    <link rel="stylesheet" href="~/css/Perfil.css" asp-append-version="true" />
+    ViewData["Title"] = "Perfil do Usuário";
 }
 
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
-}
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
-}
+<link rel="stylesheet" href="~/css/perfil.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 
 <div class="profile-container">
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            <i class="fa-solid fa-circle-check"></i> @TempData["SuccessMessage"]
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            <i class="fa-solid fa-circle-xmark"></i> @TempData["ErrorMessage"]
+        </div>
+    }
+
     <div class="profile-card">
-        <h2>Meu Perfil</h2>
-        
+
         <div class="profile-header">
             <div class="profile-avatar">
-                <i class="fa-solid fa-user-circle"></i>
+                <i class="fas fa-user-circle"></i>
             </div>
             <div class="profile-info">
                 <h3>@Model.Username</h3>
-                <p>@Model.Email</p>
+                <p><i class="fas fa-envelope"></i> @Model.Email</p>
+                <p><i class="fas fa-phone"></i> @Model.Telefone</p>
+                @if (!string.IsNullOrEmpty(Model.Endereco))
+                {
+                    <p><i class="fas fa-location-dot"></i> @Model.Endereco</p>
+                }
+                @if (Model.DataNascimento.HasValue)
+                {
+                    <p><i class="fas fa-calendar"></i> @Model.DataNascimento.Value.ToString("dd/MM/yyyy")</p>
+                }
             </div>
         </div>
 
         <div class="profile-dashboard">
             <div class="dashboard-item">
-                <i class="fa-solid fa-ticket fa-2x"></i>
-                <div class="item-content">
-                    <h4>@ViewBag.TotalTicketsAbertos</h4>
-                    <p>Tickets em Andamento</p>
-                </div>
+                <i class="fas fa-hourglass-half" style="color: var(--icon-color-open);"></i>
+                <h4>@(ViewBag.TotalTicketsAbertos ?? 0)</h4>
+                <p>Em Andamento</p>
             </div>
             <div class="dashboard-item">
-                <i class="fa-solid fa-check-circle fa-2x"></i>
-                <div class="item-content">
-                    <h4>@ViewBag.TotalTicketsFechados</h4>
-                    <p>Tickets Concluídos</p>
-                </div>
+                <i class="fas fa-check-circle" style="color: var(--icon-color-closed);"></i>
+                <h4>@(ViewBag.TotalTicketsFechados ?? 0)</h4>
+                <p>Concluídos</p>
             </div>
         </div>
-        
+
+        @if (!string.IsNullOrEmpty(Model.Observacoes))
+        {
+            <div class="profile-observacoes">
+                <h4><i class="fa-solid fa-note-sticky"></i> Observações</h4>
+                <p>@Model.Observacoes</p>
+            </div>
+        }
+
         <div class="profile-actions">
-            <a asp-controller="Perfil" asp-action="Editar" class="btn btn-secondary">
-                <i class="fa-solid fa-pen-to-square"></i> Editar Perfil
+            <a href="@Url.Action("Editar", "Perfil")" class="btn btn-primary">
+                <i class="fas fa-edit"></i> Editar Perfil
             </a>
-            <a asp-controller="Perfil" asp-action="MudarSenha" class="btn btn-secondary">
-                <i class="fa-solid fa-lock"></i> Mudar Senha
-            </a>
-            <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
-                <i class="fa-solid fa-arrow-left"></i> Voltar
+            <a href="@Url.Action("MudarSenha", "Perfil")" class="btn btn-secondary">
+                <i class="fas fa-key"></i> Mudar Senha
             </a>
         </div>
     </div>
 </div>
-
-@section Styles {
-    <link rel="stylesheet" href="~/css/perfil.css" />
-}

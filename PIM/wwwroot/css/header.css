@@ -1,136 +1,169 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
 
-/* =========================
-    Variáveis de tema
-========================= */
+/* =======================================================
+ * 1. VARIÁVEIS DE TEMA
+ * ======================================================= */
+
 :root {
-    --navbar-bg: #1e1a34;
-    --navbar-text: #ffffff;
-    --link-color: #9B78F0;
-    --toggle-hover: #7F56D9;
-    --slogan-color: #C0B8E1;
+    /* Cores de Base */
+    --purple-primary: #7F56D9; 
+    --purple-secondary: #9B78F0; 
+    --purple-dark: #6941C6; 
+    --text-light: #1a1a1a;
+    --text-dark: #ffffff;
+    
+    /* Configurações de Transição/Sombras */
     --shadow-header: 0 4px 15px rgba(0, 0, 0, 0.2);
+    --theme-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    --hover-bg-link: rgba(127, 86, 217, 0.1);
 }
 
+/* ----------------------------------------------------
+ * Tema Padrão (Dark) - Aplicado também no :root
+ * ---------------------------------------------------- */
+[data-theme="dark"],
+:root {
+    /* Cores de Fundo */
+    --bg-body: #121212; 
+    --bg-navbar: #1e1a34; 
+    --bg-modal: #2c2c2c; 
+    
+    /* Cores de Texto */
+    --color-text: var(--text-dark); 
+    --color-link: var(--purple-secondary);
+    --color-brand: var(--text-dark);
+    --color-slogan: #C0B8E1;
+    --color-toggle-hover: var(--purple-primary);
+}
+
+/* ----------------------------------------------------
+ * Tema Claro (Light)
+ * ---------------------------------------------------- */
 [data-theme="light"] {
-    --navbar-bg: #ffffff;
-    --navbar-text: #1a1a1a;
-    --link-color: #7F56D9;
-    --toggle-hover: #9B78F0;
-    --slogan-color: #7F56D9;
+    /* Cores de Fundo */
+    --bg-body: #ffffff;
+    --bg-navbar: #ffffff;
+    --bg-modal: #ffffff;
+    
+    /* Cores de Texto */
+    --color-text: var(--text-light); 
+    --color-link: var(--purple-primary);
+    --color-brand: var(--text-light);
+    --color-slogan: var(--purple-primary);
+    --color-toggle-hover: var(--purple-secondary);
+    --shadow-header: 0 4px 15px rgba(0, 0, 0, 0.08); 
 }
 
-/* =========================
-    Navbar base
-========================= */
+/* =======================================================
+ * 2. ESTILOS GLOBAIS (BODY, MODAL)
+ * ======================================================= */
+
+body {
+    background-color: var(--bg-body);
+    color: var(--color-text);
+    transition: var(--theme-transition);
+}
+
+/* Estilos para o Modal */
+.modal-content {
+    background-color: var(--bg-modal);
+    color: var(--color-text);
+    border-color: var(--bg-modal);
+    transition: var(--theme-transition);
+}
+
+.modal-title {
+    color: var(--color-text);
+}
+
+/* Ajusta o ícone de fechar do modal no Dark Mode para ser visível */
+[data-theme="dark"] .modal-header .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* =======================================================
+ * 3. NAVBAR
+ * ======================================================= */
+
 .navbar {
-    background-color: var(--navbar-bg) !important;
-    color: var(--navbar-text);
-    transition: background 0.3s, color 0.3s;
-    padding: 1.2rem 2.5rem;
+    /* Box Model */
     width: 100%;
+    padding: 1.2rem 2.5rem;
     box-shadow: var(--shadow-header);
     z-index: 1000;
+    
+    /* Visual */
+    background-color: var(--bg-navbar) !important;
+    color: var(--color-text);
+    transition: background 0.3s, color 0.3s;
 }
 
+/* ------------------
+ * Logo / Marca
+ * ------------------ */
 .navbar .navbar-brand {
-    font-weight: 700;
-    font-size: 1.5rem;
-    transition: color 0.3s;
-    color: var(--navbar-text);
+    /* Tipografia */
     font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
     letter-spacing: 0.5px;
+    color: var(--color-brand);
+    
+    /* Transição */
+    transition: color 0.3s;
 }
 
 .navbar .navbar-brand:hover {
-    color: var(--link-color);
+    color: var(--color-link);
 }
 
+/* ------------------
+ * Links de Navegação
+ * ------------------ */
 .navbar .nav-link {
-    color: var(--navbar-text) !important;
+    /* Tipografia e Layout */
+    color: var(--color-text) !important;
     font-weight: 500;
     font-size: 1rem;
-    padding: 0.5rem 1rem;
-    transition: all 0.3s ease;
-    border-radius: 8px;
     display: flex;
     align-items: center;
     gap: 8px;
+    
+    /* Box Model/Visual */
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
 .navbar .nav-link:hover,
 .navbar .nav-link.active {
-    color: var(--link-color) !important;
-    background-color: rgba(127, 86, 217, 0.1);
+    color: var(--color-link) !important;
+    background-color: var(--hover-bg-link);
     transform: translateY(-2px);
 }
 
-/* =========================
-    Botão Log Out
-========================= */
-.btn-logout {
-    background: none;
-    border: 1px solid var(--navbar-text);
-    color: var(--navbar-text);
-    font-weight: 500;
-    padding: 0.6rem 1rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.btn-logout:hover {
-    background-color: #6941C6;
-    border-color: #6941C6;
-    color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(127, 86, 217, 0.3);
-}
-
-/* =========================
-    Botão alternar tema
-========================= */
-.theme-toggle-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.25rem;
-    color: var(--navbar-text);
-    transition: color 0.3s ease, transform 0.2s ease;
-}
-
-.theme-toggle-btn:hover {
-    color: var(--link-color);
-    transform: rotate(30deg);
-}
-
-[data-theme="light"] .theme-toggle-btn i.bi-sun-fill {
-    color: #FFD700;
-}
-
-[data-theme="dark"] .theme-toggle-btn i.bi-moon-fill {
-    color: #f5f5f5;
-}
-
-/* =========================
-    Centro do Header - Slogan
-========================= */
+/* ------------------
+ * Slogan (Centro)
+ * ------------------ */
 .navbar-center-text {
+    /* Posicionamento */
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+    
+    /* Tipografia */
     font-family: 'Orbitron', sans-serif;
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: 1px;
-    color: var(--slogan-color);
+    color: var(--color-slogan);
     opacity: 0.9;
-    pointer-events: none;
+    
+    /* Transição */
     transition: all 0.3s ease;
-    z-index: 1;
 }
 
 .navbar-center-text:hover {
@@ -138,29 +171,103 @@
     opacity: 1;
 }
 
-/* =========================
-    Ícones de Configurações e Perfil
-========================= */
+/* =======================================================
+ * 4. BOTÕES E ÍCONES
+ * ======================================================= */
+
+/* ------------------
+ * Ícones Adicionais (Settings, Profile)
+ * ------------------ */
 .header-icons {
     gap: 1.5rem;
     margin-right: 1.5rem;
 }
 
 .header-icons a {
-    color: var(--navbar-text);
+    color: var(--color-text);
     font-size: 1.3rem;
     transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .header-icons a:hover {
-    color: var(--link-color);
+    color: var(--color-link);
     transform: scale(1.1);
 }
 
-/* =========================
-    Mobile / Responsivo
-========================= */
+/* ------------------
+ * Botão Log Out (SAIR)
+ * ------------------ */
+.btn-logout {
+    /* Box Model/Visual */
+    background: none;
+    border: 1px solid var(--color-text) !important; 
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    
+    /* Tipografia e Layout */
+    color: var(--color-text) !important; /* <--- AJUSTADO para garantir a cor branca no dark mode */
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    /* Transição */
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background-color: var(--purple-dark);
+    border-color: var(--purple-dark);
+    color: var(--text-dark) !important; 
+    transform: translateY(-2px); /* <--- ANIMAÇÃO DE LEVANTAR ADICIONADA */
+}
+
+/* Botão Sair no modal de Logout */
+#confirmLogoutModal .btn-danger {
+    color: #ffffff !important; /* força o texto branco */
+    background-color: #ff0000; /* opcional: mantém a cor roxa */
+    border-color: #ff0000;     /* opcional: borda combinando */
+    transition: all 0.3s ease;
+}
+
+#confirmLogoutModal .btn-danger:hover {
+    background-color: #ff0000; /* tom mais claro de hover */
+    border-color: #ff0000;
+    transform: translateY(-2px);
+}
+
+/* ------------------
+ * Botão Alternar Tema (Toggle)
+ * ------------------ */
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    color: var(--color-text);
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+    color: var(--color-toggle-hover);
+    transform: rotate(30deg);
+}
+
+/* Cores específicas dos ícones */
+[data-theme="light"] .theme-toggle-btn i.bi-sun-fill {
+    color: #FFD700; 
+}
+
+[data-theme="dark"] .theme-toggle-btn i.bi-moon-fill {
+    color: #f5f5f5; 
+}
+
+/* =======================================================
+ * 5. MEDIA QUERIES
+ * ======================================================= */
+
 @media (max-width: 991px) {
+    /* Oculta o texto do botão de logout em telas menores */
     .btn-logout span {
         display: none;
     }

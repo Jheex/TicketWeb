@@ -9,11 +9,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Sistema de Chamados</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -28,7 +28,6 @@
                     <button type="button" class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Alternar tema">
                         <i id="theme-icon" class="bi bi-sun-fill"></i>
                     </button>
-                   
 
                     <div class="form-logo">
                         <i class="bi bi-robot" style="font-size:48px; color: var(--color-primary);"></i>
@@ -40,6 +39,16 @@
                     </div>
 
                     <div asp-validation-summary="ModelOnly" class="validation-summary-errors"></div>
+
+                    <!-- FEEDBACK VISUAL -->
+                    <div id="login-feedback" class="login-feedback">
+                        @if (ViewBag.Error != null)
+                        {
+                            <div class="alert alert-error">
+                                @ViewBag.Error
+                            </div>
+                        }
+                    </div>
 
                     <div class="form-group">
                         <label asp-for="Email">E-mail</label>
@@ -53,10 +62,12 @@
                             <input asp-for="Password" class="form-control" type="password" id="passwordInput" autocomplete="current-password" placeholder="••••••••" required />
                             <button type="button" class="toggle-password" onclick="togglePassword()" aria-label="Mostrar ou ocultar senha">
                                 <svg id="icon-eye" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                                 </svg>
                                 <svg id="icon-eye-off" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:none;">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a9.956 9.956 0 012.642-4.362M9.88 9.88a3 3 0 104.24 4.24"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6.1 6.1L17.9 17.9"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a9.956 9.956 0 012.642-4.362M9.88 9.88a3 3 0 104.24 4.24"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6.1 6.1L17.9 17.9"/>
                                 </svg>
                             </button>
                         </div>
@@ -73,8 +84,6 @@
                         </a>
                     </div>
 
-                    <div id="login-feedback" class="login-feedback"></div>
-                    
                     <button type="submit" class="btn btn-primary" id="loginButton">
                         Entrar
                     </button>
@@ -86,7 +95,6 @@
              <img src="~/image/bot-amico.svg" alt="Imagem abstrata de tecnologia ilustrando o sistema de chamados." />
         </div>
     </div>
-    
     
     <script>
         // --- LÓGICA DO TEMA ---
@@ -141,7 +149,5 @@
         });
     </script>
     <partial name="_ValidationScriptsPartial" />
-    <partial name="_ValidationScriptsPartial" />
-
 </body>
 </html>

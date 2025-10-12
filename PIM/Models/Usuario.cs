@@ -52,5 +52,11 @@ namespace PIM.Models
         public DateTime? DataNascimento { get; set; }
 
         public string? Observacoes { get; set; }
+        [NotMapped]
+        public int TicketsAndamentoCount { get; set; }
+
+        [NotMapped]
+        public int TicketsConcluidosCount { get; set; }
+        
     }
 }

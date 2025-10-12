@@ -1,272 +1,327 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
-
-/* ==================================
-    Variáveis do Tema (Dark Mode)
-================================== */
-:root {
-    --color-primary: #7F56D9; /* Roxo principal */
-    --color-secondary: #6941C6; /* Roxo escuro */
-    --color-text-primary: #FFFFFF;
-    --color-text-secondary: #C0B8E1;
-    --color-bg-page: #1f0a3b;
-    --color-bg-card: rgba(30, 26, 52, 0.6);
-    --color-bg-input: rgba(30, 26, 52, 0.9);
-    --color-border-card: rgba(255, 255, 255, 0.1);
-    --color-border-input: rgba(255, 255, 255, 0.15);
-    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.4);
-    --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.5);
-    --icon-color-open: #f1c40f;
-    --icon-color-closed: #2ecc71;
+:root{
+    --color-primary:#7F56D9;
+    --color-secondary:#6941C6;
+    --color-text-primary:#FFF;
+    --color-text-secondary:#C0B8E1;
+    --color-bg-page:#1f0a3b;
+    --color-bg-card:#2E1950;
+    --color-bg-input:rgba(30,26,52,1); 
+    --color-border-card:rgba(255,255,255,.1);
+    --shadow-card:0 10px 30px rgba(0,0,0,.4);
+    --shadow-hover:0 15px 40px rgba(0,0,0,.5);
+    --icon-color-open:#f1c40f;
+    --icon-color-closed:#2ecc71;
+    --color-danger-text: #FF5555; 
+    --color-placeholder: #8C8C8C;
 }
 
-/* ==================================
-    Reset e Base do Corpo
-================================== */
-* {
-    box-sizing: border-box;
-    margin: 0;
+/* Base Reset */
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0
+}
+body{
+    font-family:'Inter',sans-serif;
+    background:var(--color-bg-page);
+    color:var(--color-text-primary);
+    min-height:100vh;
+    padding-bottom: 50px;
+}
+
+/* Layout Principal */
+.profile-container{
+    width:100%;
+    max-width:750px;
+    margin:50px auto
+}
+.profile-card{
+    background:var(--color-bg-card);
+    border:1px solid var(--color-border-card);
+    border-radius:20px;
+    padding:2.5rem;
+    box-shadow:var(--shadow-card);
+    text-align:center;
+    transition:transform .3s ease,box-shadow .3s ease
+}
+.profile-card:hover{
+    box-shadow:var(--shadow-card); 
+}
+.profile-card h2{
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:2rem
+}
+
+/* --- ESTILIZAÇÃO DO CARD DE PERFIL (Visualização) --- */
+
+/* CORREÇÃO DE LAYOUT: Avatar e Dados Centralizados */
+.profile-header{
+    display:flex;
+    align-items:center;
+    gap: 30px; 
+    margin-bottom:2rem;
+    
+    /* CHAVE: Centraliza o bloco de avatar e dados */
+    justify-content: center; 
+    
+    /* Remove as regras de espaçamento lateral e ordenação para centralizar */
+    max-width: 100%; 
+    margin-left: auto;
+    margin-right: auto;
     padding: 0;
 }
-
-body {
-    font-family: 'Inter', sans-serif;
-    background: var(--color-bg-page);
-    color: var(--color-text-primary);
-    min-height: 100vh;
-    overflow-x: hidden;
+.profile-avatar {
+    order: unset; /* Reverte a ordenação para o original (avatar à esquerda do bloco) */
+    flex-shrink: 0; 
+}
+.profile-avatar i{
+    font-size:5rem;
+    color:var(--color-primary)
+}
+.profile-info{
+    order: unset; /* Reverte a ordenação (dados à direita do avatar) */
+    text-align:left;
+    flex-grow: 0; 
+    max-width: none;
+    margin-bottom:0; 
+}
+.profile-info h3{
+    font-size:1.8rem;
+    font-weight:700;
+    margin-bottom:.5rem
+}
+.profile-info p{
+    font-size:1rem;
+    color:var(--color-text-secondary);
+    margin:.3rem 0;
+    display:flex;
+    align-items:center;
+    gap:.5rem;
+}
+.profile-dashboard{
+    display:flex;
+    justify-content:space-around;
+    padding:1.5rem 0;
+    border-top:1px solid var(--color-border-card);
+    border-bottom:1px solid var(--color-border-card);
+    margin-bottom:2rem
+}
+.dashboard-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:.5rem;
+    margin-top: 15px;
+}
+.dashboard-item i{
+    font-size:2rem
+}
+.dashboard-item:first-child i{
+    color:var(--icon-color-open)
+}
+.dashboard-item:last-child i{
+    color:var(--icon-color-closed)
+}
+.dashboard-item h4{
+    font-size:1.5rem;
+    font-weight:700
+}
+.dashboard-item p{
+    font-size:.9rem;
+    color:var(--color-text-secondary)
+}
+.profile-observacoes{
+    text-align:left;
+    background:rgba(255,255,255,.05);
+    padding:1rem;
+    border-radius:12px;
+    margin-bottom:2rem
+}
+.profile-observacoes h4{
+    margin-bottom:.5rem;
+    font-weight:600;
+    color:var(--color-text-primary)
 }
 
-/* ==================================
-    Contêiner e Card do Perfil
-================================== */
-.profile-container {
-    width: 100%;
-    max-width: 500px;
-    margin: auto;
-    margin-top: 50px;
-}
+/* --- ESTILIZAÇÃO DO FORMULÁRIO (Edição) --- */
 
-.profile-card {
-    background: var(--color-bg-card);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid var(--color-border-card);
-    border-radius: 20px;
-    padding: 2.5rem;
-    box-shadow: var(--shadow-card);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    text-align: center;
-}
-
-.profile-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-hover);
-}
-
-.profile-card h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    color: var(--color-text-primary);
-}
-
-/* ==================================
-    Seções do Perfil
-================================== */
-.profile-header {
+/* Layout de Colunas */
+.form-row {
     display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+.form-column {
+    flex: 1;
 }
 
-.profile-avatar i {
-    font-size: 5rem;
+/* Grupos de Formulário e Labels */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+}
+.form-group label i {
+    margin-right: 8px;
     color: var(--color-primary);
 }
 
-.profile-info {
-    text-align: left;
-}
-
-.profile-info h3 {
-    font-size: 1.6rem;
-    font-weight: 600;
-    margin: 0;
-}
-
-.profile-info p {
-    font-size: 1rem;
-    margin: 0;
-    color: var(--color-text-secondary);
-}
-
-.profile-dashboard {
-    display: flex;
-    justify-content: space-around;
-    padding: 1.5rem 0;
-    border-top: 1px solid var(--color-border-card);
-    border-bottom: 1px solid var(--color-border-card);
-    margin-bottom: 2rem;
-}
-
-.dashboard-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.dashboard-item i {
-    font-size: 2rem;
-}
-
-.dashboard-item:first-child i {
-    color: var(--icon-color-open);
-}
-
-.dashboard-item:last-child i {
-    color: var(--icon-color-closed);
-}
-
-.dashboard-item h4 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin: 0;
-}
-
-.dashboard-item p {
-    font-size: 0.9rem;
-    margin: 0;
-    color: var(--color-text-secondary);
-}
-
-/* ==================================
-    Formulários e Botões
-================================== */
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-    text-align: left;
-}
-
-.form-group label {
-    font-weight: 500;
-    color: var(--color-text-secondary);
-}
-
+/* Campos de Input, Select e Textarea (Corrigido para texto branco) */
 .form-control {
     width: 100%;
-    padding: 0.8rem 1rem;
-    border: 1px solid var(--color-border-input);
+    padding: 12px;
     border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: var(--color-bg-input);
-    color: var(--color-text-primary);
-    transition: all 0.2s ease;
+    color: var(--color-text-primary) !important; /* Texto branco forçado */
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
-
+/* Estilo de Foco */
 .form-control:focus {
-    outline: none;
     border-color: var(--color-primary);
+    outline: none;
     box-shadow: 0 0 0 3px rgba(127, 86, 217, 0.3);
+    background-color: var(--color-bg-input);
 }
 
-/* Adicionando estados de validação visual */
-.form-control:valid {
-    border-color: #2ecc71; /* Verde */
+/* Estilo do Placeholder */
+.form-control::placeholder {
+    color: var(--color-placeholder) !important;
+    opacity: 1;
+}
+.form-control:-ms-input-placeholder,
+.form-control::-ms-input-placeholder {
+    color: var(--color-placeholder) !important;
 }
 
-.form-control:invalid {
-    border-color: #e74c3c; /* Vermelho */
-}
-
+/* Estilização de Validação e Erro */
 .text-danger {
-    color: #e74c3c;
+    color: var(--color-danger-text) !important; 
     font-size: 0.85rem;
-    margin-top: 0.25rem;
+    display: block;
+    margin-top: 5px;
+    text-align: left;
+}
+.form-control:invalid:not(:placeholder-shown) {
+    border-color: var(--color-danger-text);
+}
+.form-control.input-validation-error {
+    border-color: var(--color-danger-text);
 }
 
-.profile-actions, .form-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+
+/* --- ESTILOS DE AÇÕES E ALERTAS --- */
+.profile-actions{
+    display:flex;
+    flex-direction:row;
+    gap:1.5rem;
+    margin-top: 2.5rem;
+}
+.btn{
+    flex: 1;
+    padding:14px;
+    border-radius:10px;
+    font-weight:600;
+    cursor:pointer;
+    transition:transform .3s,background-color .3s,box-shadow .3s;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    border:none;
+    text-decoration:none
+}
+.btn-primary{
+    background-color:var(--color-primary);
+    color:white
+}
+.btn-primary:hover{
+    background-color:var(--color-secondary);
+    transform:translateY(-3px);
+    box-shadow:0 5px 15px rgba(0,0,0,.2)
+}
+.btn-secondary{
+    background-color:transparent;
+    color:var(--color-primary);
+    border:2px solid var(--color-primary)
+}
+.btn-secondary:hover{
+    background-color:var(--color-primary);
+    color:white;
+    transform:translateY(-3px);
+    box-shadow:0 5px 15px rgba(0,0,0,.2)
 }
 
-.btn {
-    padding: 14px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+/* Alertas de Mensagem */
+.alert{
+    padding:1rem;
+    margin-bottom:1.5rem;
+    border-radius:10px;
+    font-weight:500;
+    text-align: left;
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 10px;
-    border: none;
+}
+.alert-success{
+    background-color:#0f5132;
+    color:#d1e7dd;
+    border:1px solid #0a3622;
+}
+.alert-danger{
+    background-color:#842029;
+    color:#f8d7da;
+    border:1px solid #58151c;
 }
 
-.btn-primary {
-    background-color: var(--color-primary);
-    color: white;
-}
-
-.btn-primary:hover {
-    background-color: var(--color-secondary);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.btn-secondary {
-    background-color: transparent;
-    color: var(--color-primary);
-    border: 2px solid var(--color-primary);
-}
-
-.btn-secondary:hover {
-    background-color: var(--color-primary);
-    color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.alert {
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    font-weight: 500;
-}
-
-.alert-success {
-    background-color: #d1e7dd;
-    color: #0f5132;
-    border: 1px solid #badbcc;
-}
-
-.alert-danger {
-    background-color: #f8d7da;
-    color: #842029;
-    border: 1px solid #f5c2c7;
-}
-
-/* ==================================
-    Responsividade
-================================== */
-@media (max-width: 576px) {
-    .profile-card {
-        padding: 1.5rem;
+/* Media Query (Responsividade) */
+@media (max-width:768px){
+    .profile-container {
+        max-width: 95%;
+        margin: 20px auto;
     }
-
-    .profile-header {
+    .profile-card{
+        padding:2rem
+    }
+    .form-row {
         flex-direction: column;
-        text-align: center;
+        gap: 0;
+    }
+    .profile-actions{
+        flex-direction: column;
         gap: 1rem;
     }
-
+    /* Ajuste para mobile: centraliza o header e empilha os elementos */
+    .profile-header {
+        flex-direction: column;
+        justify-content: center;
+        max-width: 100%;
+        gap: 1.5rem;
+        padding: 0;
+    }
+    .profile-avatar {
+        order: 1;
+    }
     .profile-info {
+        order: 2;
         text-align: center;
+        max-width: 100%;
+    }
+    .profile-dashboard{
+        flex-direction:column;
+        gap:1rem
     }
 }

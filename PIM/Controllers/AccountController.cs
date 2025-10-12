@@ -6,7 +6,7 @@ using PIM.Models;
 using System.Security.Claims;
 
 namespace PIM.Controllers
-{
+{   
     public class AccountController : Controller
     {
         private readonly AppDbContext _db;
@@ -16,14 +16,18 @@ namespace PIM.Controllers
             _db = db;
         }
 
+        // =========================
         // GET: /Account/Login
+        // =========================
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
+        // =========================
         // POST: /Account/Login
+        // =========================
         [HttpPost]
         public async Task<IActionResult> Login(string Email, string password)
         {
@@ -33,54 +37,71 @@ namespace PIM.Controllers
                 return View();
             }
 
-            // Busca o usuário na tabela Usuarios
+            Email = Email.Trim();
+            password = password.Trim();
+
+            // Busca o usuário no banco
             var user = _db.Usuarios.FirstOrDefault(u => u.Email == Email && u.SenhaHash == password);
+
             if (user == null)
             {
                 ViewBag.Error = "Usuário ou senha inválidos!";
                 return View();
             }
 
-            // Criar claims com base no usuário
+            // Verifica se o usuário está ativo
+            if (user.Status != "Ativo")
+            {
+                ViewBag.Error = "Seu usuário está inativo e não pode acessar o sistema.";
+                return View();
+            }
+
+            // Cria claims com base no usuário
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.Email ?? ""),
+                new Claim(ClaimTypes.Name, user.Username ?? ""),
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Role, user.Role ?? "Usuario") // role do próprio usuário
+                new Claim(ClaimTypes.Role, user.Role ?? "Usuario")
             };
 
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var principal = new ClaimsPrincipal(identity);
 
-            // Autenticar
+            // Autenticar via cookie
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
-            // Redireciona para o HomeController
+            // Redireciona para a dashboard
             return RedirectToAction("Index", "Dashboard");
         }
 
-            [HttpGet]
-            public IActionResult ForgotPassword()
-            {
-                return View();
-            }
+        // =========================
+        // GET: /Account/ForgotPassword
+        // =========================
+        [HttpGet]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
 
-            [HttpPost]
-            [ValidateAntiForgeryToken]
-            public IActionResult ForgotPassword(ForgotPasswordViewModel model)
-            {
-                if (!ModelState.IsValid)
-                {
-                    return View(model);
-                }
+        // =========================
+        // POST: /Account/ForgotPassword
+        // =========================
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
 
-                // Aqui você colocaria a lógica de envio de email, etc.
-                TempData["Message"] = "Se o email existir, enviaremos um link para redefinir a senha.";
+            // Lógica de envio de email para redefinir senha (a implementar)
+            TempData["Message"] = "Se o email existir, enviaremos um link para redefinir a senha.";
 
-                return RedirectToAction("Login");
-            }
+            return RedirectToAction("Login");
+        }
 
+        // =========================
         // GET: /Account/Logout
+        // =========================
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
