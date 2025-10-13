@@ -48,13 +48,13 @@ GO
 -- ==========================================
 INSERT INTO Usuarios (Username, Email, SenhaHash, Role, Nome, CreatedAt, LastLogin, Status, Telefone, Endereco, DataNascimento, Observacoes)
 VALUES
-('Jhonatan', 'jhonatan@inovatech.com', '123', 'Administrador', 'Administrador principal', '2025-01-10 00:00:00.000', '2025-09-19 00:00:00.000', 'Ativo', '(11) 91234-5678', 'Rua das Flores, 123, São Paulo, SP', '1995-04-12', 'Administrador principal do sistema'),
-('Maria Oliveira', 'maria.oliveira@email.com', '123', 'Usuario', 'Maria Oliveira', '2025-02-15 00:00:00.000', '2025-09-18 00:00:00.000', 'Inativo', '(21) 99876-5432', 'Av. Brasil, 456, Rio de Janeiro, RJ', '1992-07-05', 'Responsável por manutenção de tickets, demitida por justa causa'),
-('Pedro Santos', 'pedro.santos@email.com', 'HASH11223', 'Usuario', 'Pedro Santos', '2025-03-01 00:00:00.000', '2025-09-17 00:00:00.000', 'Ativo', '(31) 98765-4321', 'Rua Afonso Pena, 789, Belo Horizonte, MG', '1998-11-20', 'Usuário comum'),
-('Ana Costa', 'ana.costa@email.com', 'HASH44556', 'Usuario', 'Ana Costa', '2025-03-12 00:00:00.000', '2025-09-16 00:00:00.000', 'Ativo', '(41) 91234-8765', 'Rua XV de Novembro, 101, Curitiba, PR', '2000-01-15', NULL),
-('Carlos Moraes', 'carlos.moraes@email.com', 'HASH77889', 'Tecnico', 'Carlos Moraes', '2025-04-05 00:00:00.000', '2025-09-15 00:00:00.000', 'Ativo', '(51) 99887-6655', 'Av. Getúlio Vargas, 202, Porto Alegre, RS', '1989-05-22', 'Especialista em suporte remoto'),
-('Leticia Ramos', 'leticia.ramos@email.com', 'HASH99001', 'Administrador', 'Leticia Ramos', '2025-05-20 00:00:00.000', '2025-09-14 00:00:00.000', 'Ativo', '(61) 91345-6789', 'SGAN 605, Asa Norte, Brasília, DF', '1993-09-30', NULL),
-('Rafael Medeiros', 'rafael.medeiros@email.com', 'HASH22334', 'Usuario', 'Rafael Medeiros', '2025-06-10 00:00:00.000', '2025-09-13 00:00:00.000', 'Ativo', '(71) 91234-5678', 'Rua das Laranjeiras, 303, Salvador, BA', '1996-12-08', 'Usuário com acesso restrito'),
+('Jhonatan Lima', 'jhonatan@inovatech.com', '123', 'Administrador', 'Jhonatan Lima', '2025-01-10 00:00:00.000', '2025-09-19 00:00:00.000', 'Ativo', '(11) 91234-5678', 'Rua das Flores, 123, São Paulo, SP', '1995-04-12', 'Administrador principal do sistema'),
+('Maria Eduarda', 'Mariaeduarda@email.com', '123', 'Administrador', 'Maria Eduarda', '2025-02-15 00:00:00.000', '2025-09-18 00:00:00.000', 'Inativo', '(21) 99876-5432', 'Av. Brasil, 456, Rio de Janeiro, RJ', '1992-07-05', 'Responsável por manutenção de tickets, demitida por justa causa'),
+('Wellington Brandão', 'Wellingtonbrandão@email.com', '123', 'Administrador', 'Wellington', '2025-03-01 00:00:00.000', '2025-09-17 00:00:00.000', 'Ativo', '(31) 98765-4321', 'Rua Afonso Pena, 789, Belo Horizonte, MG', '1998-11-20', 'Usuário comum'),
+('Henrique Costa', 'Henriquecosta@email.com', '123', 'Administrador', 'Henrique Costa', '2025-03-12 00:00:00.000', '2025-09-16 00:00:00.000', 'Ativo', '(41) 91234-8765', 'Rua XV de Novembro, 101, Curitiba, PR', '2000-01-15', NULL),
+('Silvia Nayara', 'Silvianayara@email.com', '123', 'Administrador', 'Silvia Nayara', '2025-04-05 00:00:00.000', '2025-09-15 00:00:00.000', 'Ativo', '(51) 99887-6655', 'Av. Getúlio Vargas, 202, Porto Alegre, RS', '1989-05-22', 'Especialista em suporte remoto'),
+('Camila Fernanda', 'Camilafernanda@email.com', '123', 'Administrador', 'Camila Fernanda', '2025-05-20 00:00:00.000', '2025-09-14 00:00:00.000', 'Ativo', '(61) 91345-6789', 'SGAN 605, Asa Norte, Brasília, DF', '1993-09-30', NULL),
+('Italo Yan', 'Italoyan@email.com', '123', 'Administrador', 'Italo Yan', '2025-06-10 00:00:00.000', '2025-09-13 00:00:00.000', 'Ativo', '(71) 91234-5678', 'Rua das Laranjeiras, 303, Salvador, BA', '1996-12-08', 'Usuário com acesso restrito'),
 ('Juliana Pereira', 'juliana.pereira@email.com', 'HASH55667', 'Tecnico', 'Juliana Pereira', '2025-07-01 00:00:00.000', '2025-09-12 00:00:00.000', 'Ativo', '(81) 99876-4321', 'Rua do Sol, 404, Recife, PE', '1991-08-19', NULL),
 ('Bruno Farias', 'bruno.farias@email.com', 'HASH88990', 'Usuario', 'Bruno Farias', '2025-08-15 00:00:00.000', '2025-09-11 00:00:00.000', 'Ativo', '(91) 91234-1234', 'Av. Nazaré, 505, Belém, PA', '1999-03-25', 'Usuário frequente do sistema'),
 ('Isabela Machado', 'isabela.machado@email.com', '123123123', 'Administrador', 'Isabela Machado', '2025-09-01 00:00:00.000', '2025-09-10 00:00:00.000', 'Ativo', '(31) 99876-2345', 'Rua dos Andradas, 606, Belo Horizonte, MG', '1988-06-12', 'Supervisora geral');
@@ -336,7 +336,9 @@ INSERT INTO dbo.Faqs (Pergunta, Resposta, Categoria, Ordem) VALUES
 ('Como acompanhar tickets abertos em determinado período por grupo?', 'Na Tela de Relatórios, filtre por Período e Grupo.', 'Relatórios', 147),
 ('Como exportar tickets internos por usuário?', 'Na Tela de Relatórios, filtre por Tipo "Interno" e Usuário e clique em "Exportar".', 'Relatórios', 148),
 ('Como consultar tickets com múltiplos anexos?', 'Na Tela de Tickets, filtre "Com Anexos" e verifique a quantidade de arquivos em cada ticket.', 'Tickets', 149),
-('Como consultar tickets pendentes de aprovação?', 'Na Tela de Tickets, filtre Status "Aberto" ou "Pendente de Aprovação".', 'Tickets', 150);
+('Como consultar tickets pendentes de aprovação?', 'Na Tela de Tickets, filtre Status "Aberto" ou "Pendente de Aprovação".', 'Tickets', 150),
+('O que é um KPI?', 'KPI é a sigla para "Key Performance Indicator" (Indicador-Chave de Desempenho), um valor mensurável que ajuda a avaliar o quão bem uma empresa está alcançando suas metas e objetivos estratégicos".', 'Relatórios', 151),
+('Para que serve um KPI?', 'Serve para medir o progresso de uma empresa ou projeto em direção aos seus objetivos, ajudando a tomar decisões estratégicas".', 'Relatórios', 152);
 
 SET IDENTITY_INSERT Chamados OFF;
 GO

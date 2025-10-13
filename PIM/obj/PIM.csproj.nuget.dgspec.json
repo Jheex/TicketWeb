@@ -1,32 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jhonatan Lima\\OneDrive\\Área de Trabalho\\PIM\\TicketWeb\\PIM\\PIM.csproj": {}
+    "C:\\Users\\Usuario\\OneDrive\\Área de Trabalho\\pim\\TicketWeb\\PIM\\PIM.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jhonatan Lima\\OneDrive\\Área de Trabalho\\PIM\\TicketWeb\\PIM\\PIM.csproj": {
+    "C:\\Users\\Usuario\\OneDrive\\Área de Trabalho\\pim\\TicketWeb\\PIM\\PIM.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jhonatan Lima\\OneDrive\\Área de Trabalho\\PIM\\TicketWeb\\PIM\\PIM.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\OneDrive\\Área de Trabalho\\pim\\TicketWeb\\PIM\\PIM.csproj",
         "projectName": "PIM",
-        "projectPath": "C:\\Users\\Jhonatan Lima\\OneDrive\\Área de Trabalho\\PIM\\TicketWeb\\PIM\\PIM.csproj",
-        "packagesPath": "C:\\Users\\Jhonatan Lima\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jhonatan Lima\\OneDrive\\Área de Trabalho\\PIM\\TicketWeb\\PIM\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\OneDrive\\Área de Trabalho\\pim\\TicketWeb\\PIM\\PIM.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\OneDrive\\Área de Trabalho\\pim\\TicketWeb\\PIM\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Jhonatan Lima\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

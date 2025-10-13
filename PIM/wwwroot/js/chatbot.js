@@ -71,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const typingIndicator = document.createElement("div");
         typingIndicator.className = "chat-message bot typing-indicator";
-        typingIndicator.innerText = "Digitando...";
         chatMessages.appendChild(typingIndicator);
         chatMessages.scrollTop = chatMessages.scrollHeight;
 
