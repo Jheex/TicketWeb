@@ -3,14 +3,23 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using PIM.Data;
 using PIM.Models;
+using PIM.ViewModels; // Adicionado: presumindo que ForgotPasswordViewModel esteja aqui
 using System.Security.Claims;
 
 namespace PIM.Controllers
-{   
+{ 
+    /// <summary>
+    /// Controlador responsável por gerenciar as operações de autenticação do usuário, 
+    /// incluindo Login e Logout, utilizando autenticação via Cookie no ASP.NET Core.
+    /// </summary>
     public class AccountController : Controller
     {
         private readonly AppDbContext _db;
 
+        /// <summary>
+        /// Inicializa uma nova instância do controlador AccountController.
+        /// </summary>
+        /// <param name="db">O contexto do banco de dados (AppDbContext) injetado via DI.</param>
         public AccountController(AppDbContext db)
         {
             _db = db;
@@ -19,6 +28,10 @@ namespace PIM.Controllers
         // =========================
         // GET: /Account/Login
         // =========================
+        /// <summary>
+        /// Exibe a página de Login.
+        /// </summary>
+        /// <returns>A View de Login.</returns>
         [HttpGet]
         public IActionResult Login()
         {
@@ -28,6 +41,12 @@ namespace PIM.Controllers
         // =========================
         // POST: /Account/Login
         // =========================
+        /// <summary>
+        /// Processa o envio do formulário de Login, buscando o usuário, verificando o status e autenticando via Cookie.
+        /// </summary>
+        /// <param name="Email">O endereço de e-mail do usuário.</param>
+        /// <param name="password">A senha do usuário (que deve ser o SenhaHash).</param>
+        /// <returns>Redireciona para o Dashboard em caso de sucesso ou retorna a View de Login com mensagem de erro.</returns>
         [HttpPost]
         public async Task<IActionResult> Login(string Email, string password)
         {
@@ -77,6 +96,10 @@ namespace PIM.Controllers
         // =========================
         // GET: /Account/ForgotPassword
         // =========================
+        /// <summary>
+        /// Exibe a página para solicitação de recuperação de senha.
+        /// </summary>
+        /// <returns>A View ForgotPassword.</returns>
         [HttpGet]
         public IActionResult ForgotPassword()
         {
@@ -86,6 +109,12 @@ namespace PIM.Controllers
         // =========================
         // POST: /Account/ForgotPassword
         // =========================
+        /// <summary>
+        /// Processa a solicitação de recuperação de senha. 
+        /// Simula o envio de um link de redefinição de senha por e-mail (a lógica real está a implementar).
+        /// </summary>
+        /// <param name="model">O ViewModel contendo as informações necessárias para a recuperação de senha.</param>
+        /// <returns>Redireciona para a página de Login com uma mensagem informativa.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult ForgotPassword(ForgotPasswordViewModel model)
@@ -102,6 +131,10 @@ namespace PIM.Controllers
         // =========================
         // GET: /Account/Logout
         // =========================
+        /// <summary>
+        /// Realiza o Logout do usuário, encerrando a sessão de autenticação baseada em Cookie.
+        /// </summary>
+        /// <returns>Redireciona para a página de Login.</returns>
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

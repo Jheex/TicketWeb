@@ -1,39 +1,67 @@
-@* Views/Shared/_Header.cshtml *@
+@* ========================================================= *@
+@* Views/Shared/_Header.cshtml                                 *@
+@* Navbar principal do sistema com links de navegação, ícones e logout. *@
+@* ========================================================= *@
 
+@* Importa o CSS principal do site *@
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+@* Início da Navbar usando classes do Bootstrap *@
 <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3 position-relative">
+
+    @* Container fluido que ocupa toda a largura da tela *@
     <div class="container-fluid position-relative">
+
+        @* Logo ou marca da aplicação, linkando para Dashboard/Index *@
         <a class="navbar-brand" asp-area="" asp-controller="Dashboard" asp-action="Index">INOVATECH</a>
 
+        @* Container que engloba os links e os ícones do header *@
         <div class="navbar-collapse collapse d-sm-flex justify-content-between align-items-center">
+
+            @* Lista de links principais da navbar *@
             <ul class="navbar-nav flex-grow-1">
+
+                @* Link para a Home/Dashboard *@
                 <li class="nav-item">
                     <a class="nav-link" asp-area="" asp-controller="Dashboard" asp-action="Index">Home</a>
                 </li>
+
+                @* Link para a página de Cadastros de usuários *@
                 <li class="nav-item">
                     <a class="nav-link" asp-area="" asp-controller="Usuarios" asp-action="Index">Cadastros</a>
                 </li>
+
+                @* Link para a lista de Tickets/Hometicket *@
                 <li class="nav-item">
                     <a class="nav-link" asp-area="" asp-controller="Hometicket" asp-action="Index">Tickets</a>
                 </li>
+
+                @* Link para abrir um Novo Ticket *@
                 <li class="nav-item">
                     <a class="nav-link" asp-area="" asp-controller="FormsTicket" asp-action="Create">Novo Ticket</a>
                 </li>
+
+                @* Link para Relatórios gerenciais *@
                 <li class="nav-item">
                     <a class="nav-link" asp-area="" asp-controller="RelatorioGerencial" asp-action="relatorio">Relatórios</a>
                 </li>
+
+                @* Link para o Chatbot *@
                 <li class="nav-item">
                     <a class="nav-link" asp-area="" asp-controller="Chatbot" asp-action="Index">Chatbot</a>
                 </li>
             </ul>
 
+            @* Container para ícones do usuário e botão de logout, alinhados à direita *@
             <div class="d-flex align-items-center header-icons">
 
+                @* Link direto para o perfil do usuário com ícone *@
                 <a href="/Perfil/Index" title="Perfil">
                     <i class="fa-solid fa-user"></i>
                 </a>
 
-                @* AÇÃO CRÍTICA: Removido o formulário desnecessário. O botão agora APENAS abre o modal *@
+                @* Botão de logout que abre um modal de confirmação (não realiza logout imediato) *@
+                @* Comentário: "AÇÃO CRÍTICA" indica que antes havia um formulário desnecessário aqui *@
                 <button type="button" 
                         class="btn btn-logout" 
                         title="Sair"
@@ -44,5 +72,7 @@
             </div>
         </div>
     </div>
+
+    @* Script específico do header para controlar modal ou outros comportamentos da navbar *@
     <script src="~/js/header.js" asp-append-version="true"></script>
 </nav>

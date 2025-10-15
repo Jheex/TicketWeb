@@ -11,14 +11,17 @@ document.addEventListener('DOMContentLoaded', function () {
   const countEl = document.getElementById('faqCount');
   const STORAGE_KEY = 'faqOpen';
 
+  // normaliza texto (remove acentos e coloca em minúsculas)
   function normalize(str) {
     return (str || '').toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   }
 
+  // atualiza contador de perguntas visíveis
   function updateCount(n) {
     countEl.textContent = n + (n === 1 ? ' pergunta encontrada' : ' perguntas encontradas');
   }
 
+  // filtra as perguntas do FAQ com base na pesquisa e nas tags
   function filterFaq() {
     const q = normalize(searchInput.value.trim());
     const activeTag = document.querySelector('.faq-tag.active');
@@ -38,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
         item.classList.remove('d-none');
         visible++;
       } else {
-        // hide item and close if open
+        // esconde o item e fecha se estiver aberto
         item.classList.add('d-none');
         const collapseEl = item.querySelector('.accordion-collapse');
         if (collapseEl && collapseEl.classList.contains('show')) {
@@ -50,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
     updateCount(visible);
   }
 
-  // tags click
+  // clique nas tags
   tags.forEach(tag => {
     tag.addEventListener('click', function () {
       tags.forEach(t => t.classList.remove('active'));
@@ -60,10 +63,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // search input
+  // input de pesquisa
   searchInput.addEventListener('input', filterFaq);
 
-  // open / close all (aplica somente aos visíveis)
+  // abrir / fechar todos (aplica apenas aos visíveis)
   openAllBtn.addEventListener('click', function () {
     items.forEach(item => {
       if (!item.classList.contains('d-none')) {
@@ -80,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // persist open items
+  // persiste itens abertos no localStorage
   try {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
     if (Array.isArray(saved)) {
@@ -89,9 +92,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (el) bootstrap.Collapse.getOrCreateInstance(el).show();
       });
     }
-  } catch (e) { /* ignore */ }
+  } catch (e) { /* ignora erros */ }
 
-  // save open/close state
+  // salva estado de aberto/fechado
   faqAccordion.addEventListener('shown.bs.collapse', function (e) {
     try {
       const id = e.target.id;
@@ -100,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
         arr.push(id);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
       }
-    } catch (err) { /* ignore */ }
+    } catch (err) { /* ignora erros */ }
   });
 
   faqAccordion.addEventListener('hidden.bs.collapse', function (e) {
@@ -109,10 +112,10 @@ document.addEventListener('DOMContentLoaded', function () {
       let arr = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
       arr = arr.filter(x => x !== id);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
-    } catch (err) { /* ignore */ }
+    } catch (err) { /* ignora erros */ }
   });
 
-  // keyboard navigation (setas)
+  // navegação pelo teclado (setas)
   const buttons = Array.from(faqAccordion.querySelectorAll('.accordion-button'));
   buttons.forEach((btn, i) => {
     btn.addEventListener('keydown', function (ev) {
@@ -134,6 +137,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // inicializa filtro
+  // inicializa filtro ao carregar a página
   filterFaq();
 });

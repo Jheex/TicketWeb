@@ -1,0 +1,27 @@
+var class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model =
+[
+    [ "AbertosVsFechadosChart", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a5e60b9faee8b98e3d87e45eeb09ffb00", null ],
+    [ "AnalistaChart", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a5e40c26a1ed3585fddaa68b243665603", null ],
+    [ "Backlog", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a8686ef4671652479e507a8007a7f9fb7", null ],
+    [ "FilterOptions", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a23dfa2e2c994adf6a3cb2491ffa02a64", null ],
+    [ "PageNumber", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#afc8cbb66e6031b7329379ec522af22ed", null ],
+    [ "PageSize", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#ab9a1f79e6aaed97f52cb6ecbcd14de92", null ],
+    [ "PrioridadeChart", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a9d6c982cc11a1648f41460f4dc0946b4", null ],
+    [ "RankingAnalistas", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a215d9738bd05555f68ee85f25f1ee1dd", null ],
+    [ "SelectedAnalystId", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a77aacd50aef7f55d59ccbd8b14477d62", null ],
+    [ "SelectedCategory", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#af591fbf13f012b9ce7523dd4e2da2921", null ],
+    [ "SelectedPriority", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a373bde9af2be0ffbf8cb22ff14b400fc", null ],
+    [ "SelectedRequesterId", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a7f5304fbfc19633bd6888a678c0346e6", null ],
+    [ "SelectedStatus", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a13d49ceebed2739e0e72583937cee025", null ],
+    [ "SlaPercentual", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a3f058fdfaef15a30f0316ec95a7db8a1", null ],
+    [ "StatusChart", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a4a98f9124e9d32a7fcb2e0c8f5138372", null ],
+    [ "TabelaDetalhada", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a66b5fd33e0d52adb25d675837f97e83e", null ],
+    [ "TempoMedioResolucaoHoras", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#add1c7d4b72016b05891d7c115f5e2b16", null ],
+    [ "TopCategoriasChart", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#ac2d40affb16361f81ee4201fe438e1d7", null ],
+    [ "TotalChamadosAbertos", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#ad603ad69d7e0d53b59cee9f021765d0b", null ],
+    [ "TotalChamadosEmAndamento", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#ac5da59db2798311e768a6b94ace6c29b", null ],
+    [ "TotalChamadosFechados", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a6fc825ef5f683c11f81dfdbf96d23c2a", null ],
+    [ "TotalChamadosNovos", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#adeb40e0d533353bb4dee0b64418b7f1e", null ],
+    [ "TotalItems", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a3145f7b44e9bae7cc48b388de5b6d2fc", null ],
+    [ "TotalPages", "class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#acdc0a0d1408ae0fa39f246d2d07fae07", null ]
+];

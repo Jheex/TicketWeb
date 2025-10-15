@@ -1,3 +1,19 @@
-﻿@using PIM
+﻿@* =============================
+   Arquivo: _ViewImports.cshtml
+   Finalidade: Importar namespaces e habilitar Tag Helpers globalmente para todas as Views
+   ============================= *@
+
+@* Importa o namespace principal do projeto, permitindo usar classes dentro de PIM sem escrever o namespace completo *@
+@using PIM
+
+@* Importa o namespace onde ficam os modelos (Models) do projeto, como Usuario, Ticket, etc. *@
 @using PIM.Models
+
+@* Habilita os Tag Helpers do ASP.NET Core globalmente.
+   Tag Helpers permitem usar atributos como:
+     - asp-controller
+     - asp-action
+     - asp-for
+     - asp-route-id
+   O '*' significa carregar todos os Tag Helpers desse assembly *@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

@@ -1,0 +1,117 @@
+\doxysection{PIM.\+Data.\+App\+Db\+Context Class Reference}
+\hypertarget{class_p_i_m_1_1_data_1_1_app_db_context}{}\label{class_p_i_m_1_1_data_1_1_app_db_context}\index{PIM.Data.AppDbContext@{PIM.Data.AppDbContext}}
+
+
+Contexto do banco de dados principal para a aplicação \doxylink{namespace_p_i_m}{PIM}, gerenciado pelo Entity Framework Core.  
+
+
+Inheritance diagram for PIM.\+Data.\+App\+Db\+Context\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_i_m_1_1_data_1_1_app_db_context}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context_a671753c9039f8ed0c8d198b611a51ef1}{App\+Db\+Context}} (Db\+Context\+Options$<$ \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} $>$ options)
+\begin{DoxyCompactList}\small\item\em Construtor que recebe as opções de configuração do Db\+Context, normalmente injetadas via Startup.\+cs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context_a9142a0af1fb544cee3194909fa84fe24}{On\+Model\+Creating}} (Model\+Builder model\+Builder)
+\begin{DoxyCompactList}\small\item\em Configura o modelo de dados e os relacionamentos entre as entidades. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}} $>$ \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context_a5ae4feb3ccd0fe89f1fe1df6effcd839}{Usuarios}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Representa a coleção de todos os usuários do sistema. \end{DoxyCompactList}\item 
+Db\+Set$<$ \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado}{Chamado}} $>$ \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context_a811be8be9e8c7a480105bf9c0d5600fb}{Chamados}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Representa a coleção de todos os chamados (tickets) abertos. \end{DoxyCompactList}\item 
+Db\+Set$<$ \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_faq}{Faq}} $>$ \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context_aa182308ca1138c328c2168b89810783d}{Faqs}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Representa a coleção de itens de Perguntas Frequentes (FAQs). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contexto do banco de dados principal para a aplicação \doxylink{namespace_p_i_m}{PIM}, gerenciado pelo Entity Framework Core. 
+
+Define os conjuntos de dados (Db\+Sets) e a configuração de mapeamento de modelos.
+
+\label{doc-constructors}
+\Hypertarget{class_p_i_m_1_1_data_1_1_app_db_context_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_p_i_m_1_1_data_1_1_app_db_context_a671753c9039f8ed0c8d198b611a51ef1}\index{PIM.Data.AppDbContext@{PIM.Data.AppDbContext}!AppDbContext@{AppDbContext}}
+\index{AppDbContext@{AppDbContext}!PIM.Data.AppDbContext@{PIM.Data.AppDbContext}}
+\doxysubsubsection{\texorpdfstring{AppDbContext()}{AppDbContext()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_data_1_1_app_db_context_a671753c9039f8ed0c8d198b611a51ef1} 
+PIM.\+Data.\+App\+Db\+Context.\+App\+Db\+Context (\begin{DoxyParamCaption}\item[{Db\+Context\+Options$<$ \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} $>$}]{options}{}\end{DoxyParamCaption})}
+
+
+
+Construtor que recebe as opções de configuração do Db\+Context, normalmente injetadas via Startup.\+cs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & As opções do Db\+Context.\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_p_i_m_1_1_data_1_1_app_db_context_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_p_i_m_1_1_data_1_1_app_db_context_a9142a0af1fb544cee3194909fa84fe24}\index{PIM.Data.AppDbContext@{PIM.Data.AppDbContext}!OnModelCreating@{OnModelCreating}}
+\index{OnModelCreating@{OnModelCreating}!PIM.Data.AppDbContext@{PIM.Data.AppDbContext}}
+\doxysubsubsection{\texorpdfstring{OnModelCreating()}{OnModelCreating()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_data_1_1_app_db_context_a9142a0af1fb544cee3194909fa84fe24} 
+override void PIM.\+Data.\+App\+Db\+Context.\+On\+Model\+Creating (\begin{DoxyParamCaption}\item[{Model\+Builder}]{model\+Builder}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Configura o modelo de dados e os relacionamentos entre as entidades. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model\+Builder} & O construtor de modelos usado para configurar os tipos de entidade.\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-property-members}
+\Hypertarget{class_p_i_m_1_1_data_1_1_app_db_context_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_p_i_m_1_1_data_1_1_app_db_context_a811be8be9e8c7a480105bf9c0d5600fb}\index{PIM.Data.AppDbContext@{PIM.Data.AppDbContext}!Chamados@{Chamados}}
+\index{Chamados@{Chamados}!PIM.Data.AppDbContext@{PIM.Data.AppDbContext}}
+\doxysubsubsection{\texorpdfstring{Chamados}{Chamados}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_data_1_1_app_db_context_a811be8be9e8c7a480105bf9c0d5600fb} 
+Db\+Set$<$\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado}{Chamado}}$>$ PIM.\+Data.\+App\+Db\+Context.\+Chamados\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Representa a coleção de todos os chamados (tickets) abertos. 
+
+\Hypertarget{class_p_i_m_1_1_data_1_1_app_db_context_aa182308ca1138c328c2168b89810783d}\index{PIM.Data.AppDbContext@{PIM.Data.AppDbContext}!Faqs@{Faqs}}
+\index{Faqs@{Faqs}!PIM.Data.AppDbContext@{PIM.Data.AppDbContext}}
+\doxysubsubsection{\texorpdfstring{Faqs}{Faqs}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_data_1_1_app_db_context_aa182308ca1138c328c2168b89810783d} 
+Db\+Set$<$\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_faq}{Faq}}$>$ PIM.\+Data.\+App\+Db\+Context.\+Faqs\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Representa a coleção de itens de Perguntas Frequentes (FAQs). 
+
+\Hypertarget{class_p_i_m_1_1_data_1_1_app_db_context_a5ae4feb3ccd0fe89f1fe1df6effcd839}\index{PIM.Data.AppDbContext@{PIM.Data.AppDbContext}!Usuarios@{Usuarios}}
+\index{Usuarios@{Usuarios}!PIM.Data.AppDbContext@{PIM.Data.AppDbContext}}
+\doxysubsubsection{\texorpdfstring{Usuarios}{Usuarios}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_data_1_1_app_db_context_a5ae4feb3ccd0fe89f1fe1df6effcd839} 
+Db\+Set$<$\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}}$>$ PIM.\+Data.\+App\+Db\+Context.\+Usuarios\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Representa a coleção de todos os usuários do sistema. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+Data/\mbox{\hyperlink{_app_db_context_8cs}{App\+Db\+Context.\+cs}}\end{DoxyCompactItemize}

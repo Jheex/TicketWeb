@@ -1,24 +1,29 @@
 @model PIM.Models.Usuario
 
 @{
+    // Define o título da página
     ViewData["Title"] = "Editar Perfil";
 }
 
+<!-- Estilos específicos para o perfil -->
 <link rel="stylesheet" href="~/css/perfil.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-
+<!-- Container principal do perfil -->
 <div class="profile-container">
     <div class="profile-card">
         
         <h2 class="mb-4">Editar Perfil</h2>
 
+        <!-- Feedback de sucesso -->
         @if (TempData["SuccessMessage"] != null)
         {
             <div class="alert alert-success" role="alert">
                 <i class="fa-solid fa-circle-check me-2"></i> @TempData["SuccessMessage"]
             </div>
         }
+
+        <!-- Feedback de erro -->
         @if (TempData["ErrorMessage"] != null)
         {
             <div class="alert alert-danger" role="alert">
@@ -26,12 +31,16 @@
             </div>
         }
 
+        <!-- Resumo de validação do modelo -->
         <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
+        <!-- Formulário de edição de perfil -->
         <form asp-controller="Perfil" asp-action="Editar" method="post">
+            <!-- Campo oculto com o Id do usuário -->
             <input type="hidden" asp-for="Id" />
 
             <div class="form-row">
+                <!-- Coluna esquerda -->
                 <div class="form-column">
                     <div class="form-group">
                         <label asp-for="Username"><i class="fa-solid fa-user"></i> Nome de Usuário</label>
@@ -52,6 +61,7 @@
                     </div>
                 </div>
 
+                <!-- Coluna direita -->
                 <div class="form-column">
                     <div class="form-group">
                         <label asp-for="Endereco"><i class="fa-solid fa-location-dot"></i> Endereço</label>
@@ -76,12 +86,14 @@
                 </div>
             </div>
 
+            <!-- Observações adicionais -->
             <div class="form-group mt-3">
                 <label asp-for="Observacoes"><i class="fa-solid fa-note-sticky"></i> Observações</label>
                 <textarea asp-for="Observacoes" class="form-control" rows="4" placeholder="Adicione notas ou informações adicionais..."></textarea>
                 <span asp-validation-for="Observacoes" class="text-danger"></span>
             </div>
 
+            <!-- Botões de ação -->
             <div class="profile-actions mt-5">
                 <button type="submit" class="btn btn-primary">
                     <i class="fa-solid fa-floppy-disk"></i> Salvar Alterações
@@ -94,7 +106,7 @@
     </div>
 </div>
 
-
+<!-- Script para máscaras de entrada -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 @section Scripts {
@@ -102,11 +114,10 @@
 
     <script>
         $(document).ready(function () {
-            // Aplica a máscara DD/MM/AAAA no campo de Data de Nascimento
+            // Aplica máscara DD/MM/AAAA no campo Data de Nascimento
             $('#DataNascimento').mask('00/00/0000');
             
-            // Sugestão: Aplica máscara de telefone, se ainda não estiver fazendo
-            // Se o seu modelo de telefone for (XX) XXXXX-XXXX
+            // Aplica máscara no telefone (formato (XX) XXXXX-XXXX)
             $('#Telefone').mask('(00) 00000-0000');
         });
     </script>

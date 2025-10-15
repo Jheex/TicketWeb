@@ -1,0 +1,95 @@
+\doxysection{PIM.\+Models.\+Ticket Class Reference}
+\hypertarget{class_p_i_m_1_1_models_1_1_ticket}{}\label{class_p_i_m_1_1_models_1_1_ticket}\index{PIM.Models.Ticket@{PIM.Models.Ticket}}
+
+
+Representa uma solicitação simples ou um ticket dentro do sistema. Esta classe é usada para rastrear o status e as informações básicas da solicitação.  
+
+
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_ticket_a77a0d478b533573e2b9cf2842551c187}{Ticket\+Id}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Chave primária e identificador único do \doxylink{class_p_i_m_1_1_models_1_1_ticket}{Ticket}. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_ticket_a0678fcad89e05831aff5d754ad96aafe}{Titulo}} = string.\+Empty\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Título ou assunto da solicitação. Campo obrigatório. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_ticket_ac2032b5824c583197c0818e0bed4c61b}{Descricao}} = string.\+Empty\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Descrição detalhada da solicitação. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_ticket_aa1d842acfbe8982295e1800f80746d4c}{Status}} = "{}Pendente"{}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Status atual do \doxylink{class_p_i_m_1_1_models_1_1_ticket}{Ticket}. Campo obrigatório com valor padrão "{}\+Pendente"{}. Valores comuns\+: Pendente, Aprovado, Rejeitado. \end{DoxyCompactList}\item 
+Date\+Time \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_ticket_a87b2a11399690d6c24ea7d699981f6c1}{Data\+Criacao}} = Date\+Time.\+Now\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em \doxylink{namespace_p_i_m_1_1_data}{Data} e hora em que o \doxylink{class_p_i_m_1_1_models_1_1_ticket}{Ticket} foi criado. O valor padrão é a hora atual. \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_ticket_ad8bf06aa512123b3cf2612d9006bb72d}{Comentario\+Admin}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Campo opcional para o comentário ou justificativa de um administrador ao aprovar, rejeitar ou processar o ticket. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Representa uma solicitação simples ou um ticket dentro do sistema. Esta classe é usada para rastrear o status e as informações básicas da solicitação. 
+
+\label{doc-property-members}
+\Hypertarget{class_p_i_m_1_1_models_1_1_ticket_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_p_i_m_1_1_models_1_1_ticket_ad8bf06aa512123b3cf2612d9006bb72d}\index{PIM.Models.Ticket@{PIM.Models.Ticket}!ComentarioAdmin@{ComentarioAdmin}}
+\index{ComentarioAdmin@{ComentarioAdmin}!PIM.Models.Ticket@{PIM.Models.Ticket}}
+\doxysubsubsection{\texorpdfstring{ComentarioAdmin}{ComentarioAdmin}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_ticket_ad8bf06aa512123b3cf2612d9006bb72d} 
+string? PIM.\+Models.\+Ticket.\+Comentario\+Admin\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Campo opcional para o comentário ou justificativa de um administrador ao aprovar, rejeitar ou processar o ticket. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_ticket_a87b2a11399690d6c24ea7d699981f6c1}\index{PIM.Models.Ticket@{PIM.Models.Ticket}!DataCriacao@{DataCriacao}}
+\index{DataCriacao@{DataCriacao}!PIM.Models.Ticket@{PIM.Models.Ticket}}
+\doxysubsubsection{\texorpdfstring{DataCriacao}{DataCriacao}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_ticket_a87b2a11399690d6c24ea7d699981f6c1} 
+Date\+Time PIM.\+Models.\+Ticket.\+Data\+Criacao = Date\+Time.\+Now\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+\doxylink{namespace_p_i_m_1_1_data}{Data} e hora em que o \doxylink{class_p_i_m_1_1_models_1_1_ticket}{Ticket} foi criado. O valor padrão é a hora atual. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_ticket_ac2032b5824c583197c0818e0bed4c61b}\index{PIM.Models.Ticket@{PIM.Models.Ticket}!Descricao@{Descricao}}
+\index{Descricao@{Descricao}!PIM.Models.Ticket@{PIM.Models.Ticket}}
+\doxysubsubsection{\texorpdfstring{Descricao}{Descricao}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_ticket_ac2032b5824c583197c0818e0bed4c61b} 
+string PIM.\+Models.\+Ticket.\+Descricao = string.\+Empty\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Descrição detalhada da solicitação. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_ticket_aa1d842acfbe8982295e1800f80746d4c}\index{PIM.Models.Ticket@{PIM.Models.Ticket}!Status@{Status}}
+\index{Status@{Status}!PIM.Models.Ticket@{PIM.Models.Ticket}}
+\doxysubsubsection{\texorpdfstring{Status}{Status}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_ticket_aa1d842acfbe8982295e1800f80746d4c} 
+string PIM.\+Models.\+Ticket.\+Status = "{}Pendente"{}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Status atual do \doxylink{class_p_i_m_1_1_models_1_1_ticket}{Ticket}. Campo obrigatório com valor padrão "{}\+Pendente"{}. Valores comuns\+: Pendente, Aprovado, Rejeitado. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_ticket_a77a0d478b533573e2b9cf2842551c187}\index{PIM.Models.Ticket@{PIM.Models.Ticket}!TicketId@{TicketId}}
+\index{TicketId@{TicketId}!PIM.Models.Ticket@{PIM.Models.Ticket}}
+\doxysubsubsection{\texorpdfstring{TicketId}{TicketId}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_ticket_a77a0d478b533573e2b9cf2842551c187} 
+int PIM.\+Models.\+Ticket.\+Ticket\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Chave primária e identificador único do \doxylink{class_p_i_m_1_1_models_1_1_ticket}{Ticket}. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_ticket_a0678fcad89e05831aff5d754ad96aafe}\index{PIM.Models.Ticket@{PIM.Models.Ticket}!Titulo@{Titulo}}
+\index{Titulo@{Titulo}!PIM.Models.Ticket@{PIM.Models.Ticket}}
+\doxysubsubsection{\texorpdfstring{Titulo}{Titulo}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_ticket_a0678fcad89e05831aff5d754ad96aafe} 
+string PIM.\+Models.\+Ticket.\+Titulo = string.\+Empty\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Título ou assunto da solicitação. Campo obrigatório. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+View\+Models/\mbox{\hyperlink{_tickets_view_model_8cs}{Tickets\+View\+Model.\+cs}}\end{DoxyCompactItemize}

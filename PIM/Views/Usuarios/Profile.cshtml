@@ -1,20 +1,34 @@
-@model PIM.Models.Usuario   // nas views de detalhe, editar, criar
-
+@model PIM.Models.Usuario   // Modelo passado para a View, sempre o mesmo nas views de detalhe, editar e criar
 
 @{
+    // Define o título da página
     ViewData["Title"] = "Perfil do Usuário";
+    // Define o layout que a página vai usar
     Layout = "_Layout";
 }
 
+<!-- Título da página -->
 <h2>Perfil do Usuário</h2>
 
+<!-- Card que exibe informações do usuário -->
 <div class="card" style="width: 40rem;">
     <div class="card-body">
+        <!-- Nome do usuário -->
         <h5 class="card-title">@Model.Username</h5>
+        
+        <!-- ID do usuário -->
         <p class="card-text"><strong>ID:</strong> @Model.Id</p>
+
+        <!-- Email do usuário; exibe "-" se estiver nulo -->
         <p class="card-text"><strong>Email:</strong> @Model.Email ?? "-" </p>
+
+        <!-- Data de criação do usuário formatada; exibe "-" se nulo -->
         <p class="card-text"><strong>Data de criação:</strong> @(Model.CreatedAt.ToString("dd/MM/yyyy") ?? "-")</p>
+
+        <!-- Senha do usuário (hash); normalmente não é recomendado exibir senha -->
         <p class="card-text"><strong>Senha:</strong> @Model.SenhaHash</p>
+
+        <!-- Botão para voltar à lista de usuários -->
         <a asp-action="Index" class="btn btn-secondary">Voltar</a>
     </div>
 </div>

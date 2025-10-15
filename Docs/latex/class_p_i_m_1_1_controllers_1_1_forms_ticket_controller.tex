@@ -1,0 +1,142 @@
+\doxysection{PIM.\+Controllers.\+Forms\+Ticket\+Controller Class Reference}
+\hypertarget{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller}{}\label{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller}\index{PIM.Controllers.FormsTicketController@{PIM.Controllers.FormsTicketController}}
+
+
+Controlador responsável pelo fluxo de abertura de um novo chamado em múltiplas etapas (formulário e confirmação). Ele lida com a coleta de dados, validação, armazenamento temporário de anexos e a criação final do ticket.  
+
+
+Inheritance diagram for PIM.\+Controllers.\+Forms\+Ticket\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_a439a882d5b8fb0c19a2c2666cd635a10}{Forms\+Ticket\+Controller}} (\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} db, IWeb\+Host\+Environment web\+Host\+Environment)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller}{Forms\+Ticket\+Controller}. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_a15a3d76e97b3b0c744f892f2a0121d79}{Create}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{[}GET\mbox{]} Exibe o formulário inicial para a criação de um novo chamado. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_a625742b74983fe8e7e13d8c2b72ec3ed}{Create}} (\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_chamado_view_model}{Chamado\+View\+Model}} model)
+\begin{DoxyCompactList}\small\item\em \mbox{[}POST\mbox{]} Processa o formulário de criação. Se válido, armazena os dados e o anexo temporariamente e redireciona para a página de confirmação. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_ac0ade3c8e6c917a6f80d529a7f7675a7}{Confirmacao}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{[}GET\mbox{]} Exibe a tela de confirmação do chamado, recuperando os dados e o anexo armazenados em Temp\+Data. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_a455cf365eb0932bd6a13313e92fdaf1e}{Confirmacao\+Post}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{[}POST\mbox{]} Efetiva a criação do chamado no banco de dados. Persiste o arquivo anexo no sistema de arquivos do servidor antes de salvar a referência no banco. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_ab06b259ca1877706888532aa18c7ef3a}{\+\_\+db}}
+\item 
+readonly IWeb\+Host\+Environment \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_a46a21d133fa6461be2da2e3d829c5ab3}{\+\_\+web\+Host\+Environment}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controlador responsável pelo fluxo de abertura de um novo chamado em múltiplas etapas (formulário e confirmação). Ele lida com a coleta de dados, validação, armazenamento temporário de anexos e a criação final do ticket. 
+
+\label{doc-constructors}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_a439a882d5b8fb0c19a2c2666cd635a10}\index{PIM.Controllers.FormsTicketController@{PIM.Controllers.FormsTicketController}!FormsTicketController@{FormsTicketController}}
+\index{FormsTicketController@{FormsTicketController}!PIM.Controllers.FormsTicketController@{PIM.Controllers.FormsTicketController}}
+\doxysubsubsection{\texorpdfstring{FormsTicketController()}{FormsTicketController()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_a439a882d5b8fb0c19a2c2666cd635a10} 
+PIM.\+Controllers.\+Forms\+Ticket\+Controller.\+Forms\+Ticket\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}}}]{db}{, }\item[{IWeb\+Host\+Environment}]{web\+Host\+Environment}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller}{Forms\+Ticket\+Controller}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & O contexto do banco de dados (\doxylink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}) injetado via DI.\\
+\hline
+{\em web\+Host\+Environment} & O ambiente de hospedagem para gerenciar caminhos de arquivos (uploads).\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_ac0ade3c8e6c917a6f80d529a7f7675a7}\index{PIM.Controllers.FormsTicketController@{PIM.Controllers.FormsTicketController}!Confirmacao@{Confirmacao}}
+\index{Confirmacao@{Confirmacao}!PIM.Controllers.FormsTicketController@{PIM.Controllers.FormsTicketController}}
+\doxysubsubsection{\texorpdfstring{Confirmacao()}{Confirmacao()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_ac0ade3c8e6c917a6f80d529a7f7675a7} 
+IAction\+Result PIM.\+Controllers.\+Forms\+Ticket\+Controller.\+Confirmacao (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\mbox{[}GET\mbox{]} Exibe a tela de confirmação do chamado, recuperando os dados e o anexo armazenados em Temp\+Data. 
+
+\begin{DoxyReturn}{Returns}
+A View Confirmacao ou redireciona para Create se não houver dados de sessão.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_a455cf365eb0932bd6a13313e92fdaf1e}\index{PIM.Controllers.FormsTicketController@{PIM.Controllers.FormsTicketController}!ConfirmacaoPost@{ConfirmacaoPost}}
+\index{ConfirmacaoPost@{ConfirmacaoPost}!PIM.Controllers.FormsTicketController@{PIM.Controllers.FormsTicketController}}
+\doxysubsubsection{\texorpdfstring{ConfirmacaoPost()}{ConfirmacaoPost()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_a455cf365eb0932bd6a13313e92fdaf1e} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Forms\+Ticket\+Controller.\+Confirmacao\+Post (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\mbox{[}POST\mbox{]} Efetiva a criação do chamado no banco de dados. Persiste o arquivo anexo no sistema de arquivos do servidor antes de salvar a referência no banco. 
+
+\begin{DoxyReturn}{Returns}
+Redireciona para o Dashboard com mensagem de sucesso ou erro.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_a15a3d76e97b3b0c744f892f2a0121d79}\index{PIM.Controllers.FormsTicketController@{PIM.Controllers.FormsTicketController}!Create@{Create}}
+\index{Create@{Create}!PIM.Controllers.FormsTicketController@{PIM.Controllers.FormsTicketController}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_a15a3d76e97b3b0c744f892f2a0121d79} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Forms\+Ticket\+Controller.\+Create (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\mbox{[}GET\mbox{]} Exibe o formulário inicial para a criação de um novo chamado. 
+
+\begin{DoxyReturn}{Returns}
+A View Create, pré-\/populada com a lista de usuários para seleção do solicitante.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_a625742b74983fe8e7e13d8c2b72ec3ed}\index{PIM.Controllers.FormsTicketController@{PIM.Controllers.FormsTicketController}!Create@{Create}}
+\index{Create@{Create}!PIM.Controllers.FormsTicketController@{PIM.Controllers.FormsTicketController}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_a625742b74983fe8e7e13d8c2b72ec3ed} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Forms\+Ticket\+Controller.\+Create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_chamado_view_model}{Chamado\+View\+Model}}}]{model}{}\end{DoxyParamCaption})}
+
+
+
+\mbox{[}POST\mbox{]} Processa o formulário de criação. Se válido, armazena os dados e o anexo temporariamente e redireciona para a página de confirmação. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & O \doxylink{class_p_i_m_1_1_view_models_1_1_chamado_view_model}{Chamado\+View\+Model} contendo os dados do chamado e o anexo.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redireciona para \doxylink{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_ac0ade3c8e6c917a6f80d529a7f7675a7}{Confirmacao} se válido, ou retorna a View Create com erros.
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_ab06b259ca1877706888532aa18c7ef3a}\index{PIM.Controllers.FormsTicketController@{PIM.Controllers.FormsTicketController}!\_db@{\_db}}
+\index{\_db@{\_db}!PIM.Controllers.FormsTicketController@{PIM.Controllers.FormsTicketController}}
+\doxysubsubsection{\texorpdfstring{\_db}{\_db}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_ab06b259ca1877706888532aa18c7ef3a} 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} PIM.\+Controllers.\+Forms\+Ticket\+Controller.\+\_\+db\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_a46a21d133fa6461be2da2e3d829c5ab3}\index{PIM.Controllers.FormsTicketController@{PIM.Controllers.FormsTicketController}!\_webHostEnvironment@{\_webHostEnvironment}}
+\index{\_webHostEnvironment@{\_webHostEnvironment}!PIM.Controllers.FormsTicketController@{PIM.Controllers.FormsTicketController}}
+\doxysubsubsection{\texorpdfstring{\_webHostEnvironment}{\_webHostEnvironment}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller_a46a21d133fa6461be2da2e3d829c5ab3} 
+readonly IWeb\+Host\+Environment PIM.\+Controllers.\+Forms\+Ticket\+Controller.\+\_\+web\+Host\+Environment\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+Controllers/\mbox{\hyperlink{_forms_ticket_controller_8cs}{Forms\+Ticket\+Controller.\+cs}}\end{DoxyCompactItemize}

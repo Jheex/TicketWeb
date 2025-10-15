@@ -1,57 +1,67 @@
-﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
+﻿/* =========================================
+   Informação de documentação
+   =========================================
+   Indica onde encontrar documentação sobre
+   bundling e minification de arquivos CSS/JS
+   em projetos ASP.NET Core.
+*/
+ 
+/* Estilo da marca/nome do site na navbar */
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+  white-space: normal;        /* Permite quebra de linha no texto */
+  text-align: center;         /* Centraliza o texto horizontalmente */
+  word-break: break-all;      /* Quebra palavras longas para evitar overflow */
 }
 
+/* Estilo padrão para todos os links */
 a {
-  color: #0077cc;
+  color: #0077cc;             /* Cor azul padrão para links */
 }
 
-
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+/* Estilo para abas ativas (nav-pills) */
+.nav-pills .nav-link.active, 
+.nav-pills .show > .nav-link {
+  color: #fff;                /* Cor do texto branco */
+  background-color: #1b6ec2;  /* Fundo azul */
+  border-color: #1861ac;      /* Borda azul escuro */
 }
 
-
-
+/* Bordas genéricas */
 .border-top {
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5;  /* Borda superior cinza clara */
 }
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5; /* Borda inferior cinza clara */
 }
 
+/* Sombra genérica para elementos */
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); /* Sombra suave */
 }
 
+/* Estilo de botão primário padrão */
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+  color: #fff;                 /* Texto branco */
+  background-color: #1b6ec2;   /* Fundo azul */
+  border-color: #1861ac;       /* Borda azul escuro */
 }
 
+/* Botão específico para aceitar política de cookies ou termos */
 button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+  font-size: 1rem;             /* Tamanho da fonte */
+  line-height: inherit;        /* Herda altura de linha do elemento pai */
 }
 
-/* Estrutura da página para footer fixo no final */
+/* =========================================
+   Layout flexível para footer fixo no final
+   ========================================= */
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* altura total da tela */
-
+    display: flex;              /* Define layout flexível */
+    flex-direction: column;     /* Itens empilhados verticalmente */
+    min-height: 100vh;          /* Ocupa toda a altura da tela */
 }
 
-/* Main deve crescer e empurrar o footer para baixo */
+/* O main cresce para empurrar o footer para baixo */
 main {
-    flex: 1;
+    flex: 1;                     /* Faz o main ocupar o espaço disponível */
 }

@@ -1,0 +1,95 @@
+\doxysection{PIM.\+Models.\+Faq Class Reference}
+\hypertarget{class_p_i_m_1_1_models_1_1_faq}{}\label{class_p_i_m_1_1_models_1_1_faq}\index{PIM.Models.Faq@{PIM.Models.Faq}}
+
+
+Representa um item de Perguntas Frequentes (FAQ) para fornecer autoatendimento e esclarecer dúvidas comuns.  
+
+
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_faq_ada85ca90587247357494d6b09e6b9ab0}{Id}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Chave primária e identificador único da FAQ. \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_faq_a68c67ea5fc92182bb4efbbb1f82f317f}{Pergunta}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em O texto da pergunta da FAQ. Campo obrigatório. \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_faq_ad2fe72479af80d082b476d9d76d83c0a}{Resposta}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em O texto da resposta associada à pergunta. Campo obrigatório. \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_faq_a698aa2807f5af726e95d8b02dfdb0e7e}{Categoria}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A categoria à qual esta FAQ pertence (para fins de organização e filtragem). Campo obrigatório. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_faq_af3723007f14ba19c67dcc16174435d44}{Ordem}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Define a ordem de exibição desta FAQ dentro de sua categoria. Campo obrigatório e deve ser um número positivo. \end{DoxyCompactList}\item 
+Date\+Time? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_faq_a1ca82b92c94501259897da45268b63e6}{Data\+Atualizacao}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em \doxylink{namespace_p_i_m_1_1_data}{Data} da última atualização da FAQ. Pode ser nula. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Representa um item de Perguntas Frequentes (FAQ) para fornecer autoatendimento e esclarecer dúvidas comuns. 
+
+\label{doc-property-members}
+\Hypertarget{class_p_i_m_1_1_models_1_1_faq_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_p_i_m_1_1_models_1_1_faq_a698aa2807f5af726e95d8b02dfdb0e7e}\index{PIM.Models.Faq@{PIM.Models.Faq}!Categoria@{Categoria}}
+\index{Categoria@{Categoria}!PIM.Models.Faq@{PIM.Models.Faq}}
+\doxysubsubsection{\texorpdfstring{Categoria}{Categoria}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_faq_a698aa2807f5af726e95d8b02dfdb0e7e} 
+string? PIM.\+Models.\+Faq.\+Categoria\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+A categoria à qual esta FAQ pertence (para fins de organização e filtragem). Campo obrigatório. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_faq_a1ca82b92c94501259897da45268b63e6}\index{PIM.Models.Faq@{PIM.Models.Faq}!DataAtualizacao@{DataAtualizacao}}
+\index{DataAtualizacao@{DataAtualizacao}!PIM.Models.Faq@{PIM.Models.Faq}}
+\doxysubsubsection{\texorpdfstring{DataAtualizacao}{DataAtualizacao}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_faq_a1ca82b92c94501259897da45268b63e6} 
+Date\+Time? PIM.\+Models.\+Faq.\+Data\+Atualizacao\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+\doxylink{namespace_p_i_m_1_1_data}{Data} da última atualização da FAQ. Pode ser nula. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_faq_ada85ca90587247357494d6b09e6b9ab0}\index{PIM.Models.Faq@{PIM.Models.Faq}!Id@{Id}}
+\index{Id@{Id}!PIM.Models.Faq@{PIM.Models.Faq}}
+\doxysubsubsection{\texorpdfstring{Id}{Id}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_faq_ada85ca90587247357494d6b09e6b9ab0} 
+int PIM.\+Models.\+Faq.\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Chave primária e identificador único da FAQ. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_faq_af3723007f14ba19c67dcc16174435d44}\index{PIM.Models.Faq@{PIM.Models.Faq}!Ordem@{Ordem}}
+\index{Ordem@{Ordem}!PIM.Models.Faq@{PIM.Models.Faq}}
+\doxysubsubsection{\texorpdfstring{Ordem}{Ordem}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_faq_af3723007f14ba19c67dcc16174435d44} 
+int PIM.\+Models.\+Faq.\+Ordem\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Define a ordem de exibição desta FAQ dentro de sua categoria. Campo obrigatório e deve ser um número positivo. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_faq_a68c67ea5fc92182bb4efbbb1f82f317f}\index{PIM.Models.Faq@{PIM.Models.Faq}!Pergunta@{Pergunta}}
+\index{Pergunta@{Pergunta}!PIM.Models.Faq@{PIM.Models.Faq}}
+\doxysubsubsection{\texorpdfstring{Pergunta}{Pergunta}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_faq_a68c67ea5fc92182bb4efbbb1f82f317f} 
+string? PIM.\+Models.\+Faq.\+Pergunta\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+O texto da pergunta da FAQ. Campo obrigatório. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_faq_ad2fe72479af80d082b476d9d76d83c0a}\index{PIM.Models.Faq@{PIM.Models.Faq}!Resposta@{Resposta}}
+\index{Resposta@{Resposta}!PIM.Models.Faq@{PIM.Models.Faq}}
+\doxysubsubsection{\texorpdfstring{Resposta}{Resposta}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_faq_ad2fe72479af80d082b476d9d76d83c0a} 
+string? PIM.\+Models.\+Faq.\+Resposta\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+O texto da resposta associada à pergunta. Campo obrigatório. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+Models/\mbox{\hyperlink{_faq_8cs}{Faq.\+cs}}\end{DoxyCompactItemize}

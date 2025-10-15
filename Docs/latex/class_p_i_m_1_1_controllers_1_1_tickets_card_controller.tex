@@ -1,0 +1,211 @@
+\doxysection{PIM.\+Controllers.\+Tickets\+Card\+Controller Class Reference}
+\hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_card_controller}{}\label{class_p_i_m_1_1_controllers_1_1_tickets_card_controller}\index{PIM.Controllers.TicketsCardController@{PIM.Controllers.TicketsCardController}}
+
+
+Controlador da API otimizado para a exibição de tickets em formato de cartões (cards) ou listas resumidas no painel de controle.  
+
+
+Inheritance diagram for PIM.\+Controllers.\+Tickets\+Card\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_i_m_1_1_controllers_1_1_tickets_card_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a26bf9fbc17e77ebd532b623e9b2ff1d2}{Tickets\+Card\+Controller}} (\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} context)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_tickets_card_controller}{Tickets\+Card\+Controller}. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_afce79379776e3c7c5f5f657c87833e1c}{Get\+Tickets}} (\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_ticket_filter_view_model}{Ticket\+Filter\+View\+Model}} filters)
+\begin{DoxyCompactList}\small\item\em Obtém uma lista de todos os tickets no sistema, permitindo filtragem por datas e status. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a5a9867219a84153c0bba2425ff20d5b3}{Get\+My\+Tickets}} ()
+\begin{DoxyCompactList}\small\item\em Obtém uma lista de tickets que estão atribuídos ao analista (usuário) logado. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a36711c2043b886bc55b0f48c90a99c4a}{Aprovar}} (int id)
+\begin{DoxyCompactList}\small\item\em Altera o status de um ticket para "{}\+Em Andamento"{}, atribui-\/o ao usuário logado e registra a data de atribuição. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a6ebe216cd0a9f570ad70b16df0eab9cf}{Delete}} (int id)
+\begin{DoxyCompactList}\small\item\em Remove um ticket permanentemente do banco de dados. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_ab54652f6f7c2c45b51938803c90c81a7}{Get\+Ticket}} (int id)
+\begin{DoxyCompactList}\small\item\em Obtém os detalhes completos de um ticket específico pelo seu ID. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a5cf217e799f2b60dd757765a674201f6}{Conclude}} (int id)
+\begin{DoxyCompactList}\small\item\em Altera o status de um ticket para "{}\+Concluído"{} e registra a data de fechamento. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a674feec5341e254cba5263df9a8abfcf}{Try\+Get\+User\+Id}} (out int user\+Id)
+\begin{DoxyCompactList}\small\item\em Tenta obter e analisar o ID do usuário logado a partir das Claims de autenticação. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a86963a7312f7ade942fb73fb5b4762b6}{\+\_\+context}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controlador da API otimizado para a exibição de tickets em formato de cartões (cards) ou listas resumidas no painel de controle. 
+
+Inclui métodos para obter listas de tickets (todos e atribuídos ao usuário), bem como ações rápidas como Aprovar, Concluir e Deletar.
+
+\label{doc-constructors}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a26bf9fbc17e77ebd532b623e9b2ff1d2}\index{PIM.Controllers.TicketsCardController@{PIM.Controllers.TicketsCardController}!TicketsCardController@{TicketsCardController}}
+\index{TicketsCardController@{TicketsCardController}!PIM.Controllers.TicketsCardController@{PIM.Controllers.TicketsCardController}}
+\doxysubsubsection{\texorpdfstring{TicketsCardController()}{TicketsCardController()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a26bf9fbc17e77ebd532b623e9b2ff1d2} 
+PIM.\+Controllers.\+Tickets\+Card\+Controller.\+Tickets\+Card\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}}}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_tickets_card_controller}{Tickets\+Card\+Controller}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & O contexto do banco de dados (\doxylink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}) injetado via DI.\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a36711c2043b886bc55b0f48c90a99c4a}\index{PIM.Controllers.TicketsCardController@{PIM.Controllers.TicketsCardController}!Aprovar@{Aprovar}}
+\index{Aprovar@{Aprovar}!PIM.Controllers.TicketsCardController@{PIM.Controllers.TicketsCardController}}
+\doxysubsubsection{\texorpdfstring{Aprovar()}{Aprovar()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a36711c2043b886bc55b0f48c90a99c4a} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Tickets\+Card\+Controller.\+Aprovar (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Altera o status de um ticket para "{}\+Em Andamento"{}, atribui-\/o ao usuário logado e registra a data de atribuição. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O ID do \doxylink{class_p_i_m_1_1_models_1_1_chamado}{Chamado} a ser aprovado/assumido.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+200 Ok em sucesso, 401 Unauthorized, 404 Not Found, ou 400 Bad Request se o status ou atribuição for inválido.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a5cf217e799f2b60dd757765a674201f6}\index{PIM.Controllers.TicketsCardController@{PIM.Controllers.TicketsCardController}!Conclude@{Conclude}}
+\index{Conclude@{Conclude}!PIM.Controllers.TicketsCardController@{PIM.Controllers.TicketsCardController}}
+\doxysubsubsection{\texorpdfstring{Conclude()}{Conclude()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a5cf217e799f2b60dd757765a674201f6} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Tickets\+Card\+Controller.\+Conclude (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Altera o status de um ticket para "{}\+Concluído"{} e registra a data de fechamento. 
+
+Esta ação só é permitida se o ticket estiver "{}\+Em Andamento"{} e atribuído ao usuário logado.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O ID do \doxylink{class_p_i_m_1_1_models_1_1_chamado}{Chamado} a ser concluído.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+200 Ok em sucesso, 401 Unauthorized, 404 Not Found, ou 400 Bad Request se o status ou atribuição for inválido.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a6ebe216cd0a9f570ad70b16df0eab9cf}\index{PIM.Controllers.TicketsCardController@{PIM.Controllers.TicketsCardController}!Delete@{Delete}}
+\index{Delete@{Delete}!PIM.Controllers.TicketsCardController@{PIM.Controllers.TicketsCardController}}
+\doxysubsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a6ebe216cd0a9f570ad70b16df0eab9cf} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Tickets\+Card\+Controller.\+Delete (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Remove um ticket permanentemente do banco de dados. 
+
+Requer autorização adequada, geralmente para Administradores ou o criador original.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O ID do \doxylink{class_p_i_m_1_1_models_1_1_chamado}{Chamado} a ser deletado.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+200 Ok em sucesso, 404 Not Found.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a5a9867219a84153c0bba2425ff20d5b3}\index{PIM.Controllers.TicketsCardController@{PIM.Controllers.TicketsCardController}!GetMyTickets@{GetMyTickets}}
+\index{GetMyTickets@{GetMyTickets}!PIM.Controllers.TicketsCardController@{PIM.Controllers.TicketsCardController}}
+\doxysubsubsection{\texorpdfstring{GetMyTickets()}{GetMyTickets()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a5a9867219a84153c0bba2425ff20d5b3} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Tickets\+Card\+Controller.\+Get\+My\+Tickets (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtém uma lista de tickets que estão atribuídos ao analista (usuário) logado. 
+
+\begin{DoxyReturn}{Returns}
+Uma lista de tickets atribuídos ao usuário logado ou 401 Unauthorized.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_ab54652f6f7c2c45b51938803c90c81a7}\index{PIM.Controllers.TicketsCardController@{PIM.Controllers.TicketsCardController}!GetTicket@{GetTicket}}
+\index{GetTicket@{GetTicket}!PIM.Controllers.TicketsCardController@{PIM.Controllers.TicketsCardController}}
+\doxysubsubsection{\texorpdfstring{GetTicket()}{GetTicket()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_ab54652f6f7c2c45b51938803c90c81a7} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Tickets\+Card\+Controller.\+Get\+Ticket (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Obtém os detalhes completos de um ticket específico pelo seu ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O ID do \doxylink{class_p_i_m_1_1_models_1_1_chamado}{Chamado}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um IAction\+Result contendo os detalhes do ticket (DTO) ou 404 Not Found.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_afce79379776e3c7c5f5f657c87833e1c}\index{PIM.Controllers.TicketsCardController@{PIM.Controllers.TicketsCardController}!GetTickets@{GetTickets}}
+\index{GetTickets@{GetTickets}!PIM.Controllers.TicketsCardController@{PIM.Controllers.TicketsCardController}}
+\doxysubsubsection{\texorpdfstring{GetTickets()}{GetTickets()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_afce79379776e3c7c5f5f657c87833e1c} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Tickets\+Card\+Controller.\+Get\+Tickets (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_ticket_filter_view_model}{Ticket\+Filter\+View\+Model}}}]{filters}{}\end{DoxyParamCaption})}
+
+
+
+Obtém uma lista de todos os tickets no sistema, permitindo filtragem por datas e status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filters} & Objeto contendo os parâmetros de filtro (data inicial, status, etc.).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Uma lista de tickets resumidos (DTO) que correspondem aos filtros aplicados.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a674feec5341e254cba5263df9a8abfcf}\index{PIM.Controllers.TicketsCardController@{PIM.Controllers.TicketsCardController}!TryGetUserId@{TryGetUserId}}
+\index{TryGetUserId@{TryGetUserId}!PIM.Controllers.TicketsCardController@{PIM.Controllers.TicketsCardController}}
+\doxysubsubsection{\texorpdfstring{TryGetUserId()}{TryGetUserId()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a674feec5341e254cba5263df9a8abfcf} 
+bool PIM.\+Controllers.\+Tickets\+Card\+Controller.\+Try\+Get\+User\+Id (\begin{DoxyParamCaption}\item[{out int}]{user\+Id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Tenta obter e analisar o ID do usuário logado a partir das Claims de autenticação. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & Variável de saída que receberá o ID do usuário se a operação for bem-\/sucedida.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} se o ID do usuário foi encontrado e é válido; caso contrário, {\ttfamily false}.
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a86963a7312f7ade942fb73fb5b4762b6}\index{PIM.Controllers.TicketsCardController@{PIM.Controllers.TicketsCardController}!\_context@{\_context}}
+\index{\_context@{\_context}!PIM.Controllers.TicketsCardController@{PIM.Controllers.TicketsCardController}}
+\doxysubsubsection{\texorpdfstring{\_context}{\_context}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_tickets_card_controller_a86963a7312f7ade942fb73fb5b4762b6} 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} PIM.\+Controllers.\+Tickets\+Card\+Controller.\+\_\+context\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+Controllers/\mbox{\hyperlink{_tickets_card_controller_8cs}{Tickets\+Card\+Controller.\+cs}}\end{DoxyCompactItemize}

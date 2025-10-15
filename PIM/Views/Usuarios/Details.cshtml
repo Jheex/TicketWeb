@@ -1,28 +1,42 @@
-@model PIM.Models.Usuario   // nas views de detalhe, editar, criar
+@model PIM.Models.Usuario   // Define que o modelo desta View é do tipo Usuario
 
 @{
+    // Define o título da página, usado no Layout
     ViewData["Title"] = "Perfil do Usuário";
 }
 
+<!-- Título principal da página -->
 <h2>Perfil do Usuário</h2>
 
+<!-- Card Bootstrap para exibir os detalhes do usuário -->
 <div class="card" style="width: 30rem;">
     <div class="card-body">
+        <!-- Nome de usuário -->
         <h5 class="card-title">@Model.Username</h5>
+        
+        <!-- ID do usuário -->
         <p class="card-text"><strong>ID:</strong> @Model.Id</p>
+        
+        <!-- Senha (hash) - normalmente não exibido em produção por segurança -->
         <p class="card-text"><strong>Password:</strong> @Model.SenhaHash</p>
 
+        <!-- Botão para editar usuário -->
         <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
+        
+        <!-- Botão para excluir usuário -->
         <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Excluir</a>
 
+        <!-- Formulário inline para resetar a senha do usuário -->
         <form asp-action="ResetPassword" asp-route-id="@Model.Id" method="post" style="display:inline;">
             <button type="submit" class="btn btn-secondary">Resetar Senha</button>
         </form>
 
+        <!-- Botão para voltar à lista de usuários -->
         <a asp-action="Index" class="btn btn-primary">Voltar</a>
     </div>
 </div>
 
+<!-- Feedback de operação bem-sucedida usando TempData -->
 @if (TempData["Message"] != null)
 {
     <div class="alert alert-success mt-3">

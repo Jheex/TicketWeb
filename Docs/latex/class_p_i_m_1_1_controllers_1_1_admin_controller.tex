@@ -1,0 +1,217 @@
+\doxysection{PIM.\+Controllers.\+Admin\+Controller Class Reference}
+\hypertarget{class_p_i_m_1_1_controllers_1_1_admin_controller}{}\label{class_p_i_m_1_1_controllers_1_1_admin_controller}\index{PIM.Controllers.AdminController@{PIM.Controllers.AdminController}}
+
+
+Controlador responsável por gerenciar as operações de CRUD (Create, Read, Update, Delete) dos usuários que possuem o perfil de "{}\+Admin"{} no sistema.  
+
+
+Inheritance diagram for PIM.\+Controllers.\+Admin\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_i_m_1_1_controllers_1_1_admin_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_admin_controller_ae08e1e69f2d0010bd3e43b7b11a3dece}{Admin\+Controller}} (\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} db)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_admin_controller}{Admin\+Controller}. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_admin_controller_a13cc6b6022f16eb1a679997c32fa255f}{Index}} ()
+\begin{DoxyCompactList}\small\item\em Exibe a lista de todos os usuários com o perfil "{}\+Admin"{}. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_admin_controller_a5b9a3af86b6b1f67fd9b38b6995f93cb}{Details}} (int id)
+\begin{DoxyCompactList}\small\item\em Exibe os detalhes de um usuário Admin específico. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_admin_controller_a4d6e1731bf6cc927082e93d43c0463ac}{Create}} ()
+\begin{DoxyCompactList}\small\item\em Exibe o formulário para criação de um novo usuário Admin. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_admin_controller_a99dde3fd3be4713feac527a2f8cec1fd}{Create}} (\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}} usuario)
+\begin{DoxyCompactList}\small\item\em Processa o envio do formulário de criação. Define o perfil como "{}\+Admin"{} e salva o novo usuário. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_admin_controller_a81f4c973a92b4c6282343df13113ef6f}{Edit}} (int id)
+\begin{DoxyCompactList}\small\item\em Exibe o formulário de edição para um usuário Admin existente. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_admin_controller_aba9c5f43192bdfadf968655230dcbcd0}{Edit}} (\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}} usuario)
+\begin{DoxyCompactList}\small\item\em Processa o envio do formulário de edição e salva as alterações no banco de dados. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_admin_controller_a517634e686821d33294a7e8e86185714}{Delete}} (int id)
+\begin{DoxyCompactList}\small\item\em Exibe a confirmação de exclusão para um usuário Admin. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_admin_controller_a81f819b7171fd586dbce02bd94a24121}{Delete\+Confirmed}} (int id)
+\begin{DoxyCompactList}\small\item\em Confirma a exclusão de um usuário Admin do banco de dados. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_admin_controller_ac5aca07ae33fe9e2f0294f58c2d7536c}{\+\_\+db}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controlador responsável por gerenciar as operações de CRUD (Create, Read, Update, Delete) dos usuários que possuem o perfil de "{}\+Admin"{} no sistema. 
+
+\label{doc-constructors}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_admin_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_admin_controller_ae08e1e69f2d0010bd3e43b7b11a3dece}\index{PIM.Controllers.AdminController@{PIM.Controllers.AdminController}!AdminController@{AdminController}}
+\index{AdminController@{AdminController}!PIM.Controllers.AdminController@{PIM.Controllers.AdminController}}
+\doxysubsubsection{\texorpdfstring{AdminController()}{AdminController()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_admin_controller_ae08e1e69f2d0010bd3e43b7b11a3dece} 
+PIM.\+Controllers.\+Admin\+Controller.\+Admin\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}}}]{db}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_admin_controller}{Admin\+Controller}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & O contexto do banco de dados (\doxylink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}) injetado via DI.\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_admin_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_admin_controller_a4d6e1731bf6cc927082e93d43c0463ac}\index{PIM.Controllers.AdminController@{PIM.Controllers.AdminController}!Create@{Create}}
+\index{Create@{Create}!PIM.Controllers.AdminController@{PIM.Controllers.AdminController}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_admin_controller_a4d6e1731bf6cc927082e93d43c0463ac} 
+IAction\+Result PIM.\+Controllers.\+Admin\+Controller.\+Create (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Exibe o formulário para criação de um novo usuário Admin. 
+
+\begin{DoxyReturn}{Returns}
+A View Create.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_admin_controller_a99dde3fd3be4713feac527a2f8cec1fd}\index{PIM.Controllers.AdminController@{PIM.Controllers.AdminController}!Create@{Create}}
+\index{Create@{Create}!PIM.Controllers.AdminController@{PIM.Controllers.AdminController}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_admin_controller_a99dde3fd3be4713feac527a2f8cec1fd} 
+IAction\+Result PIM.\+Controllers.\+Admin\+Controller.\+Create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}}}]{usuario}{}\end{DoxyParamCaption})}
+
+
+
+Processa o envio do formulário de criação. Define o perfil como "{}\+Admin"{} e salva o novo usuário. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em usuario} & O objeto \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario} contendo os dados do novo administrador.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redireciona para Index em caso de sucesso ou retorna a View Create com erros de validação.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_admin_controller_a517634e686821d33294a7e8e86185714}\index{PIM.Controllers.AdminController@{PIM.Controllers.AdminController}!Delete@{Delete}}
+\index{Delete@{Delete}!PIM.Controllers.AdminController@{PIM.Controllers.AdminController}}
+\doxysubsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_admin_controller_a517634e686821d33294a7e8e86185714} 
+IAction\+Result PIM.\+Controllers.\+Admin\+Controller.\+Delete (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Exibe a confirmação de exclusão para um usuário Admin. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O ID do usuário Admin a ser excluído.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A View Delete com os dados do usuário, ou Not\+Found.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_admin_controller_a81f819b7171fd586dbce02bd94a24121}\index{PIM.Controllers.AdminController@{PIM.Controllers.AdminController}!DeleteConfirmed@{DeleteConfirmed}}
+\index{DeleteConfirmed@{DeleteConfirmed}!PIM.Controllers.AdminController@{PIM.Controllers.AdminController}}
+\doxysubsubsection{\texorpdfstring{DeleteConfirmed()}{DeleteConfirmed()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_admin_controller_a81f819b7171fd586dbce02bd94a24121} 
+IAction\+Result PIM.\+Controllers.\+Admin\+Controller.\+Delete\+Confirmed (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Confirma a exclusão de um usuário Admin do banco de dados. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O ID do usuário Admin a ser excluído.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redireciona para Index após a exclusão.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_admin_controller_a5b9a3af86b6b1f67fd9b38b6995f93cb}\index{PIM.Controllers.AdminController@{PIM.Controllers.AdminController}!Details@{Details}}
+\index{Details@{Details}!PIM.Controllers.AdminController@{PIM.Controllers.AdminController}}
+\doxysubsubsection{\texorpdfstring{Details()}{Details()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_admin_controller_a5b9a3af86b6b1f67fd9b38b6995f93cb} 
+IAction\+Result PIM.\+Controllers.\+Admin\+Controller.\+Details (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Exibe os detalhes de um usuário Admin específico. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O ID do usuário Admin.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A View Details com o objeto \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario} ou Not\+Found se o ID não for encontrado.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_admin_controller_a81f4c973a92b4c6282343df13113ef6f}\index{PIM.Controllers.AdminController@{PIM.Controllers.AdminController}!Edit@{Edit}}
+\index{Edit@{Edit}!PIM.Controllers.AdminController@{PIM.Controllers.AdminController}}
+\doxysubsubsection{\texorpdfstring{Edit()}{Edit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_admin_controller_a81f4c973a92b4c6282343df13113ef6f} 
+IAction\+Result PIM.\+Controllers.\+Admin\+Controller.\+Edit (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Exibe o formulário de edição para um usuário Admin existente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O ID do usuário Admin a ser editado.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A View Edit com o objeto \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario} preenchido, ou Not\+Found se o ID for inválido.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_admin_controller_aba9c5f43192bdfadf968655230dcbcd0}\index{PIM.Controllers.AdminController@{PIM.Controllers.AdminController}!Edit@{Edit}}
+\index{Edit@{Edit}!PIM.Controllers.AdminController@{PIM.Controllers.AdminController}}
+\doxysubsubsection{\texorpdfstring{Edit()}{Edit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_admin_controller_aba9c5f43192bdfadf968655230dcbcd0} 
+IAction\+Result PIM.\+Controllers.\+Admin\+Controller.\+Edit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}}}]{usuario}{}\end{DoxyParamCaption})}
+
+
+
+Processa o envio do formulário de edição e salva as alterações no banco de dados. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em usuario} & O objeto \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario} contendo os dados atualizados.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redireciona para Index em caso de sucesso ou retorna a View Edit com erros de validação.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_admin_controller_a13cc6b6022f16eb1a679997c32fa255f}\index{PIM.Controllers.AdminController@{PIM.Controllers.AdminController}!Index@{Index}}
+\index{Index@{Index}!PIM.Controllers.AdminController@{PIM.Controllers.AdminController}}
+\doxysubsubsection{\texorpdfstring{Index()}{Index()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_admin_controller_a13cc6b6022f16eb1a679997c32fa255f} 
+IAction\+Result PIM.\+Controllers.\+Admin\+Controller.\+Index (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Exibe a lista de todos os usuários com o perfil "{}\+Admin"{}. 
+
+\begin{DoxyReturn}{Returns}
+A View Index contendo a lista de administradores.
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_admin_controller_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_admin_controller_ac5aca07ae33fe9e2f0294f58c2d7536c}\index{PIM.Controllers.AdminController@{PIM.Controllers.AdminController}!\_db@{\_db}}
+\index{\_db@{\_db}!PIM.Controllers.AdminController@{PIM.Controllers.AdminController}}
+\doxysubsubsection{\texorpdfstring{\_db}{\_db}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_admin_controller_ac5aca07ae33fe9e2f0294f58c2d7536c} 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} PIM.\+Controllers.\+Admin\+Controller.\+\_\+db\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+Controllers/\mbox{\hyperlink{_admin_controller_8cs}{Admin\+Controller.\+cs}}\end{DoxyCompactItemize}

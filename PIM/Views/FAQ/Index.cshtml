@@ -2,41 +2,52 @@
 @model FaqListViewModel 
 
 @{
+    // Define o título da página
     ViewData["Title"] = "FAQ";
     
-    // Calcula o total de páginas usando a propriedade do ViewModel (ou a lógica abaixo, se a propriedade não existir)
+    // Calcula o total de páginas usando a propriedade do ViewModel
     int totalPages = Model.TotalPages;
     
-    // Variáveis auxiliares para desabilitar botões
+    // Variáveis auxiliares para desabilitar botões de paginação
     var prevDisabled = Model.PageNumber <= 1 ? "disabled" : "";
     var nextDisabled = Model.PageNumber >= totalPages ? "disabled" : "";
 }
 
+<!-- Importa o CSS da página FAQ -->
 <link rel="stylesheet" href="~/css/faq.css" />
 
+<!-- Wrapper principal da página -->
 <div class="page-wrapper">
 
+    <!-- Título da página -->
     <div class="title-row">
         <h2 class="faq-title">FAQ - Perguntas Frequentes</h2>
     </div>
 
+    <!-- Formulário de busca e criação de novo FAQ -->
     <form asp-action="Index" method="get" class="actions-row">
         
+        <!-- Controles de busca -->
         <div class="search-controls">
+            <!-- Campo de pesquisa -->
             <input type="text" name="searchString" value="@Model.CurrentFilter" class="search-input" placeholder="Pesquisar..." />
             
+            <!-- Botão de busca -->
             <button class="btn btn-search" type="submit">
                 <i class="fas fa-search"></i> Buscar
             </button>
 
+            <!-- Botão para remover filtros -->
             <a asp-action="Index" class="btn btn-clear-filters">
                 Remover Filtros
             </a>
         </div>
         
+        <!-- Botão para adicionar novo FAQ -->
         <a class="btn btn-create" asp-action="Create">Adicionar Novo FAQ</a>
     </form>
     
+    <!-- Container da lista de FAQs -->
     <div class="faq-container"> 
         <div class="faq-table-wrapper">
             <table class="faq-table">
@@ -50,14 +61,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Loop pelos FAQs do ViewModel -->
                     @foreach (var item in Model.Faqs)
                     {
                         <tr>
+                            <!-- Exibe ordem, pergunta truncada, resposta truncada e categoria -->
                             <td>@item.Ordem</td>
                             <td>@(item.Pergunta.Length > 80 ? item.Pergunta.Substring(0, 80) + "..." : item.Pergunta)</td>
                             <td>@(item.Resposta.Length > 120 ? item.Resposta.Substring(0, 120) + "..." : item.Resposta)</td>
                             <td>@item.Categoria</td>
                             <td>
+                                <!-- Botões de edição e exclusão -->
                                 <a class="btn btn-edit" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
                                 <a class="btn btn-delete" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Tem certeza que deseja deletar?');">Deletar</a>
                             </td>
@@ -67,14 +81,18 @@
             </table>
         </div>
         
+        <!-- Rodapé de paginação -->
         <div class="pagination-footer mt-4">
             
+            <!-- Informações de paginação -->
             <div class="pagination-info">
                 Página @(Model.PageNumber) de @(totalPages) | Total de @(Model.TotalItems) FAQs
             </div>
 
+            <!-- Controles de paginação -->
             <div class="pagination-controls">
                 
+                <!-- Botão Anterior -->
                 <a asp-action="Index"
                    asp-route-pageNumber="@(Model.PageNumber - 1)"
                    asp-route-searchString="@Model.CurrentFilter"
@@ -82,6 +100,7 @@
                     Anterior
                 </a>
 
+                <!-- Botões de página individual -->
                 @for (int i = 1; i <= totalPages; i++)
                 {
                     <a asp-action="Index"
@@ -92,6 +111,7 @@
                     </a>
                 }
                 
+                <!-- Botão Próxima -->
                 <a asp-action="Index"
                    asp-route-pageNumber="@(Model.PageNumber + 1)"
                    asp-route-searchString="@Model.CurrentFilter"

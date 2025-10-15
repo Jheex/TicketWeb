@@ -1,75 +1,82 @@
 :root {
-    /* Cores */
-    --color-primary: #7F56D9;
-    --color-primary-light: #9B78F0;
-    --color-primary-dark: #6941C6;
-    --color-success: #12B76A;
-    --color-success-hover: #0E9A56;
-    --color-error: #F04438;
-    --color-error-hover: #D92D20;
+    /* -----------------------------
+       Variáveis de cores e UI
+       ----------------------------- */
+    --color-primary: #7F56D9;          /* Cor principal do sistema */
+    --color-primary-light: #9B78F0;    /* Versão clara da cor principal */
+    --color-primary-dark: #6941C6;     /* Versão escura da cor principal, usada em hover */
+    --color-success: #12B76A;          /* Cor para ações de sucesso */
+    --color-success-hover: #0E9A56;    /* Hover da cor de sucesso */
+    --color-error: #F04438;            /* Cor para ações de erro/exclusão */
+    --color-error-hover: #D92D20;      /* Hover da cor de erro */
 
     /* Fundo */
-    --color-bg-page: #100E21; /* Fundo sólido e escuro */
-    --color-bg-card: #1E1A34; /* Cartões mais escuros */
+    --color-bg-page: #100E21;          /* Fundo geral da página */
+    --color-bg-card: #1E1A34;          /* Fundo de cartões/painéis */
 
-    /* UI - Interface */
-    --color-ui-input: #2C2744;
-    --color-ui-border: #383252;
-    --color-ui-border-focus: var(--color-primary);
+    /* UI - Inputs e bordas */
+    --color-ui-input: #2C2744;         /* Fundo de inputs, selects e textarea */
+    --color-ui-border: #383252;        /* Borda padrão */
+    --color-ui-border-focus: var(--color-primary); /* Borda ao focar */
 
     /* Texto */
-    --color-text-primary: #FFFFFF;
-    --color-text-secondary: #C0B8E1;
-    --color-text-link: var(--color-primary);
+    --color-text-primary: #FFFFFF;      /* Texto principal */
+    --color-text-secondary: #C0B8E1;    /* Texto secundário / labels */
+    --color-text-link: var(--color-primary); /* Links */
 
     /* Sombras */
-    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.2);
-    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.3);
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra leve */
+    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.3); /* Sombra média */
 }
 
-/* --------------------------- DELETE ------------------------------ */
+/* -----------------------------
+   Container do DELETE
+   ----------------------------- */
 .cadastro-containerd {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* centraliza vertical */
-    align-items: center;     /* centraliza horizontal */
-    min-height: 70vh;       /* ocupa a altura total da tela */
-    padding: 2rem;
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center;     /* Centraliza horizontalmente */
+    min-height: 70vh;       /* Ocupa 70% da altura da tela */
+    padding: 2rem;           /* Espaçamento interno */
 }
 
+/* Título da página */
 .page-title {
     text-align: center;
-    font-size: 45px;
-    font-weight: 600;
+    font-size: 45px;                 /* Fonte grande para destaque */
+    font-weight: 600;                /* Negrito médio */
     margin-bottom: 20px;
-    color: var(--color-text-primary);
+    color: var(--color-text-primary); /* Branco */
 }
 
+/* Formulário de exclusão */
 .form-delete {
     width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
+    max-width: 500px;                /* Limita a largura máxima */
+    margin: 0 auto;                   /* Centraliza horizontalmente */
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-    padding: 2.5rem 2rem;
-    background-color: var(--color-bg-card);
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    flex-direction: column;           /* Campos em coluna */
+    gap: 20px;                        /* Espaçamento entre elementos */
+    text-align: center;               /* Centraliza o texto */
+    padding: 2.5rem 2rem;             /* Espaçamento interno */
+    background-color: var(--color-bg-card); /* Fundo do painel */
+    border-radius: 12px;              /* Cantos arredondados */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Sombra de elevação */
     
-    /* NOVO */
-    box-sizing: border-box;      /* garante que padding não aumente largura */
-    word-wrap: break-word;       /* quebra palavras longas */
-    overflow-wrap: break-word;   /* compatibilidade extra */
+    /* Garantias de layout */
+    box-sizing: border-box;           /* Padding não aumenta largura */
+    word-wrap: break-word;            /* Quebra palavras longas */
+    overflow-wrap: break-word;        /* Compatibilidade extra */
 }
 
-
+/* Efeito de hover do formulário */
 .form-delete:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    transform: translateY(-2px);                  /* Leve movimento para cima */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35); /* Sombra mais intensa */
 }
 
+/* Informações de aviso */
 .delete-info p {
     color: var(--color-text-primary);
     font-size: 16px;
@@ -77,29 +84,32 @@
 }
 
 .delete-info strong {
-    color: var(--color-error);
+    color: var(--color-error); /* Destaque em vermelho para o nome do usuário */
 }
 
+/* Container dos botões de ação */
 .form-actions-delete {
     display: flex;
-    justify-content: center;
-    gap: 16px;
+    justify-content: center; /* Centraliza os botões */
+    gap: 16px;               /* Espaçamento entre botões */
 }
 
+/* Botão de exclusão */
 .btn-delete {
-    background-color: var(--color-error);
-    color: #fff; /* sempre branco para contraste */
+    background-color: var(--color-error); /* Vermelho */
+    color: #fff;                          /* Texto branco */
     padding: 12px 24px;
     border-radius: 10px;
     font-weight: 600;
     text-decoration: none;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s; /* Animações suaves */
 }
 
+/* Hover do botão de exclusão */
 .btn-delete:hover {
-    background-color: var(--color-error-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    background-color: var(--color-error-hover); /* Vermelho mais escuro */
+    transform: translateY(-1px);                /* Leve movimento */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* Sombra mais forte */
 }

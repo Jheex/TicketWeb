@@ -1,0 +1,289 @@
+\doxysection{PIM.\+Controllers.\+Usuarios\+Controller Class Reference}
+\hypertarget{class_p_i_m_1_1_controllers_1_1_usuarios_controller}{}\label{class_p_i_m_1_1_controllers_1_1_usuarios_controller}\index{PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}}
+
+
+Controlador responsável pelo gerenciamento completo dos usuários (CRUD) e pelo fluxo de autenticação (Login/\+Logout) usando Session.  
+
+
+Inheritance diagram for PIM.\+Controllers.\+Usuarios\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_i_m_1_1_controllers_1_1_usuarios_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a11e5bcdf8dbd9367969f433d2988a47d}{Usuarios\+Controller}} (\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} db)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_usuarios_controller}{Usuarios\+Controller}. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a7ea145ae634237bcb01cd82def11b454}{Index}} (string search\+String, int page\+Number=1)
+\begin{DoxyCompactList}\small\item\em Exibe a lista paginada de usuários, permitindo busca por nome de usuário. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a7f2b558053a6efbe2bb152a8e6da92a7}{Create}} ()
+\begin{DoxyCompactList}\small\item\em Exibe o formulário para criar um novo usuário. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_usuarios_controller_ae9e5e7e5db580c4144b554704ab0423a}{Create}} (\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}} usuario)
+\begin{DoxyCompactList}\small\item\em Processa o envio do formulário para criar um novo usuário. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a784a6b47b84388f2f57932a995b2af3c}{Edit}} (int id)
+\begin{DoxyCompactList}\small\item\em Exibe o formulário para editar um usuário existente. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a3c59653032aa4a620a57a9bba1bb6cc6}{Edit}} (\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}} usuario)
+\begin{DoxyCompactList}\small\item\em Processa o envio do formulário para atualizar um usuário existente. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a800420ed82c9e8a3fe3a58d4d76dba45}{Delete}} (int id)
+\begin{DoxyCompactList}\small\item\em Exibe a tela de confirmação de exclusão para um usuário. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_usuarios_controller_ad500e1ec45b060553189ef6fbfde26f2}{Delete\+Confirmed}} (int id)
+\begin{DoxyCompactList}\small\item\em Confirma e executa a exclusão de um usuário. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_usuarios_controller_accd71b665c14b665ab977edefb587274}{Profile}} (int id)
+\begin{DoxyCompactList}\small\item\em Exibe o perfil (detalhes) de um usuário. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_usuarios_controller_af92622e056724d46c8e039bfd286bb96}{Login}} ()
+\begin{DoxyCompactList}\small\item\em Exibe a tela de Login. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a1f6384173d3ceae64aeaeeb026cc85fa}{Login}} (string email, string senha)
+\begin{DoxyCompactList}\small\item\em Processa a autenticação do usuário. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a638055eb68331a91895629e69281fc65}{Logout}} ()
+\begin{DoxyCompactList}\small\item\em Efetua o Logout do usuário, limpando a Session. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a7d2315e5b746ede0e86bfe18720e913b}{\+\_\+db}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a7deebac75d4e69262faa5740a4e73a7a}{Page\+Size}} = 10
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controlador responsável pelo gerenciamento completo dos usuários (CRUD) e pelo fluxo de autenticação (Login/\+Logout) usando Session. 
+
+Utiliza paginação e filtragem na Action Index para a lista de usuários.
+
+\label{doc-constructors}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_usuarios_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a11e5bcdf8dbd9367969f433d2988a47d}\index{PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}!UsuariosController@{UsuariosController}}
+\index{UsuariosController@{UsuariosController}!PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}}
+\doxysubsubsection{\texorpdfstring{UsuariosController()}{UsuariosController()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a11e5bcdf8dbd9367969f433d2988a47d} 
+PIM.\+Controllers.\+Usuarios\+Controller.\+Usuarios\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}}}]{db}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_usuarios_controller}{Usuarios\+Controller}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & O contexto do banco de dados (\doxylink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}) injetado via DI.\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_usuarios_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a7f2b558053a6efbe2bb152a8e6da92a7}\index{PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}!Create@{Create}}
+\index{Create@{Create}!PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a7f2b558053a6efbe2bb152a8e6da92a7} 
+IAction\+Result PIM.\+Controllers.\+Usuarios\+Controller.\+Create (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Exibe o formulário para criar um novo usuário. 
+
+\begin{DoxyReturn}{Returns}
+A View Create.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_usuarios_controller_ae9e5e7e5db580c4144b554704ab0423a}\index{PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}!Create@{Create}}
+\index{Create@{Create}!PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_usuarios_controller_ae9e5e7e5db580c4144b554704ab0423a} 
+IAction\+Result PIM.\+Controllers.\+Usuarios\+Controller.\+Create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}}}]{usuario}{}\end{DoxyParamCaption})}
+
+
+
+Processa o envio do formulário para criar um novo usuário. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em usuario} & O objeto \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario} preenchido pelo formulário.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redireciona para Index em caso de sucesso ou retorna a View com erros.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a800420ed82c9e8a3fe3a58d4d76dba45}\index{PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}!Delete@{Delete}}
+\index{Delete@{Delete}!PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}}
+\doxysubsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a800420ed82c9e8a3fe3a58d4d76dba45} 
+IAction\+Result PIM.\+Controllers.\+Usuarios\+Controller.\+Delete (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Exibe a tela de confirmação de exclusão para um usuário. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O ID do usuário a ser excluído.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A View Delete com o objeto \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario} ou 404 Not Found.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_usuarios_controller_ad500e1ec45b060553189ef6fbfde26f2}\index{PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}!DeleteConfirmed@{DeleteConfirmed}}
+\index{DeleteConfirmed@{DeleteConfirmed}!PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}}
+\doxysubsubsection{\texorpdfstring{DeleteConfirmed()}{DeleteConfirmed()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_usuarios_controller_ad500e1ec45b060553189ef6fbfde26f2} 
+IAction\+Result PIM.\+Controllers.\+Usuarios\+Controller.\+Delete\+Confirmed (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Confirma e executa a exclusão de um usuário. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O ID do usuário a ser excluído.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redireciona para Index em caso de sucesso ou 404 Not Found.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a784a6b47b84388f2f57932a995b2af3c}\index{PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}!Edit@{Edit}}
+\index{Edit@{Edit}!PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}}
+\doxysubsubsection{\texorpdfstring{Edit()}{Edit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a784a6b47b84388f2f57932a995b2af3c} 
+IAction\+Result PIM.\+Controllers.\+Usuarios\+Controller.\+Edit (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Exibe o formulário para editar um usuário existente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O ID do usuário a ser editado.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A View Edit com o objeto \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario} ou 404 Not Found.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a3c59653032aa4a620a57a9bba1bb6cc6}\index{PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}!Edit@{Edit}}
+\index{Edit@{Edit}!PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}}
+\doxysubsubsection{\texorpdfstring{Edit()}{Edit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a3c59653032aa4a620a57a9bba1bb6cc6} 
+IAction\+Result PIM.\+Controllers.\+Usuarios\+Controller.\+Edit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}}}]{usuario}{}\end{DoxyParamCaption})}
+
+
+
+Processa o envio do formulário para atualizar um usuário existente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em usuario} & O objeto \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario} com os dados atualizados.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redireciona para Index em caso de sucesso ou retorna a View com erros/conflitos.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a7ea145ae634237bcb01cd82def11b454}\index{PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}!Index@{Index}}
+\index{Index@{Index}!PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}}
+\doxysubsubsection{\texorpdfstring{Index()}{Index()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a7ea145ae634237bcb01cd82def11b454} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Usuarios\+Controller.\+Index (\begin{DoxyParamCaption}\item[{string}]{search\+String}{, }\item[{int}]{page\+Number}{ = {\ttfamily 1}}\end{DoxyParamCaption})}
+
+
+
+Exibe a lista paginada de usuários, permitindo busca por nome de usuário. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em search\+String} & String de busca para filtrar usuários por nome de usuário.\\
+\hline
+{\em page\+Number} & O número da página atual para exibição (padrão é 1).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A View Index com uma lista paginada de objetos \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_usuarios_controller_af92622e056724d46c8e039bfd286bb96}\index{PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}!Login@{Login}}
+\index{Login@{Login}!PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}}
+\doxysubsubsection{\texorpdfstring{Login()}{Login()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_usuarios_controller_af92622e056724d46c8e039bfd286bb96} 
+IAction\+Result PIM.\+Controllers.\+Usuarios\+Controller.\+Login (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Exibe a tela de Login. 
+
+\begin{DoxyReturn}{Returns}
+A View Login.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a1f6384173d3ceae64aeaeeb026cc85fa}\index{PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}!Login@{Login}}
+\index{Login@{Login}!PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}}
+\doxysubsubsection{\texorpdfstring{Login()}{Login()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a1f6384173d3ceae64aeaeeb026cc85fa} 
+IAction\+Result PIM.\+Controllers.\+Usuarios\+Controller.\+Login (\begin{DoxyParamCaption}\item[{string}]{email}{, }\item[{string}]{senha}{}\end{DoxyParamCaption})}
+
+
+
+Processa a autenticação do usuário. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em email} & O email fornecido.\\
+\hline
+{\em senha} & A senha fornecida (deve corresponder ao Senha\+Hash, que teoricamente já conteria o hash).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redireciona para Home/\+Index em caso de sucesso ou retorna a View Login com erros.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a638055eb68331a91895629e69281fc65}\index{PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}!Logout@{Logout}}
+\index{Logout@{Logout}!PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}}
+\doxysubsubsection{\texorpdfstring{Logout()}{Logout()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a638055eb68331a91895629e69281fc65} 
+IAction\+Result PIM.\+Controllers.\+Usuarios\+Controller.\+Logout (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Efetua o Logout do usuário, limpando a Session. 
+
+\begin{DoxyReturn}{Returns}
+Redireciona para a tela de Login.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_usuarios_controller_accd71b665c14b665ab977edefb587274}\index{PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}!Profile@{Profile}}
+\index{Profile@{Profile}!PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}}
+\doxysubsubsection{\texorpdfstring{Profile()}{Profile()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_usuarios_controller_accd71b665c14b665ab977edefb587274} 
+IAction\+Result PIM.\+Controllers.\+Usuarios\+Controller.\+Profile (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Exibe o perfil (detalhes) de um usuário. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O ID do usuário cujo perfil deve ser exibido.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A View Profile com o objeto \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario} ou 404 Not Found.
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_usuarios_controller_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a7d2315e5b746ede0e86bfe18720e913b}\index{PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}!\_db@{\_db}}
+\index{\_db@{\_db}!PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}}
+\doxysubsubsection{\texorpdfstring{\_db}{\_db}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a7d2315e5b746ede0e86bfe18720e913b} 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} PIM.\+Controllers.\+Usuarios\+Controller.\+\_\+db\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a7deebac75d4e69262faa5740a4e73a7a}\index{PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}!PageSize@{PageSize}}
+\index{PageSize@{PageSize}!PIM.Controllers.UsuariosController@{PIM.Controllers.UsuariosController}}
+\doxysubsubsection{\texorpdfstring{PageSize}{PageSize}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_usuarios_controller_a7deebac75d4e69262faa5740a4e73a7a} 
+const int PIM.\+Controllers.\+Usuarios\+Controller.\+Page\+Size = 10\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+Controllers/\mbox{\hyperlink{_usuarios_controller_8cs}{Usuarios\+Controller.\+cs}}\end{DoxyCompactItemize}

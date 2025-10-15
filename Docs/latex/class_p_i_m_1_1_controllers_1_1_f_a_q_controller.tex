@@ -1,0 +1,184 @@
+\doxysection{PIM.\+Controllers.\+FAQController Class Reference}
+\hypertarget{class_p_i_m_1_1_controllers_1_1_f_a_q_controller}{}\label{class_p_i_m_1_1_controllers_1_1_f_a_q_controller}\index{PIM.Controllers.FAQController@{PIM.Controllers.FAQController}}
+
+
+Controlador responsável por gerenciar todas as operações de CRUD (Criação, Leitura, Atualização, Exclusão) das Perguntas Frequentes (FAQ) no sistema. Inclui lógica de paginação, busca e manipulação de categorias.  
+
+
+Inheritance diagram for PIM.\+Controllers.\+FAQController\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_i_m_1_1_controllers_1_1_f_a_q_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_af960d56e7792705259d2932931eb755c}{FAQController}} (\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} context)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_f_a_q_controller}{FAQController}. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_a6da42928178b3e6fd02c31175a6f256d}{Index}} (string search\+String, int page\+Number=1)
+\begin{DoxyCompactList}\small\item\em Exibe a lista paginada de Perguntas Frequentes, permitindo filtragem por string de busca. Ordena as FAQs pelo campo \textquotesingle{}Ordem\textquotesingle{}. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_a7f35c19669c9bd1cba81364866fdccd1}{Create}} ()
+\begin{DoxyCompactList}\small\item\em Exibe o formulário para criação de uma nova Pergunta Frequente. Pré-\/preenche o campo \textquotesingle{}Ordem\textquotesingle{} com o próximo número sequencial e carrega as categorias existentes. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_ac3d222cfa02d3ef318db840db9f3762c}{Create}} (\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_faq}{Faq}} faq)
+\begin{DoxyCompactList}\small\item\em Processa o envio do formulário de criação, valida o modelo e salva a nova FAQ no banco de dados. A \doxylink{class_p_i_m_1_1_models_1_1_faq_a1ca82b92c94501259897da45268b63e6}{Faq.\+Data\+Atualizacao} é definida como a hora atual. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_a949c19f5654cb507b1b6662b9e969291}{Edit}} (int id)
+\begin{DoxyCompactList}\small\item\em Exibe o formulário para edição de uma FAQ existente. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_a384f0a5711dca37205376d61fc762ce4}{Edit}} (\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_faq}{Faq}} faq)
+\begin{DoxyCompactList}\small\item\em Processa o envio do formulário de edição, atualiza a \doxylink{class_p_i_m_1_1_models_1_1_faq_a1ca82b92c94501259897da45268b63e6}{Faq.\+Data\+Atualizacao} e salva as alterações no banco. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_ad9cfba92d7342e402919c0c46fbfc6ab}{Delete}} (int id)
+\begin{DoxyCompactList}\small\item\em Remove uma Pergunta Frequente do banco de dados com base no ID fornecido. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_a5749d693db27cbf98f1029664af65421}{\+\_\+context}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controlador responsável por gerenciar todas as operações de CRUD (Criação, Leitura, Atualização, Exclusão) das Perguntas Frequentes (FAQ) no sistema. Inclui lógica de paginação, busca e manipulação de categorias. 
+
+\label{doc-constructors}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_af960d56e7792705259d2932931eb755c}\index{PIM.Controllers.FAQController@{PIM.Controllers.FAQController}!FAQController@{FAQController}}
+\index{FAQController@{FAQController}!PIM.Controllers.FAQController@{PIM.Controllers.FAQController}}
+\doxysubsubsection{\texorpdfstring{FAQController()}{FAQController()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_af960d56e7792705259d2932931eb755c} 
+PIM.\+Controllers.\+FAQController.\+FAQController (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}}}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_f_a_q_controller}{FAQController}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & O contexto do banco de dados (\doxylink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}) injetado via DI.\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_a7f35c19669c9bd1cba81364866fdccd1}\index{PIM.Controllers.FAQController@{PIM.Controllers.FAQController}!Create@{Create}}
+\index{Create@{Create}!PIM.Controllers.FAQController@{PIM.Controllers.FAQController}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_a7f35c19669c9bd1cba81364866fdccd1} 
+IAction\+Result PIM.\+Controllers.\+FAQController.\+Create (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Exibe o formulário para criação de uma nova Pergunta Frequente. Pré-\/preenche o campo \textquotesingle{}Ordem\textquotesingle{} com o próximo número sequencial e carrega as categorias existentes. 
+
+\begin{DoxyReturn}{Returns}
+A View Create, pré-\/configurada com a próxima ordem e lista de categorias.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_ac3d222cfa02d3ef318db840db9f3762c}\index{PIM.Controllers.FAQController@{PIM.Controllers.FAQController}!Create@{Create}}
+\index{Create@{Create}!PIM.Controllers.FAQController@{PIM.Controllers.FAQController}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_ac3d222cfa02d3ef318db840db9f3762c} 
+IAction\+Result PIM.\+Controllers.\+FAQController.\+Create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_faq}{Faq}}}]{faq}{}\end{DoxyParamCaption})}
+
+
+
+Processa o envio do formulário de criação, valida o modelo e salva a nova FAQ no banco de dados. A \doxylink{class_p_i_m_1_1_models_1_1_faq_a1ca82b92c94501259897da45268b63e6}{Faq.\+Data\+Atualizacao} é definida como a hora atual. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em faq} & O objeto \doxylink{class_p_i_m_1_1_models_1_1_faq}{Faq} contendo os dados enviados pelo formulário.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redireciona para Index se for bem-\/sucedido; caso contrário, retorna a View Create com erros e recarrega categorias.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_ad9cfba92d7342e402919c0c46fbfc6ab}\index{PIM.Controllers.FAQController@{PIM.Controllers.FAQController}!Delete@{Delete}}
+\index{Delete@{Delete}!PIM.Controllers.FAQController@{PIM.Controllers.FAQController}}
+\doxysubsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_ad9cfba92d7342e402919c0c46fbfc6ab} 
+IAction\+Result PIM.\+Controllers.\+FAQController.\+Delete (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Remove uma Pergunta Frequente do banco de dados com base no ID fornecido. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O ID da FAQ a ser excluída.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redireciona o usuário para a lista Index após a exclusão (ou falha).
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_a384f0a5711dca37205376d61fc762ce4}\index{PIM.Controllers.FAQController@{PIM.Controllers.FAQController}!Edit@{Edit}}
+\index{Edit@{Edit}!PIM.Controllers.FAQController@{PIM.Controllers.FAQController}}
+\doxysubsubsection{\texorpdfstring{Edit()}{Edit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_a384f0a5711dca37205376d61fc762ce4} 
+IAction\+Result PIM.\+Controllers.\+FAQController.\+Edit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_faq}{Faq}}}]{faq}{}\end{DoxyParamCaption})}
+
+
+
+Processa o envio do formulário de edição, atualiza a \doxylink{class_p_i_m_1_1_models_1_1_faq_a1ca82b92c94501259897da45268b63e6}{Faq.\+Data\+Atualizacao} e salva as alterações no banco. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em faq} & O objeto \doxylink{class_p_i_m_1_1_models_1_1_faq}{Faq} contendo os dados atualizados.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redireciona para Index se for bem-\/sucedido; caso contrário, retorna a View Edit com erros e recarrega categorias.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_a949c19f5654cb507b1b6662b9e969291}\index{PIM.Controllers.FAQController@{PIM.Controllers.FAQController}!Edit@{Edit}}
+\index{Edit@{Edit}!PIM.Controllers.FAQController@{PIM.Controllers.FAQController}}
+\doxysubsubsection{\texorpdfstring{Edit()}{Edit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_a949c19f5654cb507b1b6662b9e969291} 
+IAction\+Result PIM.\+Controllers.\+FAQController.\+Edit (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Exibe o formulário para edição de uma FAQ existente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O ID da FAQ a ser editada.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A View Edit com o objeto \doxylink{class_p_i_m_1_1_models_1_1_faq}{Faq} preenchido, ou Not\+Found se o ID for inválido.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_a6da42928178b3e6fd02c31175a6f256d}\index{PIM.Controllers.FAQController@{PIM.Controllers.FAQController}!Index@{Index}}
+\index{Index@{Index}!PIM.Controllers.FAQController@{PIM.Controllers.FAQController}}
+\doxysubsubsection{\texorpdfstring{Index()}{Index()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_a6da42928178b3e6fd02c31175a6f256d} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+FAQController.\+Index (\begin{DoxyParamCaption}\item[{string}]{search\+String}{, }\item[{int}]{page\+Number}{ = {\ttfamily 1}}\end{DoxyParamCaption})}
+
+
+
+Exibe a lista paginada de Perguntas Frequentes, permitindo filtragem por string de busca. Ordena as FAQs pelo campo \textquotesingle{}Ordem\textquotesingle{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em search\+String} & String de busca opcional para filtrar Pergunta, Resposta e Categoria.\\
+\hline
+{\em page\+Number} & O número da página atual a ser exibida (padrão é 1).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A View Index com o \doxylink{class_p_i_m_1_1_view_models_1_1_faq_list_view_model}{Faq\+List\+View\+Model} contendo os resultados paginados.
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_a5749d693db27cbf98f1029664af65421}\index{PIM.Controllers.FAQController@{PIM.Controllers.FAQController}!\_context@{\_context}}
+\index{\_context@{\_context}!PIM.Controllers.FAQController@{PIM.Controllers.FAQController}}
+\doxysubsubsection{\texorpdfstring{\_context}{\_context}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_f_a_q_controller_a5749d693db27cbf98f1029664af65421} 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} PIM.\+Controllers.\+FAQController.\+\_\+context\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+Controllers/\mbox{\hyperlink{_f_a_q_controller_8cs}{FAQController.\+cs}}\end{DoxyCompactItemize}

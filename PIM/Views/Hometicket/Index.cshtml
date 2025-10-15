@@ -1,23 +1,32 @@
 @using System.Security.Claims
 @{
+    // Define o título da página
     ViewData["Title"] = "Histórico de Tickets";
 }
 
+<!-- Seção de estilos -->
 @section Styles {
     <link rel="stylesheet" href="~/css/Tickets.css" asp-append-version="true" />
 }
 
+<!-- Container principal do dashboard de tickets -->
 <div class="dashboard-container">
     <h2 class="dashboard-header">Histórico de Tickets</h2>
     
+    <!-- Filtros de pesquisa e status -->
     <div class="filters-wrapper">
+        
+        <!-- Campo de busca por título ou usuário -->
         <div class="filter-group search-wrapper">
             <label for="searchInput">Pesquisar</label>
             <input type="text" id="searchInput" placeholder="Título ou usuário..." class="search-input" />
+            <!-- Ícone da lupa -->
             <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM3 10a7 7 0 1114 0 7 7 0 01-14 0zM19.7 18.3a1 1 0 01-1.4 1.4L14 15.4l-1.3 1.3a1 1 0 01-1.4-1.4l1.3-1.3-4.3-4.3a1 1 0 011.4-1.4l4.3 4.3 1.3-1.3a1 1 0 011.4 1.4L15.4 14l4.3 4.3z" />
             </svg>
         </div>
+
+        <!-- Filtro por Status -->
         <div class="filter-group">
             <label for="statusFilter">Status</label>
             <select id="statusFilter" class="filter-select">
@@ -27,6 +36,8 @@
                 <option value="Concluído">Concluído</option>
             </select>
         </div>
+
+        <!-- Filtro por Prioridade -->
         <div class="filter-group">
             <label for="priorityFilter">Prioridade</label>
             <select id="priorityFilter" class="filter-select">
@@ -37,6 +48,8 @@
                 <option value="Baixa">Baixa</option>
             </select>
         </div>
+
+        <!-- Filtro por Período -->
         <div class="filter-group">
             <label for="dateFilter">Período</label>
             <select id="dateFilter" class="filter-select">
@@ -45,6 +58,7 @@
             </select>
         </div>
         
+        <!-- Botão para filtrar apenas os tickets do usuário logado -->
         <div class="my-tickets-wrapper">
             <label class="hidden-label">&nbsp;</label>
             <button id="myTicketsButton" class="my-tickets-button">Meus Tickets</button>
@@ -52,17 +66,21 @@
         
     </div>
 
+    <!-- Feedback visual para filtros -->
     <div id="filterFeedback" class="feedback-notification success" style="display: none;">
         <i class="fa-solid fa-filter"></i>
         <span>Tickets filtrados com sucesso!</span>
     </div>
 
+    <!-- Container que será preenchido dinamicamente via JS -->
     <div id="ticketContainer" class="ticket-container"></div>
 
+    <!-- Mensagens de estado -->
     <p class="no-tickets-message" id="noTicketsMessage" style="display:none;">Nenhum ticket encontrado.</p>
     <p class="error-message" id="errorMessage" style="display:none;">Erro ao carregar tickets.</p>
 </div>
 
+<!-- Modal de detalhes do ticket -->
 <div id="ticketModal" class="modal-overlay">
     <div class="modal-contents">
         <div class="modal-header">
@@ -71,6 +89,7 @@
         </div>
 
         <div class="modal-bodya">
+            <!-- Coluna esquerda: dados do ticket -->
             <div class="left-column">
                 <div class="data-field">
                     <strong>ID:</strong>
@@ -100,7 +119,7 @@
                     <strong>Data de Abertura:</strong>
                     <span id="modalDate"></span>
                 </div>
-                 <div class="data-field" id="finalizationInfo">
+                <div class="data-field" id="finalizationInfo">
                     <div class="info-row">
                         <strong>Data de Atribuição:</strong>
                         <span id="modalAssignedDate">Não atribuído</span>
@@ -112,6 +131,7 @@
                 </div>
             </div>
 
+            <!-- Coluna direita: descrição e ações -->
             <div class="right-column">
                 <div class="modal-description">
                     <strong>Descrição:</strong>
@@ -119,27 +139,29 @@
                 </div>
                 <div class="modal-actions">
                     <button id="approveBtn" class="ticket-btn ticket-btn-approve">Aprovar</button>
-                    <button id="btnConcluir" class="btn">Concluir</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Toast para notificações -->
 <div id="toast" class="toast"></div>
 
-@* ============================================================================== *@
-@* CORREÇÃO CRÍTICA: DEFINIÇÃO DA VARIÁVEL CURRENT_USER_ID ANTES DE CARREGAR O JS *@
-@* ============================================================================== *@
+<!-- ============================================================================== -->
+<!-- Scripts: definição da variável CURRENT_USER_ID antes de carregar o JS -->
+<!-- ============================================================================== -->
 @section Scripts {
     @{
-        // Obtém o ID do usuário logado. Se não houver, define como "null" para evitar o erro de ReferenceError.
+        // Obtém o ID do usuário logado. Se não houver, define como "null" para evitar ReferenceError
         var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "null"; 
     }
 
     <script>
+        // Variável global para uso nos scripts do Tickets.js
         const CURRENT_USER_ID = "@currentUserId";
     </script>
     
+    <!-- Script principal do histórico de tickets -->
     <script src="~/js/Tickets.js" asp-append-version="true"></script>
 }

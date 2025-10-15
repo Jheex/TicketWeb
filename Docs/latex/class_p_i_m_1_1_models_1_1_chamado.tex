@@ -1,0 +1,203 @@
+\doxysection{PIM.\+Models.\+Chamado Class Reference}
+\hypertarget{class_p_i_m_1_1_models_1_1_chamado}{}\label{class_p_i_m_1_1_models_1_1_chamado}\index{PIM.Models.Chamado@{PIM.Models.Chamado}}
+
+
+Representa um chamado de suporte ou ticket dentro do sistema. Contém informações sobre o problema, status, prioridade e os usuários envolvidos (solicitante e atribuído).  
+
+
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado_a7f8010bb39b9c1707aa1dd927aecec78}{Chamado\+Id}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Chave primária do chamado. \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado_a7ba0ff792b3ad45b8c1b208856a3a963}{Titulo}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Título breve do chamado. Campo obrigatório e com tamanho máximo de 200 caracteres. \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado_a22323f7103bdbba9cbeb1555cae054d6}{Descricao}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Descrição detalhada do chamado. \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado_a49b848b18cdccf78ed1006e2e518be23}{Categoria}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Categoria ou tipo do chamado (Ex\+: \textquotesingle{}Erro de Sistema\textquotesingle{}, \textquotesingle{}Solicitação\textquotesingle{}, \textquotesingle{}Dúvida\textquotesingle{}). \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado_ac23bc24dce0a7d9c7c026ca472c74585}{Prioridade}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Nível de prioridade do chamado (Ex\+: \textquotesingle{}Baixa\textquotesingle{}, \textquotesingle{}Média\textquotesingle{}, \textquotesingle{}Alta\textquotesingle{}, \textquotesingle{}Urgente\textquotesingle{}). \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado_a2246a494ba0e31eb186c11dd76541db1}{Status}} = "{}Aberto"{}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Status atual do chamado. O valor padrão é "{}\+Aberto"{}. \end{DoxyCompactList}\item 
+Date\+Time \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado_a0502e098c930ed837df5c4ed9a965e27}{Data\+Abertura}} = Date\+Time.\+Now\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em \doxylink{namespace_p_i_m_1_1_data}{Data} e hora em que o chamado foi aberto. O valor padrão é a hora atual na criação. \end{DoxyCompactList}\item 
+Date\+Time? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado_af5686ac0e7947b11f2b0bacfe1dbfa0b}{Data\+Atribuicao}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em \doxylink{namespace_p_i_m_1_1_data}{Data} em que o chamado foi atribuído a um técnico ou usuário. Pode ser nulo. \end{DoxyCompactList}\item 
+Date\+Time? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado_af48804a65fe6e266dc2b8af61d6b7f21}{Data\+Fechamento}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em \doxylink{namespace_p_i_m_1_1_data}{Data} em que o chamado foi fechado ou resolvido. Pode ser nulo. \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado_a5c2e99655587bb652eba858789b5802c}{Nome\+Arquivo\+Anexo}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Nome do arquivo anexado ao chamado, se houver. \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado_a36a1802c541d2afa047f4e9832ae3f31}{Caminho\+Arquivo\+Anexo}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Caminho (local/\+URL) do arquivo anexado. \end{DoxyCompactList}\item 
+int? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado_ad1f76fd7f96410a78853d8a2dcec1e6f}{Atribuido\+AId}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Chave estrangeira para o Usuário responsável por resolver o chamado. É nulo ({\ttfamily int?}) se o chamado ainda não foi atribuído. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}}? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado_a17bdd3f616e31db60b66c0e61f8be805}{AtribuidoA}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Propriedade de navegação para o objeto \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario} que está atribuído a este chamado. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado_a2cdb01c2a188b148d5af14b249685267}{Solicitante\+Id}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Chave estrangeira para o Usuário que abriu o chamado (solicitante). Este campo é obrigatório e não nulo. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}}? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado_ab504987b08afd2c1e7507dee90dbaa0d}{Solicitante}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Propriedade de navegação para o objeto \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario} que solicitou o chamado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Representa um chamado de suporte ou ticket dentro do sistema. Contém informações sobre o problema, status, prioridade e os usuários envolvidos (solicitante e atribuído). 
+
+\label{doc-property-members}
+\Hypertarget{class_p_i_m_1_1_models_1_1_chamado_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_p_i_m_1_1_models_1_1_chamado_a17bdd3f616e31db60b66c0e61f8be805}\index{PIM.Models.Chamado@{PIM.Models.Chamado}!AtribuidoA@{AtribuidoA}}
+\index{AtribuidoA@{AtribuidoA}!PIM.Models.Chamado@{PIM.Models.Chamado}}
+\doxysubsubsection{\texorpdfstring{AtribuidoA}{AtribuidoA}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_chamado_a17bdd3f616e31db60b66c0e61f8be805} 
+\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}}? PIM.\+Models.\+Chamado.\+AtribuidoA\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Propriedade de navegação para o objeto \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario} que está atribuído a este chamado. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_chamado_ad1f76fd7f96410a78853d8a2dcec1e6f}\index{PIM.Models.Chamado@{PIM.Models.Chamado}!AtribuidoAId@{AtribuidoAId}}
+\index{AtribuidoAId@{AtribuidoAId}!PIM.Models.Chamado@{PIM.Models.Chamado}}
+\doxysubsubsection{\texorpdfstring{AtribuidoAId}{AtribuidoAId}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_chamado_ad1f76fd7f96410a78853d8a2dcec1e6f} 
+int? PIM.\+Models.\+Chamado.\+Atribuido\+AId\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Chave estrangeira para o Usuário responsável por resolver o chamado. É nulo ({\ttfamily int?}) se o chamado ainda não foi atribuído. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_chamado_a36a1802c541d2afa047f4e9832ae3f31}\index{PIM.Models.Chamado@{PIM.Models.Chamado}!CaminhoArquivoAnexo@{CaminhoArquivoAnexo}}
+\index{CaminhoArquivoAnexo@{CaminhoArquivoAnexo}!PIM.Models.Chamado@{PIM.Models.Chamado}}
+\doxysubsubsection{\texorpdfstring{CaminhoArquivoAnexo}{CaminhoArquivoAnexo}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_chamado_a36a1802c541d2afa047f4e9832ae3f31} 
+string? PIM.\+Models.\+Chamado.\+Caminho\+Arquivo\+Anexo\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Caminho (local/\+URL) do arquivo anexado. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_chamado_a49b848b18cdccf78ed1006e2e518be23}\index{PIM.Models.Chamado@{PIM.Models.Chamado}!Categoria@{Categoria}}
+\index{Categoria@{Categoria}!PIM.Models.Chamado@{PIM.Models.Chamado}}
+\doxysubsubsection{\texorpdfstring{Categoria}{Categoria}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_chamado_a49b848b18cdccf78ed1006e2e518be23} 
+string? PIM.\+Models.\+Chamado.\+Categoria\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Categoria ou tipo do chamado (Ex\+: \textquotesingle{}Erro de Sistema\textquotesingle{}, \textquotesingle{}Solicitação\textquotesingle{}, \textquotesingle{}Dúvida\textquotesingle{}). 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_chamado_a7f8010bb39b9c1707aa1dd927aecec78}\index{PIM.Models.Chamado@{PIM.Models.Chamado}!ChamadoId@{ChamadoId}}
+\index{ChamadoId@{ChamadoId}!PIM.Models.Chamado@{PIM.Models.Chamado}}
+\doxysubsubsection{\texorpdfstring{ChamadoId}{ChamadoId}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_chamado_a7f8010bb39b9c1707aa1dd927aecec78} 
+int PIM.\+Models.\+Chamado.\+Chamado\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Chave primária do chamado. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_chamado_a0502e098c930ed837df5c4ed9a965e27}\index{PIM.Models.Chamado@{PIM.Models.Chamado}!DataAbertura@{DataAbertura}}
+\index{DataAbertura@{DataAbertura}!PIM.Models.Chamado@{PIM.Models.Chamado}}
+\doxysubsubsection{\texorpdfstring{DataAbertura}{DataAbertura}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_chamado_a0502e098c930ed837df5c4ed9a965e27} 
+Date\+Time PIM.\+Models.\+Chamado.\+Data\+Abertura = Date\+Time.\+Now\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+\doxylink{namespace_p_i_m_1_1_data}{Data} e hora em que o chamado foi aberto. O valor padrão é a hora atual na criação. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_chamado_af5686ac0e7947b11f2b0bacfe1dbfa0b}\index{PIM.Models.Chamado@{PIM.Models.Chamado}!DataAtribuicao@{DataAtribuicao}}
+\index{DataAtribuicao@{DataAtribuicao}!PIM.Models.Chamado@{PIM.Models.Chamado}}
+\doxysubsubsection{\texorpdfstring{DataAtribuicao}{DataAtribuicao}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_chamado_af5686ac0e7947b11f2b0bacfe1dbfa0b} 
+Date\+Time? PIM.\+Models.\+Chamado.\+Data\+Atribuicao\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+\doxylink{namespace_p_i_m_1_1_data}{Data} em que o chamado foi atribuído a um técnico ou usuário. Pode ser nulo. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_chamado_af48804a65fe6e266dc2b8af61d6b7f21}\index{PIM.Models.Chamado@{PIM.Models.Chamado}!DataFechamento@{DataFechamento}}
+\index{DataFechamento@{DataFechamento}!PIM.Models.Chamado@{PIM.Models.Chamado}}
+\doxysubsubsection{\texorpdfstring{DataFechamento}{DataFechamento}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_chamado_af48804a65fe6e266dc2b8af61d6b7f21} 
+Date\+Time? PIM.\+Models.\+Chamado.\+Data\+Fechamento\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+\doxylink{namespace_p_i_m_1_1_data}{Data} em que o chamado foi fechado ou resolvido. Pode ser nulo. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_chamado_a22323f7103bdbba9cbeb1555cae054d6}\index{PIM.Models.Chamado@{PIM.Models.Chamado}!Descricao@{Descricao}}
+\index{Descricao@{Descricao}!PIM.Models.Chamado@{PIM.Models.Chamado}}
+\doxysubsubsection{\texorpdfstring{Descricao}{Descricao}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_chamado_a22323f7103bdbba9cbeb1555cae054d6} 
+string? PIM.\+Models.\+Chamado.\+Descricao\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Descrição detalhada do chamado. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_chamado_a5c2e99655587bb652eba858789b5802c}\index{PIM.Models.Chamado@{PIM.Models.Chamado}!NomeArquivoAnexo@{NomeArquivoAnexo}}
+\index{NomeArquivoAnexo@{NomeArquivoAnexo}!PIM.Models.Chamado@{PIM.Models.Chamado}}
+\doxysubsubsection{\texorpdfstring{NomeArquivoAnexo}{NomeArquivoAnexo}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_chamado_a5c2e99655587bb652eba858789b5802c} 
+string? PIM.\+Models.\+Chamado.\+Nome\+Arquivo\+Anexo\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Nome do arquivo anexado ao chamado, se houver. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_chamado_ac23bc24dce0a7d9c7c026ca472c74585}\index{PIM.Models.Chamado@{PIM.Models.Chamado}!Prioridade@{Prioridade}}
+\index{Prioridade@{Prioridade}!PIM.Models.Chamado@{PIM.Models.Chamado}}
+\doxysubsubsection{\texorpdfstring{Prioridade}{Prioridade}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_chamado_ac23bc24dce0a7d9c7c026ca472c74585} 
+string? PIM.\+Models.\+Chamado.\+Prioridade\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Nível de prioridade do chamado (Ex\+: \textquotesingle{}Baixa\textquotesingle{}, \textquotesingle{}Média\textquotesingle{}, \textquotesingle{}Alta\textquotesingle{}, \textquotesingle{}Urgente\textquotesingle{}). 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_chamado_ab504987b08afd2c1e7507dee90dbaa0d}\index{PIM.Models.Chamado@{PIM.Models.Chamado}!Solicitante@{Solicitante}}
+\index{Solicitante@{Solicitante}!PIM.Models.Chamado@{PIM.Models.Chamado}}
+\doxysubsubsection{\texorpdfstring{Solicitante}{Solicitante}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_chamado_ab504987b08afd2c1e7507dee90dbaa0d} 
+\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}}? PIM.\+Models.\+Chamado.\+Solicitante\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Propriedade de navegação para o objeto \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario} que solicitou o chamado. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_chamado_a2cdb01c2a188b148d5af14b249685267}\index{PIM.Models.Chamado@{PIM.Models.Chamado}!SolicitanteId@{SolicitanteId}}
+\index{SolicitanteId@{SolicitanteId}!PIM.Models.Chamado@{PIM.Models.Chamado}}
+\doxysubsubsection{\texorpdfstring{SolicitanteId}{SolicitanteId}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_chamado_a2cdb01c2a188b148d5af14b249685267} 
+int PIM.\+Models.\+Chamado.\+Solicitante\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Chave estrangeira para o Usuário que abriu o chamado (solicitante). Este campo é obrigatório e não nulo. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_chamado_a2246a494ba0e31eb186c11dd76541db1}\index{PIM.Models.Chamado@{PIM.Models.Chamado}!Status@{Status}}
+\index{Status@{Status}!PIM.Models.Chamado@{PIM.Models.Chamado}}
+\doxysubsubsection{\texorpdfstring{Status}{Status}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_chamado_a2246a494ba0e31eb186c11dd76541db1} 
+string? PIM.\+Models.\+Chamado.\+Status = "{}Aberto"{}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Status atual do chamado. O valor padrão é "{}\+Aberto"{}. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_chamado_a7ba0ff792b3ad45b8c1b208856a3a963}\index{PIM.Models.Chamado@{PIM.Models.Chamado}!Titulo@{Titulo}}
+\index{Titulo@{Titulo}!PIM.Models.Chamado@{PIM.Models.Chamado}}
+\doxysubsubsection{\texorpdfstring{Titulo}{Titulo}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_chamado_a7ba0ff792b3ad45b8c1b208856a3a963} 
+string? PIM.\+Models.\+Chamado.\+Titulo\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Título breve do chamado. Campo obrigatório e com tamanho máximo de 200 caracteres. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+Models/\mbox{\hyperlink{_chamados_8cs}{Chamados.\+cs}}\end{DoxyCompactItemize}

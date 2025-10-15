@@ -1,6 +1,7 @@
 @model PIM.Models.Usuario
 
 @{
+    // Define o título da página
     ViewData["Title"] = "Mudar Senha";
 }
 
@@ -8,20 +9,28 @@
     <div class="profile-card">
         <h2>Mudar Senha</h2>
         
+        <!-- Formulário para alteração de senha -->
         <form asp-action="MudarSenha">
+            
+            <!-- Campo: Senha Atual -->
             <div class="form-group">
                 <label for="senhaAtual">Senha Atual</label>
                 <input type="password" id="senhaAtual" name="senhaAtual" class="form-control" />
             </div>
+            
+            <!-- Campo: Nova Senha -->
             <div class="form-group">
                 <label for="novaSenha">Nova Senha</label>
                 <input type="password" id="novaSenha" name="novaSenha" class="form-control" />
             </div>
+            
+            <!-- Campo: Confirmar Nova Senha -->
             <div class="form-group">
                 <label for="confirmarNovaSenha">Confirmar Nova Senha</label>
                 <input type="password" id="confirmarNovaSenha" name="confirmarNovaSenha" class="form-control" />
             </div>
             
+            <!-- Botões de ação -->
             <div class="profile-actions mt-4">
                 <button type="submit" class="btn btn-primary">Salvar Senha</button>
                 <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
@@ -31,5 +40,6 @@
 </div>
 
 @section Styles {
+    <!-- Estilo da página de perfil -->
     <link rel="stylesheet" href="~/css/perfil.css" />
 }

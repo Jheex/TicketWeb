@@ -1,31 +1,53 @@
+/* Define o tamanho da fonte base para todo o documento HTML */
 html {
   font-size: 14px;
 }
 
+/* Aplica ajustes de responsividade: Aumenta o tamanho da fonte base para dispositivos com largura mínima de 768px (tablets e desktops) */
 @media (min-width: 768px) {
   html {
     font-size: 16px;
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+/* Estilo de foco (focus) para elementos interativos (botões, links de navegação, campos de formulário e checkboxes).
+   Garante que o indicador de foco seja acessível (WCAG) e visualmente consistente.
+   Cria um box-shadow com uma borda branca interna e uma borda azul externa (cor primária do Bootstrap).
+*/
+.btn:focus, 
+.btn:active:focus, 
+.btn-link.nav-link:focus, 
+.form-control:focus, 
+.form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
+/* Define a posição da tag HTML como relativa, permitindo que elementos filhos sejam posicionados de forma absoluta.
+   Garante que a altura mínima do corpo da página seja de 100% da viewport.
+*/
 html {
   position: relative;
   min-height: 100%;
 }
 
+/* Define a margem inferior do corpo para criar espaço para um rodapé fixo (de 60px) */
 body {
   margin-bottom: 60px;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+/* Estilo para placeholders dentro de componentes flutuantes do Bootstrap (form-floating).
+   Define a cor do placeholder como secundária do Bootstrap e alinha o texto à direita (end).
+*/
+.form-floating > .form-control-plaintext::placeholder, 
+.form-floating > .form-control::placeholder {
   color: var(--bs-secondary-color);
   text-align: end;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+/* Ajuste de estilo para o placeholder quando o campo flutuante está em foco.
+   Alinha o texto do placeholder à esquerda (start) ao focar, melhorando a experiência de entrada.
+*/
+.form-floating > .form-control-plaintext:focus::placeholder, 
+.form-floating > .form-control:focus::placeholder {
   text-align: start;
 }

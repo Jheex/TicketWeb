@@ -1,76 +1,89 @@
+/* =========================================
+   Variáveis globais com cores, sombras e UI
+   ========================================= */
 :root {
-    /* Cores */
-    --color-primary: #7F56D9;
-    --color-primary-light: #9B78F0;
-    --color-primary-dark: #6941C6;
-    --color-success: #12B76A;
-    --color-success-hover: #0E9A56;
-    --color-error: #F04438;
-    --color-error-hover: #D92D20;
+    /* Cores principais da marca e estados */
+    --color-primary: #7F56D9;           /* Cor principal do sistema */
+    --color-primary-light: #9B78F0;     /* Versão mais clara para hover/gradientes */
+    --color-primary-dark: #6941C6;      /* Versão mais escura para hover/feedback */
 
-    /* Fundo */
-    --color-bg-page: #100E21; /* Fundo sólido e escuro */
-    --color-bg-card: #1E1A34; /* Cartões mais escuros */
+    --color-success: #12B76A;           /* Verde para ações positivas */
+    --color-success-hover: #0E9A56;     /* Verde escuro ao passar o mouse */
+    --color-error: #F04438;             /* Vermelho para alertas/erros */
+    --color-error-hover: #D92D20;       /* Vermelho escuro ao passar o mouse */
 
-    /* UI - Interface */
-    --color-ui-input: #2C2744;
-    --color-ui-border: #383252;
-    --color-ui-border-focus: var(--color-primary);
+    /* Fundos */
+    --color-bg-page: #100E21;           /* Fundo da página principal */
+    --color-bg-card: #1E1A34;           /* Fundo de cartões e tabelas */
+
+    /* UI Inputs e bordas */
+    --color-ui-input: #2C2744;          /* Fundo de campos de input */
+    --color-ui-border: #383252;         /* Borda padrão de inputs e cards */
+    --color-ui-border-focus: var(--color-primary); /* Borda ao focar */
 
     /* Texto */
-    --color-text-primary: #FFFFFF;
-    --color-text-secondary: #C0B8E1;
-    --color-text-link: var(--color-primary);
+    --color-text-primary: #FFFFFF;      /* Cor de texto padrão */
+    --color-text-secondary: #C0B8E1;    /* Texto secundário ou placeholders */
+    --color-text-link: var(--color-primary); /* Cor de links */
 
-    /* Sombras */
+    /* Sombras para elevação */
     --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.2);
     --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
+/* =========================================
+   Estilo global do body e fontes
+   ========================================= */
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background-color: var(--color-bg-page);
-    color: var(--color-text-primary);
-    line-height: 1.6;
-    min-height: 100vh;
-    box-sizing: border-box;
+    background-color: var(--color-bg-page); /* Fundo da página */
+    color: var(--color-text-primary);       /* Texto principal */
+    line-height: 1.6;                        /* Espaçamento de linhas */
+    min-height: 100vh;                       /* Garantir altura mínima da tela */
+    box-sizing: border-box;                  /* Inclui padding e border no tamanho */
 }
 
-/* Container principal */
+/* =========================================
+   Container principal (ex.: páginas de cadastro)
+   ========================================= */
 .cadastro-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2.5rem 2rem;
+    max-width: 1300px;      /* Largura máxima centralizada */
+    margin: 0 auto;         /* Centraliza horizontalmente */
+    padding: 2.5rem 2rem;   /* Espaçamento interno */
 }
 
+/* Header dentro do container, alinhamento flexível */
 .header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
+    display: flex;               /* Layout flexível */
+    justify-content: space-between; /* Espaço entre título e botão */
+    align-items: center;         /* Alinha verticalmente */
+    margin-bottom: 25px;         /* Espaço abaixo do header */
 }
 
+/* Estilo do título da página */
 h2.page-title {
-    margin: 0;
-    border-bottom: none;
+    margin: 0;                   /* Remove margem padrão */
+    border-bottom: none;         /* Remove borda inferior */
     padding-bottom: 0;
-    font-weight: 700;
+    font-weight: 700;            /* Negrito */
 }
 
-/* --- Formulário de Busca --- */
+/* =========================================
+   Formulário de busca
+   ========================================= */
 form.search-form {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 16px;                   /* Espaço entre inputs e botões */
     margin-bottom: 25px;
-    flex-wrap: wrap;
+    flex-wrap: wrap;             /* Permite quebra em telas pequenas */
 }
 
 form input[type="text"] {
-    flex-grow: 1;
+    flex-grow: 1;                /* Ocupa espaço disponível */
     min-width: 200px;
     padding: 12px 18px;
-    background-color: var(--color-ui-input);
+    background-color: var(--color-ui-input); /* Fundo de input */
     border: 1px solid var(--color-ui-border);
     border-radius: 10px;
     font-size: 16px;
@@ -85,12 +98,12 @@ form input[type="text"]::placeholder {
 
 form input[type="text"]:focus {
     outline: none;
-    background-color: var(--color-ui-border);
+    background-color: var(--color-ui-border); /* Fundo muda ao focar */
     border-color: var(--color-ui-border-focus);
-    box-shadow: 0 0 0 4px rgba(127, 86, 217, 0.2);
+    box-shadow: 0 0 0 4px rgba(127, 86, 217, 0.2); /* Sombra ao focar */
 }
 
-/* Botão "Remover filtros" no estilo de link */
+/* Botão "Remover filtros" como link */
 .btn-remover-filtros {
     color: var(--color-text-secondary);
     text-decoration: none;
@@ -100,10 +113,12 @@ form input[type="text"]:focus {
 
 .btn-remover-filtros:hover {
     color: var(--color-text-primary);
-    transform: translateY(-2px);
+    transform: translateY(-2px); /* Pequeno efeito de movimento */
 }
 
-/* --- Botões gerais --- */
+/* =========================================
+   Botões gerais
+   ========================================= */
 .btn-base {
     padding: 12px 20px;
     border-radius: 10px;
@@ -112,11 +127,11 @@ form input[type="text"]:focus {
     cursor: pointer;
     border: none;
     font-weight: 600;
-    white-space: nowrap;
+    white-space: nowrap;          /* Evita quebra de texto */
     transition: background-color 0.3s, transform 0.2s, color 0.3s, box-shadow 0.2s;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 8px;                     /* Espaço entre ícones/texto */
 }
 
 .btn-primary {
@@ -140,6 +155,7 @@ form input[type="text"]:focus {
     transform: translateY(-2px);
 }
 
+/* Botão de busca */
 .botao-buscar {
     background-color: var(--color-primary);
     color: #ffffff;
@@ -159,9 +175,11 @@ form input[type="text"]:focus {
     transform: translateY(-2px);
 }
 
-/* --- Tabela --- */
+/* =========================================
+   Tabela estilizada
+   ========================================= */
 .table-wrapper {
-    overflow-x: hidden;
+    overflow-x: hidden;           /* Evita scroll horizontal */
     border-radius: 12px;
     box-shadow: var(--shadow-medium);
 }
@@ -182,16 +200,16 @@ form input[type="text"]:focus {
     padding: 18px 24px;
     text-align: left;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis;    /* "..." para texto longo */
     white-space: nowrap;
 }
 
 .styled-table thead th:last-child {
-    text-align: center; /* Centraliza o cabeçalho "Ações" */
+    text-align: center;          /* Centraliza coluna de ações */
 }
 
 .styled-table tbody tr {
-    box-shadow: inset 0 -1px 0 0 var(--color-ui-border);
+    box-shadow: inset 0 -1px 0 0 var(--color-ui-border); /* Linha separadora */
     transition: background-color 0.2s, transform 0.2s;
 }
 
@@ -204,11 +222,11 @@ form input[type="text"]:focus {
     transform: translateY(-2px);
 }
 
-/* Botões de Ação na Tabela */
+/* Botões de ação dentro da tabela */
 .td-actions {
     display: flex;
     gap: 12px;
-    justify-content: center; /* Centraliza os botões dentro da célula */
+    justify-content: center;
 }
 
 .btn-action {
@@ -239,7 +257,9 @@ form input[type="text"]:focus {
     transform: translateY(-1px);
 }
 
-/* --- Paginação --- */
+/* =========================================
+   Paginação
+   ========================================= */
 .pagination {
     display: flex;
     justify-content: center;

@@ -1,28 +1,40 @@
 @model IEnumerable<PIM.Models.Usuario>
 @{
+    // Título da página
     ViewData["Title"] = "Usuários";
-    var currentFilter = ViewData["CurrentFilter"] as string;
-    var totalPages = ViewData["TotalPages"] as int? ?? 0;
-    var currentPage = ViewData["CurrentPage"] as int? ?? 1;
+
+    // Variáveis usadas para pesquisa e paginação
+    var currentFilter = ViewData["CurrentFilter"] as string; // Texto digitado na busca
+    var totalPages = ViewData["TotalPages"] as int? ?? 0;    // Total de páginas disponíveis
+    var currentPage = ViewData["CurrentPage"] as int? ?? 1;  // Página atual
 }
 
-<!-- Link para o CSS de Cadastros -->
+<!-- Link para o CSS customizado de Cadastros -->
 <link rel="stylesheet" href="~/css/Cadastros/Cadastros.css" asp-append-version="true" />
 
+<!-- Fonte personalizada -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 
+<!-- Container principal da página -->
 <div class="cadastro-container">
+    
+    <!-- Cabeçalho com título e botão de criação de novo usuário -->
     <div class="header-content">
         <h2 class="page-title">Lista de Usuários</h2>
         <a asp-action="Create" class="btn-base btn-primary">➕ Novo Usuário</a>
     </div>
 
+    <!-- Formulário de pesquisa -->
     <form method="get" asp-action="Index" class="search-form">
+        <!-- Campo de busca com valor preenchido caso haja filtro -->
         <input type="text" name="searchString" value="@currentFilter" placeholder="Pesquisar por username ou email" />
+        <!-- Botão para enviar a pesquisa -->
         <button class='botao-buscar' type="submit">Buscar</button>
+        <!-- Link para limpar filtros e retornar a lista completa -->
         <a asp-action="Index" class="btn-remover-filtros">Remover filtros</a>
     </form>
 
+    <!-- Tabela com a lista de usuários -->
     <div class="table-wrapper">
         <table class="styled-table">
             <thead>
@@ -37,16 +49,20 @@
                 </tr>
             </thead>
             <tbody>
+            <!-- Itera sobre cada usuário do Model -->
             @foreach (var user in Model)
             {
                 <tr>
                     <td>@user.Id</td>
+                    <!-- Se Username ou Email forem nulos, exibe "—" -->
                     <td>@(user.Username ?? "—")</td>
                     <td>@(user.Email ?? "—")</td>
                     <td>@(user.Role ?? "—")</td>
                     <td>@(user.Telefone ?? "—")</td>
+                    <!-- Formata a data de criação -->
                     <td>@(user.CreatedAt.ToString("dd/MM/yyyy"))</td>
                     <td class="td-actions">
+                        <!-- Botões de ação para Editar e Remover -->
                         <a asp-action="Edit" asp-route-id="@user.Id" class="btn-action edit">Editar</a>
                         <a asp-action="Delete" asp-route-id="@user.Id" class="btn-action delete">Remover</a>
                     </td>
@@ -56,11 +72,13 @@
         </table>
     </div>
 
+    <!-- Paginação -->
     <nav class="pagination-nav">
         <ul class="pagination">
             @for (int i = 1; i <= totalPages; i++)
             {
                 <li class="page-item @(i == currentPage ? "active" : "")">
+                    <!-- Link de paginação mantendo filtro de pesquisa -->
                     <a class="page-link" asp-action="Index" asp-route-pageNumber="@i" asp-route-searchString="@currentFilter">@i</a>
                 </li>
             }

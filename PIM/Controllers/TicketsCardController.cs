@@ -6,21 +6,35 @@ using PIM.ViewModels;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System; // Adicionado para System.DateTime.Now
 
 namespace PIM.Controllers
 {
+    /// <summary>
+    /// Controlador da API otimizado para a exibição de tickets em formato de cartões (cards) ou listas resumidas no painel de controle.
+    /// <para>Inclui métodos para obter listas de tickets (todos e atribuídos ao usuário), bem como ações rápidas como Aprovar, Concluir e Deletar.</para>
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class TicketsCardController : ControllerBase
     {
         private readonly AppDbContext _context;
 
+        /// <summary>
+        /// Inicializa uma nova instância do controlador TicketsCardController.
+        /// </summary>
+        /// <param name="context">O contexto do banco de dados (AppDbContext) injetado via DI.</param>
         public TicketsCardController(AppDbContext context)
         {
             _context = context;
         }
 
         // --- Método Auxiliar para Obter o ID do Usuário Logado ---
+        /// <summary>
+        /// Tenta obter e analisar o ID do usuário logado a partir das Claims de autenticação.
+        /// </summary>
+        /// <param name="userId">Variável de saída que receberá o ID do usuário se a operação for bem-sucedida.</param>
+        /// <returns><c>true</c> se o ID do usuário foi encontrado e é válido; caso contrário, <c>false</c>.</returns>
         private bool TryGetUserId(out int userId)
         {
             var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -28,6 +42,11 @@ namespace PIM.Controllers
         }
 
         // --- Método para retornar todos os tickets (Endpoint: /api/ticketscard/GetTickets) ---
+        /// <summary>
+        /// Obtém uma lista de todos os tickets no sistema, permitindo filtragem por datas e status.
+        /// </summary>
+        /// <param name="filters">Objeto contendo os parâmetros de filtro (data inicial, status, etc.).</param>
+        /// <returns>Uma lista de tickets resumidos (DTO) que correspondem aos filtros aplicados.</returns>
         [HttpGet("GetTickets")]
         public async Task<IActionResult> GetTickets(TicketFilterViewModel filters)
         {
@@ -36,7 +55,7 @@ namespace PIM.Controllers
                                 .Include(c => c.Solicitante) 
                                 .AsQueryable();
 
-            // Lógica de filtros (mantida)
+            // Lógica de filtros
             if (filters.StartDate.HasValue)
                 query = query.Where(t => t.DataAbertura >= filters.StartDate.Value);
             // ... (restante dos filtros) ...
@@ -46,7 +65,6 @@ namespace PIM.Controllers
             var tickets = await query
                 .Select(t => new
                 {
-                    // CORRIGIDO: Retornando como 'id' para evitar problemas de CamelCase/PascalCase no JS
                     id = t.ChamadoId,
                     title = t.Titulo,
                     category = t.Categoria,
@@ -64,6 +82,10 @@ namespace PIM.Controllers
         }
         
         // --- NOVO MÉTODO: Retorna tickets atribuídos ao usuário logado (Endpoint: /api/ticketscard/MyTickets) ---
+        /// <summary>
+        /// Obtém uma lista de tickets que estão atribuídos ao analista (usuário) logado.
+        /// </summary>
+        /// <returns>Uma lista de tickets atribuídos ao usuário logado ou 401 Unauthorized.</returns>
         [HttpGet("MyTickets")]
         public async Task<IActionResult> GetMyTickets()
         {
@@ -77,7 +99,6 @@ namespace PIM.Controllers
                                 .Where(t => t.AtribuidoAId == usuarioId) 
                                 .Select(t => new
                                 {
-                                    // CORRIGIDO: Retornando como 'id'
                                     id = t.ChamadoId,
                                     title = t.Titulo,
                                     category = t.Categoria,
@@ -95,6 +116,11 @@ namespace PIM.Controllers
         }
 
         // --- Aprova e atribui o ticket ao usuário logado (Endpoint: /api/ticketscard/Aprovar/{id}) ---
+        /// <summary>
+        /// Altera o status de um ticket para "Em Andamento", atribui-o ao usuário logado e registra a data de atribuição.
+        /// </summary>
+        /// <param name="id">O ID do Chamado a ser aprovado/assumido.</param>
+        /// <returns>200 Ok em sucesso, 401 Unauthorized, 404 Not Found, ou 400 Bad Request se o status ou atribuição for inválido.</returns>
         [HttpPost("Aprovar/{id}")]
         public async Task<IActionResult> Aprovar(int id)
         {
@@ -121,6 +147,12 @@ namespace PIM.Controllers
         }
 
         // --- Deletar ticket (Endpoint: /api/ticketscard/{id}) ---
+        /// <summary>
+        /// Remove um ticket permanentemente do banco de dados.
+        /// <para>Requer autorização adequada, geralmente para Administradores ou o criador original.</para>
+        /// </summary>
+        /// <param name="id">O ID do Chamado a ser deletado.</param>
+        /// <returns>200 Ok em sucesso, 404 Not Found.</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -134,20 +166,24 @@ namespace PIM.Controllers
         }
 
         // --- Pega ticket específico (Endpoint: /api/ticketscard/{id}) ---
+        /// <summary>
+        /// Obtém os detalhes completos de um ticket específico pelo seu ID.
+        /// </summary>
+        /// <param name="id">O ID do Chamado.</param>
+        /// <returns>Um IActionResult contendo os detalhes do ticket (DTO) ou 404 Not Found.</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTicket(int id)
         {
             var ticket = await _context.Chamados
-                                       .Include(c => c.AtribuidoA)
-                                       .Include(c => c.Solicitante)
-                                       .FirstOrDefaultAsync(c => c.ChamadoId == id);
+                                     .Include(c => c.AtribuidoA)
+                                     .Include(c => c.Solicitante)
+                                     .FirstOrDefaultAsync(c => c.ChamadoId == id);
 
             if (ticket == null)
                 return NotFound();
 
             return Ok(new
             {
-                // CORRIGIDO: Retornando como 'id'
                 id = ticket.ChamadoId, 
                 title = ticket.Titulo,
                 category = ticket.Categoria,
@@ -164,6 +200,12 @@ namespace PIM.Controllers
         }
         
         // --- NOVO MÉTODO: Concluir ticket (Endpoint: /api/ticketscard/Conclude/{id}) ---
+        /// <summary>
+        /// Altera o status de um ticket para "Concluído" e registra a data de fechamento.
+        /// <para>Esta ação só é permitida se o ticket estiver "Em Andamento" e atribuído ao usuário logado.</para>
+        /// </summary>
+        /// <param name="id">O ID do Chamado a ser concluído.</param>
+        /// <returns>200 Ok em sucesso, 401 Unauthorized, 404 Not Found, ou 400 Bad Request se o status ou atribuição for inválido.</returns>
         [HttpPost("Conclude/{id}")]
         public async Task<IActionResult> Conclude(int id)
         {

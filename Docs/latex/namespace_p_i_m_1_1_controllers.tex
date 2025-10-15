@@ -1,0 +1,39 @@
+\doxysection{PIM.\+Controllers Namespace Reference}
+\hypertarget{namespace_p_i_m_1_1_controllers}{}\label{namespace_p_i_m_1_1_controllers}\index{PIM.Controllers@{PIM.Controllers}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_account_controller}{Account\+Controller}}
+\begin{DoxyCompactList}\small\item\em Controlador responsável por gerenciar as operações de autenticação do usuário, incluindo Login e Logout, utilizando autenticação via Cookie no ASP.\+NET Core. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_admin_controller}{Admin\+Controller}}
+\begin{DoxyCompactList}\small\item\em Controlador responsável por gerenciar as operações de CRUD (Create, Read, Update, Delete) dos usuários que possuem o perfil de "{}\+Admin"{} no sistema. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chamado_api_model}{Chamado\+Api\+Model}}
+\begin{DoxyCompactList}\small\item\em Modelo de dados simplificado para a API de Chamados. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chamados_controller}{Chamados\+Controller}}
+\begin{DoxyCompactList}\small\item\em API Controller responsável por fornecer dados e manipular o status dos chamados. Esta implementação usa uma lista estática para simular um banco de dados. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chatbot_controller}{Chatbot\+Controller}}
+\begin{DoxyCompactList}\small\item\em Controlador principal responsável por gerenciar a interface do Chatbot e processar as requisições de perguntas, utilizando lógica de respostas rápidas e busca no FAQ. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chat_request}{Chat\+Request}}
+\begin{DoxyCompactList}\small\item\em Modelo de dados simples usado para receber a requisição JSON de pergunta do front-\/end. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_dashboard_controller}{Dashboard\+Controller}}
+\begin{DoxyCompactList}\small\item\em Controlador responsável por exibir a dashboard principal do sistema. Ele gerencia a lógica de filtros, paginação da tabela de chamados e o cálculo de KPIs (Key Performance Indicators). \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_f_a_q_controller}{FAQController}}
+\begin{DoxyCompactList}\small\item\em Controlador responsável por gerenciar todas as operações de CRUD (Criação, Leitura, Atualização, Exclusão) das Perguntas Frequentes (FAQ) no sistema. Inclui lógica de paginação, busca e manipulação de categorias. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_forms_ticket_controller}{Forms\+Ticket\+Controller}}
+\begin{DoxyCompactList}\small\item\em Controlador responsável pelo fluxo de abertura de um novo chamado em múltiplas etapas (formulário e confirmação). Ele lida com a coleta de dados, validação, armazenamento temporário de anexos e a criação final do ticket. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_home_controller}{Home\+Controller}}
+\begin{DoxyCompactList}\small\item\em Controlador principal da aplicação, responsável por exibir a Dashboard inicial. Este controlador aplica filtros, gerencia a paginação e calcula os principais KPIs (Key Performance Indicators) baseados nos dados de chamados. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_hometicket_controller}{Hometicket\+Controller}}
+\begin{DoxyCompactList}\small\item\em Controlador responsável por exibir a lista de chamados (tickets) para visualização. Ele lida principalmente com a paginação dos tickets e carrega opções básicas de filtro. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_perfil_controller}{Perfil\+Controller}}
+\begin{DoxyCompactList}\small\item\em Controlador responsável por gerenciar o perfil do usuário logado, incluindo visualização de informações, edição de dados cadastrais e alteração de senha. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller}{Relatorio\+Gerencial\+Controller}}
+\begin{DoxyCompactList}\small\item\em Controlador responsável por gerar relatórios gerenciais e dados agregados para visualização em dashboards (gráficos) e exportação. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_static_pages_controller}{Static\+Pages\+Controller}}
+\begin{DoxyCompactList}\small\item\em Controlador responsável por servir páginas estáticas de conteúdo, como FAQ, Política de Privacidade e Termos de Uso. Essas páginas geralmente não requerem lógica de negócios ou acesso a dados. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_api_controller}{Tickets\+Api\+Controller}}
+\begin{DoxyCompactList}\small\item\em Controlador da API responsável por fornecer endpoints RESTful para consulta e manipulação de Chamados (Tickets). \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_card_controller}{Tickets\+Card\+Controller}}
+\begin{DoxyCompactList}\small\item\em Controlador da API otimizado para a exibição de tickets em formato de cartões (cards) ou listas resumidas no painel de controle. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_usuarios_controller}{Usuarios\+Controller}}
+\begin{DoxyCompactList}\small\item\em Controlador responsável pelo gerenciamento completo dos usuários (CRUD) e pelo fluxo de autenticação (Login/\+Logout) usando Session. \end{DoxyCompactList}\end{DoxyCompactItemize}

@@ -1,353 +1,354 @@
--- ==========================================
--- DEFINIÇÃO DE FORMATO DE DATA/HORA
--- ==========================================
--- Garante que o formato 'YYYY-MM-DD' seja interpretado corretamente
-SET DATEFORMAT YMD;
-GO
+    -- ==========================================
+    -- DEFINIÇÃO DE FORMATO DE DATA/HORA
+    -- ==========================================
+    -- Garante que o formato 'YYYY-MM-DD' seja interpretado corretamente
+    SET DATEFORMAT YMD;
+    GO
 
--- ==========================================
--- CRIAR BANCO DE DADOS
--- ==========================================
-IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'PIM')
-BEGIN
-    CREATE DATABASE PIM;
-END
-GO
+    -- ==========================================
+    -- CRIAR BANCO DE DADOS
+    -- ==========================================
+    IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'PIM')
+    BEGIN
+        CREATE DATABASE PIM;
+    END
+    GO
 
-USE PIM;
-GO
+    USE PIM;
+    GO
 
--- ==========================================
--- TABELA USUARIOS (Linhas de erro: ~44)
--- ==========================================
+    -- ==========================================
+    -- TABELA USUARIOS (Linhas de erro: ~44)
+    -- ==========================================
 
-IF OBJECT_ID('Usuarios', 'U') IS NOT NULL
-    DROP TABLE Usuarios;
-GO
+    IF OBJECT_ID('Usuarios', 'U') IS NOT NULL
+        DROP TABLE Usuarios;
+    GO
 
-CREATE TABLE Usuarios (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
-    Username NVARCHAR(100) NOT NULL UNIQUE,
-    Email NVARCHAR(150) NOT NULL UNIQUE,
-    SenhaHash NVARCHAR(256) NOT NULL,
-    Role NVARCHAR(50) NOT NULL,
-    Nome NVARCHAR(150) NULL,
-    Telefone NVARCHAR(20) NULL,
-    Endereco NVARCHAR(250) NULL,
-    DataNascimento DATE NULL,
-    Status NVARCHAR(50) NOT NULL,
-    CreatedAt DATETIME NOT NULL DEFAULT GETDATE(),
-    UpdatedAt DATETIME NULL,
-    LastLogin DATETIME NULL,
-    Observacoes NVARCHAR(MAX) NULL
-);
-GO
+    CREATE TABLE Usuarios (
+        Id INT IDENTITY(1,1) PRIMARY KEY,
+        Username NVARCHAR(100) NOT NULL UNIQUE,
+        Email NVARCHAR(150) NOT NULL UNIQUE,
+        SenhaHash NVARCHAR(256) NOT NULL,
+        Role NVARCHAR(50) NOT NULL,
+        Nome NVARCHAR(150) NULL,
+        Telefone NVARCHAR(20) NULL,
+        Endereco NVARCHAR(250) NULL,
+        DataNascimento DATE NULL,
+        Status NVARCHAR(50) NOT NULL,
+        CreatedAt DATETIME NOT NULL DEFAULT GETDATE(),
+        UpdatedAt DATETIME NULL,
+        LastLogin DATETIME NULL,
+        Observacoes NVARCHAR(MAX) NULL
+    );
+    GO
 
--- ==========================================
--- INSERIR DADOS DE USUARIOS (Aqui está a linha 44)
--- ==========================================
-INSERT INTO Usuarios (Username, Email, SenhaHash, Role, Nome, CreatedAt, LastLogin, Status, Telefone, Endereco, DataNascimento, Observacoes)
-VALUES
-('Jhonatan Lima', 'jhonatan@inovatech.com', '123', 'Administrador', 'Jhonatan Lima', '2025-01-10 00:00:00.000', '2025-09-19 00:00:00.000', 'Ativo', '(11) 91234-5678', 'Rua das Flores, 123, São Paulo, SP', '1995-04-12', 'Administrador principal do sistema'),
-('Maria Eduarda', 'Mariaeduarda@email.com', '123', 'Administrador', 'Maria Eduarda', '2025-02-15 00:00:00.000', '2025-09-18 00:00:00.000', 'Inativo', '(21) 99876-5432', 'Av. Brasil, 456, Rio de Janeiro, RJ', '1992-07-05', 'Responsável por manutenção de tickets, demitida por justa causa'),
-('Wellington Brandão', 'Wellingtonbrandão@email.com', '123', 'Administrador', 'Wellington', '2025-03-01 00:00:00.000', '2025-09-17 00:00:00.000', 'Ativo', '(31) 98765-4321', 'Rua Afonso Pena, 789, Belo Horizonte, MG', '1998-11-20', 'Usuário comum'),
-('Henrique Costa', 'Henriquecosta@email.com', '123', 'Administrador', 'Henrique Costa', '2025-03-12 00:00:00.000', '2025-09-16 00:00:00.000', 'Ativo', '(41) 91234-8765', 'Rua XV de Novembro, 101, Curitiba, PR', '2000-01-15', NULL),
-('Silvia Nayara', 'Silvianayara@email.com', '123', 'Administrador', 'Silvia Nayara', '2025-04-05 00:00:00.000', '2025-09-15 00:00:00.000', 'Ativo', '(51) 99887-6655', 'Av. Getúlio Vargas, 202, Porto Alegre, RS', '1989-05-22', 'Especialista em suporte remoto'),
-('Camila Fernanda', 'Camilafernanda@email.com', '123', 'Administrador', 'Camila Fernanda', '2025-05-20 00:00:00.000', '2025-09-14 00:00:00.000', 'Ativo', '(61) 91345-6789', 'SGAN 605, Asa Norte, Brasília, DF', '1993-09-30', NULL),
-('Italo Yan', 'Italoyan@email.com', '123', 'Administrador', 'Italo Yan', '2025-06-10 00:00:00.000', '2025-09-13 00:00:00.000', 'Ativo', '(71) 91234-5678', 'Rua das Laranjeiras, 303, Salvador, BA', '1996-12-08', 'Usuário com acesso restrito'),
-('Juliana Pereira', 'juliana.pereira@email.com', 'HASH55667', 'Tecnico', 'Juliana Pereira', '2025-07-01 00:00:00.000', '2025-09-12 00:00:00.000', 'Ativo', '(81) 99876-4321', 'Rua do Sol, 404, Recife, PE', '1991-08-19', NULL),
-('Bruno Farias', 'bruno.farias@email.com', 'HASH88990', 'Usuario', 'Bruno Farias', '2025-08-15 00:00:00.000', '2025-09-11 00:00:00.000', 'Ativo', '(91) 91234-1234', 'Av. Nazaré, 505, Belém, PA', '1999-03-25', 'Usuário frequente do sistema'),
-('Isabela Machado', 'isabela.machado@email.com', '123123123', 'Administrador', 'Isabela Machado', '2025-09-01 00:00:00.000', '2025-09-10 00:00:00.000', 'Ativo', '(31) 99876-2345', 'Rua dos Andradas, 606, Belo Horizonte, MG', '1988-06-12', 'Supervisora geral');
+    -- ==========================================
+    -- INSERIR DADOS DE USUARIOS (Aqui está a linha 44)
+    -- ==========================================
+    INSERT INTO Usuarios (Username, Email, SenhaHash, Role, Nome, CreatedAt, LastLogin, Status, Telefone, Endereco, DataNascimento, Observacoes)
+    VALUES
+    ('Jhonatan Lima', 'jhonatan@inovatech.com', '123', 'Administrador', 'Jhonatan Lima', '2025-01-10 00:00:00.000', '2025-09-19 00:00:00.000', 'Ativo', '(11) 91234-5678', 'Rua das Flores, 123, São Paulo, SP', '1995-04-12', 'Administrador principal do sistema'),
+    ('Maria Eduarda', 'Mariaeduarda@email.com', '123', 'Administrador', 'Maria Eduarda', '2025-02-15 00:00:00.000', '2025-09-18 00:00:00.000', 'Inativo', '(21) 99876-5432', 'Av. Brasil, 456, Rio de Janeiro, RJ', '1992-07-05', 'Responsável por manutenção de tickets, demitida por justa causa'),
+    ('Wellington Brandão', 'Wellingtonbrandão@email.com', '123', 'Administrador', 'Wellington', '2025-03-01 00:00:00.000', '2025-09-17 00:00:00.000', 'Ativo', '(31) 98765-4321', 'Rua Afonso Pena, 789, Belo Horizonte, MG', '1998-11-20', 'Usuário comum'),
+    ('Henrique Costa', 'Henriquecosta@email.com', '123', 'Administrador', 'Henrique Costa', '2025-03-12 00:00:00.000', '2025-09-16 00:00:00.000', 'Ativo', '(41) 91234-8765', 'Rua XV de Novembro, 101, Curitiba, PR', '2000-01-15', NULL),
+    ('Silvia Nayara', 'Silvianayara@email.com', '123', 'Administrador', 'Silvia Nayara', '2025-04-05 00:00:00.000', '2025-09-15 00:00:00.000', 'Ativo', '(51) 99887-6655', 'Av. Getúlio Vargas, 202, Porto Alegre, RS', '1989-05-22', 'Especialista em suporte remoto'),
+    ('Camila Fernanda', 'Camilafernanda@email.com', '123', 'Administrador', 'Camila Fernanda', '2025-05-20 00:00:00.000', '2025-09-14 00:00:00.000', 'Ativo', '(61) 91345-6789', 'SGAN 605, Asa Norte, Brasília, DF', '1993-09-30', NULL),
+    ('Italo Yan', 'Italoyan@email.com', '123', 'Administrador', 'Italo Yan', '2025-06-10 00:00:00.000', '2025-09-13 00:00:00.000', 'Ativo', '(71) 91234-5678', 'Rua das Laranjeiras, 303, Salvador, BA', '1996-12-08', 'Usuário com acesso restrito'),
+    ('Juliana Pereira', 'juliana.pereira@email.com', 'HASH55667', 'Tecnico', 'Juliana Pereira', '2025-07-01 00:00:00.000', '2025-09-12 00:00:00.000', 'Ativo', '(81) 99876-4321', 'Rua do Sol, 404, Recife, PE', '1991-08-19', NULL),
+    ('Bruno Farias', 'bruno.farias@email.com', 'HASH88990', 'Usuario', 'Bruno Farias', '2025-08-15 00:00:00.000', '2025-09-11 00:00:00.000', 'Ativo', '(91) 91234-1234', 'Av. Nazaré, 505, Belém, PA', '1999-03-25', 'Usuário frequente do sistema'),
+    ('Isabela Machado', 'isabela.machado@email.com', '123123123', 'Administrador', 'Isabela Machado', '2025-09-01 00:00:00.000', '2025-09-10 00:00:00.000', 'Ativo', '(31) 99876-2345', 'Rua dos Andradas, 606, Belo Horizonte, MG', '1988-06-12', 'Supervisora geral');
 
-GO
+    GO
 
--- ==========================================
--- TABELA CHAMADOS
--- ==========================================
+    -- ==========================================
+    -- TABELA CHAMADOS
+    -- ==========================================
 
-IF OBJECT_ID('Chamados', 'U') IS NOT NULL
-    DROP TABLE Chamados;
-GO
+    IF OBJECT_ID('Chamados', 'U') IS NOT NULL
+        DROP TABLE Chamados;
+    GO
 
-CREATE TABLE Chamados (
-    ChamadoId INT IDENTITY(1,1) PRIMARY KEY,
-    SolicitanteId INT NOT NULL,
-    AtribuidoAId INT NULL,
-    Titulo NVARCHAR(200) NOT NULL,
-    Descricao NVARCHAR(MAX) NOT NULL,
-    Categoria NVARCHAR(100) NULL,
-    Prioridade NVARCHAR(50) NULL,
-    Status NVARCHAR(50) NOT NULL,
-    DataAbertura DATETIME NOT NULL,
-    DataFechamento DATETIME NULL,
-    NomeArquivoAnexo NVARCHAR(255) NULL,
-    CaminhoArquivoAnexo NVARCHAR(500) NULL,
-    DataAtribuicao DATETIME NULL,
+    CREATE TABLE Chamados (
+        ChamadoId INT IDENTITY(1,1) PRIMARY KEY,
+        SolicitanteId INT NOT NULL,
+        AtribuidoAId INT NULL,
+        Titulo NVARCHAR(200) NOT NULL,
+        Descricao NVARCHAR(MAX) NOT NULL,
+        Categoria NVARCHAR(100) NULL,
+        Prioridade NVARCHAR(50) NULL,
+        Status NVARCHAR(50) NOT NULL,
+        DataAbertura DATETIME NOT NULL,
+        DataFechamento DATETIME NULL,
+        NomeArquivoAnexo NVARCHAR(255) NULL,
+        CaminhoArquivoAnexo NVARCHAR(500) NULL,
+        DataAtribuicao DATETIME NULL,
 
-    FOREIGN KEY (SolicitanteId) REFERENCES Usuarios(Id),
-    FOREIGN KEY (AtribuidoAId) REFERENCES Usuarios(Id)
-);
-GO
+        FOREIGN KEY (SolicitanteId) REFERENCES Usuarios(Id),
+        FOREIGN KEY (AtribuidoAId) REFERENCES Usuarios(Id)
+    );
+    GO
 
--- ==========================================
--- INSERÇÃO DOS DADOS DE EXEMPLO (Aqui está a linha 96)
--- ==========================================
+    -- ==========================================
+    -- INSERÇÃO DOS DADOS DE EXEMPLO (Aqui está a linha 96)
+    -- ==========================================
 
-SET IDENTITY_INSERT Chamados ON;
+    SET IDENTITY_INSERT Chamados ON;
 
-INSERT INTO Chamados (ChamadoId, SolicitanteId, Titulo, Descricao, Categoria, Prioridade, Status, DataAbertura, DataFechamento, NomeArquivoAnexo, CaminhoArquivoAnexo, AtribuidoAId, DataAtribuicao)
-VALUES
-(1, 1, 'Problema de acesso ao sistema', 'Não consigo logar no sistema financeiro, usuário ou senha não reconhecidos.', 'Software', 'Alta', 'Em Andamento', '2025-09-01 09:00:01.000', NULL, NULL, NULL, 1, '2025-09-21 22:59:34.212'),
-(2, 1, 'Bloqueio de usuário após várias tentativas', 'Minha conta foi bloqueada após tentar a senha algumas vezes. Preciso de reset.', 'Software', 'Alta', 'Em Andamento', '2025-09-01 09:00:02.000', NULL, NULL, NULL, 1, '2025-09-21 22:59:41.826'),
-(3, 2, 'Computador reiniciando sozinho', 'O computador da minha mesa reinicia de forma inesperada a cada 10-15 minutos.', 'Hardware', 'Alta', 'Aberto', '2025-09-01 09:00:03.000', NULL, NULL, NULL, NULL, NULL),
-(4, 3, 'Impressora não imprime', 'A impressora do setor de vendas está com a luz vermelha piscando e não imprime.', 'Hardware', 'Média', 'Em Andamento', '2025-09-01 09:00:04.000', NULL, NULL, NULL, 1, '2025-09-21 22:59:35.307'),
-(5, 4, 'Internet lenta', 'A conexão de internet do meu setor está muito lenta, mal consigo abrir sites.', 'Network', 'Urgente', 'Aberto', '2025-09-01 09:00:05.000', NULL, NULL, NULL, NULL, NULL),
-(6, 5, 'Erro no ERP', 'Ao tentar gerar um relatório no sistema ERP, aparece a mensagem "Erro 404".', 'Software', 'Alta', 'Aberto', '2025-09-01 09:00:06.000', NULL, NULL, NULL, NULL, NULL),
-(7, 6, 'Acesso negado a pasta compartilhada', 'Não consigo mais acessar a pasta de projetos no servidor, mesmo com as credenciais corretas.', 'Network', 'Média', 'Concluído', '2025-09-01 09:00:07.000', '2025-09-21 22:59:36.850', NULL, NULL, 1, '2025-09-21 22:59:36.595'),
-(8, 7, 'Monitor não liga', 'O monitor da minha estação de trabalho não acende, testei os cabos e continua sem sinal.', 'Hardware', 'Média', 'Em Andamento', '2025-09-01 09:00:08.000', NULL, NULL, NULL, 1, '2025-09-21 22:59:40.444'),
-(9, 8, 'Sistema de ponto travando', 'O sistema de registro de ponto está travando ao tentar inserir os dados dos funcionários.', 'Software', 'Baixa', 'Aberto', '2025-09-01 09:00:09.000', NULL, NULL, NULL, NULL, NULL),
-(10, 9, 'Falha no projetor', 'O projetor da sala de reunião não projeta a imagem do notebook, apenas fica na tela inicial.', 'Hardware', 'Baixa', 'Em Andamento', '2025-09-01 09:00:10.000', NULL, NULL, NULL, 1, '2025-09-21 22:59:38.011'),
-(11, 10, 'E-mail não envia anexos', 'Ao tentar enviar e-mails com anexos, o Outlook exibe uma falha de conexão com o servidor.', 'Software', 'Média', 'Aberto', '2025-09-01 09:00:11.000', NULL, NULL, NULL, NULL, NULL),
-(12, 1, 'Sem acesso à VPN', 'Não consigo me conectar à rede da empresa de casa usando a VPN.', 'Network', 'Alta', 'Concluído', '2025-09-01 09:00:12.000', '2025-09-21 22:59:38.897', NULL, NULL, 1, '2025-09-21 22:59:38.731'),
-(13, 2, 'Mouse não funciona', 'O mouse do meu PC parou de funcionar do nada. Já testei em outra porta USB e nada.', 'Hardware', 'Média', 'Aberto', '2025-09-01 09:00:13.000', NULL, NULL, NULL, NULL, NULL),
-(14, 3, 'Erro ao gerar nota fiscal', 'O sistema de vendas apresenta erro ao gerar notas fiscais para clientes.', 'Software', 'Alta', 'Aberto', '2025-09-01 09:00:14.000', NULL, NULL, NULL, NULL, NULL),
-(15, 4, 'Servidor de arquivos offline', 'O servidor de arquivos que usamos para guardar documentos está inacessível.', 'Outros', 'Urgente', 'Aberto', '2025-09-01 09:00:15.000', NULL, NULL, NULL, NULL, NULL),
-(16, 5, 'Problema de digitação no teclado', 'Algumas teclas do meu teclado não funcionam ou repetem a letra várias vezes.', 'Hardware', 'Baixa', 'Aberto', '2025-09-01 09:00:16.000', NULL, NULL, NULL, NULL, NULL),
-(17, 6, 'Antivírus desativado', 'Meu computador está sem antivírus e não consigo ativá-lo, o ícone na barra de tarefas está vermelho.', 'Outros', 'Alta', 'Aberto', '2025-09-01 09:00:17.000', NULL, NULL, NULL, NULL, NULL),
-(18, 7, 'Backup não concluído', 'Recebi um aviso de que o backup diário do servidor não foi concluído.', 'Outros', 'Urgente', 'Aberto', '2025-09-01 09:00:18.000', NULL, NULL, NULL, NULL, NULL),
-(19, 8, 'Lentidão no sistema de estoque', 'O sistema de estoque demora muito para carregar informações ao buscar um produto.', 'Software', 'Média', 'Aberto', '2025-09-01 09:00:19.000', NULL, NULL, NULL, NULL, NULL),
-(20, 9, 'Wi-Fi caindo', 'A conexão Wi-Fi do 2º andar está caindo e voltando a todo momento.', 'Network', 'Alta', 'Aberto', '2025-09-01 09:00:20.000', NULL, NULL, NULL, NULL, NULL),
-(21, 10, 'Computador sem áudio', 'O som do meu computador parou de funcionar, o ícone de áudio está com um X.', 'Hardware', 'Baixa', 'Aberto', '2025-09-01 09:00:21.000', NULL, NULL, NULL, NULL, NULL),
-(22, 1, 'Erro na impressão de relatórios', 'Relatórios gerados em PDF estão sendo impressos em branco.', 'Software', 'Alta', 'Em Andamento', '2025-09-02 10:15:00.000', NULL, NULL, NULL, 2, '2025-09-22 09:20:00.000'),
-(23, 2, 'Problema de login SSO', 'Não consigo acessar o portal único da empresa via SSO.', 'Software', 'Urgente', 'Aberto', '2025-09-02 11:00:00.000', NULL, NULL, NULL, NULL, NULL),
-(24, 3, 'Falha no teclado do notebook', 'Teclas de função não estão respondendo.', 'Hardware', 'Média', 'Concluído', '2025-09-02 11:30:00.000', '2025-09-22 14:10:00.000', NULL, NULL, 3, '2025-09-22 11:00:00.000'),
-(25, 4, 'Computador lento ao abrir planilhas', 'Excel demora mais de 5 minutos para abrir planilhas grandes.', 'Software', 'Média', 'Em Andamento', '2025-09-03 09:20:00.000', NULL, NULL, NULL, 2, '2025-09-23 08:50:00.000'),
-(26, 5, 'Sem som no Teams', 'Durante reuniões o áudio não funciona mesmo estando conectado.', 'Hardware', 'Alta', 'Aberto', '2025-09-03 10:05:00.000', NULL, NULL, NULL, NULL, NULL),
-(27, 6, 'VPN desconecta frequentemente', 'A VPN se desconecta várias vezes ao dia.', 'Network', 'Alta', 'Em Andamento', '2025-09-03 10:30:00.000', NULL, NULL, NULL, 4, '2025-09-23 09:30:00.000'),
-(28, 7, 'Erro de permissão em pasta compartilhada', 'Não consigo alterar arquivos na pasta de projetos.', 'Network', 'Alta', 'Aberto', '2025-09-04 08:45:00.000', NULL, NULL, NULL, NULL, NULL),
-(29, 8, 'Monitor com linhas na tela', 'O monitor apresenta linhas verticais coloridas ao ligar.', 'Hardware', 'Média', 'Concluído', '2025-09-04 09:00:00.000', '2025-09-24 12:30:00.000', NULL, NULL, 3, '2025-09-24 10:00:00.000'),
-(30, 9, 'Falha na atualização do Windows', 'O Windows apresenta erro 0x80070005 durante a atualização.', 'Software', 'Alta', 'Aberto', '2025-09-04 09:15:00.000', NULL, NULL, NULL, NULL, NULL),
-(31, 10, 'E-mail corporativo fora do ar', 'Não consigo enviar nem receber e-mails via Outlook.', 'Software', 'Urgente', 'Em Andamento', '2025-09-04 09:45:00.000', NULL, NULL, NULL, 5, '2025-09-24 11:00:00.000'),
-(32, 1, 'Notebook superaquecendo', 'Notebook esquenta e desliga sozinho após 10 minutos de uso.', 'Hardware', 'Alta', 'Aberto', '2025-09-05 08:30:00.000', NULL, NULL, NULL, NULL, NULL),
-(33, 2, 'Falha ao abrir sistemas de gestão', 'ERP não carrega após login, tela fica em branco.', 'Software', 'Alta', 'Em Andamento', '2025-09-05 09:00:00.000', NULL, NULL, NULL, 2, '2025-09-25 08:45:00.000'),
-(34, 3, 'Wi-Fi indisponível no andar 3', 'Sem acesso à internet via Wi-Fi, apenas cabo funciona.', 'Network', 'Urgente', 'Concluído', '2025-09-05 09:20:00.000', '2025-09-25 10:00:00.000', NULL, NULL, 4, '2025-09-25 09:00:00.000'),
-(35, 4, 'Impressora imprime páginas em branco', 'Impressora laser imprime folhas em branco no setor financeiro.', 'Hardware', 'Alta', 'Aberto', '2025-09-05 09:45:00.000', NULL, NULL, NULL, NULL, NULL),
-(36, 5, 'Falha de backup', 'Backup diário não completou devido a erro de disco.', 'Outros', 'Urgente', 'Em Andamento', '2025-09-06 08:00:00.000', NULL, NULL, NULL, 5, '2025-09-26 08:15:00.000'),
-(37, 6, 'Erro ao acessar portal interno', 'Portal da intranet apresenta erro 500.', 'Software', 'Alta', 'Aberto', '2025-09-06 08:30:00.000', NULL, NULL, NULL, NULL, NULL),
-(38, 7, 'Teclado sem resposta', 'Algumas teclas do teclado USB não respondem.', 'Hardware', 'Média', 'Concluído', '2025-09-06 08:50:00.000', '2025-09-26 09:30:00.000', NULL, NULL, 3, '2025-09-26 08:50:00.000'),
-(39, 8, 'Erro de certificado SSL', 'Acesso a sistema externo bloqueado por certificado inválido.', 'Network', 'Alta', 'Aberto', '2025-09-06 09:15:00.000', NULL, NULL, NULL, NULL, NULL),
-(40, 9, 'Projetor não conecta ao notebook', 'Projetor da sala de reuniões não detecta o notebook.', 'Hardware', 'Baixa', 'Em Andamento', '2025-09-06 09:45:00.000', NULL, NULL, NULL, 2, '2025-09-26 09:15:00.000'),
-(41, 10, 'Erro ao salvar arquivos na nuvem', 'Arquivos do OneDrive não estão sendo sincronizados.', 'Software', 'Média', 'Aberto', '2025-09-07 08:10:00.000', NULL, NULL, NULL, NULL, NULL),
-(42, 1, 'Computador reinicia após atualização', 'Após update do Windows, PC reinicia sozinho.', 'Software', 'Alta', 'Em Andamento', '2025-09-07 08:35:00.000', NULL, NULL, NULL, 2, '2025-09-27 08:30:00.000'),
-(43, 2, 'Senha expirada no sistema', 'Sistema bloqueou meu login por senha expirada.', 'Software', 'Média', 'Aberto', '2025-09-07 09:00:00.000', NULL, NULL, NULL, NULL, NULL),
-(44, 3, 'Notebook sem carregamento', 'Carregador conectado mas notebook não carrega.', 'Hardware', 'Alta', 'Em Andamento', '2025-09-07 09:20:00.000', NULL, NULL, NULL, 3, '2025-09-27 09:10:00.000'),
-(45, 4, 'Falha de autenticação no Wi-Fi', 'Wi-Fi corporativo não autentica, mostra "credenciais inválidas".', 'Network', 'Alta', 'Aberto', '2025-09-07 09:50:00.000', NULL, NULL, NULL, NULL, NULL),
-(46, 5, 'Erro no login do ERP', 'ERP retorna "Usuário ou senha inválidos" mesmo corretos.', 'Software', 'Urgente', 'Em Andamento', '2025-09-08 08:15:00.000', NULL, NULL, NULL, 4, '2025-09-28 08:45:00.000'),
-(47, 6, 'Monitor piscando', 'Monitor pisca em intervalos aleatórios.', 'Hardware', 'Média', 'Concluído', '2025-09-08 08:40:00.000', '2025-09-28 09:30:00.000', NULL, NULL, 3, '2025-09-28 08:40:00.000'),
-(48, 7, 'Erro de DNS', 'Não consigo acessar sites externos, erro de DNS.', 'Network', 'Alta', 'Aberto', '2025-09-08 09:00:00.000', NULL, NULL, NULL, NULL, NULL),
-(49, 8, 'Mouse travando', 'Cursor trava e não responde corretamente.', 'Hardware', 'Média', 'Em Andamento', '2025-09-08 09:20:00.000', NULL, NULL, NULL, 2, '2025-09-28 09:15:00.000'),
-(50, 9, 'Erro no envio de e-mails', 'Outlook não envia mensagens com anexos grandes.', 'Software', 'Alta', 'Aberto', '2025-09-09 08:30:00.000', NULL, NULL, NULL, NULL, NULL),
-(51, 10, 'Problema no som do notebook', 'Som só sai no fone, alto-falantes internos não funcionam.', 'Hardware', 'Média', 'Concluído', '2025-09-09 08:50:00.000', '2025-09-29 09:20:00.000', NULL, NULL, 3, '2025-09-29 08:50:00.000'),
-(52, 1, 'Falha no backup da nuvem', 'Arquivos do Google Drive não estão sendo sincronizados.', 'Outros', 'Urgente', 'Aberto', '2025-09-09 09:15:00.000', NULL, NULL, NULL, NULL, NULL),
-(53, 2, 'Problema na câmera do notebook', 'Câmera não é detectada pelo Teams.', 'Hardware', 'Média', 'Em Andamento', '2025-09-09 09:45:00.000', NULL, NULL, NULL, 2, '2025-09-29 09:30:00.000'),
-(54, 3, 'Erro 403 no portal', 'Acesso negado ao portal interno.', 'Software', 'Alta', 'Aberto', '2025-09-10 08:10:00.000', NULL, NULL, NULL, NULL, NULL),
-(55, 4, 'Notebook não liga', 'Pressiono power mas notebook não inicia.', 'Hardware', 'Urgente', 'Em Andamento', '2025-09-10 08:30:00.000', NULL, NULL, NULL, 3, '2025-09-30 08:45:00.000'),
-(56, 5, 'Falha no servidor de e-mails', 'Servidor Exchange está fora do ar.', 'Outros', 'Urgente', 'Aberto', '2025-09-10 08:50:00.000', NULL, NULL, NULL, NULL, NULL),
-(57, 6, 'Erro de sincronização do OneDrive', 'Arquivos não atualizam automaticamente.', 'Software', 'Alta', 'Em Andamento', '2025-09-10 09:15:00.000', NULL, NULL, NULL, 2, '2025-09-30 09:00:00.000'),
-(58, 7, 'Problema de autenticação LDAP', 'Usuários não conseguem logar via Active Directory.', 'Network', 'Alta', 'Aberto', '2025-09-11 08:10:00.000', NULL, NULL, NULL, NULL, NULL),
-(59, 8, 'Erro na impressora multifuncional', 'Scanner não funciona, apenas impressora está operacional.', 'Hardware', 'Média', 'Em Andamento', '2025-09-11 08:30:00.000', NULL, NULL, NULL, 3, '2025-09-30 08:45:00.000'),
-(60, 9, 'Falha no login do portal de RH', 'Senha não é reconhecida e não consigo resetar.', 'Software', 'Alta', 'Aberto', '2025-09-11 08:50:00.000', NULL, NULL, NULL, NULL, NULL),
-(61, 1, 'Não consigo acessar o portal interno', 'Ao tentar entrar no portal da empresa, recebo a mensagem "Acesso negado".', 'Acesso', 'Alta', 'Em Andamento', '2025-09-12 08:10:00.000', NULL, NULL, NULL, 2, '2025-09-29 09:00:00.000'),
-(62, 2, 'Falha ao autenticar no sistema de vendas', 'Sistema não reconhece minhas credenciais e não permite login.', 'Acesso', 'Urgente', 'Em Andamento', '2025-09-12 08:25:00.000', NULL, NULL, NULL, 3, '2025-09-29 09:15:00.000'),
-(63, 3, 'Sem acesso à VPN da empresa', 'VPN não conecta, mesmo digitando usuário e senha corretos.', 'Acesso', 'Alta', 'Aberto', '2025-09-12 08:40:00.000', NULL, NULL, NULL, NULL, '2025-09-29 09:30:00.000');
+    INSERT INTO Chamados (ChamadoId, SolicitanteId, Titulo, Descricao, Categoria, Prioridade, Status, DataAbertura, DataFechamento, NomeArquivoAnexo, CaminhoArquivoAnexo, AtribuidoAId, DataAtribuicao)
+    VALUES
+    (1, 1, 'Problema de acesso ao sistema', 'Não consigo logar no sistema financeiro, usuário ou senha não reconhecidos.', 'Software', 'Alta', 'Em Andamento', '2025-09-01 09:00:01.000', NULL, NULL, NULL, 1, '2025-09-21 22:59:34.212'),
+    (2, 1, 'Bloqueio de usuário após várias tentativas', 'Minha conta foi bloqueada após tentar a senha algumas vezes. Preciso de reset.', 'Software', 'Alta', 'Em Andamento', '2025-09-01 09:00:02.000', NULL, NULL, NULL, 1, '2025-09-21 22:59:41.826'),
+    (3, 2, 'Computador reiniciando sozinho', 'O computador da minha mesa reinicia de forma inesperada a cada 10-15 minutos.', 'Hardware', 'Alta', 'Aberto', '2025-09-01 09:00:03.000', NULL, NULL, NULL, NULL, NULL),
+    (4, 3, 'Impressora não imprime', 'A impressora do setor de vendas está com a luz vermelha piscando e não imprime.', 'Hardware', 'Média', 'Em Andamento', '2025-09-01 09:00:04.000', NULL, NULL, NULL, 1, '2025-09-21 22:59:35.307'),
+    (5, 4, 'Internet lenta', 'A conexão de internet do meu setor está muito lenta, mal consigo abrir sites.', 'Network', 'Urgente', 'Aberto', '2025-09-01 09:00:05.000', NULL, NULL, NULL, NULL, NULL),
+    (6, 5, 'Erro no ERP', 'Ao tentar gerar um relatório no sistema ERP, aparece a mensagem "Erro 404".', 'Software', 'Alta', 'Aberto', '2025-09-01 09:00:06.000', NULL, NULL, NULL, NULL, NULL),
+    (7, 6, 'Acesso negado a pasta compartilhada', 'Não consigo mais acessar a pasta de projetos no servidor, mesmo com as credenciais corretas.', 'Network', 'Média', 'Concluído', '2025-09-01 09:00:07.000', '2025-09-21 22:59:36.850', NULL, NULL, 1, '2025-09-21 22:59:36.595'),
+    (8, 7, 'Monitor não liga', 'O monitor da minha estação de trabalho não acende, testei os cabos e continua sem sinal.', 'Hardware', 'Média', 'Em Andamento', '2025-09-01 09:00:08.000', NULL, NULL, NULL, 1, '2025-09-21 22:59:40.444'),
+    (9, 8, 'Sistema de ponto travando', 'O sistema de registro de ponto está travando ao tentar inserir os dados dos funcionários.', 'Software', 'Baixa', 'Aberto', '2025-09-01 09:00:09.000', NULL, NULL, NULL, NULL, NULL),
+    (10, 9, 'Falha no projetor', 'O projetor da sala de reunião não projeta a imagem do notebook, apenas fica na tela inicial.', 'Hardware', 'Baixa', 'Em Andamento', '2025-09-01 09:00:10.000', NULL, NULL, NULL, 1, '2025-09-21 22:59:38.011'),
+    (11, 10, 'E-mail não envia anexos', 'Ao tentar enviar e-mails com anexos, o Outlook exibe uma falha de conexão com o servidor.', 'Software', 'Média', 'Aberto', '2025-09-01 09:00:11.000', NULL, NULL, NULL, NULL, NULL),
+    (12, 1, 'Sem acesso à VPN', 'Não consigo me conectar à rede da empresa de casa usando a VPN.', 'Network', 'Alta', 'Concluído', '2025-09-01 09:00:12.000', '2025-09-21 22:59:38.897', NULL, NULL, 1, '2025-09-21 22:59:38.731'),
+    (13, 2, 'Mouse não funciona', 'O mouse do meu PC parou de funcionar do nada. Já testei em outra porta USB e nada.', 'Hardware', 'Média', 'Aberto', '2025-09-01 09:00:13.000', NULL, NULL, NULL, NULL, NULL),
+    (14, 3, 'Erro ao gerar nota fiscal', 'O sistema de vendas apresenta erro ao gerar notas fiscais para clientes.', 'Software', 'Alta', 'Aberto', '2025-09-01 09:00:14.000', NULL, NULL, NULL, NULL, NULL),
+    (15, 4, 'Servidor de arquivos offline', 'O servidor de arquivos que usamos para guardar documentos está inacessível.', 'Outros', 'Urgente', 'Aberto', '2025-09-01 09:00:15.000', NULL, NULL, NULL, NULL, NULL),
+    (16, 5, 'Problema de digitação no teclado', 'Algumas teclas do meu teclado não funcionam ou repetem a letra várias vezes.', 'Hardware', 'Baixa', 'Aberto', '2025-09-01 09:00:16.000', NULL, NULL, NULL, NULL, NULL),
+    (17, 6, 'Antivírus desativado', 'Meu computador está sem antivírus e não consigo ativá-lo, o ícone na barra de tarefas está vermelho.', 'Outros', 'Alta', 'Aberto', '2025-09-01 09:00:17.000', NULL, NULL, NULL, NULL, NULL),
+    (18, 7, 'Backup não concluído', 'Recebi um aviso de que o backup diário do servidor não foi concluído.', 'Outros', 'Urgente', 'Aberto', '2025-09-01 09:00:18.000', NULL, NULL, NULL, NULL, NULL),
+    (19, 8, 'Lentidão no sistema de estoque', 'O sistema de estoque demora muito para carregar informações ao buscar um produto.', 'Software', 'Média', 'Aberto', '2025-09-01 09:00:19.000', NULL, NULL, NULL, NULL, NULL),
+    (20, 9, 'Wi-Fi caindo', 'A conexão Wi-Fi do 2º andar está caindo e voltando a todo momento.', 'Network', 'Alta', 'Aberto', '2025-09-01 09:00:20.000', NULL, NULL, NULL, NULL, NULL),
+    (21, 10, 'Computador sem áudio', 'O som do meu computador parou de funcionar, o ícone de áudio está com um X.', 'Hardware', 'Baixa', 'Aberto', '2025-09-01 09:00:21.000', NULL, NULL, NULL, NULL, NULL),
+    (22, 1, 'Erro na impressão de relatórios', 'Relatórios gerados em PDF estão sendo impressos em branco.', 'Software', 'Alta', 'Em Andamento', '2025-09-02 10:15:00.000', NULL, NULL, NULL, 2, '2025-09-22 09:20:00.000'),
+    (23, 2, 'Problema de login SSO', 'Não consigo acessar o portal único da empresa via SSO.', 'Software', 'Urgente', 'Aberto', '2025-09-02 11:00:00.000', NULL, NULL, NULL, NULL, NULL),
+    (24, 3, 'Falha no teclado do notebook', 'Teclas de função não estão respondendo.', 'Hardware', 'Média', 'Concluído', '2025-09-02 11:30:00.000', '2025-09-22 14:10:00.000', NULL, NULL, 3, '2025-09-22 11:00:00.000'),
+    (25, 4, 'Computador lento ao abrir planilhas', 'Excel demora mais de 5 minutos para abrir planilhas grandes.', 'Software', 'Média', 'Em Andamento', '2025-09-03 09:20:00.000', NULL, NULL, NULL, 2, '2025-09-23 08:50:00.000'),
+    (26, 5, 'Sem som no Teams', 'Durante reuniões o áudio não funciona mesmo estando conectado.', 'Hardware', 'Alta', 'Aberto', '2025-09-03 10:05:00.000', NULL, NULL, NULL, NULL, NULL),
+    (27, 6, 'VPN desconecta frequentemente', 'A VPN se desconecta várias vezes ao dia.', 'Network', 'Alta', 'Em Andamento', '2025-09-03 10:30:00.000', NULL, NULL, NULL, 4, '2025-09-23 09:30:00.000'),
+    (28, 7, 'Erro de permissão em pasta compartilhada', 'Não consigo alterar arquivos na pasta de projetos.', 'Network', 'Alta', 'Aberto', '2025-09-04 08:45:00.000', NULL, NULL, NULL, NULL, NULL),
+    (29, 8, 'Monitor com linhas na tela', 'O monitor apresenta linhas verticais coloridas ao ligar.', 'Hardware', 'Média', 'Concluído', '2025-09-04 09:00:00.000', '2025-09-24 12:30:00.000', NULL, NULL, 3, '2025-09-24 10:00:00.000'),
+    (30, 9, 'Falha na atualização do Windows', 'O Windows apresenta erro 0x80070005 durante a atualização.', 'Software', 'Alta', 'Aberto', '2025-09-04 09:15:00.000', NULL, NULL, NULL, NULL, NULL),
+    (31, 10, 'E-mail corporativo fora do ar', 'Não consigo enviar nem receber e-mails via Outlook.', 'Software', 'Urgente', 'Em Andamento', '2025-09-04 09:45:00.000', NULL, NULL, NULL, 5, '2025-09-24 11:00:00.000'),
+    (32, 1, 'Notebook superaquecendo', 'Notebook esquenta e desliga sozinho após 10 minutos de uso.', 'Hardware', 'Alta', 'Aberto', '2025-09-05 08:30:00.000', NULL, NULL, NULL, NULL, NULL),
+    (33, 2, 'Falha ao abrir sistemas de gestão', 'ERP não carrega após login, tela fica em branco.', 'Software', 'Alta', 'Em Andamento', '2025-09-05 09:00:00.000', NULL, NULL, NULL, 2, '2025-09-25 08:45:00.000'),
+    (34, 3, 'Wi-Fi indisponível no andar 3', 'Sem acesso à internet via Wi-Fi, apenas cabo funciona.', 'Network', 'Urgente', 'Concluído', '2025-09-05 09:20:00.000', '2025-09-25 10:00:00.000', NULL, NULL, 4, '2025-09-25 09:00:00.000'),
+    (35, 4, 'Impressora imprime páginas em branco', 'Impressora laser imprime folhas em branco no setor financeiro.', 'Hardware', 'Alta', 'Aberto', '2025-09-05 09:45:00.000', NULL, NULL, NULL, NULL, NULL),
+    (36, 5, 'Falha de backup', 'Backup diário não completou devido a erro de disco.', 'Outros', 'Urgente', 'Em Andamento', '2025-09-06 08:00:00.000', NULL, NULL, NULL, 5, '2025-09-26 08:15:00.000'),
+    (37, 6, 'Erro ao acessar portal interno', 'Portal da intranet apresenta erro 500.', 'Software', 'Alta', 'Aberto', '2025-09-06 08:30:00.000', NULL, NULL, NULL, NULL, NULL),
+    (38, 7, 'Teclado sem resposta', 'Algumas teclas do teclado USB não respondem.', 'Hardware', 'Média', 'Concluído', '2025-09-06 08:50:00.000', '2025-09-26 09:30:00.000', NULL, NULL, 3, '2025-09-26 08:50:00.000'),
+    (39, 8, 'Erro de certificado SSL', 'Acesso a sistema externo bloqueado por certificado inválido.', 'Network', 'Alta', 'Aberto', '2025-09-06 09:15:00.000', NULL, NULL, NULL, NULL, NULL),
+    (40, 9, 'Projetor não conecta ao notebook', 'Projetor da sala de reuniões não detecta o notebook.', 'Hardware', 'Baixa', 'Em Andamento', '2025-09-06 09:45:00.000', NULL, NULL, NULL, 2, '2025-09-26 09:15:00.000'),
+    (41, 10, 'Erro ao salvar arquivos na nuvem', 'Arquivos do OneDrive não estão sendo sincronizados.', 'Software', 'Média', 'Aberto', '2025-09-07 08:10:00.000', NULL, NULL, NULL, NULL, NULL),
+    (42, 1, 'Computador reinicia após atualização', 'Após update do Windows, PC reinicia sozinho.', 'Software', 'Alta', 'Em Andamento', '2025-09-07 08:35:00.000', NULL, NULL, NULL, 2, '2025-09-27 08:30:00.000'),
+    (43, 2, 'Senha expirada no sistema', 'Sistema bloqueou meu login por senha expirada.', 'Software', 'Média', 'Aberto', '2025-09-07 09:00:00.000', NULL, NULL, NULL, NULL, NULL),
+    (44, 3, 'Notebook sem carregamento', 'Carregador conectado mas notebook não carrega.', 'Hardware', 'Alta', 'Em Andamento', '2025-09-07 09:20:00.000', NULL, NULL, NULL, 3, '2025-09-27 09:10:00.000'),
+    (45, 4, 'Falha de autenticação no Wi-Fi', 'Wi-Fi corporativo não autentica, mostra "credenciais inválidas".', 'Network', 'Alta', 'Aberto', '2025-09-07 09:50:00.000', NULL, NULL, NULL, NULL, NULL),
+    (46, 5, 'Erro no login do ERP', 'ERP retorna "Usuário ou senha inválidos" mesmo corretos.', 'Software', 'Urgente', 'Em Andamento', '2025-09-08 08:15:00.000', NULL, NULL, NULL, 4, '2025-09-28 08:45:00.000'),
+    (47, 6, 'Monitor piscando', 'Monitor pisca em intervalos aleatórios.', 'Hardware', 'Média', 'Concluído', '2025-09-08 08:40:00.000', '2025-09-28 09:30:00.000', NULL, NULL, 3, '2025-09-28 08:40:00.000'),
+    (48, 7, 'Erro de DNS', 'Não consigo acessar sites externos, erro de DNS.', 'Network', 'Alta', 'Aberto', '2025-09-08 09:00:00.000', NULL, NULL, NULL, NULL, NULL),
+    (49, 8, 'Mouse travando', 'Cursor trava e não responde corretamente.', 'Hardware', 'Média', 'Em Andamento', '2025-09-08 09:20:00.000', NULL, NULL, NULL, 2, '2025-09-28 09:15:00.000'),
+    (50, 9, 'Erro no envio de e-mails', 'Outlook não envia mensagens com anexos grandes.', 'Software', 'Alta', 'Aberto', '2025-09-09 08:30:00.000', NULL, NULL, NULL, NULL, NULL),
+    (51, 10, 'Problema no som do notebook', 'Som só sai no fone, alto-falantes internos não funcionam.', 'Hardware', 'Média', 'Concluído', '2025-09-09 08:50:00.000', '2025-09-29 09:20:00.000', NULL, NULL, 3, '2025-09-29 08:50:00.000'),
+    (52, 1, 'Falha no backup da nuvem', 'Arquivos do Google Drive não estão sendo sincronizados.', 'Outros', 'Urgente', 'Aberto', '2025-09-09 09:15:00.000', NULL, NULL, NULL, NULL, NULL),
+    (53, 2, 'Problema na câmera do notebook', 'Câmera não é detectada pelo Teams.', 'Hardware', 'Média', 'Em Andamento', '2025-09-09 09:45:00.000', NULL, NULL, NULL, 2, '2025-09-29 09:30:00.000'),
+    (54, 3, 'Erro 403 no portal', 'Acesso negado ao portal interno.', 'Software', 'Alta', 'Aberto', '2025-09-10 08:10:00.000', NULL, NULL, NULL, NULL, NULL),
+    (55, 4, 'Notebook não liga', 'Pressiono power mas notebook não inicia.', 'Hardware', 'Urgente', 'Em Andamento', '2025-09-10 08:30:00.000', NULL, NULL, NULL, 3, '2025-09-30 08:45:00.000'),
+    (56, 5, 'Falha no servidor de e-mails', 'Servidor Exchange está fora do ar.', 'Outros', 'Urgente', 'Aberto', '2025-09-10 08:50:00.000', NULL, NULL, NULL, NULL, NULL),
+    (57, 6, 'Erro de sincronização do OneDrive', 'Arquivos não atualizam automaticamente.', 'Software', 'Alta', 'Em Andamento', '2025-09-10 09:15:00.000', NULL, NULL, NULL, 2, '2025-09-30 09:00:00.000'),
+    (58, 7, 'Problema de autenticação LDAP', 'Usuários não conseguem logar via Active Directory.', 'Network', 'Alta', 'Aberto', '2025-09-11 08:10:00.000', NULL, NULL, NULL, NULL, NULL),
+    (59, 8, 'Erro na impressora multifuncional', 'Scanner não funciona, apenas impressora está operacional.', 'Hardware', 'Média', 'Em Andamento', '2025-09-11 08:30:00.000', NULL, NULL, NULL, 3, '2025-09-30 08:45:00.000'),
+    (60, 9, 'Falha no login do portal de RH', 'Senha não é reconhecida e não consigo resetar.', 'Software', 'Alta', 'Aberto', '2025-09-11 08:50:00.000', NULL, NULL, NULL, NULL, NULL),
+    (61, 1, 'Não consigo acessar o portal interno', 'Ao tentar entrar no portal da empresa, recebo a mensagem "Acesso negado".', 'Acesso', 'Alta', 'Em Andamento', '2025-09-12 08:10:00.000', NULL, NULL, NULL, 2, '2025-09-29 09:00:00.000'),
+    (62, 2, 'Falha ao autenticar no sistema de vendas', 'Sistema não reconhece minhas credenciais e não permite login.', 'Acesso', 'Urgente', 'Em Andamento', '2025-09-12 08:25:00.000', NULL, NULL, NULL, 3, '2025-09-29 09:15:00.000'),
+    (63, 3, 'Sem acesso à VPN da empresa', 'VPN não conecta, mesmo digitando usuário e senha corretos.', 'Acesso', 'Alta', 'Aberto', '2025-09-12 08:40:00.000', NULL, NULL, NULL, NULL, '2025-09-29 09:30:00.000');
 
 
--- ========================================
--- Script para criar tabela Faqs
--- ========================================
+    -- ========================================
+    -- Script para criar tabela Faqs
+    -- ========================================
 
-IF OBJECT_ID('dbo.Faqs', 'U') IS NOT NULL
-    DROP TABLE dbo.Faqs;
-GO
+    IF OBJECT_ID('dbo.Faqs', 'U') IS NOT NULL
+        DROP TABLE dbo.Faqs;
+    GO
 
-CREATE TABLE dbo.Faqs
-(
-    Id INT IDENTITY(1,1) PRIMARY KEY,
-    Pergunta NVARCHAR(255) NOT NULL,
-    Resposta NVARCHAR(MAX) NOT NULL,
-    Categoria NVARCHAR(50) NOT NULL,
-    Ordem INT NOT NULL,
-    DataCriacao DATETIME NOT NULL DEFAULT GETDATE(),
-    DataAtualizacao DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
+    CREATE TABLE dbo.Faqs
+    (
+        Id INT IDENTITY(1,1) PRIMARY KEY,
+        Pergunta NVARCHAR(255) NOT NULL,
+        Resposta NVARCHAR(MAX) NOT NULL,
+        Categoria NVARCHAR(50) NOT NULL,
+        Ordem INT NOT NULL,
+        DataCriacao DATETIME NOT NULL DEFAULT GETDATE(),
+        DataAtualizacao DATETIME NOT NULL DEFAULT GETDATE()
+    );
+    GO
 
--- ========================================
--- Inserindo FAQs realistas para o sistema PIM (1-50)
--- ========================================
+    -- ========================================
+    -- Inserindo FAQs realistas para o sistema PIM (1-50)
+    -- ========================================
 
-INSERT INTO dbo.Faqs (Pergunta, Resposta, Categoria, Ordem) VALUES
-('Como eu crio um novo ticket?', 'No Dashboard, clique em "Novo Ticket", preencha Título, Descrição, Categoria e Prioridade e clique em Salvar.', 'Tickets', 1),
-('Posso anexar arquivos no ticket? Quais formatos e tamanho máximo?', 'Você pode anexar imagens (jpg, png), PDFs e logs (.txt). Máximo de 10 MB por arquivo.', 'Tickets', 2),
-('Esqueci minha senha — como recuperar?', 'Na tela de login clique em "Esqueci minha senha". Informe seu e-mail e siga o link enviado para redefinir sua senha.', 'Conta', 3),
-('Como alterar meu perfil?', 'Acesse Perfil -> Configurações. Altere nome, e-mail e outras informações básicas. Clique em Salvar.', 'Conta', 4),
-('Como mudar minha senha?', 'Acesse Perfil -> Configurações -> Alterar Senha. Informe a senha atual, nova senha e confirme.', 'Conta', 5),
-('Como ver meus tickets atribuídos?', 'No Dashboard ou Tela de Tickets, utilize o filtro "Atribuído a mim" para ver apenas seus tickets.', 'Tickets', 6),
-('Como consultar tickets de outros usuários?', 'Acesse Tela de Tickets e utilize os filtros por usuário ou grupo. Apenas usuários com permissão podem visualizar tickets de outros.', 'Tickets', 7),
-('Como filtrar tickets por status?', 'Na Tela de Tickets, selecione o filtro de Status e escolha Aberto, Em Andamento ou Concluído.', 'Tickets', 8),
-('Como filtrar tickets por prioridade?', 'Na Tela de Tickets, selecione o filtro de Prioridade e escolha Baixa, Média, Alta ou Urgente.', 'Tickets', 9),
-('Como aprovar um ticket?', 'Abra o ticket e clique em "Aprovar". O ticket passará para o status "Em Andamento" e será atribuído a você.', 'Tickets', 10),
-('Como concluir um ticket?', 'Abra o ticket em andamento e clique em "Concluir". O status será alterado para "Concluído".', 'Tickets', 11),
-('Como rejeitar um ticket?', 'Abra o ticket e clique em "Rejeitar". O status será alterado para "Rejeitado".', 'Tickets', 12),
-('Como criar um novo usuário?', 'Acesse Configurações -> Usuários -> Adicionar Novo. Preencha os dados obrigatórios e clique em Salvar.', 'Conta', 13),
-('Como editar um usuário existente?', 'Acesse Configurações -> Usuários, selecione o usuário e clique em Editar. Atualize os campos necessários e clique em Salvar.', 'Conta', 14),
-('Como excluir um usuário?', 'Acesse Configurações -> Usuários, selecione o usuário e clique em Excluir. Apenas admins podem executar esta ação.', 'Conta', 15),
-('Como ver histórico de alterações de um ticket?', 'Abra o ticket e clique em "Histórico" para visualizar todas as alterações realizadas.', 'Tickets', 16),
-('Como anexar múltiplos arquivos a um ticket?', 'No formulário do ticket, clique em "Anexar arquivos" e selecione todos os arquivos desejados.', 'Tickets', 17),
-('Como alterar a prioridade de um ticket em andamento?', 'Abra o ticket e selecione a nova prioridade no campo "Prioridade".', 'Tickets', 18),
-('Como alterar a categoria de um ticket?', 'Abra o ticket e selecione a nova Categoria. Clique em Salvar para confirmar.', 'Tickets', 19),
-('Como excluir um ticket?', 'Abra o ticket e clique em "Excluir". Apenas usuários com permissão podem excluir tickets.', 'Tickets', 20),
-('Como restaurar um ticket deletado?', 'Tickets deletados não podem ser restaurados. Para casos críticos, contate o suporte.', 'Suporte', 21),
-('Como consultar tickets por categoria?', 'Na Tela de Tickets, utilize o filtro de Categoria para visualizar apenas tickets daquela categoria.', 'Tickets', 22),
-('Como duplicar um relatório existente?', 'Abra o relatório desejado e clique em "Duplicar". Ajuste filtros se necessário e salve.', 'Relatórios', 23),
-('Como gerar um relatório de tickets fechados?', 'Acesse Relatórios, clique em "Novo Relatório", selecione o período e filtre por status "Concluído".', 'Relatórios', 24),
-('Como exportar tickets ou relatórios em CSV?', 'Na Tela de Tickets ou Relatórios, aplique os filtros desejados e clique em "Exportar -> CSV".', 'Relatórios', 25),
-('Como exportar relatórios em PDF?', 'Na Tela de Relatórios, clique em "Exportar -> PDF" após aplicar os filtros.', 'Relatórios', 26),
-('Como verificar logs de acesso?', 'Acesse Configurações -> Segurança -> Logs de Acesso para monitorar atividades no sistema.', 'Segurança', 27),
-('Como proteger dados sensíveis nos tickets?', 'Defina permissões de visualização e use campos restritos para informações confidenciais.', 'Segurança', 28),
-('Como configurar MFA?', 'Acesse Perfil -> Segurança -> MFA e siga os passos no app autenticador.', 'Segurança', 29),
-('Como redefinir a senha de outro usuário (admin)?', 'Acesse Configurações -> Usuários -> Redefinir Senha. Apenas administradores podem fazer isso.', 'Conta', 30),
-('Como alterar notificações de e-mail?', 'Acesse Perfil -> Configurações -> Notificações e ajuste quais eventos enviar por e-mail.', 'Conta', 31),
-('Como consultar tickets por usuário?', 'Na Tela de Relatórios, utilize o filtro "Usuário" para ver tickets atribuídos a cada usuário.', 'Relatórios', 32),
-('Como reportar um bug no sistema?', 'Crie um ticket na categoria "Bug" com passos detalhados e anexe prints ou logs.', 'Suporte', 33),
-('Quais navegadores são suportados?', 'O sistema funciona melhor nas versões mais recentes do Chrome, Edge e Firefox.', 'Segurança', 34),
-('Como adicionar observações internas a um ticket?', 'Abra o ticket e adicione comentários internos visíveis apenas para técnicos.', 'Tickets', 35),
-('Como limitar tamanho de upload?', 'Acesse Configurações -> Sistema -> Limites de Arquivo e defina o tamanho máximo permitido.', 'Suporte', 36),
-('Como acompanhar métricas de desempenho do suporte?', 'Na Tela de Relatórios, veja gráficos de SLA, tempo médio de atendimento e número de tickets concluídos.', 'Relatórios', 37),
-('Como alterar minha foto de perfil?', 'Acesse Perfil -> Configurações -> Alterar Foto e faça upload de uma nova imagem.', 'Conta', 38),
-('Como ativar/desativar minha conta temporariamente?', 'Acesse Perfil -> Configurações -> Desativar Conta e siga os passos.', 'Conta', 39),
-('Como acompanhar tickets atribuídos a grupos?', 'Na Tela de Tickets, use o filtro "Grupo" para ver tickets do grupo.', 'Tickets', 40),
-('Como consultar tickets por prioridade?', 'Na Tela de Tickets, selecione o filtro de Prioridade para ver tickets de Baixa, Média, Alta ou Urgente.', 'Tickets', 41),
-('Como acompanhar tickets fechados por período?', 'Na Tela de Relatórios, filtre por status "Concluído" e selecione o período desejado.', 'Relatórios', 42),
-('Como alterar meu e-mail de login?', 'Acesse Perfil -> Configurações -> Alterar E-mail e informe o novo endereço.', 'Conta', 43),
-('Como adicionar telefone ao meu perfil?', 'Acesse Perfil -> Configurações -> Alterar Telefone e clique em Salvar.', 'Conta', 44),
-('Como adicionar endereço ao meu perfil?', 'Acesse Perfil -> Configurações -> Alterar Endereço e clique em Salvar.', 'Conta', 45),
-('Como consultar tickets por status e usuário?', 'Use filtros combinados de Status e Usuário na Tela de Tickets para consultas específicas.', 'Tickets', 46),
-('Como ver detalhes de um ticket específico?', 'Clique no ticket desejado no Dashboard ou Tela de Tickets para visualizar todas as informações.', 'Tickets', 47),
-('Como acompanhar a data de abertura e fechamento dos tickets?', 'Na Tela de Tickets ou Relatórios, os tickets mostram Data de Abertura e Data de Fechamento.', 'Tickets', 48),
-('Como consultar tickets por período?', 'Use os filtros de Data de Abertura e Data de Fechamento para ver tickets de um período específico.', 'Tickets', 49),
-('Como consultar tickets atribuídos a mim e filtrados por status?', 'Combine os filtros "Atribuído a mim" e "Status" na Tela de Tickets para obter a lista desejada.', 'Tickets', 50),
-('Como acompanhar tickets sem atribuição?', 'Na Tela de Tickets, selecione o filtro "Sem atribuição" para ver todos os tickets que ainda não foram designados.', 'Tickets', 51),
-('Como alterar a senha de outro usuário (admin)?', 'Acesse Configurações -> Usuários, selecione o usuário e clique em "Redefinir Senha". Apenas administradores podem realizar esta ação.', 'Conta', 52),
-('Como configurar limite de anexos por ticket?', 'Acesse Configurações -> Sistema -> Limites de Arquivo e defina o número máximo de anexos por ticket.', 'Suporte', 53),
-('Como visualizar tickets rejeitados?', 'Na Tela de Tickets, use o filtro "Status" e selecione "Rejeitado".', 'Tickets', 54),
-('Como pesquisar tickets por palavra-chave?', 'Use a barra de pesquisa na Tela de Tickets e digite palavras-chave presentes no título ou descrição.', 'Tickets', 55),
-('Como consultar tickets por grupo de usuários?', 'Na Tela de Tickets, selecione o filtro "Grupo" para visualizar tickets atribuídos a grupos específicos.', 'Tickets', 56),
-('Como adicionar observações em tickets?', 'Abra o ticket e adicione observações no campo "Comentários". Elas podem ser públicas ou internas, dependendo da configuração.', 'Tickets', 57),
-('Como consultar relatórios de tickets por categoria?', 'Na Tela de Relatórios, utilize o filtro "Categoria" para visualizar apenas tickets daquela categoria.', 'Relatórios', 58),
-('Como exportar tickets filtrados por categoria ou usuário?', 'Aplique os filtros desejados e clique em "Exportar -> CSV" ou "Exportar -> PDF".', 'Relatórios', 59),
-('Como atualizar dados pessoais do meu perfil?', 'Acesse Perfil -> Configurações e altere Nome, E-mail, Telefone e Endereço. Clique em Salvar.', 'Conta', 60),
-('Como verificar se um ticket foi concluído?', 'Na Tela de Tickets, verifique o status do ticket. Tickets concluídos terão status "Concluído".', 'Tickets', 61),
-('Como visualizar o usuário responsável por um ticket?', 'Abra o ticket e verifique o campo "Atribuído a".', 'Tickets', 62),
-('Como consultar tickets de alta prioridade?', 'Na Tela de Tickets, utilize o filtro "Prioridade" e selecione "Alta" ou "Urgente".', 'Tickets', 63),
-('Como consultar tickets que ainda não foram atribuídos?', 'Use o filtro "Sem atribuição" na Tela de Tickets para ver todos os tickets pendentes.', 'Tickets', 64),
-('Como criar um ticket de suporte urgente?', 'Ao criar um ticket, selecione "Prioridade: Urgente". O sistema destacará o ticket para atenção imediata.', 'Suporte', 65),
-('Como alterar minha foto de perfil?', 'Acesse Perfil -> Configurações -> Alterar Foto e faça upload de uma nova imagem.', 'Conta', 66),
-('Como consultar tickets atribuídos a múltiplos usuários?', 'Na Tela de Tickets, utilize filtros de múltiplos usuários ou grupos, se sua permissão permitir.', 'Tickets', 67),
-('Como alterar dados de outro usuário (admin)?', 'Acesse Configurações -> Usuários, selecione o usuário e clique em Editar. Apenas administradores podem realizar alterações.', 'Conta', 68),
-('Como acompanhar histórico de alterações em tickets?', 'Abra o ticket e clique em "Histórico" para visualizar todas as mudanças realizadas.', 'Tickets', 69),
-('Como anexar logs ou prints em tickets?', 'Na tela de criação ou edição do ticket, clique em "Anexar Arquivo" e selecione os arquivos desejados.', 'Tickets', 70),
-('Como alterar a senha do meu usuário?', 'Acesse Perfil -> Configurações -> Alterar Senha. Informe a senha atual e a nova senha.', 'Conta', 71),
-('Como exportar relatórios de tickets por usuário?', 'Na Tela de Relatórios, filtre por usuário e clique em "Exportar" para gerar PDF ou CSV.', 'Relatórios', 72),
-('Como consultar tickets concluídos em determinado período?', 'Na Tela de Relatórios, filtre por Status "Concluído" e selecione o período desejado.', 'Relatórios', 73),
-('Como excluir um ticket?', 'Abra o ticket e clique em "Excluir". Apenas usuários com permissão podem executar esta ação.', 'Tickets', 74),
-('Como ativar/desativar notificações de e-mail?', 'Acesse Perfil -> Configurações -> Notificações e habilite ou desabilite os alertas desejados.', 'Conta', 75),
-('Como visualizar tickets de todos os usuários (admin)?', 'Acesse Tela de Tickets e utilize o filtro "Todos os Usuários". Apenas administradores podem fazer isso.', 'Tickets', 76),
-('Como acompanhar tickets em andamento?', 'Na Tela de Tickets, use o filtro "Em Andamento" para visualizar todos os tickets com este status.', 'Tickets', 77),
-('Como acompanhar tickets abertos recentemente?', 'Na Tela de Tickets, ordene por "Data de Abertura" para ver os tickets mais recentes.', 'Tickets', 78),
-('Como consultar tickets de um usuário específico?', 'Na Tela de Tickets, utilize o filtro "Usuário" e selecione o usuário desejado.', 'Tickets', 79),
-('Como acompanhar tickets fechados por usuário?', 'Na Tela de Relatórios, filtre por Status "Concluído" e selecione o usuário para visualizar métricas individuais.', 'Relatórios', 80),
-('Como consultar tickets rejeitados por categoria?', 'Na Tela de Relatórios, filtre Status "Rejeitado" e selecione a Categoria.', 'Relatórios', 81),
-('Como acompanhar a data de atribuição de tickets?', 'Na Tela de Tickets, verifique a coluna "Data de Atribuição" para cada ticket.', 'Tickets', 82),
-('Como pesquisar tickets por palavras-chave na descrição?', 'Na Tela de Tickets, use a busca por palavras-chave para localizar tickets pelo conteúdo da descrição.', 'Tickets', 83),
-('Como adicionar comentários internos em tickets?', 'Abra o ticket e adicione comentários que serão visíveis apenas para outros técnicos.', 'Tickets', 84),
-('Como consultar tickets por categoria e prioridade?', 'Na Tela de Tickets, combine filtros de Categoria e Prioridade para consultas detalhadas.', 'Tickets', 85),
-('Como ver detalhes de anexos em um ticket?', 'Abra o ticket e clique nos arquivos anexados para visualizar ou baixar.', 'Tickets', 86),
-('Como acompanhar SLA de tickets (tempo de resposta)?', 'Na Tela de Relatórios, veja métricas de SLA com base na data de abertura e conclusão dos tickets.', 'Relatórios', 87),
-('Como filtrar relatórios por status?', 'Na Tela de Relatórios, selecione o filtro de Status para gerar relatórios específicos.', 'Relatórios', 88),
-('Como consultar tickets sem histórico de alterações?', 'Na Tela de Tickets, filtre por "Sem histórico" para identificar tickets que não tiveram modificações.', 'Tickets', 89),
-('Como visualizar tickets sem anexos?', 'Na Tela de Tickets, filtre por "Sem anexos" para localizar tickets que não possuem arquivos.', 'Tickets', 90),
-('Como consultar tickets por múltiplas categorias?', 'Na Tela de Tickets, selecione múltiplas categorias nos filtros para consultas combinadas.', 'Tickets', 91),
-('Como acompanhar tickets atribuídos a um grupo e status específico?', 'Na Tela de Tickets, combine filtros de Grupo e Status para visualizar tickets específicos.', 'Tickets', 92),
-('Como acompanhar tickets atribuídos a mim por prioridade?', 'Na Tela de Tickets, combine o filtro "Atribuído a mim" com "Prioridade" para consultas detalhadas.', 'Tickets', 93),
-('Como exportar tickets por grupo e período?', 'Na Tela de Relatórios, selecione filtros de Grupo e Período e clique em "Exportar".', 'Relatórios', 94),
-('Como consultar tickets abertos e rejeitados juntos?', 'Na Tela de Tickets, combine filtros de Status "Aberto" e "Rejeitado" para análise.', 'Tickets', 95),
-('Como acompanhar tickets abertos por categoria?', 'Na Tela de Relatórios, filtre por Status "Aberto" e selecione a Categoria.', 'Relatórios', 96),
-('Como consultar tickets concluídos por prioridade?', 'Na Tela de Relatórios, filtre Status "Concluído" e selecione a Prioridade desejada.', 'Relatórios', 97),
-('Como consultar tickets por período e usuário?', 'Na Tela de Relatórios, combine filtros de Período e Usuário para relatórios personalizados.', 'Relatórios', 98),
-('Como consultar tickets sem atribuição por grupo?', 'Na Tela de Tickets, use filtros "Sem atribuição" e "Grupo" para identificar tickets pendentes.', 'Tickets', 99),
-('Como consultar tickets com múltiplos filtros combinados?', 'Na Tela de Tickets, combine filtros de Status, Prioridade, Categoria, Usuário ou Grupo conforme necessidade.', 'Tickets', 100),
-('Como configurar notificações para novos tickets?', 'Acesse Perfil -> Configurações -> Notificações e habilite alertas para tickets novos.', 'Conta', 101),
-('Como consultar tickets atribuídos a um técnico específico?', 'Na Tela de Tickets, selecione o filtro "Usuário" e escolha o técnico desejado.', 'Tickets', 102),
-('Como consultar tickets atrasados?', 'Na Tela de Relatórios, filtre por SLA expirado ou tickets não concluídos dentro do prazo.', 'Relatórios', 103),
-('Como criar alertas de prioridade alta?', 'Acesse Configurações -> Alertas e configure alertas para tickets com prioridade Alta ou Urgente.', 'Suporte', 104),
-('Como alterar status de um ticket em massa?', 'Selecione múltiplos tickets na Tela de Tickets e clique em "Alterar Status".', 'Tickets', 105),
-('Como filtrar tickets por categoria e usuário simultaneamente?', 'Na Tela de Tickets, selecione o filtro Categoria e Usuário para uma consulta combinada.', 'Tickets', 106),
-('Como visualizar tickets em andamento por grupo?', 'Use os filtros "Grupo" e "Em Andamento" na Tela de Tickets.', 'Tickets', 107),
-('Como exportar histórico de tickets de um período específico?', 'Na Tela de Relatórios, selecione o período desejado e clique em "Exportar".', 'Relatórios', 108),
-('Como consultar tickets sem atribuição por prioridade?', 'Na Tela de Tickets, use os filtros "Sem Atribuição" e "Prioridade".', 'Tickets', 109),
-('Como acompanhar métricas de tempo médio de resolução?', 'Na Tela de Relatórios, consulte o gráfico de Tempo Médio de Atendimento por período.', 'Relatórios', 110),
-('Como criar um ticket recorrente semanal?', 'Na tela de Novo Ticket, habilite "Recorrente" e selecione frequência Semanal.', 'Tickets', 111),
-('Como adicionar campos personalizados em tickets?', 'Acesse Configurações -> Modelos de Ticket e adicione campos personalizados.', 'Tickets', 112),
-('Como acompanhar tickets por prioridade e SLA?', 'Na Tela de Relatórios, combine filtros de Prioridade e SLA para análise detalhada.', 'Relatórios', 113),
-('Como consultar tickets criados por mim?', 'Na Tela de Tickets, selecione filtro "Criados por mim".', 'Tickets', 114),
-('Como alterar dados de contato do usuário?', 'Acesse Perfil -> Configurações e altere e-mail, telefone ou endereço.', 'Conta', 115),
-('Como consultar tickets rejeitados por usuário?', 'Na Tela de Relatórios, filtre Status "Rejeitado" e selecione o Usuário.', 'Relatórios', 116),
-('Como acompanhar tickets concluídos por grupo?', 'Na Tela de Relatórios, filtre Status "Concluído" e selecione Grupo.', 'Relatórios', 117),
-('Como adicionar comentários públicos e privados em tickets?', 'Ao abrir um ticket, escolha se o comentário será Público ou Interno antes de salvar.', 'Tickets', 118),
-('Como consultar tickets com anexos?', 'Na Tela de Tickets, use o filtro "Com Anexos" para localizar tickets que possuem arquivos.', 'Tickets', 119),
-('Como alterar categoria de múltiplos tickets?', 'Selecione os tickets desejados e clique em "Alterar Categoria".', 'Tickets', 120),
-('Como ativar alertas de tickets críticos?', 'Acesse Configurações -> Alertas e configure notificações para tickets de prioridade Urgente.', 'Suporte', 121),
-('Como acompanhar tickets fechados por período e usuário?', 'Na Tela de Relatórios, combine filtros de Período e Usuário.', 'Relatórios', 122),
-('Como consultar tickets sem comentários?', 'Na Tela de Tickets, filtre "Sem Comentários" para localizar tickets sem observações.', 'Tickets', 123),
-('Como adicionar modelos de tickets padrão?', 'Acesse Configurações -> Modelos e clique em "Novo Modelo".', 'Tickets', 124),
-('Como consultar tickets duplicados?', 'Na Tela de Relatórios, filtre por campo "Duplicado" se disponível.', 'Relatórios', 125),
-('Como consultar tickets que foram reabertos?', 'Na Tela de Relatórios, utilize filtro "Reaberto" para identificar tickets que foram reabertos.', 'Relatórios', 126),
-('Como consultar tickets por data de fechamento?', 'Na Tela de Relatórios, filtre por Data de Fechamento para análise de produtividade.', 'Relatórios', 127),
-('Como exportar tickets com filtros combinados?', 'Na Tela de Relatórios, aplique todos os filtros desejados e clique em "Exportar".', 'Relatórios', 128),
-('Como consultar tickets sem usuário atribuído e prioridade alta?', 'Na Tela de Tickets, combine filtros "Sem Atribuição" e "Prioridade Alta".', 'Tickets', 129),
-('Como criar tickets internos?', 'Ao criar um ticket, selecione opção "Interno" para visibilidade apenas da equipe.', 'Tickets', 130),
-('Como consultar tickets internos por categoria?', 'Na Tela de Tickets, filtre por Categoria e Tipo "Interno".', 'Tickets', 131),
-('Como consultar tickets abertos por grupo e usuário?', 'Na Tela de Tickets, combine filtros "Grupo" e "Usuário".', 'Tickets', 132),
-('Como adicionar anexos em tickets internos?', 'Ao abrir um ticket interno, clique em "Anexar Arquivo" e selecione o arquivo.', 'Tickets', 133),
-('Como alterar prioridade de múltiplos tickets?', 'Selecione os tickets desejados e clique em "Alterar Prioridade".', 'Tickets', 134),
-('Como consultar tickets criados e concluídos no mesmo dia?', 'Na Tela de Relatórios, filtre por Data de Abertura e Data de Fechamento iguais.', 'Relatórios', 135),
-('Como consultar tickets que estão atrasados por SLA?', 'Na Tela de Relatórios, filtre por SLA expirado.', 'Relatórios', 136),
-('Como consultar tickets por data de atribuição?', 'Na Tela de Tickets, verifique a coluna "Data de Atribuição" ou filtre por Data.', 'Tickets', 137),
-('Como visualizar tickets sem comentários internos?', 'Na Tela de Tickets, filtre "Sem Comentários Internos" para identificar tickets sem observações técnicas.', 'Tickets', 138),
-('Como consultar tickets que não possuem anexos?', 'Na Tela de Tickets, filtre "Sem Anexos" para identificar tickets sem arquivos.', 'Tickets', 139),
-('Como acompanhar tickets de alta prioridade não atribuídos?', 'Na Tela de Tickets, combine filtros "Sem Atribuição" e "Prioridade Alta".', 'Tickets', 140),
-('Como adicionar notas internas em tickets?', 'Ao abrir o ticket, adicione observações internas que não são visíveis para solicitantes.', 'Tickets', 141),
-('Como consultar tickets rejeitados por prioridade?', 'Na Tela de Relatórios, filtre Status "Rejeitado" e selecione Prioridade.', 'Relatórios', 142),
-('Como consultar tickets que mudaram de status várias vezes?', 'Na Tela de Relatórios, utilize o histórico de alterações para filtrar tickets com múltiplas mudanças.', 'Relatórios', 143),
-('Como configurar SLA para cada categoria de ticket?', 'Acesse Configurações -> SLA e defina tempos de resposta por Categoria.', 'Suporte', 144),
-('Como acompanhar tickets criados e atribuídos no mesmo dia?', 'Na Tela de Relatórios, combine filtros Data de Criação e Data de Atribuição.', 'Relatórios', 145),
-('Como criar alertas de tickets para grupos específicos?', 'Acesse Configurações -> Alertas e selecione o Grupo de Usuários para receber notificações.', 'Suporte', 146),
-('Como acompanhar tickets abertos em determinado período por grupo?', 'Na Tela de Relatórios, filtre por Período e Grupo.', 'Relatórios', 147),
-('Como exportar tickets internos por usuário?', 'Na Tela de Relatórios, filtre por Tipo "Interno" e Usuário e clique em "Exportar".', 'Relatórios', 148),
-('Como consultar tickets com múltiplos anexos?', 'Na Tela de Tickets, filtre "Com Anexos" e verifique a quantidade de arquivos em cada ticket.', 'Tickets', 149),
-('Como consultar tickets pendentes de aprovação?', 'Na Tela de Tickets, filtre Status "Aberto" ou "Pendente de Aprovação".', 'Tickets', 150),
-('O que é um KPI?', 'KPI é a sigla para "Key Performance Indicator" (Indicador-Chave de Desempenho), um valor mensurável que ajuda a avaliar o quão bem uma empresa está alcançando suas metas e objetivos estratégicos".', 'Relatórios', 151),
-('Para que serve um KPI?', 'Serve para medir o progresso de uma empresa ou projeto em direção aos seus objetivos, ajudando a tomar decisões estratégicas".', 'Relatórios', 152);
+    INSERT INTO dbo.Faqs (Pergunta, Resposta, Categoria, Ordem) VALUES
+    ('Como eu crio um novo ticket?', 'Na barra de navegação superior, clique em "Novo Ticket", preencha Título, Descrição, Solicitante, Categoria e Prioridade e clique em "Enviar Chamado", revise as informações e conclua o procedimento.', 'Tickets', 1),
+    ('Posso anexar arquivos no ticket? Quais formatos e tamanho máximo?', 'Atualmente nosso banco de dados não permite o anexo de imagens.', 'Tickets', 2),
+    ('Esqueci minha senha — como recuperar?', 'Acesse na barra de navegação superior o ícone de Perfil, e clique em "Mudar Senha", ou vá para a tela de login clique em "Esqueci minha senha". Informe seu e-mail e siga o link enviado para redefinir sua senha.', 'Conta', 3),
+    ('Como alterar meu perfil?', 'Acesse Perfil -> "Editar Perfil". Altere nome, e-mail e outras informações básicas. Clique em "Salvar Alterações".', 'Conta', 4),
+    ('Como mudar minha senha?', 'Acesse Perfil -> Mudar Senha. Informe a senha atual, nova senha e confirme.', 'Conta', 5),
+    ('Como ver meus tickets atribuídos?', 'No Dashboard ou Tela de Tickets, utilize o filtro "Atribuído a mim" para ver apenas seus tickets.', 'Tickets', 6),
+    ('Como consultar tickets de outros usuários?', 'Acesse Tela de Tickets e utilize os filtros por usuário ou grupo. Apenas usuários com permissão podem visualizar tickets de outros.', 'Tickets', 7),
+    ('Como filtrar tickets por status?', 'Na Tela de Tickets, selecione o filtro de Status e escolha Aberto, Em Andamento ou Concluído.', 'Tickets', 8),
+    ('Como filtrar tickets por prioridade?', 'Na Tela de Tickets, selecione o filtro de Prioridade e escolha Baixa, Média, Alta ou Urgente.', 'Tickets', 9),
+    ('Como atender um ticket?', 'Abra o ticket e clique em "Atender". O ticket passará para o status "Em Andamento" e será atribuído a você.', 'Tickets', 10),
+    ('Como concluir um ticket?', 'Abra o ticket em andamento e clique em "Concluir". O status será alterado para "Concluído".', 'Tickets', 11),
+    ('Como ver detalhes de um ticket?', 'Abra o ticket e clique em "Detalhes". Será aberto uma tela com os dados".', 'Tickets', 12),
+    ('Como criar um novo usuário?', 'Acesse Cadastros -> + Novo Usuário. Preencha os dados obrigatórios e clique em Salvar.', 'Conta', 13),
+    ('Como editar um usuário existente?', 'Acesse Cadastros -> Editar Usuário, selecione o usuário e clique em Editar. Atualize os campos necessários e clique em Editar Usuário.', 'Conta', 14),
+    ('Como excluir um usuário?', 'Acesse Cadastros -> Remover Usuário, selecione o usuário e clique em Confirmar Exclusão. Apenas admins podem executar esta ação.', 'Conta', 15),
+    ('Como ver histórico de alterações de um ticket?', 'Abra o ticket e clique em "Histórico" para visualizar todas as alterações realizadas.', 'Tickets', 16),
+    ('Como anexar múltiplos arquivos a um ticket?', 'No formulário do ticket, clique em "Anexar arquivos" e selecione todos os arquivos desejados.', 'Tickets', 17),
+    ('Como alterar a prioridade de um ticket em andamento?', 'Abra o ticket e selecione a nova prioridade no campo "Prioridade".', 'Tickets', 18),
+    ('Como alterar a categoria de um ticket?', 'Abra o ticket e selecione a nova Categoria. Clique em Salvar para confirmar.', 'Tickets', 19),
+    ('Como excluir um ticket?', 'Abra o ticket e clique em "Excluir". Apenas usuários com permissão podem excluir tickets.', 'Tickets', 20),
+    ('Como restaurar um ticket deletado?', 'Tickets deletados não podem ser restaurados. Para casos críticos, contate o suporte.', 'Suporte', 21),
+    ('Como consultar tickets por categoria?', 'Na Tela de Tickets, utilize o filtro de Categoria para visualizar apenas tickets daquela categoria.', 'Tickets', 22),
+    ('Como duplicar um relatório existente?', 'Abra o relatório desejado e clique em "Duplicar". Ajuste filtros se necessário e salve.', 'Relatórios', 23),
+    ('Como gerar um relatório de tickets fechados?', 'Acesse Relatórios, clique em "Novo Relatório", selecione o período e filtre por status "Concluído".', 'Relatórios', 24),
+    ('Como exportar tickets ou relatórios em Excel?', 'Na Tela de Tickets ou Relatórios, aplique os filtros desejados e clique em "Exportar -> Excel".', 'Relatórios', 25),
+    ('Como exportar relatórios em PDF?', 'Na Tela de Relatórios, clique em "Exportar -> PDF" após aplicar os filtros.', 'Relatórios', 26),
+    ('Como verificar logs de acesso?', 'Acesse Configurações -> Segurança -> Logs de Acesso para monitorar atividades no sistema.', 'Segurança', 27),
+    ('Como proteger dados sensíveis nos tickets?', 'Defina permissões de visualização e use campos restritos para informações confidenciais.', 'Segurança', 28),
+    ('Como configurar MFA?', 'Acesse Perfil -> Segurança -> MFA e siga os passos no app autenticador.', 'Segurança', 29),
+    ('Como redefinir a senha de outro usuário (admin)?', 'Acesse Configurações -> Usuários -> Redefinir Senha. Apenas administradores podem fazer isso.', 'Conta', 30),
+    ('Como alterar notificações de e-mail?', 'Acesse Perfil -> Configurações -> Notificações e ajuste quais eventos enviar por e-mail.', 'Conta', 31),
+    ('Como consultar tickets por usuário?', 'Na Tela de Relatórios, utilize o filtro "Usuário" para ver tickets atribuídos a cada usuário.', 'Relatórios', 32),
+    ('Como reportar um bug no sistema?', 'Crie um ticket na categoria "Bug" com passos detalhados e anexe prints ou logs.', 'Suporte', 33),
+    ('Quais navegadores são suportados?', 'O sistema funciona melhor nas versões mais recentes do Chrome, Edge e Firefox.', 'Segurança', 34),
+    ('Como adicionar observações internas a um ticket?', 'Abra o ticket e adicione comentários internos visíveis apenas para técnicos.', 'Tickets', 35),
+    ('Como limitar tamanho de upload?', 'Acesse Configurações -> Sistema -> Limites de Arquivo e defina o tamanho máximo permitido.', 'Suporte', 36),
+    ('Como acompanhar métricas de desempenho do suporte?', 'Na Tela de Relatórios, veja gráficos de SLA, tempo médio de atendimento e número de tickets concluídos.', 'Relatórios', 37),
+    ('Como alterar minha foto de perfil?', 'Acesse Perfil -> Configurações -> Alterar Foto e faça upload de uma nova imagem.', 'Conta', 38),
+    ('Como ativar/desativar minha conta temporariamente?', 'Acesse Perfil -> Configurações -> Desativar Conta e siga os passos.', 'Conta', 39),
+    ('Como acompanhar tickets atribuídos a grupos?', 'Na Tela de Tickets, use o filtro "Grupo" para ver tickets do grupo.', 'Tickets', 40),
+    ('Como consultar tickets por prioridade?', 'Na Tela de Tickets, selecione o filtro de Prioridade para ver tickets de Baixa, Média, Alta ou Urgente.', 'Tickets', 41),
+    ('Como acompanhar tickets fechados por período?', 'Na Tela de Relatórios, filtre por status "Concluído" e selecione o período desejado.', 'Relatórios', 42),
+    ('Como alterar meu e-mail de login?', 'Acesse Perfil -> Configurações -> Alterar E-mail e informe o novo endereço.', 'Conta', 43),
+    ('Como adicionar telefone ao meu perfil?', 'Acesse Perfil -> Configurações -> Alterar Telefone e clique em Salvar.', 'Conta', 44),
+    ('Como adicionar endereço ao meu perfil?', 'Acesse Perfil -> Configurações -> Alterar Endereço e clique em Salvar.', 'Conta', 45),
+    ('Como consultar tickets por status e usuário?', 'Use filtros combinados de Status e Usuário na Tela de Tickets para consultas específicas.', 'Tickets', 46),
+    ('Como ver detalhes de um ticket específico?', 'Clique no ticket desejado no Dashboard ou Tela de Tickets para visualizar todas as informações.', 'Tickets', 47),
+    ('Como acompanhar a data de abertura e fechamento dos tickets?', 'Na Tela de Tickets ou Relatórios, os tickets mostram Data de Abertura e Data de Fechamento.', 'Tickets', 48),
+    ('Como consultar tickets por período?', 'Use os filtros de Data de Abertura e Data de Fechamento para ver tickets de um período específico.', 'Tickets', 49),
+    ('Como consultar tickets atribuídos a mim e filtrados por status?', 'Combine os filtros "Atribuído a mim" e "Status" na Tela de Tickets para obter a lista desejada.', 'Tickets', 50),
+    ('Como acompanhar tickets sem atribuição?', 'Na Tela de Tickets, selecione o filtro "Sem atribuição" para ver todos os tickets que ainda não foram designados.', 'Tickets', 51),
+    ('Como alterar a senha de outro usuário (admin)?', 'Acesse Configurações -> Usuários, selecione o usuário e clique em "Redefinir Senha". Apenas administradores podem realizar esta ação.', 'Conta', 52),
+    ('Como configurar limite de anexos por ticket?', 'Acesse Configurações -> Sistema -> Limites de Arquivo e defina o número máximo de anexos por ticket.', 'Suporte', 53),
+    ('Como visualizar tickets rejeitados?', 'Na Tela de Tickets, use o filtro "Status" e selecione "Rejeitado".', 'Tickets', 54),
+    ('Como pesquisar tickets por palavra-chave?', 'Use a barra de pesquisa na Tela de Tickets e digite palavras-chave presentes no título ou descrição.', 'Tickets', 55),
+    ('Como consultar tickets por grupo de usuários?', 'Na Tela de Tickets, selecione o filtro "Grupo" para visualizar tickets atribuídos a grupos específicos.', 'Tickets', 56),
+    ('Como adicionar observações em tickets?', 'Abra o ticket e adicione observações no campo "Comentários". Elas podem ser públicas ou internas, dependendo da configuração.', 'Tickets', 57),
+    ('Como consultar relatórios de tickets por categoria?', 'Na Tela de Relatórios, utilize o filtro "Categoria" para visualizar apenas tickets daquela categoria.', 'Relatórios', 58),
+    ('Como exportar tickets filtrados por categoria ou usuário?', 'Aplique os filtros desejados e clique em "Exportar -> Excel" ou "Exportar -> PDF".', 'Relatórios', 59),
+    ('Como atualizar dados pessoais do meu perfil?', 'Acesse Perfil -> Configurações e altere Nome, E-mail, Telefone e Endereço. Clique em Salvar.', 'Conta', 60),
+    ('Como verificar se um ticket foi concluído?', 'Na Tela de Tickets, verifique o status do ticket. Tickets concluídos terão status "Concluído".', 'Tickets', 61),
+    ('Como visualizar o usuário responsável por um ticket?', 'Abra o ticket e verifique o campo "Atribuído a".', 'Tickets', 62),
+    ('Como consultar tickets de alta prioridade?', 'Na Tela de Tickets, utilize o filtro "Prioridade" e selecione "Alta" ou "Urgente".', 'Tickets', 63),
+    ('Como consultar tickets que ainda não foram atribuídos?', 'Use o filtro "Sem atribuição" na Tela de Tickets para ver todos os tickets pendentes.', 'Tickets', 64),
+    ('Como criar um ticket de suporte urgente?', 'Ao criar um ticket, selecione "Prioridade: Urgente". O sistema destacará o ticket para atenção imediata.', 'Suporte', 65),
+    ('Como alterar minha foto de perfil?', 'Acesse Perfil -> Configurações -> Alterar Foto e faça upload de uma nova imagem.', 'Conta', 66),
+    ('Como consultar tickets atribuídos a múltiplos usuários?', 'Na Tela de Tickets, utilize filtros de múltiplos usuários ou grupos, se sua permissão permitir.', 'Tickets', 67),
+    ('Como alterar dados de outro usuário (admin)?', 'Acesse Configurações -> Usuários, selecione o usuário e clique em Editar. Apenas administradores podem realizar alterações.', 'Conta', 68),
+    ('Como acompanhar histórico de alterações em tickets?', 'Abra o ticket e clique em "Histórico" para visualizar todas as mudanças realizadas.', 'Tickets', 69),
+    ('Como anexar logs ou prints em tickets?', 'Na tela de criação ou edição do ticket, clique em "Anexar Arquivo" e selecione os arquivos desejados.', 'Tickets', 70),
+    ('Como alterar a senha do meu usuário?', 'Acesse Perfil -> Configurações -> Alterar Senha. Informe a senha atual e a nova senha.', 'Conta', 71),
+    ('Como exportar relatórios de tickets por usuário?', 'Na Tela de Relatórios, filtre por usuário e clique em "Exportar" para gerar PDF ou Excel.', 'Relatórios', 72),
+    ('Como consultar tickets concluídos em determinado período?', 'Na Tela de Relatórios, filtre por Status "Concluído" e selecione o período desejado.', 'Relatórios', 73),
+    ('Como excluir um ticket?', 'Abra o ticket e clique em "Excluir". Apenas usuários com permissão podem executar esta ação.', 'Tickets', 74),
+    ('Como ativar/desativar notificações de e-mail?', 'Acesse Perfil -> Configurações -> Notificações e habilite ou desabilite os alertas desejados.', 'Conta', 75),
+    ('Como visualizar tickets de todos os usuários (admin)?', 'Acesse Tela de Tickets e utilize o filtro "Todos os Usuários". Apenas administradores podem fazer isso.', 'Tickets', 76),
+    ('Como acompanhar tickets em andamento?', 'Na Tela de Tickets, use o filtro "Em Andamento" para visualizar todos os tickets com este status.', 'Tickets', 77),
+    ('Como acompanhar tickets abertos recentemente?', 'Na Tela de Tickets, ordene por "Data de Abertura" para ver os tickets mais recentes.', 'Tickets', 78),
+    ('Como consultar tickets de um usuário específico?', 'Na Tela de Tickets, utilize o filtro "Usuário" e selecione o usuário desejado.', 'Tickets', 79),
+    ('Como acompanhar tickets fechados por usuário?', 'Na Tela de Relatórios, filtre por Status "Concluído" e selecione o usuário para visualizar métricas individuais.', 'Relatórios', 80),
+    ('Como consultar tickets rejeitados por categoria?', 'Na Tela de Relatórios, filtre Status "Rejeitado" e selecione a Categoria.', 'Relatórios', 81),
+    ('Como acompanhar a data de atribuição de tickets?', 'Na Tela de Tickets, verifique a coluna "Data de Atribuição" para cada ticket.', 'Tickets', 82),
+    ('Como pesquisar tickets por palavras-chave na descrição?', 'Na Tela de Tickets, use a busca por palavras-chave para localizar tickets pelo conteúdo da descrição.', 'Tickets', 83),
+    ('Como adicionar comentários internos em tickets?', 'Abra o ticket e adicione comentários que serão visíveis apenas para outros técnicos.', 'Tickets', 84),
+    ('Como consultar tickets por categoria e prioridade?', 'Na Tela de Tickets, combine filtros de Categoria e Prioridade para consultas detalhadas.', 'Tickets', 85),
+    ('Como ver detalhes de anexos em um ticket?', 'Abra o ticket e clique nos arquivos anexados para visualizar ou baixar.', 'Tickets', 86),
+    ('Como acompanhar SLA de tickets (tempo de resposta)?', 'Na Tela de Relatórios, veja métricas de SLA com base na data de abertura e conclusão dos tickets.', 'Relatórios', 87),
+    ('Como filtrar relatórios por status?', 'Na Tela de Relatórios, selecione o filtro de Status para gerar relatórios específicos.', 'Relatórios', 88),
+    ('Como consultar tickets sem histórico de alterações?', 'Na Tela de Tickets, filtre por "Sem histórico" para identificar tickets que não tiveram modificações.', 'Tickets', 89),
+    ('Como visualizar tickets sem anexos?', 'Na Tela de Tickets, filtre por "Sem anexos" para localizar tickets que não possuem arquivos.', 'Tickets', 90),
+    ('Como consultar tickets por múltiplas categorias?', 'Na Tela de Tickets, selecione múltiplas categorias nos filtros para consultas combinadas.', 'Tickets', 91),
+    ('Como acompanhar tickets atribuídos a um grupo e status específico?', 'Na Tela de Tickets, combine filtros de Grupo e Status para visualizar tickets específicos.', 'Tickets', 92),
+    ('Como acompanhar tickets atribuídos a mim por prioridade?', 'Na Tela de Tickets, combine o filtro "Atribuído a mim" com "Prioridade" para consultas detalhadas.', 'Tickets', 93),
+    ('Como exportar tickets por grupo e período?', 'Na Tela de Relatórios, selecione filtros de Grupo e Período e clique em "Exportar".', 'Relatórios', 94),
+    ('Como consultar tickets abertos e rejeitados juntos?', 'Na Tela de Tickets, combine filtros de Status "Aberto" e "Rejeitado" para análise.', 'Tickets', 95),
+    ('Como acompanhar tickets abertos por categoria?', 'Na Tela de Relatórios, filtre por Status "Aberto" e selecione a Categoria.', 'Relatórios', 96),
+    ('Como consultar tickets concluídos por prioridade?', 'Na Tela de Relatórios, filtre Status "Concluído" e selecione a Prioridade desejada.', 'Relatórios', 97),
+    ('Como consultar tickets por período e usuário?', 'Na Tela de Relatórios, combine filtros de Período e Usuário para relatórios personalizados.', 'Relatórios', 98),
+    ('Como consultar tickets sem atribuição por grupo?', 'Na Tela de Tickets, use filtros "Sem atribuição" e "Grupo" para identificar tickets pendentes.', 'Tickets', 99),
+    ('Como consultar tickets com múltiplos filtros combinados?', 'Na Tela de Tickets, combine filtros de Status, Prioridade, Categoria, Usuário ou Grupo conforme necessidade.', 'Tickets', 100),
+    ('Como configurar notificações para novos tickets?', 'Acesse Perfil -> Configurações -> Notificações e habilite alertas para tickets novos.', 'Conta', 101),
+    ('Como consultar tickets atribuídos a um técnico específico?', 'Na Tela de Tickets, selecione o filtro "Usuário" e escolha o técnico desejado.', 'Tickets', 102),
+    ('Como consultar tickets atrasados?', 'Na Tela de Relatórios, filtre por SLA expirado ou tickets não concluídos dentro do prazo.', 'Relatórios', 103),
+    ('Como criar alertas de prioridade alta?', 'Acesse Configurações -> Alertas e configure alertas para tickets com prioridade Alta ou Urgente.', 'Suporte', 104),
+    ('Como alterar status de um ticket em massa?', 'Selecione múltiplos tickets na Tela de Tickets e clique em "Alterar Status".', 'Tickets', 105),
+    ('Como filtrar tickets por categoria e usuário simultaneamente?', 'Na Tela de Tickets, selecione o filtro Categoria e Usuário para uma consulta combinada.', 'Tickets', 106),
+    ('Como visualizar tickets em andamento por grupo?', 'Use os filtros "Grupo" e "Em Andamento" na Tela de Tickets.', 'Tickets', 107),
+    ('Como exportar histórico de tickets de um período específico?', 'Na Tela de Relatórios, selecione o período desejado e clique em "Exportar".', 'Relatórios', 108),
+    ('Como consultar tickets sem atribuição por prioridade?', 'Na Tela de Tickets, use os filtros "Sem Atribuição" e "Prioridade".', 'Tickets', 109),
+    ('Como acompanhar métricas de tempo médio de resolução?', 'Na Tela de Relatórios, consulte o gráfico de Tempo Médio de Atendimento por período.', 'Relatórios', 110),
+    ('Como criar um ticket recorrente semanal?', 'Na tela de Novo Ticket, habilite "Recorrente" e selecione frequência Semanal.', 'Tickets', 111),
+    ('Como adicionar campos personalizados em tickets?', 'Acesse Configurações -> Modelos de Ticket e adicione campos personalizados.', 'Tickets', 112),
+    ('Como acompanhar tickets por prioridade e SLA?', 'Na Tela de Relatórios, combine filtros de Prioridade e SLA para análise detalhada.', 'Relatórios', 113),
+    ('Como consultar tickets criados por mim?', 'Na Tela de Tickets, selecione filtro "Criados por mim".', 'Tickets', 114),
+    ('Como alterar dados de contato do usuário?', 'Acesse Perfil -> Configurações e altere e-mail, telefone ou endereço.', 'Conta', 115),
+    ('Como consultar tickets rejeitados por usuário?', 'Na Tela de Relatórios, filtre Status "Rejeitado" e selecione o Usuário.', 'Relatórios', 116),
+    ('Como acompanhar tickets concluídos por grupo?', 'Na Tela de Relatórios, filtre Status "Concluído" e selecione Grupo.', 'Relatórios', 117),
+    ('Como adicionar comentários públicos e privados em tickets?', 'Ao abrir um ticket, escolha se o comentário será Público ou Interno antes de salvar.', 'Tickets', 118),
+    ('Como consultar tickets com anexos?', 'Na Tela de Tickets, use o filtro "Com Anexos" para localizar tickets que possuem arquivos.', 'Tickets', 119),
+    ('Como alterar categoria de múltiplos tickets?', 'Selecione os tickets desejados e clique em "Alterar Categoria".', 'Tickets', 120),
+    ('Como ativar alertas de tickets críticos?', 'Acesse Configurações -> Alertas e configure notificações para tickets de prioridade Urgente.', 'Suporte', 121),
+    ('Como acompanhar tickets fechados por período e usuário?', 'Na Tela de Relatórios, combine filtros de Período e Usuário.', 'Relatórios', 122),
+    ('Como consultar tickets sem comentários?', 'Na Tela de Tickets, filtre "Sem Comentários" para localizar tickets sem observações.', 'Tickets', 123),
+    ('Como adicionar modelos de tickets padrão?', 'Acesse Configurações -> Modelos e clique em "Novo Modelo".', 'Tickets', 124),
+    ('Como consultar tickets duplicados?', 'Na Tela de Relatórios, filtre por campo "Duplicado" se disponível.', 'Relatórios', 125),
+    ('Como consultar tickets que foram reabertos?', 'Na Tela de Relatórios, utilize filtro "Reaberto" para identificar tickets que foram reabertos.', 'Relatórios', 126),
+    ('Como consultar tickets por data de fechamento?', 'Na Tela de Relatórios, filtre por Data de Fechamento para análise de produtividade.', 'Relatórios', 127),
+    ('Como exportar tickets com filtros combinados?', 'Na Tela de Relatórios, aplique todos os filtros desejados e clique em "Exportar".', 'Relatórios', 128),
+    ('Como consultar tickets sem usuário atribuído e prioridade alta?', 'Na Tela de Tickets, combine filtros "Sem Atribuição" e "Prioridade Alta".', 'Tickets', 129),
+    ('Como criar tickets internos?', 'Ao criar um ticket, selecione opção "Interno" para visibilidade apenas da equipe.', 'Tickets', 130),
+    ('Como consultar tickets internos por categoria?', 'Na Tela de Tickets, filtre por Categoria e Tipo "Interno".', 'Tickets', 131),
+    ('Como consultar tickets abertos por grupo e usuário?', 'Na Tela de Tickets, combine filtros "Grupo" e "Usuário".', 'Tickets', 132),
+    ('Como adicionar anexos em tickets internos?', 'Ao abrir um ticket interno, clique em "Anexar Arquivo" e selecione o arquivo.', 'Tickets', 133),
+    ('Como alterar prioridade de múltiplos tickets?', 'Selecione os tickets desejados e clique em "Alterar Prioridade".', 'Tickets', 134),
+    ('Como consultar tickets criados e concluídos no mesmo dia?', 'Na Tela de Relatórios, filtre por Data de Abertura e Data de Fechamento iguais.', 'Relatórios', 135),
+    ('Como consultar tickets que estão atrasados por SLA?', 'Na Tela de Relatórios, filtre por SLA expirado.', 'Relatórios', 136),
+    ('Como consultar tickets por data de atribuição?', 'Na Tela de Tickets, verifique a coluna "Data de Atribuição" ou filtre por Data.', 'Tickets', 137),
+    ('Como visualizar tickets sem comentários internos?', 'Na Tela de Tickets, filtre "Sem Comentários Internos" para identificar tickets sem observações técnicas.', 'Tickets', 138),
+    ('Como consultar tickets que não possuem anexos?', 'Na Tela de Tickets, filtre "Sem Anexos" para identificar tickets sem arquivos.', 'Tickets', 139),
+    ('Como acompanhar tickets de alta prioridade não atribuídos?', 'Na Tela de Tickets, combine filtros "Sem Atribuição" e "Prioridade Alta".', 'Tickets', 140),
+    ('Como adicionar notas internas em tickets?', 'Ao abrir o ticket, adicione observações internas que não são visíveis para solicitantes.', 'Tickets', 141),
+    ('Como consultar tickets rejeitados por prioridade?', 'Na Tela de Relatórios, filtre Status "Rejeitado" e selecione Prioridade.', 'Relatórios', 142),
+    ('Como consultar tickets que mudaram de status várias vezes?', 'Na Tela de Relatórios, utilize o histórico de alterações para filtrar tickets com múltiplas mudanças.', 'Relatórios', 143),
+    ('Como configurar SLA para cada categoria de ticket?', 'Acesse Configurações -> SLA e defina tempos de resposta por Categoria.', 'Suporte', 144),
+    ('Como acompanhar tickets criados e atribuídos no mesmo dia?', 'Na Tela de Relatórios, combine filtros Data de Criação e Data de Atribuição.', 'Relatórios', 145),
+    ('Como criar alertas de tickets para grupos específicos?', 'Acesse Configurações -> Alertas e selecione o Grupo de Usuários para receber notificações.', 'Suporte', 146),
+    ('Como acompanhar tickets abertos em determinado período por grupo?', 'Na Tela de Relatórios, filtre por Período e Grupo.', 'Relatórios', 147),
+    ('Como exportar tickets internos por usuário?', 'Na Tela de Relatórios, filtre por Tipo "Interno" e Usuário e clique em "Exportar".', 'Relatórios', 148),
+    ('Como consultar tickets com múltiplos anexos?', 'Na Tela de Tickets, filtre "Com Anexos" e verifique a quantidade de arquivos em cada ticket.', 'Tickets', 149),
+    ('Como consultar tickets pendentes de aprovação?', 'Na Tela de Tickets, filtre Status "Aberto" ou "Pendente de Aprovação".', 'Tickets', 150),
+    ('O que é um KPI?', 'KPI é a sigla para "Key Performance Indicator" (Indicador-Chave de Desempenho), um valor mensurável que ajuda a avaliar o quão bem uma empresa está alcançando suas metas e objetivos estratégicos".', 'Relatórios', 151),
+    ('Para que serve um KPI?', 'Serve para medir o progresso de uma empresa ou projeto em direção aos seus objetivos, ajudando a tomar decisões estratégicas".', 'Relatórios', 152),
+    ('Como alterar minha senha?', 'Acessando a tela de perfil clique em "Mudar Senha", caso não tenha acesso ao sistema, vá para a tela de login clique em "Esqueci minha senha". Informe seu e-mail e siga o link enviado para redefinir sua senha.', 'Conta', 153);
 
-SET IDENTITY_INSERT Chamados OFF;
-GO
+    SET IDENTITY_INSERT Chamados OFF;
+    GO
 
-SELECT * FROM Usuarios
-GO
+    SELECT * FROM Usuarios
+    GO
 
-SELECT * FROM Chamados
-GO
+    SELECT * FROM Chamados
+    GO
 
-SELECT * FROM Faqs
-GO
+    SELECT * FROM Faqs
+    GO

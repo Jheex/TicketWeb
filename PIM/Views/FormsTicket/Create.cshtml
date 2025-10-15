@@ -1,20 +1,31 @@
 @{
+    // Define o título da página para exibição no navegador
     ViewData["Title"] = "Abrir Novo Chamado";
 }
+
+<!-- Importa estilos do formulário -->
 <link rel="stylesheet" href="~/css/form-styles.css" asp-append-version="true" />
 
+<!-- Container principal do formulário -->
 <div class="form-container">
     <div class="form-card">
+
+        <!-- Cabeçalho do formulário -->
         <div class="form-header">
             <h1>Abrir Novo Chamado</h1>
             <p>Por favor, descreva seu problema com o máximo de detalhes.</p>
         </div>
 
+        <!-- Formulário de criação de chamado -->
         <form asp-action="Create" method="post" enctype="multipart/form-data">
 
+            <!-- Linha do formulário dividida em colunas -->
             <div class="form-row">
 
+                <!-- Coluna esquerda com campos de usuário, categoria e prioridade -->
                 <div class="form-column">
+                    
+                    <!-- Campo: Solicitante / Usuário -->
                     <div class="form-group">
                         <label for="UserId">
                             <i class="fa-solid fa-user"></i>
@@ -28,6 +39,8 @@
                             }
                         </select>
                     </div>
+
+                    <!-- Campo: Categoria -->
                     <div class="form-group">
                         <label for="category">
                             <i class="fa-solid fa-bookmark"></i>
@@ -43,6 +56,7 @@
                         </select>
                     </div>
 
+                    <!-- Campo: Prioridade -->
                     <div class="form-group">
                         <label for="priority">
                             <i class="fa-solid fa-flag"></i>
@@ -56,9 +70,13 @@
                             <option value="Urgente">Urgente</option>
                         </select>
                     </div>
+
                 </div>
 
+                <!-- Coluna direita com campos de título e descrição -->
                 <div class="form-column">
+
+                    <!-- Campo: Título / Assunto -->
                     <div class="form-group">
                         <label for="title">
                             <i class="fa-solid fa-heading"></i>
@@ -67,6 +85,7 @@
                         <input id="title" name="Title" class="form-control" placeholder="Ex: Computador não liga" required maxlength="20" />
                     </div>
 
+                    <!-- Campo: Descrição detalhada -->
                     <div class="form-group">
                         <label for="description">
                             <i class="fa-solid fa-paragraph"></i>
@@ -76,7 +95,10 @@
                     </div>
 
                 </div>
+
             </div>
+
+            <!-- Botões de ação -->
             <div class="form-actions">
                 <a asp-controller="Dashboard" asp-action="Index" class="btn btn-secondary">Cancelar</a>
                 <button type="submit" class="btn btn-primary">Enviar Chamado</button>
@@ -86,6 +108,7 @@
 </div>
 
 @section Scripts {
+    <!-- Script para atualizar o nome do arquivo selecionado -->
     <script>
         function updateFileName(input) {
             const fileNameSpan = document.getElementById('file-name');

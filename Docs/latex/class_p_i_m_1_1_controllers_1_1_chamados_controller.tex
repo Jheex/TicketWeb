@@ -1,0 +1,121 @@
+\doxysection{PIM.\+Controllers.\+Chamados\+Controller Class Reference}
+\hypertarget{class_p_i_m_1_1_controllers_1_1_chamados_controller}{}\label{class_p_i_m_1_1_controllers_1_1_chamados_controller}\index{PIM.Controllers.ChamadosController@{PIM.Controllers.ChamadosController}}
+
+
+API Controller responsável por fornecer dados e manipular o status dos chamados. Esta implementação usa uma lista estática para simular um banco de dados.  
+
+
+Inheritance diagram for PIM.\+Controllers.\+Chamados\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_i_m_1_1_controllers_1_1_chamados_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chamados_controller_a5b8d72fba1b1876b22a33fc41b591b42}{Get\+Chamados}} ()
+\begin{DoxyCompactList}\small\item\em Endpoint para obter todos os chamados. Usado para popular a dashboard. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chamados_controller_a4e2525f00324425087074e51ed16d980}{Approve}} (int id)
+\begin{DoxyCompactList}\small\item\em Aprova (conclui) um chamado pelo ID, alterando seu status. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chamados_controller_a39099a8200d681213d781d86679b537f}{Reject}} (int id)
+\begin{DoxyCompactList}\small\item\em Rejeita um chamado pelo ID, alterando seu status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static readonly List$<$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chamado_api_model}{Chamado\+Api\+Model}} $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chamados_controller_a6380e25636fc6d946c4e0c139ba34da3}{\+\_\+chamados}}
+\begin{DoxyCompactList}\small\item\em Lista estática que simula a tabela de chamados no banco de dados. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+API Controller responsável por fornecer dados e manipular o status dos chamados. Esta implementação usa uma lista estática para simular um banco de dados. 
+
+\label{doc-func-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_chamados_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_chamados_controller_a4e2525f00324425087074e51ed16d980}\index{PIM.Controllers.ChamadosController@{PIM.Controllers.ChamadosController}!Approve@{Approve}}
+\index{Approve@{Approve}!PIM.Controllers.ChamadosController@{PIM.Controllers.ChamadosController}}
+\doxysubsubsection{\texorpdfstring{Approve()}{Approve()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_chamados_controller_a4e2525f00324425087074e51ed16d980} 
+IAction\+Result PIM.\+Controllers.\+Chamados\+Controller.\+Approve (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Aprova (conclui) um chamado pelo ID, alterando seu status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O identificador único do chamado a ser aprovado.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um Action\+Result contendo o chamado atualizado (HTTP 200 Ok) ou Not\+Found se o chamado não for encontrado. 
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_chamados_controller_a5b8d72fba1b1876b22a33fc41b591b42}\index{PIM.Controllers.ChamadosController@{PIM.Controllers.ChamadosController}!GetChamados@{GetChamados}}
+\index{GetChamados@{GetChamados}!PIM.Controllers.ChamadosController@{PIM.Controllers.ChamadosController}}
+\doxysubsubsection{\texorpdfstring{GetChamados()}{GetChamados()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_chamados_controller_a5b8d72fba1b1876b22a33fc41b591b42} 
+IAction\+Result PIM.\+Controllers.\+Chamados\+Controller.\+Get\+Chamados (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Endpoint para obter todos os chamados. Usado para popular a dashboard. 
+
+\begin{DoxyReturn}{Returns}
+Um Action\+Result contendo a lista de \doxylink{class_p_i_m_1_1_controllers_1_1_chamado_api_model}{Chamado\+Api\+Model} (HTTP 200 Ok) ou Not\+Found se nenhum chamado for encontrado. 
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_chamados_controller_a39099a8200d681213d781d86679b537f}\index{PIM.Controllers.ChamadosController@{PIM.Controllers.ChamadosController}!Reject@{Reject}}
+\index{Reject@{Reject}!PIM.Controllers.ChamadosController@{PIM.Controllers.ChamadosController}}
+\doxysubsubsection{\texorpdfstring{Reject()}{Reject()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_chamados_controller_a39099a8200d681213d781d86679b537f} 
+IAction\+Result PIM.\+Controllers.\+Chamados\+Controller.\+Reject (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Rejeita um chamado pelo ID, alterando seu status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O identificador único do chamado a ser rejeitado.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um Action\+Result contendo o chamado atualizado (HTTP 200 Ok) ou Not\+Found se o chamado não for encontrado. 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_chamados_controller_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_chamados_controller_a6380e25636fc6d946c4e0c139ba34da3}\index{PIM.Controllers.ChamadosController@{PIM.Controllers.ChamadosController}!\_chamados@{\_chamados}}
+\index{\_chamados@{\_chamados}!PIM.Controllers.ChamadosController@{PIM.Controllers.ChamadosController}}
+\doxysubsubsection{\texorpdfstring{\_chamados}{\_chamados}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_chamados_controller_a6380e25636fc6d946c4e0c139ba34da3} 
+readonly List$<$\mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chamado_api_model}{Chamado\+Api\+Model}}$>$ PIM.\+Controllers.\+Chamados\+Controller.\+\_\+chamados\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \textcolor{keyword}{new}\ List<ChamadoApiModel>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chamado_api_model}{ChamadoApiModel}}\ \{\ Id\ =\ 1,\ Title\ =\ \textcolor{stringliteral}{"{}Problema\ com\ impressora"{}},\ Category\ =\ \textcolor{stringliteral}{"{}Hardware"{}},\ Priority\ =\ \textcolor{stringliteral}{"{}Alta"{}},\ Status\ =\ \textcolor{stringliteral}{"{}Aberto"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chamado_api_model}{ChamadoApiModel}}\ \{\ Id\ =\ 2,\ Title\ =\ \textcolor{stringliteral}{"{}Software\ não\ abre"{}},\ Category\ =\ \textcolor{stringliteral}{"{}Software"{}},\ Priority\ =\ \textcolor{stringliteral}{"{}Média"{}},\ Status\ =\ \textcolor{stringliteral}{"{}Em\ Andamento"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chamado_api_model}{ChamadoApiModel}}\ \{\ Id\ =\ 3,\ Title\ =\ \textcolor{stringliteral}{"{}Rede\ lenta"{}},\ Category\ =\ \textcolor{stringliteral}{"{}Rede"{}},\ Priority\ =\ \textcolor{stringliteral}{"{}Baixa"{}},\ Status\ =\ \textcolor{stringliteral}{"{}Aberto"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ ChamadoApiModel\ \{\ Id\ =\ 4,\ Title\ =\ \textcolor{stringliteral}{"{}Criação\ de\ novo\ usuário"{}},\ Category\ =\ \textcolor{stringliteral}{"{}Acesso"{}},\ Priority\ =\ \textcolor{stringliteral}{"{}Média"{}},\ Status\ =\ \textcolor{stringliteral}{"{}Concluído"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ ChamadoApiModel\ \{\ Id\ =\ 5,\ Title\ =\ \textcolor{stringliteral}{"{}E-\/mail\ não\ envia"{}},\ Category\ =\ \textcolor{stringliteral}{"{}Software"{}},\ Priority\ =\ \textcolor{stringliteral}{"{}Alta"{}},\ Status\ =\ \textcolor{stringliteral}{"{}Em\ Andamento"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ ChamadoApiModel\ \{\ Id\ =\ 6,\ Title\ =\ \textcolor{stringliteral}{"{}Computador\ não\ liga"{}},\ Category\ =\ \textcolor{stringliteral}{"{}Hardware"{}},\ Priority\ =\ \textcolor{stringliteral}{"{}Alta"{}},\ Status\ =\ \textcolor{stringliteral}{"{}Aberto"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ ChamadoApiModel\ \{\ Id\ =\ 7,\ Title\ =\ \textcolor{stringliteral}{"{}Instalação\ de\ programa"{}},\ Category\ =\ \textcolor{stringliteral}{"{}Software"{}},\ Priority\ =\ \textcolor{stringliteral}{"{}Baixa"{}},\ Status\ =\ \textcolor{stringliteral}{"{}Concluído"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ ChamadoApiModel\ \{\ Id\ =\ 8,\ Title\ =\ \textcolor{stringliteral}{"{}Sem\ acesso\ à\ pasta\ compartilhada"{}},\ Category\ =\ \textcolor{stringliteral}{"{}Rede"{}},\ Priority\ =\ \textcolor{stringliteral}{"{}Média"{}},\ Status\ =\ \textcolor{stringliteral}{"{}Aberto"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ ChamadoApiModel\ \{\ Id\ =\ 9,\ Title\ =\ \textcolor{stringliteral}{"{}Erro\ ao\ salvar\ arquivo"{}},\ Category\ =\ \textcolor{stringliteral}{"{}Software"{}},\ Priority\ =\ \textcolor{stringliteral}{"{}Média"{}},\ Status\ =\ \textcolor{stringliteral}{"{}Aberto"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ ChamadoApiModel\ \{\ Id\ =\ 10,\ Title\ =\ \textcolor{stringliteral}{"{}Monitor\ piscando"{}},\ Category\ =\ \textcolor{stringliteral}{"{}Hardware"{}},\ Priority\ =\ \textcolor{stringliteral}{"{}Baixa"{}},\ Status\ =\ \textcolor{stringliteral}{"{}Concluído"{}}\ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Lista estática que simula a tabela de chamados no banco de dados. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+Controllers/\mbox{\hyperlink{_chamados_controller_8cs}{Chamados\+Controller.\+cs}}\end{DoxyCompactItemize}

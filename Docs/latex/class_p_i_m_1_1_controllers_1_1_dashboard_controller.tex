@@ -1,0 +1,105 @@
+\doxysection{PIM.\+Controllers.\+Dashboard\+Controller Class Reference}
+\hypertarget{class_p_i_m_1_1_controllers_1_1_dashboard_controller}{}\label{class_p_i_m_1_1_controllers_1_1_dashboard_controller}\index{PIM.Controllers.DashboardController@{PIM.Controllers.DashboardController}}
+
+
+Controlador responsável por exibir a dashboard principal do sistema. Ele gerencia a lógica de filtros, paginação da tabela de chamados e o cálculo de KPIs (Key Performance Indicators).  
+
+
+Inheritance diagram for PIM.\+Controllers.\+Dashboard\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_i_m_1_1_controllers_1_1_dashboard_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_dashboard_controller_adb9824d3d8aaf68116d7554180804497}{Dashboard\+Controller}} (\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} context)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_dashboard_controller}{Dashboard\+Controller}. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_dashboard_controller_aab500b7abf46beadc5bbb8dd16103c6e}{Index}} (string status, string priority, int? assigned\+To\+Id, int? requester\+Id, int page\+Number=1, int page\+Size=5)
+\begin{DoxyCompactList}\small\item\em Exibe a dashboard, aplicando filtros à tabela de chamados e calculando os indicadores de BI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_dashboard_controller_a01ecd34cc05d8374d093e4a70b9c66e0}{\+\_\+context}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controlador responsável por exibir a dashboard principal do sistema. Ele gerencia a lógica de filtros, paginação da tabela de chamados e o cálculo de KPIs (Key Performance Indicators). 
+
+\label{doc-constructors}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_dashboard_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_dashboard_controller_adb9824d3d8aaf68116d7554180804497}\index{PIM.Controllers.DashboardController@{PIM.Controllers.DashboardController}!DashboardController@{DashboardController}}
+\index{DashboardController@{DashboardController}!PIM.Controllers.DashboardController@{PIM.Controllers.DashboardController}}
+\doxysubsubsection{\texorpdfstring{DashboardController()}{DashboardController()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_dashboard_controller_adb9824d3d8aaf68116d7554180804497} 
+PIM.\+Controllers.\+Dashboard\+Controller.\+Dashboard\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}}}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_dashboard_controller}{Dashboard\+Controller}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & O contexto do banco de dados (\doxylink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}) injetado via DI.\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_dashboard_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_dashboard_controller_aab500b7abf46beadc5bbb8dd16103c6e}\index{PIM.Controllers.DashboardController@{PIM.Controllers.DashboardController}!Index@{Index}}
+\index{Index@{Index}!PIM.Controllers.DashboardController@{PIM.Controllers.DashboardController}}
+\doxysubsubsection{\texorpdfstring{Index()}{Index()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_dashboard_controller_aab500b7abf46beadc5bbb8dd16103c6e} 
+IAction\+Result PIM.\+Controllers.\+Dashboard\+Controller.\+Index (\begin{DoxyParamCaption}\item[{string}]{status}{, }\item[{string}]{priority}{, }\item[{int?}]{assigned\+To\+Id}{, }\item[{int?}]{requester\+Id}{, }\item[{int}]{page\+Number}{ = {\ttfamily 1}, }\item[{int}]{page\+Size}{ = {\ttfamily 5}}\end{DoxyParamCaption})}
+
+
+
+Exibe a dashboard, aplicando filtros à tabela de chamados e calculando os indicadores de BI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & O filtro de status a ser aplicado na tabela detalhada.\\
+\hline
+{\em priority} & O filtro de prioridade a ser aplicado na tabela detalhada.\\
+\hline
+{\em assigned\+To\+Id} & O ID do usuário atribuído ao chamado para filtro.\\
+\hline
+{\em requester\+Id} & O ID do solicitante do chamado para filtro.\\
+\hline
+{\em page\+Number} & O número da página atual para a paginação da tabela (padrão é 1).\\
+\hline
+{\em page\+Size} & O número de itens por página na tabela (padrão é 5).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A View de índice da Home com o \doxylink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model}{Dashboard\+BIView\+Model} preenchido.
+\end{DoxyReturn}
+Calcula o percentual de Service Level Agreement (SLA) com base na proporção de chamados fechados.
+
+Preenche a lista de opções de filtro de Status baseada nos valores distintos do banco.
+
+Preenche a lista de opções de filtro de Prioridade baseada nos valores distintos do banco.
+
+Preenche a lista de opções de filtro de Analistas (Atribuídos A) com base na tabela Usuarios.
+
+Preenche a lista de opções de filtro de Solicitantes com base na tabela Usuarios.
+
+\label{doc-variable-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_dashboard_controller_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_dashboard_controller_a01ecd34cc05d8374d093e4a70b9c66e0}\index{PIM.Controllers.DashboardController@{PIM.Controllers.DashboardController}!\_context@{\_context}}
+\index{\_context@{\_context}!PIM.Controllers.DashboardController@{PIM.Controllers.DashboardController}}
+\doxysubsubsection{\texorpdfstring{\_context}{\_context}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_dashboard_controller_a01ecd34cc05d8374d093e4a70b9c66e0} 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} PIM.\+Controllers.\+Dashboard\+Controller.\+\_\+context\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+Controllers/\mbox{\hyperlink{_dashboard_controller_8cs}{Dashboard\+Controller.\+cs}}\end{DoxyCompactItemize}

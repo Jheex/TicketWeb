@@ -1,0 +1,200 @@
+\doxysection{PIM.\+Controllers.\+Perfil\+Controller Class Reference}
+\hypertarget{class_p_i_m_1_1_controllers_1_1_perfil_controller}{}\label{class_p_i_m_1_1_controllers_1_1_perfil_controller}\index{PIM.Controllers.PerfilController@{PIM.Controllers.PerfilController}}
+
+
+Controlador responsável por gerenciar o perfil do usuário logado, incluindo visualização de informações, edição de dados cadastrais e alteração de senha.  
+
+
+Inheritance diagram for PIM.\+Controllers.\+Perfil\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_i_m_1_1_controllers_1_1_perfil_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_perfil_controller_af51ce626421d7a4aa7002a0673d422b1}{Perfil\+Controller}} (\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} context)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_perfil_controller}{Perfil\+Controller}. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_perfil_controller_a23885d3c49e5fa480209d335aa83662d}{Index}} ()
+\begin{DoxyCompactList}\small\item\em Exibe a página principal do perfil, mostrando os dados do usuário e estatísticas de tickets. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_perfil_controller_a394fd6d9a0054d68c4cd67c60aa4f632}{Editar}} ()
+\begin{DoxyCompactList}\small\item\em Exibe o formulário de edição de dados cadastrais do perfil. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_perfil_controller_a1fe488ee1c5580c02ac9294965dd8602}{Editar}} (\mbox{[}Bind("{}Id,Username,Email,Telefone,Endereco,Data\+Nascimento,Status,Observacoes"{})\mbox{]} \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}} usuario)
+\begin{DoxyCompactList}\small\item\em Processa o envio do formulário de edição de perfil, valida os dados e salva no banco. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_perfil_controller_a5b87ae355bf281d83da5c033f476a5b6}{Mudar\+Senha}} ()
+\begin{DoxyCompactList}\small\item\em Exibe o formulário para alteração de senha. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_perfil_controller_ab826eb994788ea971ba1d20a86817a8f}{Mudar\+Senha}} (string senha\+Atual, string nova\+Senha, string confirmar\+Nova\+Senha)
+\begin{DoxyCompactList}\small\item\em Processa a requisição de alteração de senha, verificando a senha atual, a conformidade e a complexidade da nova senha antes de salvar. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+async Task$<$ \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}}?$>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_perfil_controller_a6fbc5cf5cd2bd064845094c483f7bbda}{Get\+Current\+User\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Método utilitário assíncrono para obter o objeto \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario} correspondente ao usuário logado, usando o {\ttfamily Claim\+Types.\+Name\+Identifier}. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_perfil_controller_a5a74377cb2ecae5de7d94d9ed0aed3b6}{Verificar\+Complexidade\+Senha}} (string senha)
+\begin{DoxyCompactList}\small\item\em Função auxiliar para verificar os critérios de complexidade da senha\+: Mínimo 8 caracteres, uma maiúscula, uma minúscula, um número e um caractere especial. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_perfil_controller_ad680e6fc17118f6e93867b3a8f7868bb}{\+\_\+context}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controlador responsável por gerenciar o perfil do usuário logado, incluindo visualização de informações, edição de dados cadastrais e alteração de senha. 
+
+Requer autenticação para todas as Actions.
+
+\label{doc-constructors}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_perfil_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_perfil_controller_af51ce626421d7a4aa7002a0673d422b1}\index{PIM.Controllers.PerfilController@{PIM.Controllers.PerfilController}!PerfilController@{PerfilController}}
+\index{PerfilController@{PerfilController}!PIM.Controllers.PerfilController@{PIM.Controllers.PerfilController}}
+\doxysubsubsection{\texorpdfstring{PerfilController()}{PerfilController()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_perfil_controller_af51ce626421d7a4aa7002a0673d422b1} 
+PIM.\+Controllers.\+Perfil\+Controller.\+Perfil\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}}}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_perfil_controller}{Perfil\+Controller}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & O contexto do banco de dados (\doxylink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}) injetado via DI.\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_perfil_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_perfil_controller_a394fd6d9a0054d68c4cd67c60aa4f632}\index{PIM.Controllers.PerfilController@{PIM.Controllers.PerfilController}!Editar@{Editar}}
+\index{Editar@{Editar}!PIM.Controllers.PerfilController@{PIM.Controllers.PerfilController}}
+\doxysubsubsection{\texorpdfstring{Editar()}{Editar()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_perfil_controller_a394fd6d9a0054d68c4cd67c60aa4f632} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Perfil\+Controller.\+Editar (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Exibe o formulário de edição de dados cadastrais do perfil. 
+
+\begin{DoxyReturn}{Returns}
+A View Editar com o objeto \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario} preenchido ou redireciona para o login.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_perfil_controller_a1fe488ee1c5580c02ac9294965dd8602}\index{PIM.Controllers.PerfilController@{PIM.Controllers.PerfilController}!Editar@{Editar}}
+\index{Editar@{Editar}!PIM.Controllers.PerfilController@{PIM.Controllers.PerfilController}}
+\doxysubsubsection{\texorpdfstring{Editar()}{Editar()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_perfil_controller_a1fe488ee1c5580c02ac9294965dd8602} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Perfil\+Controller.\+Editar (\begin{DoxyParamCaption}\item[{\mbox{[}\+Bind("{}\+Id,\+Username,\+Email,\+Telefone,\+Endereco,\+Data\+Nascimento,\+Status,\+Observacoes"{})\mbox{]} \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}}}]{usuario}{}\end{DoxyParamCaption})}
+
+
+
+Processa o envio do formulário de edição de perfil, valida os dados e salva no banco. 
+
+Nota\+: Campos sensíveis como Senha e Role são ignorados na edição.
+
+
+\begin{DoxyParams}{Parameters}
+{\em usuario} & O objeto \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario} com os novos dados do formulário.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redireciona para Index em caso de sucesso ou retorna a View Editar com erros.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_perfil_controller_a6fbc5cf5cd2bd064845094c483f7bbda}\index{PIM.Controllers.PerfilController@{PIM.Controllers.PerfilController}!GetCurrentUserAsync@{GetCurrentUserAsync}}
+\index{GetCurrentUserAsync@{GetCurrentUserAsync}!PIM.Controllers.PerfilController@{PIM.Controllers.PerfilController}}
+\doxysubsubsection{\texorpdfstring{GetCurrentUserAsync()}{GetCurrentUserAsync()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_perfil_controller_a6fbc5cf5cd2bd064845094c483f7bbda} 
+async Task$<$ \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}}?$>$ PIM.\+Controllers.\+Perfil\+Controller.\+Get\+Current\+User\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Método utilitário assíncrono para obter o objeto \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario} correspondente ao usuário logado, usando o {\ttfamily Claim\+Types.\+Name\+Identifier}. 
+
+\begin{DoxyReturn}{Returns}
+O objeto \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario} logado ou {\ttfamily null} se o usuário não for encontrado ou não estiver autenticado.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_perfil_controller_a23885d3c49e5fa480209d335aa83662d}\index{PIM.Controllers.PerfilController@{PIM.Controllers.PerfilController}!Index@{Index}}
+\index{Index@{Index}!PIM.Controllers.PerfilController@{PIM.Controllers.PerfilController}}
+\doxysubsubsection{\texorpdfstring{Index()}{Index()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_perfil_controller_a23885d3c49e5fa480209d335aa83662d} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Perfil\+Controller.\+Index (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Exibe a página principal do perfil, mostrando os dados do usuário e estatísticas de tickets. 
+
+\begin{DoxyReturn}{Returns}
+A View Index com o objeto \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario} ou redireciona para o login.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_perfil_controller_a5b87ae355bf281d83da5c033f476a5b6}\index{PIM.Controllers.PerfilController@{PIM.Controllers.PerfilController}!MudarSenha@{MudarSenha}}
+\index{MudarSenha@{MudarSenha}!PIM.Controllers.PerfilController@{PIM.Controllers.PerfilController}}
+\doxysubsubsection{\texorpdfstring{MudarSenha()}{MudarSenha()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_perfil_controller_a5b87ae355bf281d83da5c033f476a5b6} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Perfil\+Controller.\+Mudar\+Senha (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Exibe o formulário para alteração de senha. 
+
+\begin{DoxyReturn}{Returns}
+A View Mudar\+Senha ou redireciona para o login.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_perfil_controller_ab826eb994788ea971ba1d20a86817a8f}\index{PIM.Controllers.PerfilController@{PIM.Controllers.PerfilController}!MudarSenha@{MudarSenha}}
+\index{MudarSenha@{MudarSenha}!PIM.Controllers.PerfilController@{PIM.Controllers.PerfilController}}
+\doxysubsubsection{\texorpdfstring{MudarSenha()}{MudarSenha()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_perfil_controller_ab826eb994788ea971ba1d20a86817a8f} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Perfil\+Controller.\+Mudar\+Senha (\begin{DoxyParamCaption}\item[{string}]{senha\+Atual}{, }\item[{string}]{nova\+Senha}{, }\item[{string}]{confirmar\+Nova\+Senha}{}\end{DoxyParamCaption})}
+
+
+
+Processa a requisição de alteração de senha, verificando a senha atual, a conformidade e a complexidade da nova senha antes de salvar. 
+
+Atenção\+: A Senha\+Hash deve ser substituída por uma função de Hash segura (ex\+: BCrypt).
+
+
+\begin{DoxyParams}{Parameters}
+{\em senha\+Atual} & A senha atual do usuário (para verificação).\\
+\hline
+{\em nova\+Senha} & A nova senha digitada.\\
+\hline
+{\em confirmar\+Nova\+Senha} & Confirmação da nova senha.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redireciona para Index em caso de sucesso ou retorna a View Mudar\+Senha com erros.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_perfil_controller_a5a74377cb2ecae5de7d94d9ed0aed3b6}\index{PIM.Controllers.PerfilController@{PIM.Controllers.PerfilController}!VerificarComplexidadeSenha@{VerificarComplexidadeSenha}}
+\index{VerificarComplexidadeSenha@{VerificarComplexidadeSenha}!PIM.Controllers.PerfilController@{PIM.Controllers.PerfilController}}
+\doxysubsubsection{\texorpdfstring{VerificarComplexidadeSenha()}{VerificarComplexidadeSenha()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_perfil_controller_a5a74377cb2ecae5de7d94d9ed0aed3b6} 
+string PIM.\+Controllers.\+Perfil\+Controller.\+Verificar\+Complexidade\+Senha (\begin{DoxyParamCaption}\item[{string}]{senha}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Função auxiliar para verificar os critérios de complexidade da senha\+: Mínimo 8 caracteres, uma maiúscula, uma minúscula, um número e um caractere especial. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em senha} & A senha a ser verificada.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Uma string vazia se a senha for válida; caso contrário, uma mensagem de erro.
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_perfil_controller_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_perfil_controller_ad680e6fc17118f6e93867b3a8f7868bb}\index{PIM.Controllers.PerfilController@{PIM.Controllers.PerfilController}!\_context@{\_context}}
+\index{\_context@{\_context}!PIM.Controllers.PerfilController@{PIM.Controllers.PerfilController}}
+\doxysubsubsection{\texorpdfstring{\_context}{\_context}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_perfil_controller_ad680e6fc17118f6e93867b3a8f7868bb} 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} PIM.\+Controllers.\+Perfil\+Controller.\+\_\+context\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+Controllers/\mbox{\hyperlink{_perfil_controller_8cs}{Perfil\+Controller.\+cs}}\end{DoxyCompactItemize}

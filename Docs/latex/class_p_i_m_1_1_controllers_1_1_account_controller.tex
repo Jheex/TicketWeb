@@ -1,0 +1,154 @@
+\doxysection{PIM.\+Controllers.\+Account\+Controller Class Reference}
+\hypertarget{class_p_i_m_1_1_controllers_1_1_account_controller}{}\label{class_p_i_m_1_1_controllers_1_1_account_controller}\index{PIM.Controllers.AccountController@{PIM.Controllers.AccountController}}
+
+
+Controlador responsável por gerenciar as operações de autenticação do usuário, incluindo Login e Logout, utilizando autenticação via Cookie no ASP.\+NET Core.  
+
+
+Inheritance diagram for PIM.\+Controllers.\+Account\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_i_m_1_1_controllers_1_1_account_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_account_controller_a05331cb673c19dfc3d116af8c2426e5a}{Account\+Controller}} (\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} db)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_account_controller}{Account\+Controller}. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_account_controller_abc10b9d0e3e43f630e35d4b2e7548e18}{Login}} ()
+\begin{DoxyCompactList}\small\item\em Exibe a página de Login. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_account_controller_ae4d635693a0411053e84c8c9a6355566}{Login}} (string Email, string password)
+\begin{DoxyCompactList}\small\item\em Processa o envio do formulário de Login, buscando o usuário, verificando o status e autenticando via Cookie. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_account_controller_afa80e6dfb0ea96927f68621403b56e68}{Forgot\+Password}} ()
+\begin{DoxyCompactList}\small\item\em Exibe a página para solicitação de recuperação de senha. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_account_controller_a134571228aa94efc261927f936f61a74}{Forgot\+Password}} (\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_forgot_password_view_model}{Forgot\+Password\+View\+Model}} model)
+\begin{DoxyCompactList}\small\item\em Processa a solicitação de recuperação de senha. Simula o envio de um link de redefinição de senha por e-\/mail (a lógica real está a implementar). \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_account_controller_a4e1b985a531b77dd7215554c1d616617}{Logout}} ()
+\begin{DoxyCompactList}\small\item\em Realiza o Logout do usuário, encerrando a sessão de autenticação baseada em Cookie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_account_controller_aea56d325169f63a1f7a62b54265a54a4}{\+\_\+db}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controlador responsável por gerenciar as operações de autenticação do usuário, incluindo Login e Logout, utilizando autenticação via Cookie no ASP.\+NET Core. 
+
+\label{doc-constructors}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_account_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_account_controller_a05331cb673c19dfc3d116af8c2426e5a}\index{PIM.Controllers.AccountController@{PIM.Controllers.AccountController}!AccountController@{AccountController}}
+\index{AccountController@{AccountController}!PIM.Controllers.AccountController@{PIM.Controllers.AccountController}}
+\doxysubsubsection{\texorpdfstring{AccountController()}{AccountController()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_account_controller_a05331cb673c19dfc3d116af8c2426e5a} 
+PIM.\+Controllers.\+Account\+Controller.\+Account\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}}}]{db}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_account_controller}{Account\+Controller}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & O contexto do banco de dados (\doxylink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}) injetado via DI.\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_account_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_account_controller_afa80e6dfb0ea96927f68621403b56e68}\index{PIM.Controllers.AccountController@{PIM.Controllers.AccountController}!ForgotPassword@{ForgotPassword}}
+\index{ForgotPassword@{ForgotPassword}!PIM.Controllers.AccountController@{PIM.Controllers.AccountController}}
+\doxysubsubsection{\texorpdfstring{ForgotPassword()}{ForgotPassword()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_account_controller_afa80e6dfb0ea96927f68621403b56e68} 
+IAction\+Result PIM.\+Controllers.\+Account\+Controller.\+Forgot\+Password (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Exibe a página para solicitação de recuperação de senha. 
+
+\begin{DoxyReturn}{Returns}
+A View Forgot\+Password.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_account_controller_a134571228aa94efc261927f936f61a74}\index{PIM.Controllers.AccountController@{PIM.Controllers.AccountController}!ForgotPassword@{ForgotPassword}}
+\index{ForgotPassword@{ForgotPassword}!PIM.Controllers.AccountController@{PIM.Controllers.AccountController}}
+\doxysubsubsection{\texorpdfstring{ForgotPassword()}{ForgotPassword()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_account_controller_a134571228aa94efc261927f936f61a74} 
+IAction\+Result PIM.\+Controllers.\+Account\+Controller.\+Forgot\+Password (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_forgot_password_view_model}{Forgot\+Password\+View\+Model}}}]{model}{}\end{DoxyParamCaption})}
+
+
+
+Processa a solicitação de recuperação de senha. Simula o envio de um link de redefinição de senha por e-\/mail (a lógica real está a implementar). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & O View\+Model contendo as informações necessárias para a recuperação de senha.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redireciona para a página de Login com uma mensagem informativa.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_account_controller_abc10b9d0e3e43f630e35d4b2e7548e18}\index{PIM.Controllers.AccountController@{PIM.Controllers.AccountController}!Login@{Login}}
+\index{Login@{Login}!PIM.Controllers.AccountController@{PIM.Controllers.AccountController}}
+\doxysubsubsection{\texorpdfstring{Login()}{Login()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_account_controller_abc10b9d0e3e43f630e35d4b2e7548e18} 
+IAction\+Result PIM.\+Controllers.\+Account\+Controller.\+Login (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Exibe a página de Login. 
+
+\begin{DoxyReturn}{Returns}
+A View de Login.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_account_controller_ae4d635693a0411053e84c8c9a6355566}\index{PIM.Controllers.AccountController@{PIM.Controllers.AccountController}!Login@{Login}}
+\index{Login@{Login}!PIM.Controllers.AccountController@{PIM.Controllers.AccountController}}
+\doxysubsubsection{\texorpdfstring{Login()}{Login()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_account_controller_ae4d635693a0411053e84c8c9a6355566} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Account\+Controller.\+Login (\begin{DoxyParamCaption}\item[{string}]{Email}{, }\item[{string}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Processa o envio do formulário de Login, buscando o usuário, verificando o status e autenticando via Cookie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Email} & O endereço de e-\/mail do usuário.\\
+\hline
+{\em password} & A senha do usuário (que deve ser o Senha\+Hash).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redireciona para o Dashboard em caso de sucesso ou retorna a View de Login com mensagem de erro.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_account_controller_a4e1b985a531b77dd7215554c1d616617}\index{PIM.Controllers.AccountController@{PIM.Controllers.AccountController}!Logout@{Logout}}
+\index{Logout@{Logout}!PIM.Controllers.AccountController@{PIM.Controllers.AccountController}}
+\doxysubsubsection{\texorpdfstring{Logout()}{Logout()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_account_controller_a4e1b985a531b77dd7215554c1d616617} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Account\+Controller.\+Logout (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Realiza o Logout do usuário, encerrando a sessão de autenticação baseada em Cookie. 
+
+\begin{DoxyReturn}{Returns}
+Redireciona para a página de Login.
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_account_controller_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_account_controller_aea56d325169f63a1f7a62b54265a54a4}\index{PIM.Controllers.AccountController@{PIM.Controllers.AccountController}!\_db@{\_db}}
+\index{\_db@{\_db}!PIM.Controllers.AccountController@{PIM.Controllers.AccountController}}
+\doxysubsubsection{\texorpdfstring{\_db}{\_db}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_account_controller_aea56d325169f63a1f7a62b54265a54a4} 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} PIM.\+Controllers.\+Account\+Controller.\+\_\+db\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+Controllers/\mbox{\hyperlink{_account_controller_8cs}{Account\+Controller.\+cs}}\end{DoxyCompactItemize}

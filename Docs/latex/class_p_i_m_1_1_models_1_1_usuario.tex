@@ -1,0 +1,191 @@
+\doxysection{PIM.\+Models.\+Usuario Class Reference}
+\hypertarget{class_p_i_m_1_1_models_1_1_usuario}{}\label{class_p_i_m_1_1_models_1_1_usuario}\index{PIM.Models.Usuario@{PIM.Models.Usuario}}
+
+
+Representa um usuário do sistema (cliente, técnico, administrador). Contém dados de autenticação e informações cadastrais.  
+
+
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario_aef209b03cadd1c6081cd06097cc9bc29}{Id}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Chave primária e identificador único do usuário. \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario_a23b7a6b7b5f56dfb1d139a640b21a115}{Username}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Nome de usuário para exibição no sistema. Campo obrigatório, com tamanho entre 3 e 50 caracteres. \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario_a741c773b6aeeb36ead9351a14c910692}{Email}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Endereço de email do usuário. Campo obrigatório, deve ser um formato de email válido e ter no máximo 100 caracteres. \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario_ad3de3e6faa8139cae8f337dbde3f53e1}{Senha\+Hash}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em O hash da senha do usuário (armazenado no banco de dados). Campo obrigatório e deve ter no mínimo 8 caracteres. \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario_aef3ce58b1a141a3652c9452a42b624f3}{Confirmar\+Senha}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Confirmação da senha para fins de validação no formulário. Não é mapeada para o banco de dados ({\ttfamily \mbox{[}Not\+Mapped\mbox{]}}). \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario_a4947b17582a292717f5990c70c44838a}{Role}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Nível de acesso ou papel do usuário no sistema (Ex\+: Admin, Tecnico, \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}). Campo obrigatório. \end{DoxyCompactList}\item 
+Date\+Time \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario_a26d607f49452ea9a956ff8b83c30254e}{Created\+At}} = Date\+Time.\+Now\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em \doxylink{namespace_p_i_m_1_1_data}{Data} e hora em que o usuário foi criado no sistema. \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario_aca8b36f8af4fac61284592c530a36eaa}{Telefone}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Número de telefone do usuário. Campo obrigatório e deve seguir um formato válido de telefone. \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario_adc1f375fd995063022bce195277d9f12}{Status}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Status da conta do usuário (Ex\+: Ativo, Inativo, Bloqueado). Campo obrigatório. \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario_a3669f95b1122a9aa664013638859fa56}{Endereco}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Endereço residencial ou comercial do usuário. Campo obrigatório. \end{DoxyCompactList}\item 
+Date\+Time? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario_a51a6c8415a48de20f1d3eab344118f9b}{Data\+Nascimento}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em \doxylink{namespace_p_i_m_1_1_data}{Data} de nascimento do usuário. Campo obrigatório. \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario_ab91fe511bc68f9abdea7b7fa13a62f00}{Observacoes}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Campo para observações adicionais sobre o usuário. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario_af25af65ff479d66c73e50a631f9e71a2}{Tickets\+Andamento\+Count}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em \mbox{[}Not\+Mapped\mbox{]} Contador de tickets atualmente em andamento por este usuário. Usado para exibição e não persistido no banco. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_usuario_abec6667250627825e08cce99f67c68d0}{Tickets\+Concluidos\+Count}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em \mbox{[}Not\+Mapped\mbox{]} Contador de tickets concluídos por este usuário. Usado para exibição e não persistido no banco. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Representa um usuário do sistema (cliente, técnico, administrador). Contém dados de autenticação e informações cadastrais. 
+
+\label{doc-property-members}
+\Hypertarget{class_p_i_m_1_1_models_1_1_usuario_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_p_i_m_1_1_models_1_1_usuario_aef3ce58b1a141a3652c9452a42b624f3}\index{PIM.Models.Usuario@{PIM.Models.Usuario}!ConfirmarSenha@{ConfirmarSenha}}
+\index{ConfirmarSenha@{ConfirmarSenha}!PIM.Models.Usuario@{PIM.Models.Usuario}}
+\doxysubsubsection{\texorpdfstring{ConfirmarSenha}{ConfirmarSenha}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_usuario_aef3ce58b1a141a3652c9452a42b624f3} 
+string? PIM.\+Models.\+Usuario.\+Confirmar\+Senha\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Confirmação da senha para fins de validação no formulário. Não é mapeada para o banco de dados ({\ttfamily \mbox{[}Not\+Mapped\mbox{]}}). 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_usuario_a26d607f49452ea9a956ff8b83c30254e}\index{PIM.Models.Usuario@{PIM.Models.Usuario}!CreatedAt@{CreatedAt}}
+\index{CreatedAt@{CreatedAt}!PIM.Models.Usuario@{PIM.Models.Usuario}}
+\doxysubsubsection{\texorpdfstring{CreatedAt}{CreatedAt}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_usuario_a26d607f49452ea9a956ff8b83c30254e} 
+Date\+Time PIM.\+Models.\+Usuario.\+Created\+At = Date\+Time.\+Now\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+\doxylink{namespace_p_i_m_1_1_data}{Data} e hora em que o usuário foi criado no sistema. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_usuario_a51a6c8415a48de20f1d3eab344118f9b}\index{PIM.Models.Usuario@{PIM.Models.Usuario}!DataNascimento@{DataNascimento}}
+\index{DataNascimento@{DataNascimento}!PIM.Models.Usuario@{PIM.Models.Usuario}}
+\doxysubsubsection{\texorpdfstring{DataNascimento}{DataNascimento}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_usuario_a51a6c8415a48de20f1d3eab344118f9b} 
+Date\+Time? PIM.\+Models.\+Usuario.\+Data\+Nascimento\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+\doxylink{namespace_p_i_m_1_1_data}{Data} de nascimento do usuário. Campo obrigatório. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_usuario_a741c773b6aeeb36ead9351a14c910692}\index{PIM.Models.Usuario@{PIM.Models.Usuario}!Email@{Email}}
+\index{Email@{Email}!PIM.Models.Usuario@{PIM.Models.Usuario}}
+\doxysubsubsection{\texorpdfstring{Email}{Email}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_usuario_a741c773b6aeeb36ead9351a14c910692} 
+string? PIM.\+Models.\+Usuario.\+Email\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Endereço de email do usuário. Campo obrigatório, deve ser um formato de email válido e ter no máximo 100 caracteres. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_usuario_a3669f95b1122a9aa664013638859fa56}\index{PIM.Models.Usuario@{PIM.Models.Usuario}!Endereco@{Endereco}}
+\index{Endereco@{Endereco}!PIM.Models.Usuario@{PIM.Models.Usuario}}
+\doxysubsubsection{\texorpdfstring{Endereco}{Endereco}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_usuario_a3669f95b1122a9aa664013638859fa56} 
+string? PIM.\+Models.\+Usuario.\+Endereco\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Endereço residencial ou comercial do usuário. Campo obrigatório. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_usuario_aef209b03cadd1c6081cd06097cc9bc29}\index{PIM.Models.Usuario@{PIM.Models.Usuario}!Id@{Id}}
+\index{Id@{Id}!PIM.Models.Usuario@{PIM.Models.Usuario}}
+\doxysubsubsection{\texorpdfstring{Id}{Id}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_usuario_aef209b03cadd1c6081cd06097cc9bc29} 
+int PIM.\+Models.\+Usuario.\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Chave primária e identificador único do usuário. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_usuario_ab91fe511bc68f9abdea7b7fa13a62f00}\index{PIM.Models.Usuario@{PIM.Models.Usuario}!Observacoes@{Observacoes}}
+\index{Observacoes@{Observacoes}!PIM.Models.Usuario@{PIM.Models.Usuario}}
+\doxysubsubsection{\texorpdfstring{Observacoes}{Observacoes}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_usuario_ab91fe511bc68f9abdea7b7fa13a62f00} 
+string? PIM.\+Models.\+Usuario.\+Observacoes\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Campo para observações adicionais sobre o usuário. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_usuario_a4947b17582a292717f5990c70c44838a}\index{PIM.Models.Usuario@{PIM.Models.Usuario}!Role@{Role}}
+\index{Role@{Role}!PIM.Models.Usuario@{PIM.Models.Usuario}}
+\doxysubsubsection{\texorpdfstring{Role}{Role}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_usuario_a4947b17582a292717f5990c70c44838a} 
+string? PIM.\+Models.\+Usuario.\+Role\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Nível de acesso ou papel do usuário no sistema (Ex\+: Admin, Tecnico, \doxylink{class_p_i_m_1_1_models_1_1_usuario}{Usuario}). Campo obrigatório. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_usuario_ad3de3e6faa8139cae8f337dbde3f53e1}\index{PIM.Models.Usuario@{PIM.Models.Usuario}!SenhaHash@{SenhaHash}}
+\index{SenhaHash@{SenhaHash}!PIM.Models.Usuario@{PIM.Models.Usuario}}
+\doxysubsubsection{\texorpdfstring{SenhaHash}{SenhaHash}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_usuario_ad3de3e6faa8139cae8f337dbde3f53e1} 
+string? PIM.\+Models.\+Usuario.\+Senha\+Hash\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+O hash da senha do usuário (armazenado no banco de dados). Campo obrigatório e deve ter no mínimo 8 caracteres. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_usuario_adc1f375fd995063022bce195277d9f12}\index{PIM.Models.Usuario@{PIM.Models.Usuario}!Status@{Status}}
+\index{Status@{Status}!PIM.Models.Usuario@{PIM.Models.Usuario}}
+\doxysubsubsection{\texorpdfstring{Status}{Status}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_usuario_adc1f375fd995063022bce195277d9f12} 
+string? PIM.\+Models.\+Usuario.\+Status\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Status da conta do usuário (Ex\+: Ativo, Inativo, Bloqueado). Campo obrigatório. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_usuario_aca8b36f8af4fac61284592c530a36eaa}\index{PIM.Models.Usuario@{PIM.Models.Usuario}!Telefone@{Telefone}}
+\index{Telefone@{Telefone}!PIM.Models.Usuario@{PIM.Models.Usuario}}
+\doxysubsubsection{\texorpdfstring{Telefone}{Telefone}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_usuario_aca8b36f8af4fac61284592c530a36eaa} 
+string? PIM.\+Models.\+Usuario.\+Telefone\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Número de telefone do usuário. Campo obrigatório e deve seguir um formato válido de telefone. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_usuario_af25af65ff479d66c73e50a631f9e71a2}\index{PIM.Models.Usuario@{PIM.Models.Usuario}!TicketsAndamentoCount@{TicketsAndamentoCount}}
+\index{TicketsAndamentoCount@{TicketsAndamentoCount}!PIM.Models.Usuario@{PIM.Models.Usuario}}
+\doxysubsubsection{\texorpdfstring{TicketsAndamentoCount}{TicketsAndamentoCount}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_usuario_af25af65ff479d66c73e50a631f9e71a2} 
+int PIM.\+Models.\+Usuario.\+Tickets\+Andamento\+Count\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+\mbox{[}Not\+Mapped\mbox{]} Contador de tickets atualmente em andamento por este usuário. Usado para exibição e não persistido no banco. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_usuario_abec6667250627825e08cce99f67c68d0}\index{PIM.Models.Usuario@{PIM.Models.Usuario}!TicketsConcluidosCount@{TicketsConcluidosCount}}
+\index{TicketsConcluidosCount@{TicketsConcluidosCount}!PIM.Models.Usuario@{PIM.Models.Usuario}}
+\doxysubsubsection{\texorpdfstring{TicketsConcluidosCount}{TicketsConcluidosCount}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_usuario_abec6667250627825e08cce99f67c68d0} 
+int PIM.\+Models.\+Usuario.\+Tickets\+Concluidos\+Count\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+\mbox{[}Not\+Mapped\mbox{]} Contador de tickets concluídos por este usuário. Usado para exibição e não persistido no banco. 
+
+\Hypertarget{class_p_i_m_1_1_models_1_1_usuario_a23b7a6b7b5f56dfb1d139a640b21a115}\index{PIM.Models.Usuario@{PIM.Models.Usuario}!Username@{Username}}
+\index{Username@{Username}!PIM.Models.Usuario@{PIM.Models.Usuario}}
+\doxysubsubsection{\texorpdfstring{Username}{Username}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_models_1_1_usuario_a23b7a6b7b5f56dfb1d139a640b21a115} 
+string? PIM.\+Models.\+Usuario.\+Username\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Nome de usuário para exibição no sistema. Campo obrigatório, com tamanho entre 3 e 50 caracteres. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+Models/\mbox{\hyperlink{_usuario_8cs}{Usuario.\+cs}}\end{DoxyCompactItemize}

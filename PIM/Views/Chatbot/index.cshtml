@@ -1,33 +1,54 @@
 @{
+    // Define o título da página que será exibido no navegador
     ViewData["Title"] = "Chatbot";
 }
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <!-- Define a codificação de caracteres -->
     <meta charset="utf-8" />
+
+    <!-- Garante responsividade em dispositivos móveis -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Define o título da aba do navegador -->
     <title>@ViewData["Title"] - Chatbot InovaTech</title>
+
+    <!-- Importa o arquivo CSS específico da página do Chatbot -->
     <link rel="stylesheet" href="~/css/Chatbot.css" />
 </head>
 <body>
 
+<!-- Conteúdo principal da página -->
 <main class="chatbot-page">
+
+    <!-- Container geral do chatbot -->
     <div class="chat-container">
+        <!-- Título do chatbot -->
         <h2>Inteligência Artificial InovaTech</h2>
+
+        <!-- Área de exibição de mensagens -->
         <div class="chatbox">
+            <!-- Div onde as mensagens do chat serão exibidas dinamicamente -->
             <div id="chat-messages" class="chat-messages" aria-live="polite"></div>
 
+            <!-- Div onde botões de sugestão podem aparecer -->
             <div id="suggestion-buttons" class="suggestion-buttons"></div>
             
+            <!-- Formulário para enviar mensagens ao chatbot -->
             <form id="chat-form" class="chat-input">
+                <!-- Campo de texto onde o usuário digita a mensagem -->
                 <input type="text" id="user-input" placeholder="Digite sua mensagem..." aria-label="Digite sua mensagem para o chatbot" required />
+                
+                <!-- Botão de envio da mensagem -->
                 <button type="submit" id="send-btn">Enviar</button>
             </form>
         </div>
     </div>
 </main>
 
+<!-- Script JavaScript que contém a lógica do chatbot -->
 <script src="~/js/Chatbot.js"></script>
 
 </body>

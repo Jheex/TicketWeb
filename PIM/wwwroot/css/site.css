@@ -1,28 +1,51 @@
+/* ----------------------------
+   Configuração de tamanho de fonte
+---------------------------- */
 html {
-  font-size: 14px;
+  font-size: 14px; /* Fonte base para telas pequenas */
 }
 
+/* Aumenta a fonte em telas maiores (desktop/tablet) */
 @media (min-width: 768px) {
   html {
     font-size: 16px;
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+/* ----------------------------
+   Foco em botões e inputs
+---------------------------- */
+/* Adiciona sombra ao focar em botões, links ou inputs */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, /* sombra interna */
+              0 0 0 0.25rem #258cfb; /* destaque azul externo */
 }
 
+/* ----------------------------
+   Layout geral
+---------------------------- */
+/* Garante que o html ocupe altura total e sirva como referência para posicionamento */
 html {
   position: relative;
   min-height: 100%;
 }
 
-
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* ----------------------------
+   Placeholder em inputs flutuantes
+---------------------------- */
+/* Placeholder padrão alinhado à direita */
+.form-floating > .form-control-plaintext::placeholder,
+.form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color); /* Cor secundária */
+  text-align: end; /* Alinha à direita */
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+/* Quando o input estiver em foco, alinha o placeholder à esquerda */
+.form-floating > .form-control-plaintext:focus::placeholder,
+.form-floating > .form-control:focus::placeholder {
   text-align: start;
 }

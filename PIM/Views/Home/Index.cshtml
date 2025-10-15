@@ -1,20 +1,35 @@
 ﻿@model PIM.ViewModels.DashboardBIViewModel
 @{
+    // Define o layout padrão
     Layout = "_Layout";
+
+    // Define o título da página
     ViewData["Title"] = "BI Dashboard de Chamados";
 }
 
+<!-- Seção para adicionar estilos personalizados -->
 @section Styles {
+    <!-- Font Awesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <!-- Choices.js para selects estilizados -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+
+    <!-- Estilos do dashboard -->
     <link rel="stylesheet" href="~/css/dashboard-styles.css" asp-append-version="true" />
 }
 
+<!-- Container principal do dashboard -->
 <div class="dashboard-container">
+
+    <!-- Cabeçalho com título e filtros -->
     <header class="dashboard-header">
         <h1>Análise de Chamados</h1>
 
+        <!-- Formulário de filtros -->
         <form asp-action="Index" method="get" class="filters-wrapper">
+
+            <!-- Filtro de Status -->
             <div class="filter-group">
                 <label><i class="fa-solid fa-flag"></i> Status</label>
                 <select name="status" asp-items="Model.FilterOptions.Statuses">
@@ -22,6 +37,7 @@
                 </select>
             </div>
 
+            <!-- Filtro de Prioridade -->
             <div class="filter-group">
                 <label><i class="fa-solid fa-arrow-up-short-wide"></i> Prioridade</label>
                 <select name="priority" asp-items="Model.FilterOptions.Priorities">
@@ -29,6 +45,7 @@
                 </select>
             </div>
 
+            <!-- Filtro de Solicitante -->
             <div class="filter-group">
                 <label><i class="fa-solid fa-user"></i> Solicitante</label>
                 <select name="requesterId" asp-items="Model.FilterOptions.Requesters">
@@ -36,6 +53,7 @@
                 </select>
             </div>
 
+            <!-- Filtro de Analista -->
             <div class="filter-group">
                 <label><i class="fa-solid fa-user"></i> Analista</label>
                 <select name="assignedToId" asp-items="Model.FilterOptions.Analysts">
@@ -43,11 +61,14 @@
                 </select>
             </div>
 
+            <!-- Botões de ação dos filtros -->
             <div class="filters-actions">
+                <!-- Botão aplicar filtros -->
                 <button type="submit" class="btn-primary" title="Aplicar Filtros">
                     <i class="fa-solid fa-magnifying-glass"></i> Aplicar
                 </button>
 
+                <!-- Botão remover filtros -->
                 <a href="@Url.Action("Index", "Dashboard")" class="btn-secondary" title="Remover Filtros">
                     <i class="fa-solid fa-xmark"></i> Remover
                 </a>
@@ -55,7 +76,10 @@
         </form>
     </header>
 
+    <!-- Corpo principal do dashboard -->
     <main class="dashboard-grid">
+
+        <!-- Cartões KPI -->
         <div class="dashboard-card kpi-card">
             <div class="card-title"><i class="fa-solid fa-folder-open"></i> Abertos</div>
             <div class="kpi-card-value">@Model.TotalChamadosAbertos</div>
@@ -70,17 +94,22 @@
             <div class="card-title"><i class="fa-solid fa-circle-check"></i> Concluídos</div>
             <div class="kpi-card-value">@Model.TotalChamadosFechados</div>
         </div>
+
         <div class="dashboard-card kpi-card">
             <div class="card-title"><i class="fa-solid fa-clock"></i> TTR (Horas)</div>
             <div class="kpi-card-value">@Model.TempoMedioResolucaoHoras.ToString("F1")</div>
         </div>
+
         <div class="dashboard-card kpi-card">
             <div class="card-title"><i class="fa-solid fa-bullseye"></i> SLA (%)</div>
             <div class="kpi-card-value">@Model.SlaPercentual.ToString("F1")%</div>
         </div>
 
+        <!-- Tabela de atividades -->
         <div class="dashboard-card table-card" style="grid-column: 1 / -1;">
             <div class="card-title">Atividades</div>
+
+            <!-- Tabela de chamados -->
             <div class="table-wrapper">
                 <table class="styled-table" id="chamados-table">
                     <thead>
@@ -109,8 +138,10 @@
                 </table>
             </div>
 
+            <!-- Paginação -->
             <div class="pagination">
                 @{
+                    // Cria um dicionário de querystring baseado na requisição atual
                     var currentQuery = Context.Request.Query.ToDictionary(q => q.Key, q => q.Value.ToString());
                 }
                 @for (int i = 1; i <= Model.TotalPages; i++)
@@ -123,6 +154,7 @@
     </main>
 </div>
 
+<!-- Seção de scripts -->
 @section Scripts {
     <script src="~/js/dashboard.js" asp-append-version="true"></script>
 }

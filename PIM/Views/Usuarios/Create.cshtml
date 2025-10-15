@@ -1,41 +1,53 @@
 @model PIM.Models.Usuario
 @{
+    // Define o título da página para uso no layout (_Layout.cshtml)
     ViewData["Title"] = "Novo Usuário";
 }
 
+<!-- Link para o CSS específico da página de criação/edição -->
 <link rel="stylesheet" href="~/css/Cadastros/CreateEdit.css" asp-append-version="true" />
 
+<!-- Container principal do painel de criação -->
 <div class="panel-container">
 
+    <!-- Título do painel -->
     <h2 class="panel-title">➕ Novo Usuário</h2>
 
+    <!-- Formulário para criação de usuário -->
     <form asp-action="Create" method="post" class="panel-form">
 
+        <!-- Coluna esquerda do formulário -->
         <div class="form-column">
+
+            <!-- Campo Nome do Usuário -->
             <div class="form-group">
                 <label asp-for="Username">Nome</label>
                 <input asp-for="Username" type="text" class="input-text" />
                 <span asp-validation-for="Username" class="text-error"></span>
             </div>
 
+            <!-- Campo Email -->
             <div class="form-group">
                 <label asp-for="Email">Email</label>
                 <input asp-for="Email" type="email" class="input-text" maxlength="100" />
                 <span asp-validation-for="Email" class="text-error"></span>
             </div>
 
+            <!-- Campo Senha -->
             <div class="form-group">
                 <label asp-for="SenhaHash">Senha</label>
                 <input asp-for="SenhaHash" type="password" class="input-text" />
                 <span asp-validation-for="SenhaHash" class="text-error"></span>
             </div>
 
+            <!-- Campo Confirmar Senha -->
             <div class="form-group">
                 <label asp-for="ConfirmarSenha">Confirmar Senha</label>
                 <input asp-for="ConfirmarSenha" type="password" class="input-text" />
                 <span asp-validation-for="ConfirmarSenha" class="text-error"></span>
             </div>
 
+            <!-- Campo Role / Acesso do usuário -->
             <div class="form-group">
                 <label asp-for="Role">Acesso</label>
                 <select asp-for="Role" class="input-text">
@@ -47,6 +59,7 @@
                 <span asp-validation-for="Role" class="text-error"></span>
             </div>
 
+            <!-- Campo Status do usuário -->
             <div class="form-group">
                 <label asp-for="Status">Status</label>
                 <select asp-for="Status" class="input-text">
@@ -57,25 +70,31 @@
             </div>
         </div>
 
+        <!-- Coluna direita do formulário -->
         <div class="form-column">
+
+            <!-- Campo Telefone -->
             <div class="form-group">
                 <label asp-for="Telefone">Telefone</label>
                 <input asp-for="Telefone" type="tel" class="input-text" maxlength="15" />
                 <span asp-validation-for="Telefone" class="text-error"></span>
             </div>
 
+            <!-- Campo Endereço -->
             <div class="form-group">
                 <label asp-for="Endereco">Endereço</label>
                 <input asp-for="Endereco" type="text" class="input-text" />
                 <span asp-validation-for="Endereco" class="text-error"></span>
             </div>
 
+            <!-- Campo Data de Nascimento com placeholder -->
             <div class="form-group">
                 <label asp-for="DataNascimento">Data de Nascimento</label>
                 <input asp-for="DataNascimento" type="text" placeholder="DD/MM/AAAA" class="input-text" id="DataNascimento" />
                 <span asp-validation-for="DataNascimento" class="text-error"></span>
             </div>
 
+            <!-- Campo Observações -->
             <div class="form-group">
                 <label asp-for="Observacoes">Observações</label>
                 <textarea asp-for="Observacoes" class="input-text"></textarea>
@@ -83,12 +102,15 @@
             </div>
         </div>
 
+        <!-- Botões de ação do formulário -->
         <div class="form-actions">
             <button type="submit" class="btn-primary">Criar Usuário</button>
             <a asp-action="Index" class="btn-secondary">Cancelar</a>
         </div>
     </form>
 </div>
+
+<!-- Scripts de validação do ASP.NET Core -->
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }

@@ -1,0 +1,311 @@
+\doxysection{PIM.\+View\+Models.\+Dashboard\+BIView\+Model Class Reference}
+\hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model}{}\label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+
+
+View Model principal utilizada para carregar e exibir todos os dados necessários no Dashboard de Business Intelligence. Inclui KPIs, dados para gráficos, tabelas de desempenho, e as opções e estados de filtro/paginação.  
+
+
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_ad603ad69d7e0d53b59cee9f021765d0b}{Total\+Chamados\+Abertos}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Total de chamados no status "{}\+Aberto"{}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_ac5da59db2798311e768a6b94ace6c29b}{Total\+Chamados\+Em\+Andamento}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Total de chamados no status "{}\+Em Andamento"{}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a6fc825ef5f683c11f81dfdbf96d23c2a}{Total\+Chamados\+Fechados}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Total de chamados Fechados (resolvidos ou concluídos). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_adeb40e0d533353bb4dee0b64418b7f1e}{Total\+Chamados\+Novos}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Total de novos chamados abertos em um período específico (ex\+: hoje, na semana). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_add1c7d4b72016b05891d7c115f5e2b16}{Tempo\+Medio\+Resolucao\+Horas}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Tempo médio de resolução de tickets, calculado e expresso em horas. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a3f058fdfaef15a30f0316ec95a7db8a1}{Sla\+Percentual}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Percentual de tickets que cumpriram o SLA (Service Level Agreement). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a8686ef4671652479e507a8007a7f9fb7}{Backlog}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Número de tickets pendentes ou que ultrapassaram o prazo ou estão em atraso (Backlog). \end{DoxyCompactList}\item 
+object? \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a5e60b9faee8b98e3d87e45eeb09ffb00}{Abertos\+Vs\+Fechados\+Chart}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Dados para o gráfico de Abertos vs. Fechados ao longo do tempo. O tipo é \textquotesingle{}object\textquotesingle{} para acomodar estruturas de dados específicas de bibliotecas de gráficos (Ex\+: Chart.\+js). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_chart_data}{Chart\+Data}} \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_ac2d40affb16361f81ee4201fe438e1d7}{Top\+Categorias\+Chart}} = new \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_chart_data}{Chart\+Data}}()\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Dados de contagem de tickets pelas Top Categorias, formatados para um gráfico. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_chart_data}{Chart\+Data}} \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a4a98f9124e9d32a7fcb2e0c8f5138372}{Status\+Chart}} = new \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_chart_data}{Chart\+Data}}()\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Dados de contagem de tickets agrupados por Status. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_chart_data}{Chart\+Data}} \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a5e40c26a1ed3585fddaa68b243665603}{Analista\+Chart}} = new \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_chart_data}{Chart\+Data}}()\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Dados de contagem de tickets agrupados por Analista/\+Técnico. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_chart_data}{Chart\+Data}} \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a9d6c982cc11a1648f41460f4dc0946b4}{Prioridade\+Chart}} = new \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_chart_data}{Chart\+Data}}()\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Dados de contagem de tickets agrupados por Prioridade. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_analyst_performance_data}{Analyst\+Performance\+Data}} $>$ \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a215d9738bd05555f68ee85f25f1ee1dd}{Ranking\+Analistas}} = new List$<$\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_analyst_performance_data}{Analyst\+Performance\+Data}}$>$()\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Lista detalhada do desempenho de cada analista. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado}{Chamado}} $>$ \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a66b5fd33e0d52adb25d675837f97e83e}{Tabela\+Detalhada}} = new List$<$\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado}{Chamado}}$>$()\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Tabela com detalhes dos objetos \doxylink{class_p_i_m_1_1_models_1_1_chamado}{Chamado}, usada para a visualização detalhada, paginada ou filtrada. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_filter_options}{Dashboard\+Filter\+Options}} \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a23dfa2e2c994adf6a3cb2491ffa02a64}{Filter\+Options}} = new \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_filter_options}{Dashboard\+Filter\+Options}}()\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Opções disponíveis para serem usadas nos Dropdowns de filtro. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_afc8cbb66e6031b7329379ec522af22ed}{Page\+Number}} = 1\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em O número da página atual na Tabela Detalhada. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_ab9a1f79e6aaed97f52cb6ecbcd14de92}{Page\+Size}} = 5\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em O número de itens a serem exibidos por página. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a3145f7b44e9bae7cc48b388de5b6d2fc}{Total\+Items}} = 0\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em O número total de itens que satisfazem os filtros aplicados. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_acdc0a0d1408ae0fa39f246d2d07fae07}{Total\+Pages}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Propriedade calculada que retorna o número total de páginas. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a13d49ceebed2739e0e72583937cee025}{Selected\+Status}} = new List$<$string$>$()\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Lista de status selecionados pelo usuário para filtrar os dados. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a373bde9af2be0ffbf8cb22ff14b400fc}{Selected\+Priority}} = new List$<$string$>$()\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Lista de prioridades selecionadas pelo usuário para filtrar os dados. \end{DoxyCompactList}\item 
+List$<$ int $>$ \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a77aacd50aef7f55d59ccbd8b14477d62}{Selected\+Analyst\+Id}} = new List$<$int$>$()\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Lista de IDs de analistas/técnicos selecionados para filtrar os dados. \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_af591fbf13f012b9ce7523dd4e2da2921}{Selected\+Category}} = new List$<$string$>$()\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Lista de categorias selecionadas pelo usuário para filtrar os dados. \end{DoxyCompactList}\item 
+List$<$ int $>$ \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a7f5304fbfc19633bd6888a678c0346e6}{Selected\+Requester\+Id}} = new List$<$int$>$()\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Lista de IDs de solicitantes (requesters) selecionados para filtrar os dados. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+View Model principal utilizada para carregar e exibir todos os dados necessários no Dashboard de Business Intelligence. Inclui KPIs, dados para gráficos, tabelas de desempenho, e as opções e estados de filtro/paginação. 
+
+\label{doc-property-members}
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a5e60b9faee8b98e3d87e45eeb09ffb00}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!AbertosVsFechadosChart@{AbertosVsFechadosChart}}
+\index{AbertosVsFechadosChart@{AbertosVsFechadosChart}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{AbertosVsFechadosChart}{AbertosVsFechadosChart}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a5e60b9faee8b98e3d87e45eeb09ffb00} 
+object? PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Abertos\+Vs\+Fechados\+Chart\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Dados para o gráfico de Abertos vs. Fechados ao longo do tempo. O tipo é \textquotesingle{}object\textquotesingle{} para acomodar estruturas de dados específicas de bibliotecas de gráficos (Ex\+: Chart.\+js). 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a5e40c26a1ed3585fddaa68b243665603}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!AnalistaChart@{AnalistaChart}}
+\index{AnalistaChart@{AnalistaChart}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{AnalistaChart}{AnalistaChart}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a5e40c26a1ed3585fddaa68b243665603} 
+\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_chart_data}{Chart\+Data}} PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Analista\+Chart = new \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_chart_data}{Chart\+Data}}()\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Dados de contagem de tickets agrupados por Analista/\+Técnico. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a8686ef4671652479e507a8007a7f9fb7}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!Backlog@{Backlog}}
+\index{Backlog@{Backlog}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{Backlog}{Backlog}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a8686ef4671652479e507a8007a7f9fb7} 
+int PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Backlog\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Número de tickets pendentes ou que ultrapassaram o prazo ou estão em atraso (Backlog). 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a23dfa2e2c994adf6a3cb2491ffa02a64}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!FilterOptions@{FilterOptions}}
+\index{FilterOptions@{FilterOptions}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{FilterOptions}{FilterOptions}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a23dfa2e2c994adf6a3cb2491ffa02a64} 
+\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_filter_options}{Dashboard\+Filter\+Options}} PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Filter\+Options = new \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_filter_options}{Dashboard\+Filter\+Options}}()\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Opções disponíveis para serem usadas nos Dropdowns de filtro. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_afc8cbb66e6031b7329379ec522af22ed}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!PageNumber@{PageNumber}}
+\index{PageNumber@{PageNumber}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{PageNumber}{PageNumber}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_afc8cbb66e6031b7329379ec522af22ed} 
+int PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Page\+Number = 1\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+O número da página atual na Tabela Detalhada. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_ab9a1f79e6aaed97f52cb6ecbcd14de92}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!PageSize@{PageSize}}
+\index{PageSize@{PageSize}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{PageSize}{PageSize}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_ab9a1f79e6aaed97f52cb6ecbcd14de92} 
+int PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Page\+Size = 5\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+O número de itens a serem exibidos por página. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a9d6c982cc11a1648f41460f4dc0946b4}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!PrioridadeChart@{PrioridadeChart}}
+\index{PrioridadeChart@{PrioridadeChart}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{PrioridadeChart}{PrioridadeChart}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a9d6c982cc11a1648f41460f4dc0946b4} 
+\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_chart_data}{Chart\+Data}} PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Prioridade\+Chart = new \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_chart_data}{Chart\+Data}}()\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Dados de contagem de tickets agrupados por Prioridade. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a215d9738bd05555f68ee85f25f1ee1dd}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!RankingAnalistas@{RankingAnalistas}}
+\index{RankingAnalistas@{RankingAnalistas}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{RankingAnalistas}{RankingAnalistas}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a215d9738bd05555f68ee85f25f1ee1dd} 
+List$<$\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_analyst_performance_data}{Analyst\+Performance\+Data}}$>$ PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Ranking\+Analistas = new List$<$\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_analyst_performance_data}{Analyst\+Performance\+Data}}$>$()\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Lista detalhada do desempenho de cada analista. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a77aacd50aef7f55d59ccbd8b14477d62}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!SelectedAnalystId@{SelectedAnalystId}}
+\index{SelectedAnalystId@{SelectedAnalystId}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{SelectedAnalystId}{SelectedAnalystId}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a77aacd50aef7f55d59ccbd8b14477d62} 
+List$<$int$>$ PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Selected\+Analyst\+Id = new List$<$int$>$()\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Lista de IDs de analistas/técnicos selecionados para filtrar os dados. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_af591fbf13f012b9ce7523dd4e2da2921}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!SelectedCategory@{SelectedCategory}}
+\index{SelectedCategory@{SelectedCategory}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{SelectedCategory}{SelectedCategory}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_af591fbf13f012b9ce7523dd4e2da2921} 
+List$<$string$>$ PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Selected\+Category = new List$<$string$>$()\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Lista de categorias selecionadas pelo usuário para filtrar os dados. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a373bde9af2be0ffbf8cb22ff14b400fc}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!SelectedPriority@{SelectedPriority}}
+\index{SelectedPriority@{SelectedPriority}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{SelectedPriority}{SelectedPriority}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a373bde9af2be0ffbf8cb22ff14b400fc} 
+List$<$string$>$ PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Selected\+Priority = new List$<$string$>$()\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Lista de prioridades selecionadas pelo usuário para filtrar os dados. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a7f5304fbfc19633bd6888a678c0346e6}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!SelectedRequesterId@{SelectedRequesterId}}
+\index{SelectedRequesterId@{SelectedRequesterId}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{SelectedRequesterId}{SelectedRequesterId}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a7f5304fbfc19633bd6888a678c0346e6} 
+List$<$int$>$ PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Selected\+Requester\+Id = new List$<$int$>$()\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Lista de IDs de solicitantes (requesters) selecionados para filtrar os dados. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a13d49ceebed2739e0e72583937cee025}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!SelectedStatus@{SelectedStatus}}
+\index{SelectedStatus@{SelectedStatus}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{SelectedStatus}{SelectedStatus}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a13d49ceebed2739e0e72583937cee025} 
+List$<$string$>$ PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Selected\+Status = new List$<$string$>$()\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Lista de status selecionados pelo usuário para filtrar os dados. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a3f058fdfaef15a30f0316ec95a7db8a1}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!SlaPercentual@{SlaPercentual}}
+\index{SlaPercentual@{SlaPercentual}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{SlaPercentual}{SlaPercentual}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a3f058fdfaef15a30f0316ec95a7db8a1} 
+double PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Sla\+Percentual\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Percentual de tickets que cumpriram o SLA (Service Level Agreement). 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a4a98f9124e9d32a7fcb2e0c8f5138372}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!StatusChart@{StatusChart}}
+\index{StatusChart@{StatusChart}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{StatusChart}{StatusChart}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a4a98f9124e9d32a7fcb2e0c8f5138372} 
+\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_chart_data}{Chart\+Data}} PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Status\+Chart = new \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_chart_data}{Chart\+Data}}()\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Dados de contagem de tickets agrupados por Status. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a66b5fd33e0d52adb25d675837f97e83e}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!TabelaDetalhada@{TabelaDetalhada}}
+\index{TabelaDetalhada@{TabelaDetalhada}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{TabelaDetalhada}{TabelaDetalhada}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a66b5fd33e0d52adb25d675837f97e83e} 
+List$<$\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado}{Chamado}}$>$ PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Tabela\+Detalhada = new List$<$\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado}{Chamado}}$>$()\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Tabela com detalhes dos objetos \doxylink{class_p_i_m_1_1_models_1_1_chamado}{Chamado}, usada para a visualização detalhada, paginada ou filtrada. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_add1c7d4b72016b05891d7c115f5e2b16}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!TempoMedioResolucaoHoras@{TempoMedioResolucaoHoras}}
+\index{TempoMedioResolucaoHoras@{TempoMedioResolucaoHoras}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{TempoMedioResolucaoHoras}{TempoMedioResolucaoHoras}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_add1c7d4b72016b05891d7c115f5e2b16} 
+double PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Tempo\+Medio\+Resolucao\+Horas\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Tempo médio de resolução de tickets, calculado e expresso em horas. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_ac2d40affb16361f81ee4201fe438e1d7}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!TopCategoriasChart@{TopCategoriasChart}}
+\index{TopCategoriasChart@{TopCategoriasChart}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{TopCategoriasChart}{TopCategoriasChart}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_ac2d40affb16361f81ee4201fe438e1d7} 
+\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_chart_data}{Chart\+Data}} PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Top\+Categorias\+Chart = new \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_chart_data}{Chart\+Data}}()\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Dados de contagem de tickets pelas Top Categorias, formatados para um gráfico. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_ad603ad69d7e0d53b59cee9f021765d0b}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!TotalChamadosAbertos@{TotalChamadosAbertos}}
+\index{TotalChamadosAbertos@{TotalChamadosAbertos}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{TotalChamadosAbertos}{TotalChamadosAbertos}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_ad603ad69d7e0d53b59cee9f021765d0b} 
+int PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Total\+Chamados\+Abertos\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Total de chamados no status "{}\+Aberto"{}. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_ac5da59db2798311e768a6b94ace6c29b}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!TotalChamadosEmAndamento@{TotalChamadosEmAndamento}}
+\index{TotalChamadosEmAndamento@{TotalChamadosEmAndamento}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{TotalChamadosEmAndamento}{TotalChamadosEmAndamento}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_ac5da59db2798311e768a6b94ace6c29b} 
+int PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Total\+Chamados\+Em\+Andamento\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Total de chamados no status "{}\+Em Andamento"{}. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a6fc825ef5f683c11f81dfdbf96d23c2a}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!TotalChamadosFechados@{TotalChamadosFechados}}
+\index{TotalChamadosFechados@{TotalChamadosFechados}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{TotalChamadosFechados}{TotalChamadosFechados}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a6fc825ef5f683c11f81dfdbf96d23c2a} 
+int PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Total\+Chamados\+Fechados\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Total de chamados Fechados (resolvidos ou concluídos). 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_adeb40e0d533353bb4dee0b64418b7f1e}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!TotalChamadosNovos@{TotalChamadosNovos}}
+\index{TotalChamadosNovos@{TotalChamadosNovos}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{TotalChamadosNovos}{TotalChamadosNovos}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_adeb40e0d533353bb4dee0b64418b7f1e} 
+int PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Total\+Chamados\+Novos\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Total de novos chamados abertos em um período específico (ex\+: hoje, na semana). 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a3145f7b44e9bae7cc48b388de5b6d2fc}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!TotalItems@{TotalItems}}
+\index{TotalItems@{TotalItems}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{TotalItems}{TotalItems}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_a3145f7b44e9bae7cc48b388de5b6d2fc} 
+int PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Total\+Items = 0\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+O número total de itens que satisfazem os filtros aplicados. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_acdc0a0d1408ae0fa39f246d2d07fae07}\index{PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}!TotalPages@{TotalPages}}
+\index{TotalPages@{TotalPages}!PIM.ViewModels.DashboardBIViewModel@{PIM.ViewModels.DashboardBIViewModel}}
+\doxysubsubsection{\texorpdfstring{TotalPages}{TotalPages}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model_acdc0a0d1408ae0fa39f246d2d07fae07} 
+int PIM.\+View\+Models.\+Dashboard\+BIView\+Model.\+Total\+Pages\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Propriedade calculada que retorna o número total de páginas. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+View\+Models/\mbox{\hyperlink{_dashboard_b_i_view_model_8cs}{Dashboard\+BIView\+Model.\+cs}}\end{DoxyCompactItemize}

@@ -1,33 +1,51 @@
 @model PIM.ViewModels.ChamadoViewModel
 @{
+    // Define o título da página para exibição no navegador
     ViewData["Title"] = "Confirmar Abertura de Chamado";
 }
+
+<!-- Importa estilos de formulário e feedback -->
 <link rel="stylesheet" href="~/css/form-styles.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/css/feedback-styles.css" asp-append-version="true" /> <div class="form-container">
+<link rel="stylesheet" href="~/css/feedback-styles.css" asp-append-version="true" />
+
+<!-- Container principal do formulário de confirmação -->
+<div class="form-container">
     <div class="form-card">
+        
+        <!-- Cabeçalho do formulário -->
         <div class="form-header">
             <h1><i class="fa-solid fa-clipboard-check"></i> Revise as Informações</h1>
             <p>Por favor, confirme se todos os dados abaixo estão corretos antes de enviar.</p>
         </div>
 
+        <!-- Detalhes da confirmação -->
         <div class="confirmation-details">
+            <!-- Solicitante -->
             <div class="detail-item">
                 <span class="detail-label">Solicitante</span>
                 <span class="detail-value">@ViewBag.NomeSolicitante</span>
             </div>
+
+            <!-- Título / Assunto -->
             <div class="detail-item">
                 <span class="detail-label">Título / Assunto</span>
                 <span class="detail-value">@Model.Title</span>
             </div>
+
+            <!-- Categoria -->
             <div class="detail-item">
                 <span class="detail-label">Categoria</span>
                 <span class="detail-value">@Model.Category</span>
             </div>
+
+            <!-- Prioridade -->
             <div class="detail-item">
                 <span class="detail-label">Prioridade</span>
                 <span class="detail-value">@Model.Priority</span>
             </div>
-             @if (!string.IsNullOrEmpty(Model.Description))
+
+            <!-- Descrição detalhada (opcional) -->
+            @if (!string.IsNullOrEmpty(Model.Description))
             {
                 <div class="detail-item-full">
                     <span class="detail-label">Descrição Detalhada</span>
@@ -36,6 +54,8 @@
                     </div>
                 </div>
             }
+
+            <!-- Anexo (opcional) -->
             @if (TempData["AttachmentFileName"] != null)
             {
                  <div class="detail-item">
@@ -45,11 +65,14 @@
             }
         </div>
 
+        <!-- Botões de ação do formulário -->
         <div class="form-actions-confirm">
-             <a asp-action="Create" class="btn btn-secondary">
+            <!-- Botão para voltar e editar -->
+            <a asp-action="Create" class="btn btn-secondary">
                 <i class="fa-solid fa-arrow-left"></i> Voltar e Editar
             </a>
 
+            <!-- Botão para confirmar e enviar -->
             <form asp-action="ConfirmacaoPost" method="post">
                 <button type="submit" class="btn btn-primary">
                     <i class="fa-solid fa-check"></i> Confirmar e Enviar

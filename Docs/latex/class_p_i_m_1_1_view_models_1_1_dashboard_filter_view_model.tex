@@ -1,0 +1,119 @@
+\doxysection{PIM.\+View\+Models.\+Dashboard\+Filter\+View\+Model Class Reference}
+\hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model}{}\label{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model}\index{PIM.ViewModels.DashboardFilterViewModel@{PIM.ViewModels.DashboardFilterViewModel}}
+
+
+View Model utilizada para receber e encapsular os critérios de filtro e paginação que o usuário aplica ao Dashboard de Business Intelligence.  
+
+
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Date\+Time? \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_ad62360757baf1f8ade2a9642f98b0b0f}{Start\+Date}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em \doxylink{namespace_p_i_m_1_1_data}{Data} inicial (\doxylink{namespace_p_i_m_1_1_data}{Data} de Abertura) para filtragem dos chamados. Opcional. \end{DoxyCompactList}\item 
+Date\+Time? \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_a5809c97f207da3f1a16a84dc99cd4e17}{End\+Date}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em \doxylink{namespace_p_i_m_1_1_data}{Data} final (\doxylink{namespace_p_i_m_1_1_data}{Data} de Abertura) para filtragem dos chamados. Opcional. \end{DoxyCompactList}\item 
+List$<$ string $>$? \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_acb14c585ceeed1ce8b35fc77296050e6}{Status}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Lista de status de chamados selecionados para filtragem. Opcional. \end{DoxyCompactList}\item 
+List$<$ string $>$? \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_a25c30cb118d57c674ce87a86103936a3}{Priority}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Lista de prioridades de chamados selecionadas para filtragem. Opcional. \end{DoxyCompactList}\item 
+List$<$ int $>$? \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_a8836ccb61ac8c4228134a8ed70e30fc0}{Assigned\+To\+Id}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Lista de IDs de usuários (Analistas/\+Técnicos) aos quais os chamados estão atribuídos. Opcional. \end{DoxyCompactList}\item 
+List$<$ int $>$? \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_a8f65ff841077b20df1bb26be187ffaa1}{Requester\+Id}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Lista de IDs de usuários que solicitaram (Requesters) os chamados. Opcional. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_a59c57885032578969622f3ac21dccd11}{Page\+Number}} = 1\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Número da página atual para a tabela detalhada do dashboard. Padrão é 1. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_afa9cd8a3cd5b244535b5e4a184f5ea72}{Page\+Size}} = 5\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Tamanho da página (número de itens por página) para a tabela detalhada. Padrão é 5. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+View Model utilizada para receber e encapsular os critérios de filtro e paginação que o usuário aplica ao Dashboard de Business Intelligence. 
+
+\label{doc-property-members}
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_a8836ccb61ac8c4228134a8ed70e30fc0}\index{PIM.ViewModels.DashboardFilterViewModel@{PIM.ViewModels.DashboardFilterViewModel}!AssignedToId@{AssignedToId}}
+\index{AssignedToId@{AssignedToId}!PIM.ViewModels.DashboardFilterViewModel@{PIM.ViewModels.DashboardFilterViewModel}}
+\doxysubsubsection{\texorpdfstring{AssignedToId}{AssignedToId}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_a8836ccb61ac8c4228134a8ed70e30fc0} 
+List$<$int$>$? PIM.\+View\+Models.\+Dashboard\+Filter\+View\+Model.\+Assigned\+To\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Lista de IDs de usuários (Analistas/\+Técnicos) aos quais os chamados estão atribuídos. Opcional. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_a5809c97f207da3f1a16a84dc99cd4e17}\index{PIM.ViewModels.DashboardFilterViewModel@{PIM.ViewModels.DashboardFilterViewModel}!EndDate@{EndDate}}
+\index{EndDate@{EndDate}!PIM.ViewModels.DashboardFilterViewModel@{PIM.ViewModels.DashboardFilterViewModel}}
+\doxysubsubsection{\texorpdfstring{EndDate}{EndDate}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_a5809c97f207da3f1a16a84dc99cd4e17} 
+Date\+Time? PIM.\+View\+Models.\+Dashboard\+Filter\+View\+Model.\+End\+Date\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+\doxylink{namespace_p_i_m_1_1_data}{Data} final (\doxylink{namespace_p_i_m_1_1_data}{Data} de Abertura) para filtragem dos chamados. Opcional. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_a59c57885032578969622f3ac21dccd11}\index{PIM.ViewModels.DashboardFilterViewModel@{PIM.ViewModels.DashboardFilterViewModel}!PageNumber@{PageNumber}}
+\index{PageNumber@{PageNumber}!PIM.ViewModels.DashboardFilterViewModel@{PIM.ViewModels.DashboardFilterViewModel}}
+\doxysubsubsection{\texorpdfstring{PageNumber}{PageNumber}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_a59c57885032578969622f3ac21dccd11} 
+int PIM.\+View\+Models.\+Dashboard\+Filter\+View\+Model.\+Page\+Number = 1\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Número da página atual para a tabela detalhada do dashboard. Padrão é 1. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_afa9cd8a3cd5b244535b5e4a184f5ea72}\index{PIM.ViewModels.DashboardFilterViewModel@{PIM.ViewModels.DashboardFilterViewModel}!PageSize@{PageSize}}
+\index{PageSize@{PageSize}!PIM.ViewModels.DashboardFilterViewModel@{PIM.ViewModels.DashboardFilterViewModel}}
+\doxysubsubsection{\texorpdfstring{PageSize}{PageSize}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_afa9cd8a3cd5b244535b5e4a184f5ea72} 
+int PIM.\+View\+Models.\+Dashboard\+Filter\+View\+Model.\+Page\+Size = 5\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Tamanho da página (número de itens por página) para a tabela detalhada. Padrão é 5. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_a25c30cb118d57c674ce87a86103936a3}\index{PIM.ViewModels.DashboardFilterViewModel@{PIM.ViewModels.DashboardFilterViewModel}!Priority@{Priority}}
+\index{Priority@{Priority}!PIM.ViewModels.DashboardFilterViewModel@{PIM.ViewModels.DashboardFilterViewModel}}
+\doxysubsubsection{\texorpdfstring{Priority}{Priority}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_a25c30cb118d57c674ce87a86103936a3} 
+List$<$string$>$? PIM.\+View\+Models.\+Dashboard\+Filter\+View\+Model.\+Priority\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Lista de prioridades de chamados selecionadas para filtragem. Opcional. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_a8f65ff841077b20df1bb26be187ffaa1}\index{PIM.ViewModels.DashboardFilterViewModel@{PIM.ViewModels.DashboardFilterViewModel}!RequesterId@{RequesterId}}
+\index{RequesterId@{RequesterId}!PIM.ViewModels.DashboardFilterViewModel@{PIM.ViewModels.DashboardFilterViewModel}}
+\doxysubsubsection{\texorpdfstring{RequesterId}{RequesterId}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_a8f65ff841077b20df1bb26be187ffaa1} 
+List$<$int$>$? PIM.\+View\+Models.\+Dashboard\+Filter\+View\+Model.\+Requester\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Lista de IDs de usuários que solicitaram (Requesters) os chamados. Opcional. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_ad62360757baf1f8ade2a9642f98b0b0f}\index{PIM.ViewModels.DashboardFilterViewModel@{PIM.ViewModels.DashboardFilterViewModel}!StartDate@{StartDate}}
+\index{StartDate@{StartDate}!PIM.ViewModels.DashboardFilterViewModel@{PIM.ViewModels.DashboardFilterViewModel}}
+\doxysubsubsection{\texorpdfstring{StartDate}{StartDate}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_ad62360757baf1f8ade2a9642f98b0b0f} 
+Date\+Time? PIM.\+View\+Models.\+Dashboard\+Filter\+View\+Model.\+Start\+Date\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+\doxylink{namespace_p_i_m_1_1_data}{Data} inicial (\doxylink{namespace_p_i_m_1_1_data}{Data} de Abertura) para filtragem dos chamados. Opcional. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_acb14c585ceeed1ce8b35fc77296050e6}\index{PIM.ViewModels.DashboardFilterViewModel@{PIM.ViewModels.DashboardFilterViewModel}!Status@{Status}}
+\index{Status@{Status}!PIM.ViewModels.DashboardFilterViewModel@{PIM.ViewModels.DashboardFilterViewModel}}
+\doxysubsubsection{\texorpdfstring{Status}{Status}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model_acb14c585ceeed1ce8b35fc77296050e6} 
+List$<$string$>$? PIM.\+View\+Models.\+Dashboard\+Filter\+View\+Model.\+Status\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Lista de status de chamados selecionados para filtragem. Opcional. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+View\+Models/\mbox{\hyperlink{_dashboard_filter_view_model_8cs}{Dashboard\+Filter\+View\+Model.\+cs}}\end{DoxyCompactItemize}

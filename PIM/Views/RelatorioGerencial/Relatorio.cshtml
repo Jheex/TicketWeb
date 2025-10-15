@@ -2,23 +2,27 @@
     ViewData["Title"] = "Relatório Gerencial - Dashboard";
 }
 
+<!-- Estilos específicos do relatório -->
 <link rel="stylesheet" href="~/css/relatorio.css" asp-append-version="true" />
 
 <div class="relatorio-gerencial-container">
 
+    <!-- Cabeçalho do dashboard -->
     <header class="dashboard-header">
         <h1>Relatório Gerencial</h1>
-        
     </header>
 
+    <!-- Menu de abas -->
     <nav class="menu-topico">
         <button class="tab-btn active" data-target="resumo"><span>📊</span> Resumo Executivo</button>
         <button class="tab-btn" data-target="tecnicos"><span>👨‍🔧</span> Performance do Time</button>
         <button class="tab-btn" data-target="categorias"><span>🗂️</span> Análise de Categoria</button>
     </nav>
 
+    <!-- Seções correspondentes às abas -->
     <div class="dashboard-sections">
 
+        <!-- Aba: Resumo Executivo -->
         <section class="tab-content active" id="resumo">
             <div class="cards">
                 <div class="card card-abertos">
@@ -40,6 +44,7 @@
             </div>
         </section>
 
+        <!-- Aba: Performance do Time -->
         <section class="tab-content" id="tecnicos">
             <div class="grafico-container">
                 <canvas id="graficoTecnicos"></canvas>
@@ -51,6 +56,7 @@
             </div>
         </section>
 
+        <!-- Aba: Análise de Categoria -->
         <section class="tab-content" id="categorias">
             <div class="grafico-container">
                 <canvas id="graficoCategorias"></canvas>
@@ -66,11 +72,13 @@
 </div>
 
 @section Scripts {
+    <!-- Bibliotecas externas -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     
+    <!-- Script customizado do relatório -->
     <script src="~/js/relatorio.js" asp-append-version="true"></script>
 }

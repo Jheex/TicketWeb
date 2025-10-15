@@ -1,0 +1,95 @@
+\doxysection{PIM.\+View\+Models.\+Faq\+List\+View\+Model Class Reference}
+\hypertarget{class_p_i_m_1_1_view_models_1_1_faq_list_view_model}{}\label{class_p_i_m_1_1_view_models_1_1_faq_list_view_model}\index{PIM.ViewModels.FaqListViewModel@{PIM.ViewModels.FaqListViewModel}}
+
+
+View Model utilizada para exibir uma lista de Perguntas Frequentes (FAQs) na View, incluindo dados para paginação e o critério de filtro atual.  
+
+
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+IEnumerable$<$ \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_faq}{Faq}} $>$ \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_faq_list_view_model_a1401acb1ee98e2d87016c7f8ac38dfd8}{Faqs}} = new List$<$\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_faq}{Faq}}$>$()\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A lista de objetos \doxylink{class_p_i_m_1_1_models_1_1_faq}{Faq} a serem exibidos na página atual. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_faq_list_view_model_a503e08f39911c5fc5c88be87a887dc40}{Page\+Number}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em O número da página atual que está sendo exibida. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_faq_list_view_model_ac63830d04447bc20e0946f894be64cb4}{Page\+Size}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em O número máximo de itens (FAQs) por página. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_faq_list_view_model_acc961eb6fe3cbbae001283ed987f7c3f}{Total\+Items}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em O número total de itens (FAQs) que satisfazem o filtro. \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_faq_list_view_model_a2ba2c005bfac5a70988386a5645a7f8a}{Current\+Filter}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em O termo de pesquisa ou critério de filtro atualmente aplicado à lista. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_faq_list_view_model_ab6f8c0f437122b15e348bdc39d226fef}{Total\+Pages}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Propriedade auxiliar calculada que retorna o número total de páginas necessárias. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+View Model utilizada para exibir uma lista de Perguntas Frequentes (FAQs) na View, incluindo dados para paginação e o critério de filtro atual. 
+
+\label{doc-property-members}
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_faq_list_view_model_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_faq_list_view_model_a2ba2c005bfac5a70988386a5645a7f8a}\index{PIM.ViewModels.FaqListViewModel@{PIM.ViewModels.FaqListViewModel}!CurrentFilter@{CurrentFilter}}
+\index{CurrentFilter@{CurrentFilter}!PIM.ViewModels.FaqListViewModel@{PIM.ViewModels.FaqListViewModel}}
+\doxysubsubsection{\texorpdfstring{CurrentFilter}{CurrentFilter}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_faq_list_view_model_a2ba2c005bfac5a70988386a5645a7f8a} 
+string? PIM.\+View\+Models.\+Faq\+List\+View\+Model.\+Current\+Filter\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+O termo de pesquisa ou critério de filtro atualmente aplicado à lista. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_faq_list_view_model_a1401acb1ee98e2d87016c7f8ac38dfd8}\index{PIM.ViewModels.FaqListViewModel@{PIM.ViewModels.FaqListViewModel}!Faqs@{Faqs}}
+\index{Faqs@{Faqs}!PIM.ViewModels.FaqListViewModel@{PIM.ViewModels.FaqListViewModel}}
+\doxysubsubsection{\texorpdfstring{Faqs}{Faqs}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_faq_list_view_model_a1401acb1ee98e2d87016c7f8ac38dfd8} 
+IEnumerable$<$\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_faq}{Faq}}$>$ PIM.\+View\+Models.\+Faq\+List\+View\+Model.\+Faqs = new List$<$\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_faq}{Faq}}$>$()\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+A lista de objetos \doxylink{class_p_i_m_1_1_models_1_1_faq}{Faq} a serem exibidos na página atual. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_faq_list_view_model_a503e08f39911c5fc5c88be87a887dc40}\index{PIM.ViewModels.FaqListViewModel@{PIM.ViewModels.FaqListViewModel}!PageNumber@{PageNumber}}
+\index{PageNumber@{PageNumber}!PIM.ViewModels.FaqListViewModel@{PIM.ViewModels.FaqListViewModel}}
+\doxysubsubsection{\texorpdfstring{PageNumber}{PageNumber}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_faq_list_view_model_a503e08f39911c5fc5c88be87a887dc40} 
+int PIM.\+View\+Models.\+Faq\+List\+View\+Model.\+Page\+Number\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+O número da página atual que está sendo exibida. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_faq_list_view_model_ac63830d04447bc20e0946f894be64cb4}\index{PIM.ViewModels.FaqListViewModel@{PIM.ViewModels.FaqListViewModel}!PageSize@{PageSize}}
+\index{PageSize@{PageSize}!PIM.ViewModels.FaqListViewModel@{PIM.ViewModels.FaqListViewModel}}
+\doxysubsubsection{\texorpdfstring{PageSize}{PageSize}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_faq_list_view_model_ac63830d04447bc20e0946f894be64cb4} 
+int PIM.\+View\+Models.\+Faq\+List\+View\+Model.\+Page\+Size\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+O número máximo de itens (FAQs) por página. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_faq_list_view_model_acc961eb6fe3cbbae001283ed987f7c3f}\index{PIM.ViewModels.FaqListViewModel@{PIM.ViewModels.FaqListViewModel}!TotalItems@{TotalItems}}
+\index{TotalItems@{TotalItems}!PIM.ViewModels.FaqListViewModel@{PIM.ViewModels.FaqListViewModel}}
+\doxysubsubsection{\texorpdfstring{TotalItems}{TotalItems}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_faq_list_view_model_acc961eb6fe3cbbae001283ed987f7c3f} 
+int PIM.\+View\+Models.\+Faq\+List\+View\+Model.\+Total\+Items\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+O número total de itens (FAQs) que satisfazem o filtro. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_faq_list_view_model_ab6f8c0f437122b15e348bdc39d226fef}\index{PIM.ViewModels.FaqListViewModel@{PIM.ViewModels.FaqListViewModel}!TotalPages@{TotalPages}}
+\index{TotalPages@{TotalPages}!PIM.ViewModels.FaqListViewModel@{PIM.ViewModels.FaqListViewModel}}
+\doxysubsubsection{\texorpdfstring{TotalPages}{TotalPages}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_faq_list_view_model_ab6f8c0f437122b15e348bdc39d226fef} 
+int PIM.\+View\+Models.\+Faq\+List\+View\+Model.\+Total\+Pages\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Propriedade auxiliar calculada que retorna o número total de páginas necessárias. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+View\+Models/\mbox{\hyperlink{_faq_list_view_model_8cs}{Faq\+List\+View\+Model.\+cs}}\end{DoxyCompactItemize}

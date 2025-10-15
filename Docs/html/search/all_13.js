@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['selectedanalystid_0',['SelectedAnalystId',['../class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a77aacd50aef7f55d59ccbd8b14477d62',1,'PIM.ViewModels.DashboardBIViewModel.SelectedAnalystId'],['../class_p_i_m_1_1_view_models_1_1_tickets_card_view_model.html#a9fe04ec074c748db8b5567224bc7f786',1,'PIM.ViewModels.TicketsCardViewModel.SelectedAnalystId']]],
+  ['selectedcategory_1',['SelectedCategory',['../class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#af591fbf13f012b9ce7523dd4e2da2921',1,'PIM::ViewModels::DashboardBIViewModel']]],
+  ['selectedpriority_2',['SelectedPriority',['../class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a373bde9af2be0ffbf8cb22ff14b400fc',1,'PIM::ViewModels::DashboardBIViewModel']]],
+  ['selectedrequesterid_3',['SelectedRequesterId',['../class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a7f5304fbfc19633bd6888a678c0346e6',1,'PIM::ViewModels::DashboardBIViewModel']]],
+  ['selectedstatus_4',['SelectedStatus',['../class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a13d49ceebed2739e0e72583937cee025',1,'PIM.ViewModels.DashboardBIViewModel.SelectedStatus'],['../class_p_i_m_1_1_view_models_1_1_tickets_card_view_model.html#a1ae8ef4fb0a4815992ca71c682076e53',1,'PIM.ViewModels.TicketsCardViewModel.SelectedStatus']]],
+  ['senhahash_5',['SenhaHash',['../class_p_i_m_1_1_models_1_1_usuario.html#ad3de3e6faa8139cae8f337dbde3f53e1',1,'PIM::Models::Usuario']]],
+  ['showrequestid_6',['ShowRequestId',['../class_p_i_m_1_1_models_1_1_error_view_model.html#ac2623de95c73a2f3d49fe5a0687f5d1e',1,'PIM::Models::ErrorViewModel']]],
+  ['similaridade_7',['Similaridade',['../class_p_i_m_1_1_controllers_1_1_chatbot_controller.html#ab574dd37e4260d955417889b32cd3339',1,'PIM::Controllers::ChatbotController']]],
+  ['site_2ecss_8',['site.css',['../publish_2wwwroot_2css_2site_8css.html',1,'(Global Namespace)'],['../wwwroot_2css_2site_8css.html',1,'(Global Namespace)']]],
+  ['site_2ejs_9',['site.js',['../publish_2wwwroot_2js_2site_8js.html',1,'(Global Namespace)'],['../wwwroot_2js_2site_8js.html',1,'(Global Namespace)']]],
+  ['slapercentual_10',['SlaPercentual',['../class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a3f058fdfaef15a30f0316ec95a7db8a1',1,'PIM::ViewModels::DashboardBIViewModel']]],
+  ['solicitante_11',['Solicitante',['../class_p_i_m_1_1_models_1_1_chamado.html#ab504987b08afd2c1e7507dee90dbaa0d',1,'PIM::Models::Chamado']]],
+  ['solicitanteid_12',['SolicitanteId',['../class_p_i_m_1_1_models_1_1_chamado.html#a2cdb01c2a188b148d5af14b249685267',1,'PIM::Models::Chamado']]],
+  ['startdate_13',['StartDate',['../class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model.html#ad62360757baf1f8ade2a9642f98b0b0f',1,'PIM.ViewModels.DashboardFilterViewModel.StartDate'],['../class_p_i_m_1_1_view_models_1_1_ticket_filter_view_model.html#a81007ba7462640c18e383cb045ece79d',1,'PIM.ViewModels.TicketFilterViewModel.StartDate']]],
+  ['staticpagescontroller_14',['StaticPagesController',['../class_p_i_m_1_1_controllers_1_1_static_pages_controller.html',1,'PIM::Controllers']]],
+  ['staticpagescontroller_2ecs_15',['StaticPagesController.cs',['../_static_pages_controller_8cs.html',1,'']]],
+  ['status_16',['Status',['../class_p_i_m_1_1_controllers_1_1_chamado_api_model.html#af1537f6f9e94d855f1536d404956e222',1,'PIM.Controllers.ChamadoApiModel.Status'],['../class_p_i_m_1_1_models_1_1_chamado.html#a2246a494ba0e31eb186c11dd76541db1',1,'PIM.Models.Chamado.Status'],['../class_p_i_m_1_1_models_1_1_usuario.html#adc1f375fd995063022bce195277d9f12',1,'PIM.Models.Usuario.Status'],['../class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model.html#acb14c585ceeed1ce8b35fc77296050e6',1,'PIM.ViewModels.DashboardFilterViewModel.Status'],['../class_p_i_m_1_1_models_1_1_ticket_api_model.html#a93e3975b1ad8e86ed29bfa241089783a',1,'PIM.Models.TicketApiModel.Status'],['../class_p_i_m_1_1_view_models_1_1_ticket_filter_view_model.html#a325e2b4d4641d684bc14df00b94d121b',1,'PIM.ViewModels.TicketFilterViewModel.Status'],['../class_p_i_m_1_1_models_1_1_ticket.html#aa1d842acfbe8982295e1800f80746d4c',1,'PIM.Models.Ticket.Status']]],
+  ['statuschart_17',['StatusChart',['../class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a4a98f9124e9d32a7fcb2e0c8f5138372',1,'PIM::ViewModels::DashboardBIViewModel']]],
+  ['statuses_18',['Statuses',['../class_p_i_m_1_1_view_models_1_1_dashboard_filter_options.html#a5bb281d8fdb48fc52f227f009e2227fb',1,'PIM.ViewModels.DashboardFilterOptions.Statuses'],['../class_p_i_m_1_1_view_models_1_1_ticket_filter_options.html#aba2eee4ddfd4f96f46c89e36d5df3cbb',1,'PIM.ViewModels.TicketFilterOptions.Statuses']]],
+  ['support_19',['Support',['../class_p_i_m_1_1_controllers_1_1_static_pages_controller.html#a2a2bf96d459c6ac5cce964126008d3b0',1,'PIM::Controllers::StaticPagesController']]],
+  ['support_2ecshtml_20',['Support.cshtml',['../_support_8cshtml.html',1,'']]],
+  ['synctables_21',['SyncTables',['../class_p_i_m_1_1_migrations_1_1_sync_tables.html',1,'PIM::Migrations']]]
+];

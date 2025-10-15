@@ -1,0 +1,126 @@
+\doxysection{PIM.\+Controllers.\+Relatorio\+Gerencial\+Controller Class Reference}
+\hypertarget{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller}{}\label{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller}\index{PIM.Controllers.RelatorioGerencialController@{PIM.Controllers.RelatorioGerencialController}}
+
+
+Controlador responsável por gerar relatórios gerenciais e dados agregados para visualização em dashboards (gráficos) e exportação.  
+
+
+Inheritance diagram for PIM.\+Controllers.\+Relatorio\+Gerencial\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller_a728f4352a11d45307c7b52dd42a9d4b4}{Relatorio\+Gerencial\+Controller}} (\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} context)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller}{Relatorio\+Gerencial\+Controller}. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller_a94679434da522ec25ae6d27d795252d6}{Relatorio}} ()
+\begin{DoxyCompactList}\small\item\em Exibe a View principal do Relatório Gerencial (geralmente uma página vazia ou com placeholders para gráficos). \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller_a8e028ff17a9a589fd62a9eb91a50a857}{Obter\+Dados}} (string periodo="{}30d"{}, string tecnico="{}todos"{})
+\begin{DoxyCompactList}\small\item\em Obtém dados agregados de chamados para alimentar gráficos e KPIs. Os dados são retornados em formato JSON. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller_adb639dfbff5c54db10cb51d71b6ee0aa}{Exportar\+Chamados}} (string periodo="{}30d"{}, string tecnico="{}todos"{})
+\begin{DoxyCompactList}\small\item\em Obtém e retorna uma lista de dados brutos de chamados, formatados para exportação (ex\+: para CSV). Os dados são retornados em formato JSON. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller_a7bb4f3953d60620f7c761c7bfcb8b573}{\+\_\+context}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controlador responsável por gerar relatórios gerenciais e dados agregados para visualização em dashboards (gráficos) e exportação. 
+
+\label{doc-constructors}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller_a728f4352a11d45307c7b52dd42a9d4b4}\index{PIM.Controllers.RelatorioGerencialController@{PIM.Controllers.RelatorioGerencialController}!RelatorioGerencialController@{RelatorioGerencialController}}
+\index{RelatorioGerencialController@{RelatorioGerencialController}!PIM.Controllers.RelatorioGerencialController@{PIM.Controllers.RelatorioGerencialController}}
+\doxysubsubsection{\texorpdfstring{RelatorioGerencialController()}{RelatorioGerencialController()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller_a728f4352a11d45307c7b52dd42a9d4b4} 
+PIM.\+Controllers.\+Relatorio\+Gerencial\+Controller.\+Relatorio\+Gerencial\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}}}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller}{Relatorio\+Gerencial\+Controller}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & O contexto do banco de dados (\doxylink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}) injetado via DI.\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller_adb639dfbff5c54db10cb51d71b6ee0aa}\index{PIM.Controllers.RelatorioGerencialController@{PIM.Controllers.RelatorioGerencialController}!ExportarChamados@{ExportarChamados}}
+\index{ExportarChamados@{ExportarChamados}!PIM.Controllers.RelatorioGerencialController@{PIM.Controllers.RelatorioGerencialController}}
+\doxysubsubsection{\texorpdfstring{ExportarChamados()}{ExportarChamados()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller_adb639dfbff5c54db10cb51d71b6ee0aa} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Relatorio\+Gerencial\+Controller.\+Exportar\+Chamados (\begin{DoxyParamCaption}\item[{string}]{periodo}{ = {\ttfamily "{}30d"{}}, }\item[{string}]{tecnico}{ = {\ttfamily "{}todos"{}}}\end{DoxyParamCaption})}
+
+
+
+Obtém e retorna uma lista de dados brutos de chamados, formatados para exportação (ex\+: para CSV). Os dados são retornados em formato JSON. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em periodo} & Filtro de período (ex\+: "{}30d"{}). Não implementado na query, mas disponível para extensão.\\
+\hline
+{\em tecnico} & Filtro por técnico. Não implementado na query, mas disponível para extensão.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um objeto JSON contendo a lista de chamados com campos selecionados e formatados.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller_a8e028ff17a9a589fd62a9eb91a50a857}\index{PIM.Controllers.RelatorioGerencialController@{PIM.Controllers.RelatorioGerencialController}!ObterDados@{ObterDados}}
+\index{ObterDados@{ObterDados}!PIM.Controllers.RelatorioGerencialController@{PIM.Controllers.RelatorioGerencialController}}
+\doxysubsubsection{\texorpdfstring{ObterDados()}{ObterDados()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller_a8e028ff17a9a589fd62a9eb91a50a857} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Relatorio\+Gerencial\+Controller.\+Obter\+Dados (\begin{DoxyParamCaption}\item[{string}]{periodo}{ = {\ttfamily "{}30d"{}}, }\item[{string}]{tecnico}{ = {\ttfamily "{}todos"{}}}\end{DoxyParamCaption})}
+
+
+
+Obtém dados agregados de chamados para alimentar gráficos e KPIs. Os dados são retornados em formato JSON. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em periodo} & Filtro de período (ex\+: "{}30d"{}, "{}90d"{}). Não implementado na query, mas disponível para extensão.\\
+\hline
+{\em tecnico} & Filtro por técnico. Não implementado na query, mas disponível para extensão.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um objeto JSON contendo totais, taxa de conclusão, e agrupamentos por técnicos e categorias.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller_a94679434da522ec25ae6d27d795252d6}\index{PIM.Controllers.RelatorioGerencialController@{PIM.Controllers.RelatorioGerencialController}!Relatorio@{Relatorio}}
+\index{Relatorio@{Relatorio}!PIM.Controllers.RelatorioGerencialController@{PIM.Controllers.RelatorioGerencialController}}
+\doxysubsubsection{\texorpdfstring{Relatorio()}{Relatorio()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller_a94679434da522ec25ae6d27d795252d6} 
+IAction\+Result PIM.\+Controllers.\+Relatorio\+Gerencial\+Controller.\+Relatorio (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Exibe a View principal do Relatório Gerencial (geralmente uma página vazia ou com placeholders para gráficos). 
+
+\begin{DoxyReturn}{Returns}
+A View Relatorio.
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller_a7bb4f3953d60620f7c761c7bfcb8b573}\index{PIM.Controllers.RelatorioGerencialController@{PIM.Controllers.RelatorioGerencialController}!\_context@{\_context}}
+\index{\_context@{\_context}!PIM.Controllers.RelatorioGerencialController@{PIM.Controllers.RelatorioGerencialController}}
+\doxysubsubsection{\texorpdfstring{\_context}{\_context}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_relatorio_gerencial_controller_a7bb4f3953d60620f7c761c7bfcb8b573} 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} PIM.\+Controllers.\+Relatorio\+Gerencial\+Controller.\+\_\+context\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+Controllers/\mbox{\hyperlink{_relatorio_gerencial_controller_8cs}{Relatorio\+Gerencial\+Controller.\+cs}}\end{DoxyCompactItemize}

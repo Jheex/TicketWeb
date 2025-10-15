@@ -1,110 +1,133 @@
+/* =========================================
+   Variáveis globais com cores, sombras e UI
+   ========================================= */
 :root {
-    --color-primary: #7F56D9;
-    --color-primary-dark: #6941C6;
-    --color-bg-page: #100E21;
-    --color-bg-card: #1E1A34;
-    --color-ui-input: #2C2744;
-    --color-ui-border: #383252;
-    --color-ui-border-focus: var(--color-primary);
-    --color-text-primary: #FFFFFF;
-    --color-text-secondary: #C0B8E1;
-    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.3);
+    --color-primary: #7F56D9;           /* Cor principal do sistema */
+    --color-primary-dark: #6941C6;      /* Versão escura para hover e feedback */
+    --color-bg-page: #100E21;           /* Fundo da página */
+    --color-bg-card: #1E1A34;           /* Fundo de cartões/painéis */
+    --color-ui-input: #2C2744;          /* Fundo de inputs, selects e textarea */
+    --color-ui-border: #383252;         /* Borda padrão de inputs e cards */
+    --color-ui-border-focus: var(--color-primary); /* Borda ao focar */
+    --color-text-primary: #FFFFFF;      /* Texto padrão */
+    --color-text-secondary: #C0B8E1;    /* Texto secundário / labels */
+    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.3); /* Sombra para elevação */
 }
 
+/* =========================================
+   Estilo global do body
+   ========================================= */
 body {
-    background-color: var(--color-bg-page);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--color-text-primary);
+    background-color: var(--color-bg-page); /* Fundo da página */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte padrão */
+    color: var(--color-text-primary);       /* Cor do texto principal */
 }
 
-/* --------------------- Painel ---------------------- */
+/* =========================================
+   Painel principal (container de formulário)
+   ========================================= */
 .panel-container {
-    max-width: 1000px;
-    margin: 0 auto;
+    max-width: 1000px;  /* Largura máxima do painel */
+    margin: 0 auto;     /* Centraliza horizontalmente */
 }
 
+/* Título do painel */
 .panel-title {
     text-align: center;
     font-size: 24px;
     margin-bottom: 25px;
-    color: #FFFFFF;
     margin-top: 25px;
+    color: #FFFFFF;
 }
 
-/* Formulário como painel */
+/* =========================================
+   Formulário em estilo de painel
+   ========================================= */
 .panel-form {
-    display: flex;
-    gap: 30px;
-    background-color: var(--color-bg-card);
+    display: flex;                  /* Layout flexível */
+    gap: 30px;                      /* Espaço entre colunas */
+    background-color: var(--color-bg-card); /* Fundo do painel */
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: var(--shadow-medium);
-    flex-wrap: wrap; /* Para responsividade em telas pequenas */
-    align-items: flex-start; /* Alinha colunas pelo topo */
+    box-shadow: var(--shadow-medium); /* Sombra de elevação */
+    flex-wrap: wrap;                 /* Quebra em telas pequenas */
+    align-items: flex-start;         /* Alinha colunas pelo topo */
     margin-bottom: 50px;
     margin-top: 30px;
 }
 
-/* Colunas do formulário */
+/* =========================================
+   Colunas do formulário
+   ========================================= */
 .form-column {
-    flex: 1;
-    min-width: 280px; /* Mantém proporção mínima para cada coluna */
+    flex: 1;                        /* Ocupa espaço proporcional */
+    min-width: 280px;               /* Mantém largura mínima */
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 20px;                      /* Espaço entre campos */
 }
 
-/* Grupo de campos */
+/* =========================================
+   Grupo de campos (label + input)
+   ========================================= */
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 6px;                       /* Espaçamento entre label e input */
 }
 
 .form-group label {
     font-weight: 600;
-    color: var(--color-text-secondary);
+    color: var(--color-text-secondary); /* Cor do label */
     font-size: 14px;
 }
 
-/* Inputs e Selects */
+/* =========================================
+   Inputs, selects e textarea
+   ========================================= */
 .input-text,
 select,
 textarea {
     padding: 12px 16px;
     border-radius: 10px;
-    border: 1px solid var(--color-ui-border);
-    background-color: var(--color-ui-input);
+    border: 1px solid var(--color-ui-border); /* Borda padrão */
+    background-color: var(--color-ui-input);  /* Fundo */
     color: var(--color-text-primary);
     font-size: 16px;
     width: 100%;
-    box-sizing: border-box;
+    box-sizing: border-box;                   /* Inclui padding na largura */
 }
 
 .input-text:focus,
 select:focus,
 textarea:focus {
-    outline: none;
-    border-color: var(--color-ui-border-focus);
-    box-shadow: 0 0 0 3px rgba(127, 86, 217, 0.2);
+    outline: none;                             /* Remove contorno padrão */
+    border-color: var(--color-ui-border-focus); /* Borda ao focar */
+    box-shadow: 0 0 0 3px rgba(127, 86, 217, 0.2); /* Sombra ao focar */
 }
 
-/* Textarea */
+/* =========================================
+   Textarea específico
+   ========================================= */
 textarea.input-text {
-    height: 265px;
-    resize: none;
+    height: 265px; /* Altura fixa */
+    resize: none;  /* Impede redimensionamento */
 }
 
-/* Ações do formulário */
+/* =========================================
+   Ações do formulário (botões)
+   ========================================= */
 .form-actions {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-end; /* Alinha à direita */
     gap: 15px;
     margin-top: 5px;
     width: 100%;
 }
 
-/* Botões */
+/* =========================================
+   Botões principais
+   ========================================= */
 .btn-primary {
     background-color: var(--color-primary);
     border: none;
@@ -112,12 +135,12 @@ textarea.input-text {
     border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
-    transition: all 0.2s;
+    transition: all 0.2s; /* Animações suaves */
 }
 
 .btn-primary:hover {
     background-color: var(--color-primary-dark);
-    transform: translateY(-2px);
+    transform: translateY(-2px); /* Efeito de "levantar" */
 }
 
 .btn-secondary {
@@ -135,14 +158,15 @@ textarea.input-text {
     transform: translateY(-2px);
 }
 
-/* Inputs com erro */
+/* =========================================
+   Inputs com erro (validação)
+   ========================================= */
 .input-text.error,
 select.error {
-    border-color: #F04438;
+    border-color: #F04438; /* Vermelho para indicar erro */
 }
 
-
-/* Estilo para avisos de erro */
+/* Mensagens de erro */
 .text-error {
     color: #F04438;
     font-size: 0.85em;
@@ -150,15 +174,16 @@ select.error {
     display: block;
 }
 
-/* Estilo para caixas de texto inválidas */
+/* Inputs com validação do ASP.NET */
 .input-validation-error {
     border: 1px solid #F04438 !important;
 }
 
-
-/* Responsividade */
+/* =========================================
+   Responsividade
+   ========================================= */
 @media (max-width: 768px) {
     .panel-form {
-        flex-direction: column;
+        flex-direction: column; /* Colunas empilham verticalmente */
     }
 }

@@ -1,18 +1,25 @@
 @model PIM.Models.Faq
 
 @{
+    // Define o título da página para exibição no navegador
     ViewData["Title"] = "Criar FAQ";
 }
+
+<!-- Importa o CSS específico da página FAQ -->
 <link rel="stylesheet" href="~/css/faq.css" />
 
+<!-- Wrapper principal da página -->
 <div class="page-wrapper">
     
+    <!-- Título da página -->
     <div class="title-row">
         <h2 class="faq-title">Criar Novo FAQ</h2>
     </div>
 
+    <!-- Container do formulário -->
     <div class="form-card-container">
         
+        <!-- Formulário de criação de FAQ -->
         <form asp-action="Create" method="post" class="faq-form">
             
             <!-- Campo: Pergunta -->
@@ -23,6 +30,7 @@
                           rows="2" 
                           placeholder="Digite a pergunta" 
                           required></textarea>
+                <!-- Validação do campo Pergunta -->
                 <span asp-validation-for="Pergunta" class="text-danger"></span>
             </div>
 
@@ -34,9 +42,11 @@
                           rows="6" 
                           placeholder="Digite a resposta detalhada" 
                           required></textarea>
+                <!-- Validação do campo Resposta -->
                 <span asp-validation-for="Resposta" class="text-danger"></span>
             </div>
 
+            <!-- Linha com Categoria e Ordem -->
             <div class="row">
             
                 <!-- Campo: Categoria -->
@@ -48,6 +58,7 @@
                             required>
                         <option value="" disabled selected>-- Selecione uma categoria --</option>                    
                     </select>
+                    <!-- Validação do campo Categoria -->
                     <span asp-validation-for="Categoria" class="text-danger"></span>
                 </div>
 
@@ -59,16 +70,19 @@
                            class="form-control" 
                            placeholder="1, 2, 3..." 
                            required />
+                    <!-- Validação do campo Ordem -->
                     <span asp-validation-for="Ordem" class="text-danger"></span>
                 </div>
             </div>
 
-            <!-- Botões -->
+            <!-- Botões de ação do formulário -->
             <div class="form-actions mt-4">
+                <!-- Botão de salvar FAQ -->
                 <button type="submit" class="btn btn-create">
                     <i class="fas fa-save"></i> Salvar FAQ
                 </button>
                 
+                <!-- Botão de voltar para a lista -->
                 <a asp-action="Index" class="btn btn-secondary-action ms-3">
                     <i class="fas fa-arrow-left"></i> Voltar para Lista
                 </a>
@@ -77,6 +91,7 @@
     </div>
 </div>
 
+<!-- Scripts de validação do ASP.NET -->
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

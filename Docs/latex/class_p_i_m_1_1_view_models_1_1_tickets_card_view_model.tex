@@ -1,0 +1,119 @@
+\doxysection{PIM.\+View\+Models.\+Tickets\+Card\+View\+Model Class Reference}
+\hypertarget{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model}{}\label{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model}\index{PIM.ViewModels.TicketsCardViewModel@{PIM.ViewModels.TicketsCardViewModel}}
+
+
+View Model principal utilizada para exibir a lista de chamados (tickets) em uma "{}\+Card View"{} ou tabela. Encapsula a lista de tickets, os dados de paginação, as opções de filtro e o estado atual dos filtros.  
+
+
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado}{Chamado}} $>$ \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_a9586699f50fec2bb4fc366f13d1876a5}{Tickets}} = new List$<$\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado}{Chamado}}$>$()\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A lista de objetos \doxylink{class_p_i_m_1_1_models_1_1_chamado}{Chamado} a serem exibidos na página atual. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_acb03d02d90f51a512bcdc67c87c70e51}{Page\+Number}} = 1\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em O número da página atual. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_a3c7b81dc60d703d60c2394e462ca10e2}{Page\+Size}} = 10\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em O número máximo de tickets por página. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_a34d201b627eb024e51608f47f0fbf1b2}{Total\+Items}} = 0\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em O número total de tickets que satisfazem os filtros aplicados. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_ticket_filter_options}{Ticket\+Filter\+Options}} \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_aab9d3dc7806c5125424742b2f3af82b0}{Filter\+Options}} = new \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_ticket_filter_options}{Ticket\+Filter\+Options}}()\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em As opções disponíveis para os filtros de status e analistas. \end{DoxyCompactList}\item 
+string? \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_a1ae8ef4fb0a4815992ca71c682076e53}{Selected\+Status}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em O status selecionado atualmente pelo usuário para filtrar a lista. \end{DoxyCompactList}\item 
+int? \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_a9fe04ec074c748db8b5567224bc7f786}{Selected\+Analyst\+Id}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em O ID do analista selecionado atualmente pelo usuário para filtrar a lista. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_a2f80de9c069f26fb8a47b56fd1280f5b}{Total\+Pages}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Propriedade calculada que retorna o número total de páginas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+View Model principal utilizada para exibir a lista de chamados (tickets) em uma "{}\+Card View"{} ou tabela. Encapsula a lista de tickets, os dados de paginação, as opções de filtro e o estado atual dos filtros. 
+
+\label{doc-property-members}
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_aab9d3dc7806c5125424742b2f3af82b0}\index{PIM.ViewModels.TicketsCardViewModel@{PIM.ViewModels.TicketsCardViewModel}!FilterOptions@{FilterOptions}}
+\index{FilterOptions@{FilterOptions}!PIM.ViewModels.TicketsCardViewModel@{PIM.ViewModels.TicketsCardViewModel}}
+\doxysubsubsection{\texorpdfstring{FilterOptions}{FilterOptions}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_aab9d3dc7806c5125424742b2f3af82b0} 
+\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_ticket_filter_options}{Ticket\+Filter\+Options}} PIM.\+View\+Models.\+Tickets\+Card\+View\+Model.\+Filter\+Options = new \mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_ticket_filter_options}{Ticket\+Filter\+Options}}()\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+As opções disponíveis para os filtros de status e analistas. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_acb03d02d90f51a512bcdc67c87c70e51}\index{PIM.ViewModels.TicketsCardViewModel@{PIM.ViewModels.TicketsCardViewModel}!PageNumber@{PageNumber}}
+\index{PageNumber@{PageNumber}!PIM.ViewModels.TicketsCardViewModel@{PIM.ViewModels.TicketsCardViewModel}}
+\doxysubsubsection{\texorpdfstring{PageNumber}{PageNumber}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_acb03d02d90f51a512bcdc67c87c70e51} 
+int PIM.\+View\+Models.\+Tickets\+Card\+View\+Model.\+Page\+Number = 1\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+O número da página atual. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_a3c7b81dc60d703d60c2394e462ca10e2}\index{PIM.ViewModels.TicketsCardViewModel@{PIM.ViewModels.TicketsCardViewModel}!PageSize@{PageSize}}
+\index{PageSize@{PageSize}!PIM.ViewModels.TicketsCardViewModel@{PIM.ViewModels.TicketsCardViewModel}}
+\doxysubsubsection{\texorpdfstring{PageSize}{PageSize}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_a3c7b81dc60d703d60c2394e462ca10e2} 
+int PIM.\+View\+Models.\+Tickets\+Card\+View\+Model.\+Page\+Size = 10\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+O número máximo de tickets por página. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_a9fe04ec074c748db8b5567224bc7f786}\index{PIM.ViewModels.TicketsCardViewModel@{PIM.ViewModels.TicketsCardViewModel}!SelectedAnalystId@{SelectedAnalystId}}
+\index{SelectedAnalystId@{SelectedAnalystId}!PIM.ViewModels.TicketsCardViewModel@{PIM.ViewModels.TicketsCardViewModel}}
+\doxysubsubsection{\texorpdfstring{SelectedAnalystId}{SelectedAnalystId}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_a9fe04ec074c748db8b5567224bc7f786} 
+int? PIM.\+View\+Models.\+Tickets\+Card\+View\+Model.\+Selected\+Analyst\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+O ID do analista selecionado atualmente pelo usuário para filtrar a lista. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_a1ae8ef4fb0a4815992ca71c682076e53}\index{PIM.ViewModels.TicketsCardViewModel@{PIM.ViewModels.TicketsCardViewModel}!SelectedStatus@{SelectedStatus}}
+\index{SelectedStatus@{SelectedStatus}!PIM.ViewModels.TicketsCardViewModel@{PIM.ViewModels.TicketsCardViewModel}}
+\doxysubsubsection{\texorpdfstring{SelectedStatus}{SelectedStatus}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_a1ae8ef4fb0a4815992ca71c682076e53} 
+string? PIM.\+View\+Models.\+Tickets\+Card\+View\+Model.\+Selected\+Status\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+O status selecionado atualmente pelo usuário para filtrar a lista. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_a9586699f50fec2bb4fc366f13d1876a5}\index{PIM.ViewModels.TicketsCardViewModel@{PIM.ViewModels.TicketsCardViewModel}!Tickets@{Tickets}}
+\index{Tickets@{Tickets}!PIM.ViewModels.TicketsCardViewModel@{PIM.ViewModels.TicketsCardViewModel}}
+\doxysubsubsection{\texorpdfstring{Tickets}{Tickets}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_a9586699f50fec2bb4fc366f13d1876a5} 
+List$<$\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado}{Chamado}}$>$ PIM.\+View\+Models.\+Tickets\+Card\+View\+Model.\+Tickets = new List$<$\mbox{\hyperlink{class_p_i_m_1_1_models_1_1_chamado}{Chamado}}$>$()\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+A lista de objetos \doxylink{class_p_i_m_1_1_models_1_1_chamado}{Chamado} a serem exibidos na página atual. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_a34d201b627eb024e51608f47f0fbf1b2}\index{PIM.ViewModels.TicketsCardViewModel@{PIM.ViewModels.TicketsCardViewModel}!TotalItems@{TotalItems}}
+\index{TotalItems@{TotalItems}!PIM.ViewModels.TicketsCardViewModel@{PIM.ViewModels.TicketsCardViewModel}}
+\doxysubsubsection{\texorpdfstring{TotalItems}{TotalItems}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_a34d201b627eb024e51608f47f0fbf1b2} 
+int PIM.\+View\+Models.\+Tickets\+Card\+View\+Model.\+Total\+Items = 0\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+O número total de tickets que satisfazem os filtros aplicados. 
+
+\Hypertarget{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_a2f80de9c069f26fb8a47b56fd1280f5b}\index{PIM.ViewModels.TicketsCardViewModel@{PIM.ViewModels.TicketsCardViewModel}!TotalPages@{TotalPages}}
+\index{TotalPages@{TotalPages}!PIM.ViewModels.TicketsCardViewModel@{PIM.ViewModels.TicketsCardViewModel}}
+\doxysubsubsection{\texorpdfstring{TotalPages}{TotalPages}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model_a2f80de9c069f26fb8a47b56fd1280f5b} 
+int PIM.\+View\+Models.\+Tickets\+Card\+View\+Model.\+Total\+Pages\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Propriedade calculada que retorna o número total de páginas. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+View\+Models/\mbox{\hyperlink{_tickets_card_view_model_8cs}{Tickets\+Card\+View\+Model.\+cs}}\end{DoxyCompactItemize}

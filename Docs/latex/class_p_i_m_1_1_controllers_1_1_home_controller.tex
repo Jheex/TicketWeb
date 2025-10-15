@@ -1,0 +1,91 @@
+\doxysection{PIM.\+Controllers.\+Home\+Controller Class Reference}
+\hypertarget{class_p_i_m_1_1_controllers_1_1_home_controller}{}\label{class_p_i_m_1_1_controllers_1_1_home_controller}\index{PIM.Controllers.HomeController@{PIM.Controllers.HomeController}}
+
+
+Controlador principal da aplicação, responsável por exibir a Dashboard inicial. Este controlador aplica filtros, gerencia a paginação e calcula os principais KPIs (Key Performance Indicators) baseados nos dados de chamados.  
+
+
+Inheritance diagram for PIM.\+Controllers.\+Home\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_i_m_1_1_controllers_1_1_home_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_home_controller_af8b30e32146026eb2be9fd02e3f5eab6}{Home\+Controller}} (\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} context)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_home_controller}{Home\+Controller}. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_home_controller_a4004fa3218b3200db56f181271d1d605}{Index}} (\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model}{Dashboard\+Filter\+View\+Model}} filters, int page\+Number=1, int page\+Size=5)
+\begin{DoxyCompactList}\small\item\em Exibe a página principal da Dashboard, aplicando filtros e paginação nos chamados. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_home_controller_aaf199a470540efd48024bcdbb58abb06}{\+\_\+context}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controlador principal da aplicação, responsável por exibir a Dashboard inicial. Este controlador aplica filtros, gerencia a paginação e calcula os principais KPIs (Key Performance Indicators) baseados nos dados de chamados. 
+
+\label{doc-constructors}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_home_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_home_controller_af8b30e32146026eb2be9fd02e3f5eab6}\index{PIM.Controllers.HomeController@{PIM.Controllers.HomeController}!HomeController@{HomeController}}
+\index{HomeController@{HomeController}!PIM.Controllers.HomeController@{PIM.Controllers.HomeController}}
+\doxysubsubsection{\texorpdfstring{HomeController()}{HomeController()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_home_controller_af8b30e32146026eb2be9fd02e3f5eab6} 
+PIM.\+Controllers.\+Home\+Controller.\+Home\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}}}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_home_controller}{Home\+Controller}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & O contexto do banco de dados (\doxylink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}) injetado via DI.\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_home_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_home_controller_a4004fa3218b3200db56f181271d1d605}\index{PIM.Controllers.HomeController@{PIM.Controllers.HomeController}!Index@{Index}}
+\index{Index@{Index}!PIM.Controllers.HomeController@{PIM.Controllers.HomeController}}
+\doxysubsubsection{\texorpdfstring{Index()}{Index()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_home_controller_a4004fa3218b3200db56f181271d1d605} 
+IAction\+Result PIM.\+Controllers.\+Home\+Controller.\+Index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model}{Dashboard\+Filter\+View\+Model}}}]{filters}{, }\item[{int}]{page\+Number}{ = {\ttfamily 1}, }\item[{int}]{page\+Size}{ = {\ttfamily 5}}\end{DoxyParamCaption})}
+
+
+
+Exibe a página principal da Dashboard, aplicando filtros e paginação nos chamados. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filters} & O \doxylink{class_p_i_m_1_1_view_models_1_1_dashboard_filter_view_model}{Dashboard\+Filter\+View\+Model} contendo os filtros de data, status, prioridade e atribuição.\\
+\hline
+{\em page\+Number} & O número da página atual para a paginação da tabela (padrão é 1).\\
+\hline
+{\em page\+Size} & O número de itens por página na tabela (padrão é 5).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A View Index com o \doxylink{class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model}{Dashboard\+BIView\+Model} preenchido com dados e KPIs.
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_home_controller_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_home_controller_aaf199a470540efd48024bcdbb58abb06}\index{PIM.Controllers.HomeController@{PIM.Controllers.HomeController}!\_context@{\_context}}
+\index{\_context@{\_context}!PIM.Controllers.HomeController@{PIM.Controllers.HomeController}}
+\doxysubsubsection{\texorpdfstring{\_context}{\_context}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_home_controller_aaf199a470540efd48024bcdbb58abb06} 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} PIM.\+Controllers.\+Home\+Controller.\+\_\+context\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+Controllers/\mbox{\hyperlink{_home_controller_8cs}{Home\+Controller.\+cs}}\end{DoxyCompactItemize}

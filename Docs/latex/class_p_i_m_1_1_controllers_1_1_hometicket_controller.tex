@@ -1,0 +1,89 @@
+\doxysection{PIM.\+Controllers.\+Hometicket\+Controller Class Reference}
+\hypertarget{class_p_i_m_1_1_controllers_1_1_hometicket_controller}{}\label{class_p_i_m_1_1_controllers_1_1_hometicket_controller}\index{PIM.Controllers.HometicketController@{PIM.Controllers.HometicketController}}
+
+
+Controlador responsável por exibir a lista de chamados (tickets) para visualização. Ele lida principalmente com a paginação dos tickets e carrega opções básicas de filtro.  
+
+
+Inheritance diagram for PIM.\+Controllers.\+Hometicket\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_i_m_1_1_controllers_1_1_hometicket_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_hometicket_controller_a9bc0829439b71e0b7a7851d719b36bc3}{Hometicket\+Controller}} (\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} context)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_hometicket_controller}{Hometicket\+Controller}. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_hometicket_controller_aa725fdf26cbf2029806e546e2953bc2c}{Index}} (int page\+Number=1, int page\+Size=6)
+\begin{DoxyCompactList}\small\item\em Exibe a lista paginada de chamados, ordenada pela data de abertura mais recente. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_hometicket_controller_a7a5f94f9e75e4d31623a177788dae489}{\+\_\+context}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controlador responsável por exibir a lista de chamados (tickets) para visualização. Ele lida principalmente com a paginação dos tickets e carrega opções básicas de filtro. 
+
+\label{doc-constructors}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_hometicket_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_hometicket_controller_a9bc0829439b71e0b7a7851d719b36bc3}\index{PIM.Controllers.HometicketController@{PIM.Controllers.HometicketController}!HometicketController@{HometicketController}}
+\index{HometicketController@{HometicketController}!PIM.Controllers.HometicketController@{PIM.Controllers.HometicketController}}
+\doxysubsubsection{\texorpdfstring{HometicketController()}{HometicketController()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_hometicket_controller_a9bc0829439b71e0b7a7851d719b36bc3} 
+PIM.\+Controllers.\+Hometicket\+Controller.\+Hometicket\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}}}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_hometicket_controller}{Hometicket\+Controller}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & O contexto do banco de dados (\doxylink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}) injetado via DI.\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_hometicket_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_hometicket_controller_aa725fdf26cbf2029806e546e2953bc2c}\index{PIM.Controllers.HometicketController@{PIM.Controllers.HometicketController}!Index@{Index}}
+\index{Index@{Index}!PIM.Controllers.HometicketController@{PIM.Controllers.HometicketController}}
+\doxysubsubsection{\texorpdfstring{Index()}{Index()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_hometicket_controller_aa725fdf26cbf2029806e546e2953bc2c} 
+IAction\+Result PIM.\+Controllers.\+Hometicket\+Controller.\+Index (\begin{DoxyParamCaption}\item[{int}]{page\+Number}{ = {\ttfamily 1}, }\item[{int}]{page\+Size}{ = {\ttfamily 6}}\end{DoxyParamCaption})}
+
+
+
+Exibe a lista paginada de chamados, ordenada pela data de abertura mais recente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em page\+Number} & O número da página atual a ser exibida (padrão é 1).\\
+\hline
+{\em page\+Size} & O número de itens por página (padrão é 6).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A View Index com o \doxylink{class_p_i_m_1_1_view_models_1_1_tickets_card_view_model}{PIM.\+View\+Models.\+Tickets\+Card\+View\+Model} contendo os tickets paginados.
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_hometicket_controller_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_hometicket_controller_a7a5f94f9e75e4d31623a177788dae489}\index{PIM.Controllers.HometicketController@{PIM.Controllers.HometicketController}!\_context@{\_context}}
+\index{\_context@{\_context}!PIM.Controllers.HometicketController@{PIM.Controllers.HometicketController}}
+\doxysubsubsection{\texorpdfstring{\_context}{\_context}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_hometicket_controller_a7a5f94f9e75e4d31623a177788dae489} 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} PIM.\+Controllers.\+Hometicket\+Controller.\+\_\+context\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+Controllers/\mbox{\hyperlink{_home_ticket_controller_8cs}{Home\+Ticket\+Controller.\+cs}}\end{DoxyCompactItemize}

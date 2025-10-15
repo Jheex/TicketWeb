@@ -1,65 +1,81 @@
 @model PIM.Models.Faq
 
 @{
+    // Define o título da página para exibição no navegador
     ViewData["Title"] = "Editar FAQ";
 }
+
+<!-- Importa o CSS específico da página FAQ -->
 <link rel="stylesheet" href="~/css/faq.css" />
 
+<!-- Wrapper principal da página -->
 <div class="page-wrapper">
     
+    <!-- Título da página -->
     <div class="title-row">
         <h2 class="faq-title">Editar FAQ</h2>
     </div>
 
+    <!-- Container do formulário -->
     <div class="form-card-container">
         
+        <!-- Formulário de edição de FAQ -->
         <form asp-action="Edit" method="post" class="faq-form">
             
+            <!-- Campo oculto para o Id do FAQ -->
             <input type="hidden" asp-for="Id" />
 
+            <!-- Campo: Pergunta -->
             <div class="form-group mb-4">
                 <label asp-for="Pergunta" class="form-label">Pergunta</label>
                 <textarea asp-for="Pergunta" class="form-control large-textarea" rows="2" placeholder="Digite a pergunta"></textarea>
+                <!-- Validação do campo Pergunta -->
                 <span asp-validation-for="Pergunta" class="text-danger"></span>
             </div>
 
+            <!-- Campo: Resposta -->
             <div class="form-group mb-4">
                 <label asp-for="Resposta" class="form-label">Resposta</label>
                 <textarea asp-for="Resposta" class="form-control large-textarea" rows="6" placeholder="Digite a resposta detalhada"></textarea>
+                <!-- Validação do campo Resposta -->
                 <span asp-validation-for="Resposta" class="text-danger"></span>
             </div>
 
+            <!-- Linha com Categoria e Ordem -->
             <div class="row">
             
+                <!-- Campo: Categoria -->
                 <div class="col-md-6 form-group mb-4">
                     <label asp-for="Categoria" class="form-label">Categoria</label>
-                    
                     <select asp-for="Categoria" 
                             class="form-control" 
-                            
                             asp-items="@(ViewData["CategoriasExistentes"] as SelectList)">
-                        
+                        <!-- Opção padrão desabilitada -->
                         <option value="" disabled selected>-- Selecione uma categoria --</option>
-                        
+                        <!-- Opção fixa OUTROS -->
                         <option value="OUTROS">OUTROS</option>
-                        
                     </select>
-
+                    <!-- Validação do campo Categoria -->
                     <span asp-validation-for="Categoria" class="text-danger"></span>
                 </div>
 
+                <!-- Campo: Ordem -->
                 <div class="col-md-6 form-group mb-4">
                     <label asp-for="Ordem" class="form-label">Ordem</label>
                     <input asp-for="Ordem" type="number" class="form-control" placeholder="1, 2, 3..." />
+                    <!-- Validação do campo Ordem -->
                     <span asp-validation-for="Ordem" class="text-danger"></span>
                 </div>
             </div>
 
+            <!-- Botões de ação do formulário -->
             <div class="form-actions mt-4">
+                <!-- Botão de salvar alterações -->
                 <button type="submit" class="btn btn-create">
                     <i class="fas fa-save"></i> Salvar Alterações
                 </button>
                 
+                <!-- Botão de cancelar e voltar -->
                 <a asp-action="Index" class="btn btn-secondary-action ms-3">
                     <i class="fas fa-arrow-left"></i> Cancelar e Voltar
                 </a>
@@ -68,6 +84,7 @@
     </div>
 </div>
 
+<!-- Scripts de validação do ASP.NET -->
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

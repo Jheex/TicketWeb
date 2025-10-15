@@ -1,0 +1,199 @@
+\doxysection{PIM.\+Controllers.\+Tickets\+Api\+Controller Class Reference}
+\hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_api_controller}{}\label{class_p_i_m_1_1_controllers_1_1_tickets_api_controller}\index{PIM.Controllers.TicketsApiController@{PIM.Controllers.TicketsApiController}}
+
+
+Controlador da API responsável por fornecer endpoints RESTful para consulta e manipulação de Chamados (Tickets).  
+
+
+Inheritance diagram for PIM.\+Controllers.\+Tickets\+Api\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_i_m_1_1_controllers_1_1_tickets_api_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_a08b568b50f93801db532b81c1908211c}{Tickets\+Api\+Controller}} (\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} context)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_tickets_api_controller}{Tickets\+Api\+Controller}. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_a0b08cb05e553efd68f18dd2ad1525db4}{Get\+Tickets}} ()
+\begin{DoxyCompactList}\small\item\em Obtém uma lista de todos os tickets no sistema, incluindo informações do analista atribuído e do solicitante. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_a12743a2a5bca43a958abd3a832508b89}{Get\+My\+Tickets}} ()
+\begin{DoxyCompactList}\small\item\em Obtém uma lista de tickets que estão atribuídos ao usuário logado (analista). \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_aef1678f557081f31ba2125b78010dfb9}{Get\+Ticket}} (int id)
+\begin{DoxyCompactList}\small\item\em Obtém os detalhes completos de um ticket específico pelo seu ID. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_ab5aae1f5700b501fcd7dfa05d3e1f993}{Approve}} (int id)
+\begin{DoxyCompactList}\small\item\em Altera o status de um ticket para "{}\+Em Andamento"{} e o atribui ao usuário logado. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_a99e4657cdd141c82ef13e23b31aff526}{Conclude}} (int id)
+\begin{DoxyCompactList}\small\item\em Altera o status de um ticket para "{}\+Concluído"{} e registra a data de fechamento. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_a41f34ca72637ef71b7870b4b4bc850fc}{Delete\+Ticket}} (int id)
+\begin{DoxyCompactList}\small\item\em Remove um ticket permanentemente do banco de dados. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int? \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_afbfeae9251ffd763d69c6bc070a60780}{Get\+Current\+User\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Método utilitário privado para obter o ID do usuário logado a partir das Claims de autenticação. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_a05c03757e1cad94622f6bf858090a99d}{\+\_\+context}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controlador da API responsável por fornecer endpoints RESTful para consulta e manipulação de Chamados (Tickets). 
+
+Utilizado por aplicações front-\/end para interagir com os dados dos chamados.
+
+\label{doc-constructors}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_a08b568b50f93801db532b81c1908211c}\index{PIM.Controllers.TicketsApiController@{PIM.Controllers.TicketsApiController}!TicketsApiController@{TicketsApiController}}
+\index{TicketsApiController@{TicketsApiController}!PIM.Controllers.TicketsApiController@{PIM.Controllers.TicketsApiController}}
+\doxysubsubsection{\texorpdfstring{TicketsApiController()}{TicketsApiController()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_a08b568b50f93801db532b81c1908211c} 
+PIM.\+Controllers.\+Tickets\+Api\+Controller.\+Tickets\+Api\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}}}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_tickets_api_controller}{Tickets\+Api\+Controller}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & O contexto do banco de dados (\doxylink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}) injetado via DI.\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_ab5aae1f5700b501fcd7dfa05d3e1f993}\index{PIM.Controllers.TicketsApiController@{PIM.Controllers.TicketsApiController}!Approve@{Approve}}
+\index{Approve@{Approve}!PIM.Controllers.TicketsApiController@{PIM.Controllers.TicketsApiController}}
+\doxysubsubsection{\texorpdfstring{Approve()}{Approve()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_ab5aae1f5700b501fcd7dfa05d3e1f993} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Tickets\+Api\+Controller.\+Approve (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Altera o status de um ticket para "{}\+Em Andamento"{} e o atribui ao usuário logado. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O ID do \doxylink{class_p_i_m_1_1_models_1_1_chamado}{Chamado} a ser aprovado/assumido.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+200 Ok em sucesso, 404 Not Found, ou 400 Bad Request se o status for inválido.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_a99e4657cdd141c82ef13e23b31aff526}\index{PIM.Controllers.TicketsApiController@{PIM.Controllers.TicketsApiController}!Conclude@{Conclude}}
+\index{Conclude@{Conclude}!PIM.Controllers.TicketsApiController@{PIM.Controllers.TicketsApiController}}
+\doxysubsubsection{\texorpdfstring{Conclude()}{Conclude()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_a99e4657cdd141c82ef13e23b31aff526} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Tickets\+Api\+Controller.\+Conclude (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Altera o status de um ticket para "{}\+Concluído"{} e registra a data de fechamento. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O ID do \doxylink{class_p_i_m_1_1_models_1_1_chamado}{Chamado} a ser concluído.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+200 Ok em sucesso, 404 Not Found, ou 400 Bad Request se o status for inválido.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_a41f34ca72637ef71b7870b4b4bc850fc}\index{PIM.Controllers.TicketsApiController@{PIM.Controllers.TicketsApiController}!DeleteTicket@{DeleteTicket}}
+\index{DeleteTicket@{DeleteTicket}!PIM.Controllers.TicketsApiController@{PIM.Controllers.TicketsApiController}}
+\doxysubsubsection{\texorpdfstring{DeleteTicket()}{DeleteTicket()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_a41f34ca72637ef71b7870b4b4bc850fc} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Tickets\+Api\+Controller.\+Delete\+Ticket (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Remove um ticket permanentemente do banco de dados. 
+
+Nota\+: A autorização deve garantir que apenas administradores ou o criador possam deletar.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O ID do \doxylink{class_p_i_m_1_1_models_1_1_chamado}{Chamado} a ser deletado.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+204 No Content em sucesso, 404 Not Found.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_afbfeae9251ffd763d69c6bc070a60780}\index{PIM.Controllers.TicketsApiController@{PIM.Controllers.TicketsApiController}!GetCurrentUserId@{GetCurrentUserId}}
+\index{GetCurrentUserId@{GetCurrentUserId}!PIM.Controllers.TicketsApiController@{PIM.Controllers.TicketsApiController}}
+\doxysubsubsection{\texorpdfstring{GetCurrentUserId()}{GetCurrentUserId()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_afbfeae9251ffd763d69c6bc070a60780} 
+int? PIM.\+Controllers.\+Tickets\+Api\+Controller.\+Get\+Current\+User\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Método utilitário privado para obter o ID do usuário logado a partir das Claims de autenticação. 
+
+\begin{DoxyReturn}{Returns}
+O ID do usuário (int) ou {\ttfamily null} se não estiver logado ou o ID for inválido.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_a12743a2a5bca43a958abd3a832508b89}\index{PIM.Controllers.TicketsApiController@{PIM.Controllers.TicketsApiController}!GetMyTickets@{GetMyTickets}}
+\index{GetMyTickets@{GetMyTickets}!PIM.Controllers.TicketsApiController@{PIM.Controllers.TicketsApiController}}
+\doxysubsubsection{\texorpdfstring{GetMyTickets()}{GetMyTickets()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_a12743a2a5bca43a958abd3a832508b89} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Tickets\+Api\+Controller.\+Get\+My\+Tickets (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtém uma lista de tickets que estão atribuídos ao usuário logado (analista). 
+
+\begin{DoxyReturn}{Returns}
+Um IAction\+Result contendo a lista de tickets do usuário logado ou 401 Unauthorized.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_aef1678f557081f31ba2125b78010dfb9}\index{PIM.Controllers.TicketsApiController@{PIM.Controllers.TicketsApiController}!GetTicket@{GetTicket}}
+\index{GetTicket@{GetTicket}!PIM.Controllers.TicketsApiController@{PIM.Controllers.TicketsApiController}}
+\doxysubsubsection{\texorpdfstring{GetTicket()}{GetTicket()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_aef1678f557081f31ba2125b78010dfb9} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Tickets\+Api\+Controller.\+Get\+Ticket (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Obtém os detalhes completos de um ticket específico pelo seu ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O ID do \doxylink{class_p_i_m_1_1_models_1_1_chamado}{Chamado}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um IAction\+Result contendo os detalhes do ticket ou 404 Not Found.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_a0b08cb05e553efd68f18dd2ad1525db4}\index{PIM.Controllers.TicketsApiController@{PIM.Controllers.TicketsApiController}!GetTickets@{GetTickets}}
+\index{GetTickets@{GetTickets}!PIM.Controllers.TicketsApiController@{PIM.Controllers.TicketsApiController}}
+\doxysubsubsection{\texorpdfstring{GetTickets()}{GetTickets()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_a0b08cb05e553efd68f18dd2ad1525db4} 
+async Task$<$ IAction\+Result $>$ PIM.\+Controllers.\+Tickets\+Api\+Controller.\+Get\+Tickets (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtém uma lista de todos os tickets no sistema, incluindo informações do analista atribuído e do solicitante. 
+
+\begin{DoxyReturn}{Returns}
+Um IAction\+Result contendo uma lista paginada ou completa de tickets.
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_a05c03757e1cad94622f6bf858090a99d}\index{PIM.Controllers.TicketsApiController@{PIM.Controllers.TicketsApiController}!\_context@{\_context}}
+\index{\_context@{\_context}!PIM.Controllers.TicketsApiController@{PIM.Controllers.TicketsApiController}}
+\doxysubsubsection{\texorpdfstring{\_context}{\_context}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_tickets_api_controller_a05c03757e1cad94622f6bf858090a99d} 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} PIM.\+Controllers.\+Tickets\+Api\+Controller.\+\_\+context\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+Controllers/\mbox{\hyperlink{_tickets_api_controller_8cs}{Tickets\+Api\+Controller.\+cs}}\end{DoxyCompactItemize}

@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['tabeladetalhada_0',['TabelaDetalhada',['../class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a66b5fd33e0d52adb25d675837f97e83e',1,'PIM::ViewModels::DashboardBIViewModel']]],
+  ['telefone_1',['Telefone',['../class_p_i_m_1_1_models_1_1_usuario.html#aca8b36f8af4fac61284592c530a36eaa',1,'PIM::Models::Usuario']]],
+  ['tempomedioresolucaohoras_2',['TempoMedioResolucaoHoras',['../class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#add1c7d4b72016b05891d7c115f5e2b16',1,'PIM::ViewModels::DashboardBIViewModel']]],
+  ['ticketid_3',['TicketId',['../class_p_i_m_1_1_models_1_1_ticket.html#a77a0d478b533573e2b9cf2842551c187',1,'PIM::Models::Ticket']]],
+  ['tickets_4',['Tickets',['../class_p_i_m_1_1_view_models_1_1_tickets_card_view_model.html#a9586699f50fec2bb4fc366f13d1876a5',1,'PIM::ViewModels::TicketsCardViewModel']]],
+  ['ticketsandamentocount_5',['TicketsAndamentoCount',['../class_p_i_m_1_1_models_1_1_usuario.html#af25af65ff479d66c73e50a631f9e71a2',1,'PIM::Models::Usuario']]],
+  ['ticketsconcluidoscount_6',['TicketsConcluidosCount',['../class_p_i_m_1_1_models_1_1_usuario.html#abec6667250627825e08cce99f67c68d0',1,'PIM::Models::Usuario']]],
+  ['title_7',['Title',['../class_p_i_m_1_1_controllers_1_1_chamado_api_model.html#a606207a2a917b3cd5e6dbe922dd5ed55',1,'PIM.Controllers.ChamadoApiModel.Title'],['../class_p_i_m_1_1_view_models_1_1_chamado_view_model.html#a8dd761e2e53a8df6dee9990f1a364a92',1,'PIM.ViewModels.ChamadoViewModel.Title'],['../class_p_i_m_1_1_models_1_1_ticket_api_model.html#afbf80dc3d69892523899ab30ed000f16',1,'PIM.Models.TicketApiModel.Title']]],
+  ['titulo_8',['Titulo',['../class_p_i_m_1_1_models_1_1_chamado.html#a7ba0ff792b3ad45b8c1b208856a3a963',1,'PIM.Models.Chamado.Titulo'],['../class_p_i_m_1_1_models_1_1_ticket.html#a0678fcad89e05831aff5d754ad96aafe',1,'PIM.Models.Ticket.Titulo']]],
+  ['topcategoriaschart_9',['TopCategoriasChart',['../class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#ac2d40affb16361f81ee4201fe438e1d7',1,'PIM::ViewModels::DashboardBIViewModel']]],
+  ['totalchamadosabertos_10',['TotalChamadosAbertos',['../class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#ad603ad69d7e0d53b59cee9f021765d0b',1,'PIM::ViewModels::DashboardBIViewModel']]],
+  ['totalchamadosemandamento_11',['TotalChamadosEmAndamento',['../class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#ac5da59db2798311e768a6b94ace6c29b',1,'PIM::ViewModels::DashboardBIViewModel']]],
+  ['totalchamadosfechados_12',['TotalChamadosFechados',['../class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a6fc825ef5f683c11f81dfdbf96d23c2a',1,'PIM::ViewModels::DashboardBIViewModel']]],
+  ['totalchamadosnovos_13',['TotalChamadosNovos',['../class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#adeb40e0d533353bb4dee0b64418b7f1e',1,'PIM::ViewModels::DashboardBIViewModel']]],
+  ['totalitems_14',['TotalItems',['../class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#a3145f7b44e9bae7cc48b388de5b6d2fc',1,'PIM.ViewModels.DashboardBIViewModel.TotalItems'],['../class_p_i_m_1_1_view_models_1_1_faq_list_view_model.html#acc961eb6fe3cbbae001283ed987f7c3f',1,'PIM.ViewModels.FaqListViewModel.TotalItems'],['../class_p_i_m_1_1_view_models_1_1_tickets_card_view_model.html#a34d201b627eb024e51608f47f0fbf1b2',1,'PIM.ViewModels.TicketsCardViewModel.TotalItems']]],
+  ['totalpages_15',['TotalPages',['../class_p_i_m_1_1_view_models_1_1_dashboard_b_i_view_model.html#acdc0a0d1408ae0fa39f246d2d07fae07',1,'PIM.ViewModels.DashboardBIViewModel.TotalPages'],['../class_p_i_m_1_1_view_models_1_1_faq_list_view_model.html#ab6f8c0f437122b15e348bdc39d226fef',1,'PIM.ViewModels.FaqListViewModel.TotalPages'],['../class_p_i_m_1_1_view_models_1_1_tickets_card_view_model.html#a2f80de9c069f26fb8a47b56fd1280f5b',1,'PIM.ViewModels.TicketsCardViewModel.TotalPages']]]
+];

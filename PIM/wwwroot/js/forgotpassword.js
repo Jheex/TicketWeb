@@ -1,16 +1,22 @@
+// Seleciona o formulário de "Esqueci a senha"
 const form = document.getElementById('forgotPasswordForm');
-form.addEventListener('submit', function(e) {
-    e.preventDefault(); // impede o envio real
-    const emailInput = document.getElementById('email');
-    let email = emailInput.value.trim();
 
-    if(email.length > 40) {
+// Adiciona evento de envio do formulário
+form.addEventListener('submit', function(e) {
+    e.preventDefault(); // impede o envio tradicional do formulário
+
+    // Seleciona o input de e-mail e obtém o valor
+    const emailInput = document.getElementById('email');
+    let email = emailInput.value.trim(); // remove espaços extras no início/fim
+
+    // Validação de tamanho do e-mail
+    if(email.length > 60) { // OBS: corrigido para 60 caracteres conforme alerta
         alert("O e-mail não pode ter mais que 60 caracteres.");
-        emailInput.focus();
-        return;
+        emailInput.focus(); // foca novamente no input
+        return; // interrompe a execução
     }
 
-    // Substitui o formulário por mensagem de sucesso
+    // Substitui o conteúdo do formulário por uma mensagem de sucesso
     const wrapper = document.getElementById('form-wrapper');
     wrapper.innerHTML = `
         <div class="form-logo">

@@ -1,0 +1,167 @@
+\doxysection{PIM.\+Controllers.\+Chatbot\+Controller Class Reference}
+\hypertarget{class_p_i_m_1_1_controllers_1_1_chatbot_controller}{}\label{class_p_i_m_1_1_controllers_1_1_chatbot_controller}\index{PIM.Controllers.ChatbotController@{PIM.Controllers.ChatbotController}}
+
+
+Controlador principal responsável por gerenciar a interface do Chatbot e processar as requisições de perguntas, utilizando lógica de respostas rápidas e busca no FAQ.  
+
+
+Inheritance diagram for PIM.\+Controllers.\+Chatbot\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_i_m_1_1_controllers_1_1_chatbot_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chatbot_controller_a09cfab6cb88491f5cf63b86f88f2adfe}{Chatbot\+Controller}} (\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} context)
+\begin{DoxyCompactList}\small\item\em Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_chatbot_controller}{Chatbot\+Controller}. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chatbot_controller_a72cd5d426601079c83b77ea89a362d43}{Index}} ()
+\begin{DoxyCompactList}\small\item\em Exibe a página principal da interface do Chatbot. \end{DoxyCompactList}\item 
+IAction\+Result \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chatbot_controller_ab596b4f8381741737f601dafdc1aafb5}{Ask}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chat_request}{Chat\+Request}} request)
+\begin{DoxyCompactList}\small\item\em Recebe a pergunta do usuário e retorna a resposta do bot. A lógica prioriza interações rápidas e, em seguida, a busca por similaridade no FAQ. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chatbot_controller_a8eb41715299297296b45fe0649b93880}{Buscar\+Resposta\+FAQ}} (string pergunta\+Usuario)
+\begin{DoxyCompactList}\small\item\em Busca no banco de dados a Pergunta Frequente (FAQ) mais próxima da pergunta do usuário. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chatbot_controller_ab574dd37e4260d955417889b32cd3339}{Similaridade}} (string texto1, string texto2)
+\begin{DoxyCompactList}\small\item\em Calcula a similaridade entre duas strings contando o número de palavras em comum. A similaridade é usada para classificar qual FAQ é a mais relevante. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chatbot_controller_a57c211f291462643b2d9cd6de29f95ee}{Normalize\+Text}} (string text)
+\begin{DoxyCompactList}\small\item\em Normaliza o texto, removendo acentos, pontuação e convertendo para minúsculas. Isso é crucial para a comparação de similaridade. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chatbot_controller_a618ce1ed98f69de820b5f775810a8820}{\+\_\+context}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controlador principal responsável por gerenciar a interface do Chatbot e processar as requisições de perguntas, utilizando lógica de respostas rápidas e busca no FAQ. 
+
+\label{doc-constructors}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_chatbot_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_chatbot_controller_a09cfab6cb88491f5cf63b86f88f2adfe}\index{PIM.Controllers.ChatbotController@{PIM.Controllers.ChatbotController}!ChatbotController@{ChatbotController}}
+\index{ChatbotController@{ChatbotController}!PIM.Controllers.ChatbotController@{PIM.Controllers.ChatbotController}}
+\doxysubsubsection{\texorpdfstring{ChatbotController()}{ChatbotController()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_chatbot_controller_a09cfab6cb88491f5cf63b86f88f2adfe} 
+PIM.\+Controllers.\+Chatbot\+Controller.\+Chatbot\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}}}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa uma nova instância do controlador \doxylink{class_p_i_m_1_1_controllers_1_1_chatbot_controller}{Chatbot\+Controller}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & O contexto do banco de dados (\doxylink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}) injetado via DI.\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_chatbot_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_chatbot_controller_ab596b4f8381741737f601dafdc1aafb5}\index{PIM.Controllers.ChatbotController@{PIM.Controllers.ChatbotController}!Ask@{Ask}}
+\index{Ask@{Ask}!PIM.Controllers.ChatbotController@{PIM.Controllers.ChatbotController}}
+\doxysubsubsection{\texorpdfstring{Ask()}{Ask()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_chatbot_controller_ab596b4f8381741737f601dafdc1aafb5} 
+IAction\+Result PIM.\+Controllers.\+Chatbot\+Controller.\+Ask (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_p_i_m_1_1_controllers_1_1_chat_request}{Chat\+Request}}}]{request}{}\end{DoxyParamCaption})}
+
+
+
+Recebe a pergunta do usuário e retorna a resposta do bot. A lógica prioriza interações rápidas e, em seguida, a busca por similaridade no FAQ. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & O objeto contendo a pergunta do usuário.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um resultado JSON contendo a propriedade \textquotesingle{}answer\textquotesingle{} com a resposta do bot.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_chatbot_controller_a8eb41715299297296b45fe0649b93880}\index{PIM.Controllers.ChatbotController@{PIM.Controllers.ChatbotController}!BuscarRespostaFAQ@{BuscarRespostaFAQ}}
+\index{BuscarRespostaFAQ@{BuscarRespostaFAQ}!PIM.Controllers.ChatbotController@{PIM.Controllers.ChatbotController}}
+\doxysubsubsection{\texorpdfstring{BuscarRespostaFAQ()}{BuscarRespostaFAQ()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_chatbot_controller_a8eb41715299297296b45fe0649b93880} 
+string PIM.\+Controllers.\+Chatbot\+Controller.\+Buscar\+Resposta\+FAQ (\begin{DoxyParamCaption}\item[{string}]{pergunta\+Usuario}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Busca no banco de dados a Pergunta Frequente (FAQ) mais próxima da pergunta do usuário. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pergunta\+Usuario} & A string da pergunta do usuário já normalizada.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A resposta da FAQ mais próxima ou uma mensagem padrão de "{}não encontrado"{}.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_chatbot_controller_a72cd5d426601079c83b77ea89a362d43}\index{PIM.Controllers.ChatbotController@{PIM.Controllers.ChatbotController}!Index@{Index}}
+\index{Index@{Index}!PIM.Controllers.ChatbotController@{PIM.Controllers.ChatbotController}}
+\doxysubsubsection{\texorpdfstring{Index()}{Index()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_chatbot_controller_a72cd5d426601079c83b77ea89a362d43} 
+IAction\+Result PIM.\+Controllers.\+Chatbot\+Controller.\+Index (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Exibe a página principal da interface do Chatbot. 
+
+\begin{DoxyReturn}{Returns}
+A View de índice do Chatbot.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_chatbot_controller_a57c211f291462643b2d9cd6de29f95ee}\index{PIM.Controllers.ChatbotController@{PIM.Controllers.ChatbotController}!NormalizeText@{NormalizeText}}
+\index{NormalizeText@{NormalizeText}!PIM.Controllers.ChatbotController@{PIM.Controllers.ChatbotController}}
+\doxysubsubsection{\texorpdfstring{NormalizeText()}{NormalizeText()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_chatbot_controller_a57c211f291462643b2d9cd6de29f95ee} 
+string PIM.\+Controllers.\+Chatbot\+Controller.\+Normalize\+Text (\begin{DoxyParamCaption}\item[{string}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Normaliza o texto, removendo acentos, pontuação e convertendo para minúsculas. Isso é crucial para a comparação de similaridade. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & O texto original a ser normalizado.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O texto processado e normalizado.
+\end{DoxyReturn}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_chatbot_controller_ab574dd37e4260d955417889b32cd3339}\index{PIM.Controllers.ChatbotController@{PIM.Controllers.ChatbotController}!Similaridade@{Similaridade}}
+\index{Similaridade@{Similaridade}!PIM.Controllers.ChatbotController@{PIM.Controllers.ChatbotController}}
+\doxysubsubsection{\texorpdfstring{Similaridade()}{Similaridade()}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_chatbot_controller_ab574dd37e4260d955417889b32cd3339} 
+int PIM.\+Controllers.\+Chatbot\+Controller.\+Similaridade (\begin{DoxyParamCaption}\item[{string}]{texto1}{, }\item[{string}]{texto2}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Calcula a similaridade entre duas strings contando o número de palavras em comum. A similaridade é usada para classificar qual FAQ é a mais relevante. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texto1} & O primeiro texto normalizado (geralmente a pergunta do FAQ).\\
+\hline
+{\em texto2} & O segundo texto normalizado (a pergunta do usuário).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um valor inteiro representando o número de palavras em comum.
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_chatbot_controller_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_p_i_m_1_1_controllers_1_1_chatbot_controller_a618ce1ed98f69de820b5f775810a8820}\index{PIM.Controllers.ChatbotController@{PIM.Controllers.ChatbotController}!\_context@{\_context}}
+\index{\_context@{\_context}!PIM.Controllers.ChatbotController@{PIM.Controllers.ChatbotController}}
+\doxysubsubsection{\texorpdfstring{\_context}{\_context}}
+{\footnotesize\ttfamily \label{class_p_i_m_1_1_controllers_1_1_chatbot_controller_a618ce1ed98f69de820b5f775810a8820} 
+readonly \mbox{\hyperlink{class_p_i_m_1_1_data_1_1_app_db_context}{App\+Db\+Context}} PIM.\+Controllers.\+Chatbot\+Controller.\+\_\+context\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket\+Web/\+PIM/\+Controllers/\mbox{\hyperlink{_chatbot_controller_8cs}{Chatbot\+Controller.\+cs}}\end{DoxyCompactItemize}

@@ -1,46 +1,62 @@
 @model LoginViewModel
 @{
+    // Define o título da página e remove o layout padrão para a tela de login
     ViewData["Title"] = "Login";
     Layout = null;
 }
+
 <!DOCTYPE html>
 <html lang="pt-BR" data-theme="dark">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Título da aba do navegador -->
     <title>@ViewData["Title"] - Sistema de Chamados</title>
 
+    <!-- Fontes Google (Inter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Estilos globais e da página de login -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+
+    <!-- Ícones do Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
 
+    <!-- Container principal da página de login -->
     <div class="login-container">
+
+        <!-- Wrapper do formulário de login -->
         <div class="login-form-wrapper">
             <main>
+                <!-- Formulário de login -->
                 <form asp-action="Login" method="post" id="loginForm">
-                    
+
+                    <!-- Botão de alternância de tema -->
                     <button type="button" class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Alternar tema">
                         <i id="theme-icon" class="bi bi-sun-fill"></i>
                     </button>
 
+                    <!-- Ícone do robô no topo do formulário -->
                     <div class="form-logo">
                         <i class="bi bi-robot" style="font-size:48px; color: var(--color-primary);"></i>
                     </div>
 
+                    <!-- Cabeçalho do formulário -->
                     <div class="form-header">
                         <h2>Acesse sua Conta</h2>
                         <p class="subtitle">Bem-vindo! Insira suas credenciais para continuar.</p>
                     </div>
 
+                    <!-- Resumo de validações do lado servidor -->
                     <div asp-validation-summary="ModelOnly" class="validation-summary-errors"></div>
 
-                    <!-- FEEDBACK VISUAL -->
+                    <!-- Feedback visual de erro -->
                     <div id="login-feedback" class="login-feedback">
                         @if (ViewBag.Error != null)
                         {
@@ -50,21 +66,25 @@
                         }
                     </div>
 
+                    <!-- Campo de e-mail -->
                     <div class="form-group">
                         <label asp-for="Email">E-mail</label>
                         <input asp-for="Email" class="form-control" autocomplete="Email" placeholder="E-mail" required autofocus />
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
 
+                    <!-- Campo de senha com botão de mostrar/ocultar -->
                     <div class="form-group password-wrapper">
                         <label asp-for="Password">Senha</label>
                         <div class="password-field">
                             <input asp-for="Password" class="form-control" type="password" id="passwordInput" autocomplete="current-password" placeholder="••••••••" required />
                             <button type="button" class="toggle-password" onclick="togglePassword()" aria-label="Mostrar ou ocultar senha">
+                                <!-- Ícone olho aberto -->
                                 <svg id="icon-eye" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                                 </svg>
+                                <!-- Ícone olho fechado -->
                                 <svg id="icon-eye-off" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:none;">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a9.956 9.956 0 012.642-4.362M9.88 9.88a3 3 0 104.24 4.24"/>
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6.1 6.1L17.9 17.9"/>
@@ -74,6 +94,7 @@
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
 
+                    <!-- Opções adicionais: lembrar login e recuperar senha -->
                     <div class="form-options">
                         <label class="remember-me">
                             <input type="checkbox" asp-for="RememberMe" />
@@ -84,6 +105,7 @@
                         </a>
                     </div>
 
+                    <!-- Botão de login -->
                     <button type="submit" class="btn btn-primary" id="loginButton">
                         Entrar
                     </button>
@@ -91,6 +113,7 @@
             </main>
         </div>
 
+        <!-- Imagem ilustrativa ao lado direito -->
         <div class="login-image-wrapper">
              <img src="~/image/bot-amico.svg" alt="Imagem abstrata de tecnologia ilustrando o sistema de chamados." />
         </div>
@@ -101,6 +124,9 @@
         const htmlEl = document.documentElement;
         const themeIcon = document.getElementById("theme-icon");
 
+        /* Define o tema da página (dark ou light)
+           Param: theme - "dark" ou "light"
+        */
         function setTheme(theme) {
             htmlEl.setAttribute("data-theme", theme);
             if (theme === "dark") {
@@ -111,6 +137,7 @@
             localStorage.setItem("theme", theme);
         }
 
+        // Alterna o tema entre claro e escuro
         function toggleTheme() {
             const currentTheme = htmlEl.getAttribute("data-theme") || "dark";
             const newTheme = currentTheme === "dark" ? "light" : "dark";
@@ -118,6 +145,7 @@
         }
 
         // --- MOSTRAR/OCULTAR SENHA ---
+        // Alterna a visibilidade do campo de senha
         function togglePassword() {
             const input = document.getElementById("passwordInput");
             const eye = document.getElementById("icon-eye");
@@ -136,18 +164,20 @@
 
         // --- EVENT LISTENERS ---
         document.addEventListener("DOMContentLoaded", () => {
-            // Aplica o tema salvo ao carregar a página
+            // Aplica o tema salvo no localStorage assim que a página é carregada
             const savedTheme = localStorage.getItem("theme") || "dark";
             setTheme(savedTheme);
         });
 
-        // Feedback de carregamento no botão
+        // Adiciona feedback visual ao botão de login quando o formulário é enviado
         document.getElementById("loginForm").addEventListener("submit", function () {
             const btn = document.getElementById("loginButton");
-            btn.disabled = true;
+            btn.disabled = true; // impede múltiplos cliques
             btn.innerHTML = '<span class="spinner"></span>Entrando...';
         });
     </script>
+
+    <!-- Scripts de validação automáticos do ASP.NET -->
     <partial name="_ValidationScriptsPartial" />
 </body>
 </html>

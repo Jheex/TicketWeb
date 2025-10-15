@@ -1,51 +1,56 @@
-/* Variáveis para cores */
+/* ============================
+   Variáveis de cores e UI
+   ============================ */
 :root {
-    --primary-color: #7f56d9; /* Roxo */
-    --primary-hover: #9b78f0; /* Roxo claro */
-    --background-dark: #1e1e2f; /* Azul escuro */
-    --container-bg: rgba(30, 30, 47, 0.7); /* Fundo com transparência */
-    --user-message-bg: #5a5a73; /* Cinza escuro para mensagem do usuário */
-    --bot-message-bg: #4c3789; /* Roxo mais escuro para a mensagem do bot */
-    --text-light: #e0e0e0;
-    --text-dark: #f0f0f0;
-    --input-bg: rgba(255, 255, 255, 0.1);
-    --border-color: rgba(255, 255, 255, 0.1);
+    --primary-color: #7f56d9;       /* Cor principal do sistema (roxo) */
+    --primary-hover: #9b78f0;       /* Hover da cor principal */
+    --background-dark: #1e1e2f;     /* Fundo geral da página */
+    --container-bg: rgba(30, 30, 47, 0.7); /* Fundo do container do chat com transparência */
+    --user-message-bg: #5a5a73;     /* Fundo da mensagem do usuário */
+    --bot-message-bg: #4c3789;      /* Fundo da mensagem do bot */
+    --text-light: #e0e0e0;          /* Texto claro */
+    --text-dark: #f0f0f0;           /* Texto mais escuro */
+    --input-bg: rgba(255, 255, 255, 0.1); /* Fundo do input de texto */
+    --border-color: rgba(255, 255, 255, 0.1); /* Cor das bordas */
 }
 
 /* ============================
-   Layout Geral
+   Layout Geral da Página
    ============================ */
 .chatbot-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex;                     /* Flex para centralizar conteúdo */
+    justify-content: center;           /* Centraliza horizontalmente */
+    align-items: center;               /* Centraliza verticalmente */
     margin: 20px;
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-size: 400% 400%;        /* Para a animação de gradiente */
+    animation: gradientShift 15s ease infinite; /* Animação de mudança de cor de fundo */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte do sistema */
 }
 
+/* Animação do gradiente de fundo */
 @keyframes gradientShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
+/* Container principal do chat */
 .chat-container {
     width: 90%;
     max-width: 900px;
     height: 76vh;
-    border-radius: 20px;
+    border-radius: 20px;               /* Bordas arredondadas */
     padding: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra para profundidade */
     display: flex;
     flex-direction: column;
-    background-color: var(--container-bg);
-    backdrop-filter: blur(10px);
+    background-color: var(--container-bg); /* Fundo com transparência */
+    backdrop-filter: blur(10px);            /* Desfoque do fundo */
     border: 1px solid var(--border-color);
-    color: var(--text-dark);
+    color: var(--text-dark);               /* Cor do texto */
 }
 
+/* Título do chat */
 h2 {
     text-align: center;
     color: #fff;
@@ -61,43 +66,43 @@ h2 {
     flex: 1;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: hidden;                  /* Oculta o excesso */
     border-radius: 15px;
 }
 
 .chat-messages {
     flex: 1;
-    overflow-y: auto;
+    overflow-y: auto;                  /* Scroll vertical */
     padding: 10px;
     scrollbar-width: thin;
     scrollbar-color: var(--primary-color) transparent;
 }
 
+/* Estilo do scroll para Webkit */
 .chat-messages::-webkit-scrollbar {
     width: 8px;
 }
-
 .chat-messages::-webkit-scrollbar-track {
     background: transparent;
 }
-
 .chat-messages::-webkit-scrollbar-thumb {
     background-color: var(--primary-color);
     border-radius: 4px;
     border: 2px solid var(--container-bg);
 }
 
+/* Mensagem individual */
 .chat-message {
     padding: 12px 18px;
     margin: 10px 0;
     border-radius: 18px;
     max-width: 80%;
-    word-wrap: break-word;
+    word-wrap: break-word;             /* Quebra palavras longas */
     font-size: 0.95rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    opacity: 0;
+    opacity: 0;                         /* Inicial invisível para animação */
     transform: translateY(10px);
-    animation: fadeIn 0.5s ease-out forwards;
+    animation: fadeIn 0.5s ease-out forwards; /* Animação de entrada */
 }
 
 @keyframes fadeIn {
@@ -107,21 +112,48 @@ h2 {
     }
 }
 
+/* Mensagens do usuário */
 .chat-message.user {
     background: linear-gradient(135deg, #5a5a73, #4a4a5e);
     color: var(--text-light);
-    margin-left: auto;
+    margin-left: auto;                 /* Alinha à direita */
     border-bottom-right-radius: 5px;
+    padding-left: 50px;                /* Espaço para o ícone */
+    position: relative;                /* Para o pseudo-elemento do ícone */
 }
 
+/* Mensagens do bot */
 .chat-message.bot {
     background: linear-gradient(135deg, var(--primary-color), var(--bot-message-bg));
     color: var(--text-dark);
-    margin-right: auto;
+    margin-right: auto;                /* Alinha à esquerda */
     border-bottom-left-radius: 5px;
+    padding-left: 50px;                /* Espaço para o ícone */
+    position: relative;
 }
 
-/* Animação do 'Digitando...' */
+/* Ícones das mensagens */
+.chat-message.user::before {
+    content: "🧑";                     /* Ícone do usuário */
+    font-size: 1.5rem;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.chat-message.bot::before {
+    content: "🤖";                     /* Ícone do bot */
+    font-size: 1.5rem;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ============================
+   Indicador 'Digitando...'
+   ============================ */
 .typing-indicator {
     display: flex;
     align-items: center;
@@ -150,7 +182,7 @@ h2 {
 }
 
 /* ============================
-   Input e Botão
+   Input e Botão de Envio
    ============================ */
 .chat-input {
     display: flex;
@@ -202,75 +234,23 @@ h2 {
     transform: translateY(0);
 }
 
-@media (max-width: 100px) {
-    .chat-container {
-        padding: 20px;
-    }
-
-    .chat-message {
-        font-size: 0.9rem;
-    }
-}
-
 /* ============================
-    Aprimorando as Mensagens com Ícones de Perfil
+   Botões de sugestão (quick replies)
    ============================ */
-.chat-message.user {
-    background: linear-gradient(135deg, #5a5a73, #4a4a5e);
-    color: var(--text-light);
-    margin-left: auto;
-    border-bottom-right-radius: 5px;
-    padding-left: 50px; /* Aumenta o espaçamento para o ícone */
-    position: relative; /* Essencial para o posicionamento do ícone */
-}
-
-.chat-message.bot {
-    background: linear-gradient(135deg, var(--primary-color), var(--bot-message-bg));
-    color: var(--text-dark);
-    margin-right: auto;
-    border-bottom-left-radius: 5px;
-    padding-left: 50px; /* Aumenta o espaçamento para o ícone */
-    position: relative; /* Essencial para o posicionamento do ícone */
-}
-
-/* Pseudo-elemento para o ícone do usuário */
-.chat-message.user::before {
-    content: "🧑"; /* Ícone de usuário (use um emoji) */
-    font-size: 1.5rem;
-    position: absolute;
-    left: 15px; /* Posição à esquerda */
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-/* Pseudo-elemento para o ícone do bot */
-.chat-message.bot::before {
-    content: "🤖"; /* Ícone de robô (use um emoji) */
-    font-size: 1.5rem;
-    position: absolute;
-    left: 15px; /* Posição à esquerda, alinhando com o do usuário */
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-/* ... seu CSS existente ... */
-
-/* Estilo para o contêiner dos botões de sugestão */
 .suggestion-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     margin-top: 15px;
-    padding-left: 10px; /* Alinha com as mensagens do bot */
+    padding-left: 10px;              /* Alinha com as mensagens do bot */
     transition: opacity 0.5s ease-in-out;
 }
 
 .suggestion-buttons.hidden {
     opacity: 0;
-    pointer-events: none; /* Impede cliques */
+    pointer-events: none;             /* Impede cliques */
 }
 
-/* Estilo para os botões individuais */
 .suggestion-btn {
     background-color: rgba(255, 255, 255, 0.1);
     color: var(--text-dark);
@@ -279,88 +259,44 @@ h2 {
     padding: 8px 15px;
     font-size: 0.85rem;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s;
+    transition: background-color 0.2s, transform 0.2s; /* Transição suave para hover */
 }
 
 .suggestion-btn:hover {
-    background-color: var(--primary-color);
-    transform: translateY(-2px);
+    background-color: var(--primary-color); /* Muda a cor no hover */
+    transform: translateY(-2px);           /* Leve elevação visual */
 }
 
 /* ============================
-   Ajuste do Indicador 'Digitando...'
-   ============================ */
-
-/* Contêiner que garante o formato da bolha de mensagem */
-.chat-message.bot.typing-indicator {
-    /* Garante que o indicador se comporte como uma bolha de mensagem do bot */
-    background: linear-gradient(135deg, var(--primary-color), var(--bot-message-bg));
-    color: var(--text-dark);
-    margin-right: auto;
-    border-bottom-left-radius: 5px;
-    padding: 12px 18px; /* Aumenta o padding para caber o conteúdo */
-    max-width: fit-content; /* Deixa a largura mínima para caber o conteúdo */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    display: flex; /* Permite alinhar o conteúdo interno */
-    align-items: center;
-    justify-content: flex-start;
-    position: relative;
-    /* Remove a animação de fadeIn para aparecer imediatamente */
-    animation: none; 
-    opacity: 1; 
-    transform: none;
-}
-
-/* Oculta o texto "Digitando..." adicionado pelo JS para usar as bolinhas CSS */
-.chat-message.bot.typing-indicator::before {
-    /* Mantém o ícone do robô (🤖) */
-    content: "🤖"; 
-    font-size: 1.5rem;
-    position: absolute;
-    left: 15px; 
-    top: 50%;
-    transform: translateY(-50%);
-    /* Espaçamento para o conteúdo */
-    margin-right: 10px; 
-}
-
-/* Cria o efeito das bolinhas de digitação (melhor visual) */
-.chat-message.bot.typing-indicator::after {
-    content: ''; /* Começa vazio */
-    display: inline-block;
-    width: 20px; /* Largura para as bolinhas */
-    height: 10px;
-    margin-left: 10px;
-    position: relative;
-    overflow: hidden;
-    /* A animação das bolinhas */
-    animation: typing-dots 1.5s infinite steps(3, end); 
-}
-
-/* Onde a animação realmente acontece (três pontos que aparecem e somem) */
-@keyframes typing-dots {
-    0%, 25% { 
-        content: '.'; 
-    }
-    50%, 75% { 
-        content: '..'; 
-    }
-    100% { 
-        content: '...'; 
-    }
-}
-
-/* ============================
-    Data e Hora da Mensagem
+   Data e hora das mensagens
    ============================ */
 .chat-message-info {
-    font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.7rem;                      /* Texto pequeno */
+    color: rgba(255, 255, 255, 0.6);       /* Cor mais clara e sutil */
     margin-top: 5px;
     display: block;
-    text-align: right;
+    text-align: right;                      /* Alinha à direita por padrão */
 }
 
+/* Mensagens do bot: data alinhada à esquerda */
 .chat-message.bot .chat-message-info {
     text-align: left;
+}
+
+/* ============================
+   Responsividade
+   ============================ */
+@media (max-width: 768px) {
+    .chat-container {
+        width: 95%;                         /* Ajusta largura em telas menores */
+        padding: 20px;
+    }
+
+    .chat-message {
+        font-size: 0.9rem;                  /* Ajusta fonte das mensagens */
+    }
+
+    .suggestion-buttons {
+        gap: 5px;                            /* Menor espaçamento entre botões */
+    }
 }
