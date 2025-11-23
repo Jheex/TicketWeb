@@ -211,14 +211,24 @@ namespace PIM.Controllers
             var usuario = _db.Usuarios.Find(id);
             if (usuario == null) return NotFound();
 
-            _db.Usuarios.Remove(usuario);
-            _db.SaveChanges();
-            
-            // MENSAGEM DE SUCESSO DE EXCLUSÃO
-            TempData["SuccessMessage"] = $"Usuário '{usuario.Username}' removido com sucesso.";
+            try
+            {
+                _db.Usuarios.Remove(usuario);
+                _db.SaveChanges();
+
+                TempData["SuccessMessage"] = $"Usuário '{usuario.Username}' removido com sucesso.";
+            }
+            catch (DbUpdateException)
+            {
+                TempData["ErrorMessage"] =
+                    "Este usuário não pode ser excluído porque existe um chamado vinculado a ele.";
+
+                return RedirectToAction(nameof(Index));
+            }
 
             return RedirectToAction(nameof(Index));
         }
+
 
         // GET: Profile
         /// <summary>
